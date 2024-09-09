@@ -18,7 +18,7 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 1. **Set Up CosmoCloud Object Storage:**
    - Create an account on [CosmoCloud](https://cosmocloud.io/).
    - Obtain your environmentId and projectId.
-   - Put them in a file called Constant.kt in root folder.
+   - Put them in a file called Constant.kt in com.example.myhealthpassport folder.
 
 2. **Uploading Medical Data to CosmoCloud:**
    - Store medical files in PDF format using CosmoCloud’s object storage for safe and organized data management.
@@ -28,7 +28,7 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 1. **Set Up Anthropic API:**
    - Sign up for an account on [Anthropic](https://www.anthropic.com).
    - Obtain your API key and Base Url.
-   - Add the Anthropic API key and Base Url in Constant.kt file in root folder.
+   - Add the Anthropic API key and Base Url in Constant.kt file in com.example.myhealthpassport folder.
    
 2. **Using Anthropic API for Chatbot:**
    - Implement the chatbot using the Anthropic API key to offer personalized mental health advice.
