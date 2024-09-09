@@ -52,6 +52,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.myhealthpassport.R
 import com.example.myhealthpassport.ViewModels.AiViewModel
 import java.io.InputStream
@@ -221,4 +222,10 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
 // Helper function to open the gallery
 private fun openGallery(context: Context, getImageLauncher: ActivityResultLauncher<String>) {
     getImageLauncher.launch("image/*")
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HealthAiScreenPreview(){
+    HealthAiScreen(navController = rememberNavController())
 }
