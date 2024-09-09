@@ -16,7 +16,7 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 ## Integration with CosmoCloud
 
 1. **Set Up CosmoCloud Object Storage:**
-   - Create an account on [CosmoCloud]([https://www.cosmocloud.com](https://cosmocloud.io/)).
+   - Create an account on [CosmoCloud]((https://cosmocloud.io/)).
    - Obtain your environmentId and projectId.
    - Put them in a file called Constant.kt in root folder.
 
