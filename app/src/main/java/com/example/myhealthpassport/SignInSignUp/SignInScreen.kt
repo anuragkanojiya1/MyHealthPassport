@@ -132,6 +132,7 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
                 errorTextColor = Color.Red
             ),
         )
+
         errorMessage?.let {
             Text(text = it, color = Color.Red)
         }
@@ -139,7 +140,7 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        navController.navigate(Screen.MainHealthActivity.route)
+                        navController.navigate(Screen.NavigationDrawer.route)
                     } else {
                         errorMessage = task.exception?.message
                     }
