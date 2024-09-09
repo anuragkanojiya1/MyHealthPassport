@@ -1,6 +1,8 @@
 package com.example.myhealthpassport
 
 import android.os.Bundle
+import android.view.ViewGroup
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -34,6 +36,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyHealthPassportTheme {
                 val navController = rememberNavController()
+
                 NavGraph(navController = navController, healthViewModel = healthViewModel, aiViewModel = aiViewModel)
             }
         }
