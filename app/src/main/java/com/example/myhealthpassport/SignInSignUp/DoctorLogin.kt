@@ -215,6 +215,30 @@ fun AnimatedPatientSignUp(modifier: Modifier = Modifier) {
     )
 }
 
+@Composable
+fun AnimatedCloud(modifier: Modifier = Modifier) {
+    val preloaderLottieComposition by rememberLottieComposition(
+        LottieCompositionSpec.RawRes(
+            R.raw.animatedcloud
+        )
+    )
+
+    val preloaderProgress by animateLottieCompositionAsState(
+        preloaderLottieComposition,
+        iterations = LottieConstants.IterateForever,
+        isPlaying = true
+    )
+
+
+    LottieAnimation(
+        composition = preloaderLottieComposition,
+        progress = preloaderProgress,
+        modifier = modifier
+    )
+}
+
+
+
 @Preview(showBackground = true)
 @Composable
 fun DoctorLoginPreview(){
