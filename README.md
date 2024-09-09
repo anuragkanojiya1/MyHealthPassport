@@ -7,10 +7,32 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 
 - **Secure Authentication:** Utilizes Firebase Authentication for secure login and registration.
 - **Cloud Storage:** Stores medical data on Cloud Firestore, ensuring reliable and scalable data management.
+- **PDF Storage:** Utilizes CosmoCloud Object Storage for securely storing user data in PDF format, ensuring easy and safe retrieval of medical files.
 - **Medical ID System:** Each patient's medical information is associated with a unique medical ID for easy and secure access.
 - **Image Analysis:** Integrates Gemini API to analyze medical certificates and extract data using the Gemini-1.5-flash model.
+- **Personal Therapist Chatbot:** The app includes a personal therapist chatbot using Anthropic API, providing users with emotional and mental health support.
 - **User-Friendly Interface:** Designed with Jetpack Compose for a modern and intuitive user experience.
 
+## Integration with CosmoCloud
+
+1. **Set Up CosmoCloud Object Storage:**
+   - Create an account on [CosmoCloud](https://www.cosmocloud.com).
+   - Obtain your environmentId and projectId.
+   - Put them in a file called Constant.kt in root folder.
+
+2. **Uploading Medical Data to CosmoCloud:**
+   - Store medical files in PDF format using CosmoCloud’s object storage for safe and organized data management.
+  
+## Anthropic API Integration
+
+1. **Set Up Anthropic API:**
+   - Sign up for an account on [Anthropic](https://www.anthropic.com).
+   - Obtain your API key and Base Url.
+   - Add the Anthropic API key and Base Url in Constant.kt file in root folder.
+   
+2. **Using Anthropic API for Chatbot:**
+   - Implement the chatbot using the Anthropic API key to offer personalized mental health advice.
+     
 ## App Demo
 
 Youtube Link- https://youtu.be/cY1sU-AKsRY
