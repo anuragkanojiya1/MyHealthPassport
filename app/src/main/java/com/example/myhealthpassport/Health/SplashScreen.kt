@@ -26,7 +26,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.myhealthpassport.Navigation.Screen
 import com.example.myhealthpassport.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -38,7 +40,7 @@ class MainViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            delay(3000)  // Simulate loading
+            delay(800)  // Simulate loading
             _isLoading.value = false
         }
     }
@@ -48,10 +50,23 @@ class MainViewModel : ViewModel() {
 fun SplashScreen(navController: NavController, mainViewModel: MainViewModel = viewModel()) {
     val isLoading by mainViewModel.isLoading.collectAsState()
 
+    val auth = FirebaseAuth.getInstance()
+    val currentUser = auth.currentUser
+
+    if(currentUser==null){
     LaunchedEffect(key1 = isLoading) {
         if (!isLoading) {
-            navController.navigate("login") {
+            navController.navigate(Screen.Login.route) {
                 popUpTo("splash") { inclusive = true }
+            }
+        }
+        }
+    } else{
+        LaunchedEffect(key1 = isLoading) {
+            if (!isLoading) {
+                navController.navigate(Screen.NavigationDrawer.route) {
+                    popUpTo("splash") { inclusive = true }
+                }
             }
         }
     }
