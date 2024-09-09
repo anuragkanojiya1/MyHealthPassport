@@ -1,5 +1,7 @@
 package com.example.myhealthpassport.Navigation
 
+import FileUploadDownloadScreen
+import com.example.myhealthpassport.ViewModels.FileViewModel
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,18 +18,22 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.myhealthpassport.FlipAnimation
+import com.example.myhealthpassport.Health.ChatScreen
 import com.example.myhealthpassport.Health.EmergencyContactsListPreview
 import com.example.myhealthpassport.Health.GetHealthInfo
 import com.example.myhealthpassport.Health.HealthAiScreen
 import com.example.myhealthpassport.Health.HealthInfo
 import com.example.myhealthpassport.ViewModels.HealthViewModel
 import com.example.myhealthpassport.Health.MainHealthActivity
+import com.example.myhealthpassport.Health.NavigationDrawer
 import com.example.myhealthpassport.Health.PatientDetails
 import com.example.myhealthpassport.Health.SplashScreen
 import com.example.myhealthpassport.SignInSignUp.DoctorLogin
 import com.example.myhealthpassport.SignInSignUp.SignInScreen
 import com.example.myhealthpassport.SignInSignUp.SignUpScreen
 import com.example.myhealthpassport.ViewModels.AiViewModel
+import com.example.myhealthpassport.ViewModels.ChatViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 @Composable
@@ -79,6 +85,18 @@ fun NavGraph(navController: NavController, healthViewModel: HealthViewModel, aiV
         }
         composable(Screen.HealthAiScreen.route){
             HealthAiScreen(navController = navController, aiViewModel = aiViewModel)
+        }
+        composable(Screen.FlipAnimation.route){
+            FlipAnimation(navController = navController)
+        }
+        composable(Screen.NavigationDrawer.route){
+            NavigationDrawer(navController = navController)
+        }
+        composable(Screen.ChatScreen.route){
+            ChatScreen(navController = navController, viewModel = ChatViewModel())
+        }
+        composable(Screen.FileUploadDownloadScreen.route){
+            FileUploadDownloadScreen(navController = navController, viewModel = FileViewModel())
         }
 
 //        composable(Screen.AddDataScreen.route){

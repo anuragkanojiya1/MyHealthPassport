@@ -12,4 +12,8 @@ sealed class Screen(val route: String) {
     object EmergencyContacts: Screen(route = "emergency_contacts")
     object SplashScreen: Screen(route = "splash")
     object HealthAiScreen: Screen(route = "health_ai_screen")
+    object FlipAnimation: Screen(route = "flip_animation")
+    object NavigationDrawer: Screen(route = "navigation_drawer")
+    object ChatScreen: Screen(route = "chat_screen")
+    object FileUploadDownloadScreen: Screen(route = "file_upload_download_screen")
 }
