@@ -78,6 +78,11 @@ Youtube Link- https://youtu.be/cY1sU-AKsRY
 5. **Upload Medical Certificate:**
    - Upload a bitmap image of your medical certificate from the gallery.
    - The Gemini API will analyze the image and provide a text response with the extracted data.
+  
+6. **Personal Therapist Chatbot:**
+   - Access your personal AI therapist powered by the Anthropic API.
+   - Chat with the therapist for personalized mental health advice and support.
+   - Ask for guidance on managing stress, improving mental well-being, or daily health tips.
 
 ## Tools/Products
 
@@ -85,6 +90,7 @@ Youtube Link- https://youtu.be/cY1sU-AKsRY
 - **Firebase Authentication:** For user authentication.
 - **Cloud Firestore:** For storing medical data.
 - **Gemini API:** For analyzing medical certificates.
+- **Anthropic API:** For integrating Personal Therapist ChatBot.
 
 ## Project Structure
 
