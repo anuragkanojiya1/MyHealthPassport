@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -49,6 +51,7 @@ import java.io.FileOutputStream
 fun FileUploadDownloadScreen(navController: NavController, viewModel: FileViewModel) {
     val context = LocalContext.current
 
+    val scrollState = rememberScrollState()
     val uploadState by viewModel.uploadState.observeAsState()
 
     val filePickerLauncher =
@@ -69,6 +72,7 @@ fun FileUploadDownloadScreen(navController: NavController, viewModel: FileViewMo
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
+            .verticalScroll(scrollState)
             .padding(top = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
