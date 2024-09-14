@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -46,6 +47,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
@@ -190,7 +192,8 @@ fun FlipAnimation(navController: NavController) {
                 contentDescription = "Back Image",
                 modifier = Modifier
                     .fillMaxSize()
-                    .graphicsLayer(alpha = backImageAlpha),
+                    .graphicsLayer(alpha = backImageAlpha)
+                    .scale(-1f,1f),
                 contentScale = ContentScale.FillBounds
             )
         }
@@ -281,10 +284,11 @@ fun FlipAnimation(navController: NavController) {
                     )
                 }
                 Text(
-                    text = "Open Therapist ChatBot",
+                    text = "Open Personal Therapist",
                     textAlign = TextAlign.Center,
                     color = Color.Gray,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    fontSize = 12.sp
                 )
             }
             Column(modifier = Modifier.padding(top = 8.dp)) {
@@ -305,7 +309,8 @@ fun FlipAnimation(navController: NavController) {
                     text = "Medical Certificate Analyser",
                     textAlign = TextAlign.Center,
                     color = Color.Gray,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    fontSize = 12.sp
                 )
             }
         }
