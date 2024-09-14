@@ -39,18 +39,18 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
         colors = listOf(Color(0xFF44A6FC), Color(0xFF75F8F2))
     )
 
-    Column(Modifier.background(color = Color.White).padding(0.dp,25.dp)) {
+    Column(Modifier.background(color = Color.White).padding(0.dp, top = 16.dp)) {
         Text(text = "Emergency Contact List",
             fontSize = 30.sp,
             fontFamily = FontFamily.Serif,
             modifier = Modifier.align(Alignment.CenterHorizontally)
-                .padding(8.dp,8.dp),
+                .padding(4.dp, 4.dp),
             textDecoration = TextDecoration.Underline)
 
-        LazyColumn(modifier = Modifier.padding(16.dp)) {
+        LazyColumn(modifier = Modifier.padding(horizontal = 24.dp).padding(top = 24.dp)) {
 
             items(contacts) { contact ->
-                Column(modifier = Modifier.padding(vertical = 8.dp).clip(RoundedCornerShape(10.dp,10.dp,20.dp,20.dp))) {
+                Column(modifier = Modifier.padding(vertical = 16.dp).clip(RoundedCornerShape(10.dp,10.dp,20.dp,20.dp))) {
                     Text(
                         text = contact.name,
                         fontSize = 20.sp,
@@ -58,7 +58,7 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
                         modifier = Modifier
                             .background(color = getRandomColor())
                             .fillMaxWidth()
-                            .padding(10.dp, 10.dp),
+                            .padding(8.dp, 8.dp),
                         textAlign = TextAlign.Center
                     )
                     OutlinedButton(
@@ -70,7 +70,8 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
                         },
                         modifier = Modifier
                             .align(Alignment.CenterHorizontally)
-                            .padding(10.dp, 10.dp)
+                            .padding(4.dp, 4.dp)
+                            .fillMaxWidth()
                     ) {
                         Text(text = "Call ${contact.name}",
                             fontSize = 18.sp,
@@ -109,7 +110,7 @@ fun getRandomColor(): Color {
         red = Random.nextFloat(),
         green = Random.nextFloat(),
         blue = Random.nextFloat(),
-        alpha = 1.0f
+        alpha = 0.5f
     )
 }
 
