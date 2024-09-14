@@ -1,12 +1,15 @@
 package com.example.myhealthpassport.Health
 
+import FileUploadDownloadScreen
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,16 +18,16 @@ import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.rounded.Menu
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
-import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -39,8 +42,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextFieldColors
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
@@ -50,11 +51,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -65,12 +67,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myhealthpassport.FlipAnimation
-import com.example.myhealthpassport.FlipAnimation1
 import com.example.myhealthpassport.Navigation.Screen
+import com.example.myhealthpassport.R
+import com.example.myhealthpassport.ViewModels.ChatViewModel
+import com.example.myhealthpassport.ViewModels.FileViewModel
 import com.example.myhealthpassport.ViewModels.HealthViewModel
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainHealthActivity(navController: NavController){
 
@@ -165,7 +171,7 @@ fun MainHealthActivityPreview(){
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavigationDrawer(navController: NavController) {
-    val navigationController = rememberNavController()
+    val navController = rememberNavController()
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val selectedIcon = remember { mutableStateOf(Icons.Default.Home) }
@@ -185,42 +191,73 @@ fun NavigationDrawer(navController: NavController) {
                         .fillMaxWidth()
                         .height(120.dp)
                 ) {
-                    Text(text = "MyHealth Passport", color = Color.White)
+                    Row(
+                        modifier = Modifier.align(Alignment.CenterStart).padding(8.dp),
+                        horizontalArrangement = Arrangement.Start,
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.medicalcheck),
+                            contentDescription = "logo",
+                            modifier = Modifier.clip(shape = RoundedCornerShape(88.dp))
+                                .size(80.dp)
+                        )
+                        Text(
+                            text = "MyHealth Passport",
+                            color = Color.White,
+                            textAlign = TextAlign.Center,
+                            fontSize = 20.sp,
+                            modifier = Modifier.align(Alignment.CenterVertically)
+                                .padding(8.dp)
+                        )
+                    }
                 }
 
                 NavigationDrawerItem(
-                    label = { Text(text = "Health info", color = Color.Black) },
+                    label = { Text(text = "Home", color = Color.Black) },
                     selected = selectedIcon.value == Icons.Default.Home,
-                    icon = { Icon(imageVector = Icons.Default.Home, contentDescription = "health info") },
+                    icon = { Icon(imageVector = Icons.Default.Home, contentDescription = "home") },
                     onClick = {
                         coroutineScope.launch { drawerState.close() }
                         selectedIcon.value = Icons.Default.Home
-                        navigationController.navigate(Screen.HealthInfo.route) {
+                        navController.navigate(Screen.FlipAnimation.route) {
                             popUpTo(0)
                         }
                     }
                 )
                 NavigationDrawerItem(
-                    label = { Text(text = "Get Health info", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.LocationOn,
-                    icon = { Icon(imageVector = Icons.Default.LocationOn, contentDescription = "get health info") },
+                    label = { Text(text = "Health info", color = Color.Black) },
+                    selected = selectedIcon.value == Icons.Default.Info,
+                    icon = { Icon(imageVector = Icons.Default.Info, contentDescription = "health info") },
                     onClick = {
                         coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.LocationOn
-                        navigationController.navigate(Screen.GetHealthInfo.route) {
+                        selectedIcon.value = Icons.Default.Info
+                        navController.navigate(Screen.HealthInfo.route) {
                             popUpTo(0)
                         }
                     }
                 )
 
                 NavigationDrawerItem(
-                    label = { Text(text = "Health AI screen", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.ShoppingCart,
-                    icon = { Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "health ai screen") },
+                    label = { Text(text = "Get Health info", color = Color.Black) },
+                    selected = selectedIcon.value == Icons.Default.Search,
+                    icon = { Icon(imageVector = Icons.Default.Search, contentDescription = "get health info") },
                     onClick = {
                         coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.ShoppingCart
-                        navigationController.navigate(Screen.HealthAiScreen.route) {
+                        selectedIcon.value = Icons.Default.Search
+                        navController.navigate(Screen.GetHealthInfo.route) {
+                            popUpTo(0)
+                        }
+                    }
+                )
+
+                NavigationDrawerItem(
+                    label = { Text(text = "Personal Therapist", color = Color.Black) },
+                    selected = selectedIcon.value == Icons.Default.Send,
+                    icon = { Icon(imageVector = Icons.Default.Send, contentDescription = "personal therapist") },
+                    onClick = {
+                        coroutineScope.launch { drawerState.close() }
+                        selectedIcon.value = Icons.Default.Send
+                        navController.navigate(Screen.ChatScreen.route) {
                             popUpTo(0)
                         }
                     }
@@ -228,16 +265,72 @@ fun NavigationDrawer(navController: NavController) {
 
                 NavigationDrawerItem(
                     label = { Text(text = "Emergency Contacts", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.DateRange,
-                    icon = { Icon(imageVector = Icons.Default.DateRange, contentDescription = "emergency contacts") },
+                    selected = selectedIcon.value == Icons.Default.AccountCircle,
+                    icon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "emergency contacts") },
                     onClick = {
                         coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.DateRange
-                        navigationController.navigate(Screen.EmergencyContacts.route) {
+                        selectedIcon.value = Icons.Default.AccountCircle
+                        navController.navigate(Screen.EmergencyContacts.route) {
                             popUpTo(0)
                         }
                     }
                 )
+
+                NavigationDrawerItem(
+                    label = { Text(text = "Medical Certificate Analyser", color = Color.Black) },
+                    selected = selectedIcon.value == Icons.Default.Star,
+                    icon = { Icon(imageVector = Icons.Default.Star, contentDescription = "medical certificate analyser") },
+                    onClick = {
+                        coroutineScope.launch { drawerState.close() }
+                        selectedIcon.value = Icons.Default.Star
+                        navController.navigate(Screen.HealthAiScreen.route) {
+                            popUpTo(0)
+                        }
+                    }
+                )
+
+                NavigationDrawerItem(
+                    label = { Text(text = "Cloud Storage", color = Color.Black) },
+                    selected = selectedIcon.value == Icons.Default.Lock,
+                    icon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "cloud") },
+                    onClick = {
+                        coroutineScope.launch { drawerState.close() }
+                        selectedIcon.value = Icons.Default.Lock
+                        navController.navigate(Screen.FileUploadDownloadScreen.route) {
+                            popUpTo(0)
+                        }
+                    }
+                )
+                Spacer(modifier = Modifier.weight(0.5f))
+
+                NavigationDrawerItem(
+                    label = { Text(text = "Exit and Sign Out", color = Color.Black) },
+                    selected = selectedIcon.value == Icons.Default.ExitToApp,
+                    icon = { Icon(imageVector = Icons.Default.ExitToApp, contentDescription = "exit and sign out") },
+                    onClick = {
+                        coroutineScope.launch { drawerState.close() }
+                        selectedIcon.value = Icons.Default.ExitToApp
+                        Firebase.auth.signOut()
+                        navController.navigate(Screen.Login.route){
+                            popUpTo(0)
+                        }
+                    }
+                )
+
+                Row(modifier = Modifier,
+                    verticalAlignment = Alignment.CenterVertically) {
+                    TextButton(
+                        onClick = { val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/myhealthpassport?igsh=YzljYTk1ODg3Zg=="))
+                        context.startActivity(intent)
+                    },
+                        modifier = Modifier
+                        .align(alignment = Alignment.CenterVertically)) {
+                        Text(text = "Community and Support",
+                            textDecoration = TextDecoration.Underline,
+                            fontSize = 16.sp,
+                        )
+                    }
+                }
             }
 //            TextButton(onClick = { val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/myhealthpassport?igsh=YzljYTk1ODg3Zg=="))
 //                context.startActivity(intent)
@@ -279,30 +372,42 @@ fun NavigationDrawer(navController: NavController) {
             modifier = Modifier.fillMaxSize().background(Color.White)
         ) { innerPadding ->
             NavHost(
-                navController = navigationController,
+                navController = navController,
                 startDestination = Screen.FlipAnimation.route,
                 Modifier.padding(innerPadding)
             ) {
+                composable(Screen.FlipAnimation.route){
+                    NavigationDrawer(navController = navController)
+                }
                 composable(Screen.FlipAnimation.route){
                     FlipAnimation(navController = navController)
                 }
                 composable(Screen.HealthInfo.route) {
                     HealthInfo(
-                        navController = navigationController,
+                        navController = navController,
                         healthViewModel = HealthViewModel()
                     )
                 }
                 composable(Screen.GetHealthInfo.route) {
                     GetHealthInfo(
-                    navController = navigationController,
+                    navController = navController,
                     healthViewModel = HealthViewModel()
                     )
                 }
                 composable(Screen.HealthAiScreen.route) {
-                    HealthAiScreen(navController = navigationController)
+                    HealthAiScreen(navController = navController)
                 }
                 composable(Screen.EmergencyContacts.route) {
-                    EmergencyContactsListPreview(navController = navigationController)
+                    EmergencyContactsListPreview(navController = navController)
+                }
+                composable(Screen.ChatScreen.route){
+                    ChatScreen(
+                        navController = navController,
+                        viewModel = ChatViewModel()
+                    )
+                }
+                composable(Screen.FileUploadDownloadScreen.route){
+                    FileUploadDownloadScreen(navController, viewModel = FileViewModel())
                 }
             }
         }
