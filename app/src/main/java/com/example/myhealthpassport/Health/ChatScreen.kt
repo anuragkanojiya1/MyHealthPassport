@@ -58,8 +58,9 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp),
+                .padding(top = 0.dp),
             horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.Top
         ) {
             IconButton(onClick = { navController.navigateUp() }) {
                 Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "back_button")
@@ -77,7 +78,7 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = 36.dp)
+                .padding(bottom = 0.dp)
                 .padding(8.dp),
             verticalAlignment = Alignment.Bottom
         ) {
@@ -104,7 +105,7 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
                     viewModel.sendMessage(
                         MessageRequest(
                             model = "claude-3-5-sonnet-20240620", // Specify your model here
-                            max_tokens = 50, // Adjust as needed
+                            max_tokens = 1000, // Adjust as needed
                             messages = listOf(
                                 Message(
                                     role = "user",
