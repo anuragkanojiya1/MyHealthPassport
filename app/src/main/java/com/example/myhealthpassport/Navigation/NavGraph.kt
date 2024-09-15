@@ -1,5 +1,7 @@
 package com.example.myhealthpassport.Navigation
 
+import AgentScreen
+import AgentViewModel
 import FileUploadDownloadScreen
 import com.example.myhealthpassport.ViewModels.FileViewModel
 import android.util.Log
@@ -37,7 +39,10 @@ import com.example.myhealthpassport.ViewModels.ChatViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun NavGraph(navController: NavController, healthViewModel: HealthViewModel, aiViewModel: AiViewModel) {
+fun NavGraph(navController: NavController,
+             healthViewModel: HealthViewModel,
+             aiViewModel: AiViewModel,
+             agentViewModel: AgentViewModel) {
     val navController = rememberNavController()
     val auth = FirebaseAuth.getInstance()
 
@@ -95,10 +100,15 @@ fun NavGraph(navController: NavController, healthViewModel: HealthViewModel, aiV
         composable(Screen.ChatScreen.route){
             ChatScreen(navController = navController, viewModel = ChatViewModel())
         }
+        composable(Screen.AgentScreen.route){
+            AgentScreen(
+                navController = navController,
+                agentViewModel = agentViewModel,
+                healthViewModel = healthViewModel)
+        }
         composable(Screen.FileUploadDownloadScreen.route){
             FileUploadDownloadScreen(navController = navController, viewModel = FileViewModel())
         }
-
 //        composable(Screen.AddDataScreen.route){
 //            AddDataScreen(navController = navController, sharedViewModel = sharedViewModel)
 //        }
