@@ -1,5 +1,7 @@
 package com.example.myhealthpassport.Health
 
+import AgentScreen
+import AgentViewModel
 import FileUploadDownloadScreen
 import android.content.Intent
 import android.net.Uri
@@ -19,10 +21,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.Star
@@ -178,6 +182,7 @@ fun NavigationDrawer(navController: NavController) {
     val gradient = Brush.horizontalGradient(
         colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
     )
+
     val context = LocalContext.current
 
     ModalNavigationDrawer(
@@ -290,6 +295,19 @@ fun NavigationDrawer(navController: NavController) {
                 )
 
                 NavigationDrawerItem(
+                    label = { Text(text = "Agent", color = Color.Black) },
+                    selected = selectedIcon.value == Icons.Default.Build,
+                    icon = { Icon(imageVector = Icons.Default.Build, contentDescription = "agent") },
+                    onClick = {
+                        coroutineScope.launch { drawerState.close() }
+                        selectedIcon.value = Icons.Default.Build
+                        navController.navigate(Screen.AgentScreen.route) {
+                            popUpTo(0)
+                        }
+                    }
+                )
+
+                NavigationDrawerItem(
                     label = { Text(text = "Cloud Storage", color = Color.Black) },
                     selected = selectedIcon.value == Icons.Default.Lock,
                     icon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "cloud") },
@@ -301,6 +319,7 @@ fun NavigationDrawer(navController: NavController) {
                         }
                     }
                 )
+
                 Spacer(modifier = Modifier.weight(0.5f))
 
                 NavigationDrawerItem(
@@ -377,9 +396,6 @@ fun NavigationDrawer(navController: NavController) {
                 Modifier.padding(innerPadding)
             ) {
                 composable(Screen.FlipAnimation.route){
-                    NavigationDrawer(navController = navController)
-                }
-                composable(Screen.FlipAnimation.route){
                     FlipAnimation(navController = navController)
                 }
                 composable(Screen.HealthInfo.route) {
@@ -404,6 +420,13 @@ fun NavigationDrawer(navController: NavController) {
                     ChatScreen(
                         navController = navController,
                         viewModel = ChatViewModel()
+                    )
+                }
+                composable(Screen.AgentScreen.route){
+                    AgentScreen(
+                        navController = navController,
+                        agentViewModel = AgentViewModel(),
+                        healthViewModel = HealthViewModel()
                     )
                 }
                 composable(Screen.FileUploadDownloadScreen.route){
