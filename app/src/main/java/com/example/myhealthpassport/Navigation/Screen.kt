@@ -16,4 +16,5 @@ sealed class Screen(val route: String) {
     object NavigationDrawer: Screen(route = "navigation_drawer")
     object ChatScreen: Screen(route = "chat_screen")
     object FileUploadDownloadScreen: Screen(route = "file_upload_download_screen")
+    object AgentScreen: Screen(route = "agent_screen")
 }
