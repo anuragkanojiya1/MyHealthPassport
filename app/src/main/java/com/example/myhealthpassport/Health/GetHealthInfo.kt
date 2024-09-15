@@ -16,7 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -54,10 +54,14 @@ fun GetHealthInfo(
     var bloodGroup: String by remember { mutableStateOf("") }
     var age: String by remember { mutableStateOf("") }
     var ageInt: Int by remember { mutableStateOf(0) }
+    var weight: String by remember { mutableStateOf("") }
+    var weightFloat: Float by remember { mutableStateOf(0.0f) }
+    var height: String by remember { mutableStateOf("") }
+    var heightFloat: Float by remember { mutableStateOf(0.0f) }
     var gender: String by remember { mutableStateOf("") }
     var healthCondition: String by remember { mutableStateOf("") }
     var emergencyPhoneNumber: String by remember { mutableStateOf("") }
-    var emergencyPhoneNumberInt: Int by remember { mutableStateOf(0) }
+    var emergencyPhoneNumberLong: Long by remember { mutableStateOf(0) }
     var address: String by remember { mutableStateOf("") }
     var allergies: String by remember { mutableStateOf("") }
     var medications: String by remember { mutableStateOf("") }
@@ -70,7 +74,7 @@ fun GetHealthInfo(
     val context = LocalContext.current
     val scrollView = rememberScrollState()
 
-    Box {
+    Box(modifier = Modifier.fillMaxSize().background(color = Color.White)){
         Image(
             painter = backgroundPainter,
             contentDescription = null,
@@ -88,7 +92,7 @@ fun GetHealthInfo(
                 horizontalArrangement = Arrangement.Start,
             ) {
                 IconButton(onClick = { navController.navigateUp() }) {
-                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "back_button")
+                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "back_button")
                 }
             }
             Column(
@@ -124,10 +128,14 @@ fun GetHealthInfo(
                                 bloodGroup = data.bloodGroup
                                 age = data.age.toString()
                                 ageInt = ageInt.toInt()
+                                weight = data.weight.toString()
+                                weightFloat = data.weight.toFloat()
+                                height = data.height.toString()
+                                heightFloat = data.height.toFloat()
                                 gender = data.gender
                                 healthCondition = data.healthCondition
                                 emergencyPhoneNumber = data.emergencyPhoneNumber.toString()
-                                emergencyPhoneNumberInt = data.emergencyPhoneNumber.toInt()
+                                emergencyPhoneNumberLong = data.emergencyPhoneNumber.toLong()
                                 address = data.address
                                 allergies = data.allergies
                                 medications = data.medications
@@ -177,6 +185,34 @@ fun GetHealthInfo(
                 )
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth().background(Color.White),
+                    value = weight,
+                    onValueChange = {
+                        weight = it
+                        if (weight.isNotEmpty()) {
+                            weightFloat = weight.toFloat()
+                        }
+                    },
+                    label = {
+                        Text(text = "Enter Weight in Kg")
+                    },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                OutlinedTextField(
+                    modifier = Modifier.fillMaxWidth().background(Color.White),
+                    value = height,
+                    onValueChange = {
+                        height = it
+                        if (height.isNotEmpty()) {
+                            heightFloat = height.toFloat()
+                        }
+                    },
+                    label = {
+                        Text(text = "Height")
+                    },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                OutlinedTextField(
+                    modifier = Modifier.fillMaxWidth().background(Color.White),
                     value = gender,
                     onValueChange = { gender = it },
                     label = {
@@ -197,7 +233,7 @@ fun GetHealthInfo(
                     onValueChange = {
                         emergencyPhoneNumber = it
                         if (emergencyPhoneNumber.isNotEmpty()) {
-                            emergencyPhoneNumberInt = emergencyPhoneNumber.toInt()
+                            emergencyPhoneNumberLong = emergencyPhoneNumber.toLong()
                         }
                     },
                     label = {
