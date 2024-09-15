@@ -45,35 +45,36 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
     // Observe the response from the ViewModel
     val response = viewModel.anthropicResult.observeAsState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(8.dp)
-            .padding(top = 20.dp, bottom = 92.dp)
-            .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
-    ) {
-
-        Row(
+    Box(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 0.dp),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.Top
+                .fillMaxSize()
+                .padding(8.dp)
+                .padding(top = 20.dp, bottom = 92.dp)
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
         ) {
-            IconButton(onClick = { navController.navigateUp() }) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "back_button")
-            }
-        }
-        Column(modifier = Modifier.padding(8.dp)) {
-        chatHistory.forEach { chatMessages ->
-            Chats(chatMessages = chatMessages)
-            }
-        }
-    }
 
-    Spacer(modifier = Modifier.height(32.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 0.dp),
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.Top
+            ) {
+                IconButton(onClick = { navController.navigateUp() }) {
+                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "back_button")
+                }
+            }
+            Column(modifier = Modifier.padding(8.dp)) {
+                chatHistory.forEach { chatMessages ->
+                    Chats(chatMessages = chatMessages)
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(32.dp))
 
         Row(
             modifier = Modifier
@@ -93,11 +94,11 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
                     .weight(0.7f)
                     .background(Color.LightGray, RoundedCornerShape(8.dp)),
 
-                    colors = TextFieldDefaults.textFieldColors(
-                        focusedIndicatorColor = Color.Black,
-                        focusedLabelColor = Color.Black,
-                        containerColor = Color.Transparent
-                    ),
+                colors = TextFieldDefaults.textFieldColors(
+                    focusedIndicatorColor = Color.Black,
+                    focusedLabelColor = Color.Black,
+                    containerColor = Color.Transparent
+                ),
             )
 
             ExtendedFloatingActionButton(
@@ -127,11 +128,12 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
                     .padding(bottom = 4.dp)
                     .background(Color.Black, RoundedCornerShape(4.dp)),
 
-                    containerColor = Color.LightGray
+                containerColor = Color.LightGray
             ) {
                 Text("Send")
             }
         }
+    }
 
     // Handle UI changes based on the response
     LaunchedEffect(response.value) {
