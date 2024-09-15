@@ -50,6 +50,10 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
     var bloodGroup: String by remember { mutableStateOf("") }
     var age: String by remember { mutableStateOf("") }
     var ageInt: Int by remember { mutableStateOf(0) }
+    var weight: String by remember { mutableStateOf("") }
+    var weightFloat: Float by remember { mutableStateOf(0.0f) }
+    var height: String by remember { mutableStateOf("") }
+    var heightFloat: Float by remember { mutableStateOf(0.0f) }
     var gender: String by remember { mutableStateOf("") }
     var healthCondition: String by remember { mutableStateOf("") }
     var emergencyPhoneNumber: String by remember { mutableStateOf("") }
@@ -126,6 +130,32 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
+        OutlinedTextField( modifier = Modifier
+            .fillMaxWidth(),
+            value = weight,
+            onValueChange = {
+                weight=it
+                if(weight.isNotEmpty()){
+                    weightFloat = weight.toFloat()
+                }},
+            label = {
+                Text(text = "Weight")
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+        OutlinedTextField( modifier = Modifier
+            .fillMaxWidth(),
+            value = height,
+            onValueChange = {
+                height=it
+                if(height.isNotEmpty()){
+                    heightFloat = height.toFloat()
+                }},
+            label = {
+                Text(text = "Height")
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
     OutlinedTextField( modifier = Modifier
             .fillMaxWidth(),
             value = gender,
@@ -195,7 +225,9 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     emergencyPhoneNumber = emergencyPhoneNumberLong,
                     address = address,
                     allergies = allergies,
-                    medications = medications
+                    medications = medications,
+                    weight = weightFloat,
+                    height = heightFloat
                 )
                 healthViewModel.saveHealthData(userHealthData = userHealthData, context = context)
             }) {
