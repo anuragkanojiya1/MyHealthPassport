@@ -1,5 +1,6 @@
 package com.example.myhealthpassport
 
+import AgentViewModel
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Button
@@ -24,6 +25,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var navController : NavController
     private val healthViewModel: HealthViewModel by viewModels()
     private val aiViewModel: AiViewModel by viewModels()
+    private val agentViewModel: AgentViewModel by viewModels()
 
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
     val db: FirebaseFirestore = Firebase.firestore
@@ -37,7 +39,10 @@ class MainActivity : ComponentActivity() {
             MyHealthPassportTheme {
                 val navController = rememberNavController()
 
-                NavGraph(navController = navController, healthViewModel = healthViewModel, aiViewModel = aiViewModel)
+                NavGraph(navController = navController,
+                    healthViewModel = healthViewModel,
+                    aiViewModel = aiViewModel,
+                    agentViewModel = agentViewModel)
             }
         }
     }
