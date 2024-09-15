@@ -6,6 +6,7 @@ import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -68,42 +69,45 @@ fun FileUploadDownloadScreen(navController: NavController, viewModel: FileViewMo
             }
         }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-            .verticalScroll(scrollState)
-            .padding(top = 32.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        Text(text = "Upload/Download Files",
-            style = MaterialTheme.typography.bodyMedium,
-            fontSize = 24.sp
-        )
-
-        OutlinedButton(onClick = { filePickerLauncher.launch("*/*") }) {
-            Text(text = "Upload File")
-        }
-
-        uploadState?.let { Text(text = it, color = Color.Green) }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Surface(
+    Box(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .paddingFromBaseline(top = 10.dp, bottom = 10.dp),
-            color = MaterialTheme.colorScheme.background
+                .fillMaxSize()
+                .padding(16.dp)
+                .verticalScroll(scrollState)
+                .padding(top = 32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Box {
-                com.example.myhealthpassport.SignInSignUp.AnimatedCloud(modifier = Modifier
-                    .size(500.dp, 400.dp)
-                    .align(Alignment.Center)
-                    // .scale(scaleX = 1.3f, scaleY = 1.6f)
-                )
+
+            Text(
+                text = "Upload/Download Files",
+                style = MaterialTheme.typography.bodyMedium,
+                fontSize = 24.sp
+            )
+
+            OutlinedButton(onClick = { filePickerLauncher.launch("*/*") }) {
+                Text(text = "Upload File")
             }
-        }
+
+            uploadState?.let { Text(text = it, color = Color.Green) }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .paddingFromBaseline(top = 10.dp, bottom = 10.dp),
+                color = MaterialTheme.colorScheme.background
+            ) {
+                Box {
+                    com.example.myhealthpassport.SignInSignUp.AnimatedCloud(
+                        modifier = Modifier
+                            .size(500.dp, 400.dp)
+                            .align(Alignment.Center)
+                        // .scale(scaleX = 1.3f, scaleY = 1.6f)
+                    )
+                }
+            }
 
 //        Button(onClick = {
 //            // Call download function with the filename
@@ -112,45 +116,46 @@ fun FileUploadDownloadScreen(navController: NavController, viewModel: FileViewMo
 //            Text(text = "Download File")
 //        }
 
-        val downloadUrl by viewModel.downloadUrl.observeAsState()
-        val downloadState by viewModel.downloadState.observeAsState()
+            val downloadUrl by viewModel.downloadUrl.observeAsState()
+            val downloadState by viewModel.downloadState.observeAsState()
 
-        var fileName by remember { mutableStateOf("") }
-        val environmentId by remember { mutableStateOf(environmentId) } // Replace with actual environment ID
-        val projectId by remember { mutableStateOf(projectId) } // Replace with actual project ID
+            var fileName by remember { mutableStateOf("") }
+            val environmentId by remember { mutableStateOf(environmentId) } // Replace with actual environment ID
+            val projectId by remember { mutableStateOf(projectId) } // Replace with actual project ID
 
-        Column(modifier = Modifier.padding(16.dp)) {
-            OutlinedTextField(
-                value = fileName,
-                onValueChange = { fileName = it },
-                label = { Text("Enter File Name") },
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedButton(
-                onClick = {
-                    viewModel.fetchDownloadUrl(fileName, environmentId, projectId)
-                },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Get Download Link")
-            }
-            Spacer(modifier = Modifier.height(16.dp))
+            Column(modifier = Modifier.padding(16.dp)) {
+                OutlinedTextField(
+                    value = fileName,
+                    onValueChange = { fileName = it },
+                    label = { Text("Enter File Name") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                OutlinedButton(
+                    onClick = {
+                        viewModel.fetchDownloadUrl(fileName, environmentId, projectId)
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Get Download Link")
+                }
+                Spacer(modifier = Modifier.height(16.dp))
 
-            downloadState?.let {
-                Text(text = it)
-            }
+                downloadState?.let {
+                    Text(text = it)
+                }
 
-            downloadUrl?.let {
-                Text(text = "Download URL: $it")
-            }
-            if(downloadUrl?.isNotBlank() == true) {
-                Button(onClick = {
-                    if (downloadUrl?.isNotEmpty() == true) {
-                        downloadFile(downloadUrl!!, fileName, context)
+                downloadUrl?.let {
+                    Text(text = "Download URL: $it")
+                }
+                if (downloadUrl?.isNotBlank() == true) {
+                    Button(onClick = {
+                        if (downloadUrl?.isNotEmpty() == true) {
+                            downloadFile(downloadUrl!!, fileName, context)
+                        }
+                    }) {
+                        Text(text = "Download File")
                     }
-                }) {
-                    Text(text = "Download File")
                 }
             }
         }
