@@ -1,4 +1,3 @@
-
 # MyHealthPassport
 
 MyHealthPassport is an Android application built using Jetpack Compose that securely stores and manages patients' medical data. The app ensures privacy and easy access through robust authentication, cloud storage, and advanced image analysis features.
@@ -11,6 +10,7 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 - **Medical ID System:** Each patient's medical information is associated with a unique medical ID for easy and secure access.
 - **Image Analysis:** Integrates Gemini API to analyze medical certificates and extract data using the Gemini-1.5-flash model.
 - **Personal Therapist Chatbot:** The app includes a personal therapist chatbot using Anthropic API, providing users with emotional and mental health support.
+- **Mistral Agent for Personalized Diet and Exercise Plan:** Provides personalized diet and exercise recommendations based on users' medical data via Mistral Agent.
 - **User-Friendly Interface:** Designed with Jetpack Compose for a modern and intuitive user experience.
 
 ## Integration with CosmoCloud
@@ -18,18 +18,28 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 1. **Set Up CosmoCloud Object Storage:**
    - Create an account on [CosmoCloud](https://cosmocloud.io/).
    - Obtain your environmentId and projectId.
-   - Put them in a file called Constant.kt in com.example.myhealthpassport folder.
+   - Put them in a file called Constant.kt in `com.example.myhealthpassport` folder.
 
 2. **Uploading Medical Data to CosmoCloud:**
    - Store medical files in PDF format using CosmoCloud’s object storage for safe and organized data management.
-  
+
+## Mistral Agent for Personalized Diet and Exercise Plan
+
+1. **Personalized Diet and Exercise Recommendation:**
+   - The app integrates with Mistral Agent to provide users with personalized diet and exercise plans based on their medical data. By entering the unique medical ID, users can receive tailored health recommendations that suit their medical conditions and fitness goals.
+
+2. **Steps to Use Mistral Agent:**
+   - **Enter Medical ID:** After logging in, input your unique medical ID to fetch your stored medical data.
+   - **Receive Diet and Exercise Plan:** Mistral Agent analyzes your medical data and provides a custom diet and exercise plan designed to fit your health requirements and fitness objectives.
+   - **Dynamic Updates:** As medical data is updated, the diet and exercise recommendations are automatically adjusted to ensure the plan remains relevant and effective.
+     
 ## Anthropic API Integration
 
 1. **Set Up Anthropic API:**
    - Sign up for an account on [Anthropic](https://www.anthropic.com).
-   - Obtain your API key and Base Url.
-   - Add the Anthropic API key and Base Url in Constant.kt file in com.example.myhealthpassport folder.
-   
+   - Obtain your API key.
+   - Add the Anthropic API key in `Constant.kt` file in `com.example.myhealthpassport` folder.
+
 2. **Using Anthropic API for Chatbot:**
    - Implement the chatbot using the Anthropic API key to offer personalized mental health advice.
      
@@ -57,8 +67,16 @@ Youtube Link- https://youtu.be/exwWNYkTmVg
    ```
 2. **Open the Project:**
    - Open the project in Android Studio.
+  
+3. **Create a `Constant.kt` file in `com.example.myhealthpassport` folder and put below variables in the file.
+
+   ```sh
+   const val ANTHROPIC_API_KEY = "Enter_your_own_Anthropic_Api_key"
+   const val environmentId = "Enter_your_Environment_Id"
+   const val projectId = "Enter_your_Project_Id"
+   ```   
      
-3. **Build and Run:**
+4. **Build and Run:**
    - Build the project and run it on an emulator or physical device.
 
 ## Usage
@@ -74,11 +92,13 @@ Youtube Link- https://youtu.be/exwWNYkTmVg
 5. **Upload Medical Certificate:**
    - Upload a bitmap image of your medical certificate from the gallery.
    - The Gemini API will analyze the image and provide a text response with the extracted data.
-  
 6. **Personal Therapist Chatbot:**
    - Access your personal AI therapist powered by the Anthropic API.
    - Chat with the therapist for personalized mental health advice and support.
    - Ask for guidance on managing stress, improving mental well-being, or daily health tips.
+7. **Personalized Diet and Exercise Recommendation Agent:**
+   - Input your medical ID to receive a personalized diet and exercise plan from the Mistral Agent.
+   - The plan is tailored to your health conditions and fitness goals.
 
 ## Tools/Products
 
@@ -87,6 +107,7 @@ Youtube Link- https://youtu.be/exwWNYkTmVg
 - **Cloud Firestore:** For storing medical data.
 - **Gemini API:** For analyzing medical certificates.
 - **Anthropic API:** For integrating Personal Therapist ChatBot.
+- **Mistral Agent:** For integrating Personalized Diet and Exercise Recommendation Agent.
 
 ## Project Structure
 
@@ -94,6 +115,9 @@ Youtube Link- https://youtu.be/exwWNYkTmVg
   - `ViewModels`: Contains viewmodels.
   - `Navigation`: Contains NavGraph and Screen for navigation through composables.
   - `SignInSignUp`: Contains Signin and Signup page.
+  - `Agent:`: Contains files of the Mistral Agent.
+  - `Cloud:` Contains files of the Cosmocloud object storage.
+  - `Anthropic:` Contains files of Anthropic's Personal Therapist Chatbot.
 
 ## Contributions
 
