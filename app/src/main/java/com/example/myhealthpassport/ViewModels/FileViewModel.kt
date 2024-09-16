@@ -1,11 +1,11 @@
 package com.example.myhealthpassport.ViewModels
 
-import com.example.myhealthpassport.cloud.RetrofitInstanceCosmocloud
-import UploadRequestBody
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myhealthpassport.Cloud.RetrofitInstanceCosmocloud
+import com.example.myhealthpassport.Cloud.UploadRequestBody
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
