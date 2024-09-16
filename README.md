@@ -57,12 +57,8 @@ Youtube Link- https://youtu.be/exwWNYkTmVg
    ```
 2. **Open the Project:**
    - Open the project in Android Studio.
-
-3. **Set Up Firebase:**
-   - Add your `google-services.json` file to the `app` directory.
-   - Ensure Firebase Authentication and Cloud Firestore are set up in your Firebase project.
-
-4. **Build and Run:**
+     
+3. **Build and Run:**
    - Build the project and run it on an emulator or physical device.
 
 ## Usage
