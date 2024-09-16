@@ -1,8 +1,6 @@
-package com.example.myhealthpassport.network
+package com.example.myhealthpassport.Anthropic
 
 import com.example.myhealthpassport.ANTHROPIC_API_KEY
-import com.example.openaiapichatbot.response.MessageRequest
-import com.example.openaiapichatbot.response.MessageResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Header

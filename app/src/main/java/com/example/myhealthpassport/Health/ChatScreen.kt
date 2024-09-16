@@ -22,10 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.myhealthpassport.ViewModels.AiViewModel
-import com.example.openaiapichatbot.response.MessageRequest
+import com.example.myhealthpassport.Anthropic.MessageRequest
 import com.example.openaiapichatbot.network.NetworkResponse
-import com.example.openaiapichatbot.response.Message
+import com.example.myhealthpassport.Anthropic.Message
 import com.example.myhealthpassport.ViewModels.ChatViewModel
 
 data class ChatMessage(

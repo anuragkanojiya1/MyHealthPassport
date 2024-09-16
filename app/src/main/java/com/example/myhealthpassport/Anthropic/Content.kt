@@ -1,4 +1,4 @@
-package com.example.openaiapichatbot.response
+package com.example.myhealthpassport.Anthropic
 
 data class Content(
     val text: String,

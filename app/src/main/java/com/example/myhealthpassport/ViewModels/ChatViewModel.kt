@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myhealthpassport.ANTHROPIC_API_KEY
 import com.example.openaiapichatbot.network.NetworkResponse
-import com.example.myhealthpassport.network.RetrofitInstance
-import com.example.openaiapichatbot.response.MessageRequest
-import com.example.openaiapichatbot.response.MessageResponse
+import com.example.myhealthpassport.Anthropic.RetrofitInstance
+import com.example.myhealthpassport.Anthropic.MessageRequest
+import com.example.myhealthpassport.Anthropic.MessageResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
