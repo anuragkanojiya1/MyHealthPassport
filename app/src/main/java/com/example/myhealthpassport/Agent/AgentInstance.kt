@@ -18,7 +18,7 @@ object AgentInstance {
             .build()
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL_MISTRAL)
+            .baseUrl("https://api.mistral.ai/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
