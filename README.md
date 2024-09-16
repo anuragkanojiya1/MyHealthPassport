@@ -68,7 +68,7 @@ Youtube Link- https://youtu.be/exwWNYkTmVg
 2. **Open the Project:**
    - Open the project in Android Studio.
   
-3. **Create a `Constant.kt` file in `com.example.myhealthpassport` folder and put below variables in the file.**
+3. **Create a `Constant.kt` file in `com.example.myhealthpassport` folder and put below variables in the file with your Api Keys and IDs.**
 
    ```sh
    const val ANTHROPIC_API_KEY = "Enter_your_own_Anthropic_Api_key"
