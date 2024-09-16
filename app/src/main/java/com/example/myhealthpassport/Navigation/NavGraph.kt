@@ -1,7 +1,7 @@
 package com.example.myhealthpassport.Navigation
 
 import AgentScreen
-import AgentViewModel
+import com.example.myhealthpassport.ViewModels.AgentViewModel
 import FileUploadDownloadScreen
 import com.example.myhealthpassport.ViewModels.FileViewModel
 import android.util.Log
@@ -42,7 +42,8 @@ import com.google.firebase.auth.FirebaseAuth
 fun NavGraph(navController: NavController,
              healthViewModel: HealthViewModel,
              aiViewModel: AiViewModel,
-             agentViewModel: AgentViewModel) {
+             agentViewModel: AgentViewModel
+) {
     val navController = rememberNavController()
     val auth = FirebaseAuth.getInstance()
 

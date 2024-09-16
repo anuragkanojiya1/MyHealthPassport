@@ -1,7 +1,7 @@
 package com.example.myhealthpassport.Health
 
 import AgentScreen
-import AgentViewModel
+import com.example.myhealthpassport.ViewModels.AgentViewModel
 import FileUploadDownloadScreen
 import android.content.Intent
 import android.net.Uri
@@ -26,7 +26,6 @@ import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.Star
@@ -60,7 +59,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -77,7 +75,6 @@ import com.example.myhealthpassport.ViewModels.ChatViewModel
 import com.example.myhealthpassport.ViewModels.FileViewModel
 import com.example.myhealthpassport.ViewModels.HealthViewModel
 import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import kotlinx.coroutines.launch
 
