@@ -2,7 +2,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myhealthpassport.AGENT_ID
 import com.example.myhealthpassport.Agent.AgentInstance
 import com.example.myhealthpassport.Agent.MistralMessage
 import com.example.myhealthpassport.Agent.MistralRequest
@@ -26,7 +25,7 @@ class AgentViewModel : ViewModel() {
             try {
                 // Create the request body
                 val messages = listOf(MistralMessage(role = "user", content = query))
-                val request = MistralRequest(agent_id = AGENT_ID, messages = messages)
+                val request = MistralRequest(agent_id = "ag:3ac91f01:20240914:untitled-agent:ad097490", messages = messages)
 
                 // Make the API call
                 val response = withContext(Dispatchers.IO) {
