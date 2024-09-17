@@ -4,14 +4,17 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -24,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
@@ -63,175 +67,196 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
     var allergies: String by remember { mutableStateOf("") }
     var medications: String by remember { mutableStateOf("") }
 
+    val gradient = Brush.horizontalGradient(
+        colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
+    )
+
     val context = LocalContext.current
     val scrollView = rememberScrollState()
 
-    Column(modifier = Modifier
-        .padding(start = 40.dp, end = 40.dp, bottom = 40.dp)
-        .verticalScroll(scrollView)
-        .fillMaxWidth()
-        .background(color = Color.Transparent),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Text(text = "Health Information", fontSize = 30.sp, fontStyle = FontStyle.Normal,
+    Box(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
+        Column(
             modifier = Modifier
-                .padding(vertical = 15.dp)
-        )
+                .padding(start = 40.dp, end = 40.dp, bottom = 0.dp)
+                .verticalScroll(scrollView)
+                .fillMaxWidth()
+                .background(color = Color.Transparent),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Text(
+                text = "Health Information", fontSize = 30.sp, fontStyle = FontStyle.Normal,
+                modifier = Modifier
+                    .padding(vertical = 15.dp),
+                color = Color.Black
+            )
 
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
                     .paddingFromBaseline(top = 10.dp, bottom = 10.dp),
-                color = MaterialTheme.colorScheme.background
+                color = Color.White
             ) {
                 Box {
-                    AnimatedPreloaderPatient(modifier = Modifier
-                        .size(300.dp, 200.dp)
-                        .align(Alignment.Center)
-                        .scale(scaleX = 1.3f, scaleY = 1.6f)
+                    AnimatedPreloaderPatient(
+                        modifier = Modifier
+                            .size(300.dp, 200.dp)
+                            .align(Alignment.Center)
+                            .scale(scaleX = 1.3f, scaleY = 1.6f)
                     )
                 }
-        }
-        OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = medicalID,
-            onValueChange = { medicalID=it },
-            label = {
-                Text(text = "Medical ID")
             }
-        )
-    OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = name,
-            onValueChange = { name=it },
-            label = {
-                Text(text = "Name")
-            }
-        )
-    OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = bloodGroup,
-            onValueChange = { bloodGroup=it },
-            label = {
-                Text(text = "Blood Group")
-            }
-        )
-        OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = age,
-            onValueChange = {
-                age=it
-                if(age.isNotEmpty()){
-                    ageInt = age.toInt()
-                }},
-            label = {
-                Text(text = "Age")
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = weight,
-            onValueChange = {
-                weight=it
-                if(weight.isNotEmpty()){
-                    weightFloat = weight.toFloat()
-                }},
-            label = {
-                Text(text = "Weight")
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = height,
-            onValueChange = {
-                height=it
-                if(height.isNotEmpty()){
-                    heightFloat = height.toFloat()
-                }},
-            label = {
-                Text(text = "Height")
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-    OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = gender,
-            onValueChange = { gender=it },
-            label = {
-                Text(text = "Gender")
-            }
-        )
-    OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = healthCondition,
-            onValueChange = { healthCondition=it },
-            label = {
-                Text(text = "Health Condition")
-            }
-        )
-    OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = emergencyPhoneNumber,
-            onValueChange = {
-                emergencyPhoneNumber=it
-                if(emergencyPhoneNumber.isNotEmpty()){
-                    emergencyPhoneNumberLong = emergencyPhoneNumber.toLong()
-                }},
-            label = {
-                Text(text = "Emergency Phone Number")
-            },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-    OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = address,
-            onValueChange = { address=it },
-            label = {
-                Text(text = "Address")
-            }
-        )
-    OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = allergies,
-            onValueChange = { allergies=it },
-            label = {
-                Text(text = "Allergies")
-            }
-        )
-    OutlinedTextField( modifier = Modifier
-            .fillMaxWidth(),
-            value = medications,
-            onValueChange = { medications=it },
-            label = {
-                Text(text = "Medications")
-            }
-        )
-
-        Button(
-            modifier = Modifier
-                .padding(top = 30.dp)
+            OutlinedTextField(modifier = Modifier
                 .fillMaxWidth(),
-            onClick = {
-                val userHealthData = UserHealthData(
-                    medicalID = medicalID,
-                    name = name,
-                    bloodGroup = bloodGroup,
-                    age = ageInt,
-                    gender = gender,
-                    healthCondition = healthCondition,
-                    emergencyPhoneNumber = emergencyPhoneNumberLong,
-                    address = address,
-                    allergies = allergies,
-                    medications = medications,
-                    weight = weightFloat,
-                    height = heightFloat
-                )
-                healthViewModel.saveHealthData(userHealthData = userHealthData, context = context)
-            }) {
+                value = medicalID,
+                onValueChange = { medicalID = it },
+                label = {
+                    Text(text = "Medical ID")
+                }
+            )
+            OutlinedTextField(modifier = Modifier
+                .fillMaxWidth(),
+                value = name,
+                onValueChange = { name = it },
+                label = {
+                    Text(text = "Name")
+                }
+            )
+            OutlinedTextField(modifier = Modifier
+                .fillMaxWidth(),
+                value = bloodGroup,
+                onValueChange = { bloodGroup = it },
+                label = {
+                    Text(text = "Blood Group")
+                }
+            )
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = age,
+                onValueChange = {
+                    age = it
+                    if (age.isNotEmpty()) {
+                        ageInt = age.toInt()
+                    }
+                },
+                label = {
+                    Text(text = "Age")
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = weight,
+                onValueChange = {
+                    weight = it
+                    if (weight.isNotEmpty()) {
+                        weightFloat = weight.toFloat()
+                    }
+                },
+                label = {
+                    Text(text = "Weight")
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = height,
+                onValueChange = {
+                    height = it
+                    if (height.isNotEmpty()) {
+                        heightFloat = height.toFloat()
+                    }
+                },
+                label = {
+                    Text(text = "Height")
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+            OutlinedTextField(modifier = Modifier
+                .fillMaxWidth(),
+                value = gender,
+                onValueChange = { gender = it },
+                label = {
+                    Text(text = "Gender")
+                }
+            )
+            OutlinedTextField(modifier = Modifier
+                .fillMaxWidth(),
+                value = healthCondition,
+                onValueChange = { healthCondition = it },
+                label = {
+                    Text(text = "Health Condition")
+                }
+            )
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = emergencyPhoneNumber,
+                onValueChange = {
+                    emergencyPhoneNumber = it
+                    if (emergencyPhoneNumber.isNotEmpty()) {
+                        emergencyPhoneNumberLong = emergencyPhoneNumber.toLong()
+                    }
+                },
+                label = {
+                    Text(text = "Emergency Phone Number")
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+            OutlinedTextField(modifier = Modifier
+                .fillMaxWidth(),
+                value = address,
+                onValueChange = { address = it },
+                label = {
+                    Text(text = "Address")
+                }
+            )
+            OutlinedTextField(modifier = Modifier
+                .fillMaxWidth(),
+                value = allergies,
+                onValueChange = { allergies = it },
+                label = {
+                    Text(text = "Allergies")
+                }
+            )
+            OutlinedTextField(modifier = Modifier
+                .fillMaxWidth(),
+                value = medications,
+                onValueChange = { medications = it },
+                label = {
+                    Text(text = "Medications")
+                }
+            )
+
+            ExtendedFloatingActionButton(
+                modifier = Modifier
+                    .padding(top = 24.dp, bottom = 16.dp)
+                    .background(brush = gradient, shape = RoundedCornerShape(8.dp)),
+                onClick = {
+                    val userHealthData = UserHealthData(
+                        medicalID = medicalID,
+                        name = name,
+                        bloodGroup = bloodGroup,
+                        age = ageInt,
+                        gender = gender,
+                        healthCondition = healthCondition,
+                        emergencyPhoneNumber = emergencyPhoneNumberLong,
+                        address = address,
+                        allergies = allergies,
+                        medications = medications,
+                        weight = weightFloat,
+                        height = heightFloat
+                    )
+                    healthViewModel.saveHealthData(
+                        userHealthData = userHealthData,
+                        context = context
+                    )
+                }) {
                 Text(text = "Save Health Data")
+            }
         }
     }
 }
