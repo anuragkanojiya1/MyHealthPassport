@@ -165,155 +165,178 @@ fun FlipAnimation(navController: NavController) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier
-                .size(250.dp, 260.dp)
-                .graphicsLayer {
-                    rotationY = rotateCardY
-                    cameraDistance = zAxisDistance
-                }
-                .clip(RoundedCornerShape(24.dp))
-                .padding(top = 8.dp)
-                .clickable { isCardFlipped = !isCardFlipped }
-        ) {
-            // Front image
-            Image(
-                painter = painterResource(id = R.drawable.handsmedicaldoctor), // replace with your image resource
-                contentDescription = "Front Image",
+        Column(modifier = Modifier.verticalScroll(rememberScrollState()).align(Alignment.CenterHorizontally)) {
+            Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .graphicsLayer(alpha = frontImageAlpha),
+                    .size(250.dp, 260.dp)
+                    .graphicsLayer {
+                        rotationY = rotateCardY
+                        cameraDistance = zAxisDistance
+                    }
+                    .clip(RoundedCornerShape(24.dp))
+                    .padding(top = 8.dp)
+                    .clickable { isCardFlipped = !isCardFlipped }
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                // Front image
+                Image(
+                    painter = painterResource(id = R.drawable.handsmedicaldoctor), // replace with your image resource
+                    contentDescription = "Front Image",
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .graphicsLayer(alpha = frontImageAlpha),
                     contentScale = ContentScale.FillBounds
-            )
+                )
 
-            // Back image
-            Image(
-                painter = painterResource(id = R.drawable.onlinedoctor), // replace with your image resource
-                contentDescription = "Back Image",
-                modifier = Modifier
-                    .fillMaxSize()
-                    .graphicsLayer(alpha = backImageAlpha)
-                    .scale(-1f,1f),
-                contentScale = ContentScale.FillBounds
-            )
-        }
-        Spacer(modifier = Modifier.height(32.dp))
-
-        if (isCardFlipped) {
-            OutlinedButton(onClick = {
-                    navController.navigate(Screen.HealthInfo.route)
-            },
-                border = BorderStroke(1.dp, color = Color.Blue),
-            ) {
-                Text(text = "Save Data", color = Color.Black)
-            }
-        } else OutlinedButton(onClick = {
-                    navController.navigate(Screen.GetHealthInfo.route)
-        },
-            border = BorderStroke(1.dp, color = Color.Blue)
-            ) {
-            Text(text = "Get Data", color = Color.Black)
-        }
-
-        Text(
-            text = "Emergency Contacts",
-            fontWeight = FontWeight.W400,
-            fontSize = 28.sp,
-            modifier = Modifier
-                .align(Alignment.Start)
-                .padding(top = 28.dp)
-                .padding(start = 8.dp)
-        )
-        Row(modifier = Modifier.align(Alignment.Start).padding(start = 8.dp)) {
-
-            Text(
-                text = AnnotatedString("Show Emergency Contacts"),
-                modifier = Modifier
-                    .padding(top = 12.dp),
-                fontSize = 16.sp,
-                color = Color.Gray,
-                textAlign = TextAlign.Start,
-            )
-
-            IconButton(onClick = { navController.navigate(Screen.EmergencyContacts.route) },
-                modifier = Modifier.padding(top = 0.dp)) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                    contentDescription = "emergency contacts"
+                // Back image
+                Image(
+                    painter = painterResource(id = R.drawable.onlinedoctor), // replace with your image resource
+                    contentDescription = "Back Image",
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .graphicsLayer(alpha = backImageAlpha)
+                        .scale(-1f, 1f),
+                    contentScale = ContentScale.FillBounds
                 )
             }
-        }
+            Spacer(modifier = Modifier.height(32.dp))
 
-        Row(modifier = Modifier
-            .align(Alignment.Start)
-            .align(Alignment.CenterHorizontally)
-            .padding(start = 8.dp)
-        ) {
+            if (isCardFlipped) {
+                OutlinedButton(
+                    onClick = {
+                        navController.navigate(Screen.HealthInfo.route)
+                    },
+                    border = BorderStroke(1.dp, color = Color.Blue),
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                ) {
+                    Text(text = "Save Data", color = Color.Black)
+                }
+            } else OutlinedButton(
+                onClick = {
+                    navController.navigate(Screen.GetHealthInfo.route)
+                },
+                border = BorderStroke(1.dp, color = Color.Blue),
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Text(text = "Get Data", color = Color.Black)
+            }
+
             Text(
-                text = AnnotatedString("Store your data in Cloud"),
+                text = "Emergency Contacts",
                 fontWeight = FontWeight.W400,
+                color = Color.Black,
                 fontSize = 28.sp,
                 modifier = Modifier
-                    .padding(top = 28.dp),
+                    .align(Alignment.Start)
+                    .padding(top = 24.dp)
+                    .padding(start = 8.dp)
             )
-            IconButton(onClick = {
-                navController.navigate(Screen.FileUploadDownloadScreen.route) },
-                modifier = Modifier.padding(top = 20.dp, start = 8.dp)) {
-                Icon(
-                    painter = painterResource(id = R.drawable.cloudservice),
-                    contentDescription = "cloud",
+            Row(modifier = Modifier.align(Alignment.Start).padding(start = 8.dp)) {
+
+                Text(
+                    text = AnnotatedString("Show Emergency Contacts"),
+                    modifier = Modifier
+                        .padding(top = 12.dp),
+                    fontSize = 16.sp,
+                    color = Color.Gray,
+                    textAlign = TextAlign.Start,
                 )
-            }
-        }
 
-        Row(modifier = Modifier
-            .align(Alignment.Start)
-            .padding(horizontal = 4.dp)) {
-
-            Column(modifier = Modifier.padding(top = 8.dp)) {
-                ElevatedCard(
-                    onClick = { navController.navigate(Screen.ChatScreen.route) },
-                    modifier = Modifier.padding(top = 16.dp, end = 4.dp, bottom = 8.dp)
+                IconButton(
+                    onClick = { navController.navigate(Screen.EmergencyContacts.route) },
+                    modifier = Modifier.padding(top = 0.dp)
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.picturedoctorwithstethoscope),
-                        contentDescription = "Doctor",
-                        modifier = Modifier
-                            .size(200.dp)
-                            .align(Alignment.Start)
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                        contentDescription = "emergency contacts",
+                        tint = Color.Black
                     )
                 }
-                Text(
-                    text = "Open Personal Therapist",
-                    textAlign = TextAlign.Center,
-                    color = Color.Gray,
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    fontSize = 12.sp
-                )
             }
-            Column(modifier = Modifier.padding(top = 8.dp)) {
-                ElevatedCard(
-                    onClick = { navController.navigate(Screen.HealthAiScreen.route) },
-                    modifier = Modifier.padding(top = 16.dp, start = 4.dp, bottom = 8.dp)
+
+            Row(
+                modifier = Modifier
+                    .align(Alignment.Start)
+                    .align(Alignment.CenterHorizontally)
+                    .padding(start = 8.dp)
+            ) {
+                Text(
+                    text = AnnotatedString("Store your data in Cloud"),
+                    fontWeight = FontWeight.W400,
+                    color = Color.Black,
+                    fontSize = 28.sp,
+                    modifier = Modifier
+                        .padding(top = 20.dp),
+                )
+                IconButton(
+                    onClick = {
+                        navController.navigate(Screen.FileUploadDownloadScreen.route)
+                    },
+                    modifier = Modifier.padding(top = 12.dp, start = 8.dp)
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.groupmedicalstaff),
-                        contentDescription = "MedicalStaff",
-                        modifier = Modifier
-                            .size(200.dp)
-                            .align(Alignment.Start),
-                        contentScale = ContentScale.FillBounds
+                    Icon(
+                        painter = painterResource(id = R.drawable.cloudservice),
+                        contentDescription = "cloud",
+                        tint = Color.Black
                     )
                 }
-                Text(
-                    text = "Medical Certificate Analyser",
-                    textAlign = TextAlign.Center,
-                    color = Color.Gray,
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    fontSize = 12.sp
-                )
             }
-        }
+
+            Row(
+                modifier = Modifier
+                    .align(Alignment.Start)
+                    .padding(horizontal = 4.dp)
+                    .padding(bottom = 8.dp)
+            ) {
+
+                Column(modifier = Modifier.padding(top = 4.dp).padding(start = 4.dp)) {
+                    ElevatedCard(
+                        onClick = { navController.navigate(Screen.ChatScreen.route) },
+                        modifier = Modifier
+                            .padding(top = 16.dp, end = 4.dp, bottom = 8.dp)
+                            .background(color = Color.White)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.picturedoctorwithstethoscope),
+                            contentDescription = "Doctor",
+                            modifier = Modifier
+                                .size(200.dp)
+                                .align(Alignment.Start)
+                        )
+                    }
+                    Text(
+                        text = "Open Personal Therapist",
+                        textAlign = TextAlign.Center,
+                        color = Color.Gray,
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        fontSize = 12.sp
+                    )
+                }
+                Column(modifier = Modifier.padding(top = 4.dp).padding(end = 4.dp)) {
+                    ElevatedCard(
+                        onClick = { navController.navigate(Screen.HealthAiScreen.route) },
+                        modifier = Modifier
+                            .padding(top = 16.dp, start = 4.dp, bottom = 8.dp)
+                            .background(color = Color.White)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.groupmedicalstaff),
+                            contentDescription = "MedicalStaff",
+                            modifier = Modifier
+                                .size(200.dp)
+                                .align(Alignment.Start),
+                            contentScale = ContentScale.FillBounds
+                        )
+                    }
+                    Text(
+                        text = "Medical Certificate Analyser",
+                        textAlign = TextAlign.Center,
+                        color = Color.Gray,
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        fontSize = 12.sp
+                    )
+                }
+            }
 
 //        Text(
 //            modifier = Modifier.graphicsLayer {
@@ -322,6 +345,7 @@ fun FlipAnimation(navController: NavController) {
 //            text = if (isCardFlipped) "Reveal" else "Hide",
 //            color = Color.Black,
 //        )
+        }
     }
 }
 
