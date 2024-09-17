@@ -18,13 +18,16 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -67,6 +70,10 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
     val prompt = stringResource(R.string.prompt)
     var result by rememberSaveable { mutableStateOf(placeholderResult) }
     val uiState by aiViewModel.uiState.collectAsState()
+
+    val gradient2 = Brush.horizontalGradient(
+        colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
+    )
 
     val gradient = Brush.linearGradient(
         colors = listOf(Color(0xFFF2F5F7),Color(0xFF7FE2F0))
@@ -121,7 +128,9 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
         modifier = Modifier
             .fillMaxSize()
             .background(brush = gradient)
+            .verticalScroll(rememberScrollState())
     ) {
+
         Text(
             text = "Medical Certificate Analyser",
             style = MaterialTheme.typography.titleLarge,
@@ -129,11 +138,12 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
                 .padding(28.dp)
                 .padding(top = 8.dp)
                 .align(Alignment.CenterHorizontally),
+            color = Color.Black,
             fontSize = 32.sp,
             fontStyle = FontStyle.Normal
         )
 
-        Button(
+        ExtendedFloatingActionButton(
             onClick = {
                 if (ContextCompat.checkSelfPermission(
                         context,
@@ -147,7 +157,8 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
                 }
             },
             modifier = Modifier
-                .padding(16.dp)
+                .padding(vertical = 16.dp)
+                .background(brush = gradient2, shape = RoundedCornerShape(9.dp))
                 .align(Alignment.CenterHorizontally)
         ) {
             Text(text = "Select an Image")
@@ -160,6 +171,7 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
+                        .size(250.dp)
                         .padding(16.dp)
                 )
             }
@@ -196,7 +208,7 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
         if (uiState is UiState.Loading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
         } else {
-            var textColor = MaterialTheme.colorScheme.onSurface
+            var textColor = Color.Black
             if (uiState is UiState.Error) {
                 textColor = MaterialTheme.colorScheme.error
                 result = (uiState as UiState.Error).errorMessage
@@ -208,12 +220,12 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
             Text(
                 text = result,
                 textAlign = TextAlign.Center,
-                color = textColor,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
-                    .padding(bottom = 40.dp)
-                    .fillMaxSize()
-                    .verticalScroll(scrollState)
+                    .padding(bottom = 0.dp)
+                    .padding(horizontal = 16.dp)
+                    .fillMaxSize(),
+                color = Color.Black
             )
         }
     }
