@@ -63,7 +63,10 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
                 verticalAlignment = Alignment.Top
             ) {
                 IconButton(onClick = { navController.navigateUp() }) {
-                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "back_button")
+                    Icon(imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "back_button",
+                        tint = Color.Black
+                        )
                 }
             }
             Column(modifier = Modifier.padding(8.dp)) {
@@ -93,11 +96,17 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
                     .weight(0.7f)
                     .background(Color.LightGray, RoundedCornerShape(8.dp)),
 
-                colors = TextFieldDefaults.textFieldColors(
-                    focusedIndicatorColor = Color.Black,
+                colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedLabelColor = Color.Black,
-                    containerColor = Color.Transparent
+                    containerColor = Color.LightGray,
+                    unfocusedLabelColor = Color.Gray,
+                    focusedPlaceholderColor = Color.DarkGray,
+                    unfocusedPlaceholderColor = Color.Black,
+                    unfocusedBorderColor = Color.Gray,
+                    focusedBorderColor = Color.Black,
+                    focusedTextColor = Color.Black
                 ),
+
             )
 
             ExtendedFloatingActionButton(
@@ -126,10 +135,9 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
                     .weight(0.25f)
                     .padding(bottom = 4.dp)
                     .background(Color.Black, RoundedCornerShape(4.dp)),
-
                 containerColor = Color.LightGray
             ) {
-                Text("Send")
+                Text("Send", color = Color.Black)
             }
         }
     }
@@ -168,6 +176,7 @@ fun Chats(chatMessages : ChatMessage){
                 text = "User: ${chatMessages.userMessage}",
                 fontSize = 20.sp,
                 fontFamily = FontFamily.SansSerif,
+                color = Color.White,
                 textAlign = TextAlign.Start,
                 modifier = Modifier.padding(8.dp)
                 )
@@ -175,6 +184,7 @@ fun Chats(chatMessages : ChatMessage){
         Text(text = "Assistant: ${chatMessages.assistantResponse}",
             fontSize = 20.sp,
             fontFamily = FontFamily.Serif,
+            color = Color.Black,
             fontWeight = FontWeight.W400,
             fontStyle = FontStyle.Italic,
             modifier = Modifier
