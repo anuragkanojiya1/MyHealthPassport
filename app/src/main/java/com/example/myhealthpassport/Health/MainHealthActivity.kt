@@ -41,6 +41,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemColors
+import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -194,7 +196,10 @@ fun NavigationDrawer(navController: NavController) {
                         .height(120.dp)
                 ) {
                     Row(
-                        modifier = Modifier.align(Alignment.CenterStart).padding(8.dp),
+                        modifier = Modifier
+                            .align(Alignment.CenterStart)
+                            .padding(8.dp)
+                            .padding(start = 4.dp),
                         horizontalArrangement = Arrangement.Start,
                     ) {
                         Image(
@@ -214,137 +219,280 @@ fun NavigationDrawer(navController: NavController) {
                     }
                 }
 
-                NavigationDrawerItem(
-                    label = { Text(text = "Home", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.Home,
-                    icon = { Icon(imageVector = Icons.Default.Home, contentDescription = "home") },
-                    onClick = {
-                        coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.Home
-                        navController.navigate(Screen.FlipAnimation.route) {
-                            popUpTo(0)
-                        }
-                    }
-                )
-                NavigationDrawerItem(
-                    label = { Text(text = "Health info", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.Info,
-                    icon = { Icon(imageVector = Icons.Default.Info, contentDescription = "health info") },
-                    onClick = {
-                        coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.Info
-                        navController.navigate(Screen.HealthInfo.route) {
-                            popUpTo(0)
-                        }
-                    }
-                )
+                Column(modifier = Modifier.background(color = Color.White)) {
 
-                NavigationDrawerItem(
-                    label = { Text(text = "Get Health info", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.Search,
-                    icon = { Icon(imageVector = Icons.Default.Search, contentDescription = "get health info") },
-                    onClick = {
-                        coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.Search
-                        navController.navigate(Screen.GetHealthInfo.route) {
-                            popUpTo(0)
+                    NavigationDrawerItem(
+                        label = { Text(text = "Home", color = Color.Black) },
+                        selected = selectedIcon.value == Icons.Default.Home,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Home,
+                                contentDescription = "home"
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch { drawerState.close() }
+                            selectedIcon.value = Icons.Default.Home
+                            navController.navigate(Screen.FlipAnimation.route) {
+                                popUpTo(0)
+                            }
+                        },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = Color.LightGray,
+                            unselectedContainerColor = Color.White,
+                            unselectedTextColor = Color.Black,
+                            selectedTextColor = Color.Black,
+                            selectedIconColor = Color.Black,
+                            unselectedIconColor = Color.Black
+                        ),
+                        modifier = Modifier.background(color = Color.White)
+                    )
+
+                    NavigationDrawerItem(
+                        label = { Text(text = "Health info", color = Color.Black) },
+                        selected = selectedIcon.value == Icons.Default.Info,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Info,
+                                contentDescription = "health info"
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch { drawerState.close() }
+                            selectedIcon.value = Icons.Default.Info
+                            navController.navigate(Screen.HealthInfo.route) {
+                                popUpTo(0)
+                            }
+                        },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = Color.LightGray,
+                            unselectedContainerColor = Color.White,
+                            unselectedTextColor = Color.Black,
+                            selectedTextColor = Color.Black,
+                            selectedIconColor = Color.Black,
+                            unselectedIconColor = Color.Black
+                        ),
+                        modifier = Modifier.background(color = Color.White)
+                    )
+
+                    NavigationDrawerItem(
+                        label = { Text(text = "Get Health info", color = Color.Black) },
+                        selected = selectedIcon.value == Icons.Default.Search,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Search,
+                                contentDescription = "get health info"
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch { drawerState.close() }
+                            selectedIcon.value = Icons.Default.Search
+                            navController.navigate(Screen.GetHealthInfo.route) {
+                                popUpTo(0)
+                            }
+                        },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = Color.LightGray,
+                            unselectedContainerColor = Color.White,
+                            unselectedTextColor = Color.Black,
+                            selectedTextColor = Color.Black,
+                            selectedIconColor = Color.Black,
+                            unselectedIconColor = Color.Black
+                        ),
+                        modifier = Modifier.background(color = Color.White)
+                    )
+
+                    NavigationDrawerItem(
+                        label = { Text(text = "Personal Therapist", color = Color.Black) },
+                        selected = selectedIcon.value == Icons.Default.Send,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Send,
+                                contentDescription = "personal therapist"
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch { drawerState.close() }
+                            selectedIcon.value = Icons.Default.Send
+                            navController.navigate(Screen.ChatScreen.route) {
+                                popUpTo(0)
+                            }
+                        },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = Color.LightGray,
+                            unselectedContainerColor = Color.White,
+                            unselectedTextColor = Color.Black,
+                            selectedTextColor = Color.Black,
+                            selectedIconColor = Color.Black,
+                            unselectedIconColor = Color.Black
+                        ),
+                        modifier = Modifier.background(color = Color.White)
+                    )
+
+                    NavigationDrawerItem(
+                        label = { Text(text = "Emergency Contacts", color = Color.Black) },
+                        selected = selectedIcon.value == Icons.Default.AccountCircle,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.AccountCircle,
+                                contentDescription = "emergency contacts"
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch { drawerState.close() }
+                            selectedIcon.value = Icons.Default.AccountCircle
+                            navController.navigate(Screen.EmergencyContacts.route) {
+                                popUpTo(0)
+                            }
+                        },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = Color.LightGray,
+                            unselectedContainerColor = Color.White,
+                            unselectedTextColor = Color.Black,
+                            selectedTextColor = Color.Black,
+                            selectedIconColor = Color.Black,
+                            unselectedIconColor = Color.Black
+                        ),
+                        modifier = Modifier.background(color = Color.White)
+                    )
+
+                    NavigationDrawerItem(
+                        label = {
+                            Text(
+                                text = "Medical Certificate Analyser",
+                                color = Color.Black
+                            )
+                        },
+                        selected = selectedIcon.value == Icons.Default.Star,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Star,
+                                contentDescription = "medical certificate analyser"
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch { drawerState.close() }
+                            selectedIcon.value = Icons.Default.Star
+                            navController.navigate(Screen.HealthAiScreen.route) {
+                                popUpTo(0)
+                            }
+                        },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = Color.LightGray,
+                            unselectedContainerColor = Color.White,
+                            unselectedTextColor = Color.Black,
+                            selectedTextColor = Color.Black,
+                            selectedIconColor = Color.Black,
+                            unselectedIconColor = Color.Black
+                        ),
+                        modifier = Modifier.background(color = Color.White)
+                    )
+
+                    NavigationDrawerItem(
+                        label = { Text(text = "Agent", color = Color.Black) },
+                        selected = selectedIcon.value == Icons.Default.Build,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Build,
+                                contentDescription = "agent"
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch { drawerState.close() }
+                            selectedIcon.value = Icons.Default.Build
+                            navController.navigate(Screen.AgentScreen.route) {
+                                popUpTo(0)
+                            }
+                        },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = Color.LightGray,
+                            unselectedContainerColor = Color.White,
+                            unselectedTextColor = Color.Black,
+                            selectedTextColor = Color.Black,
+                            selectedIconColor = Color.Black,
+                            unselectedIconColor = Color.Black
+                        ),
+                        modifier = Modifier.background(color = Color.White)
+                    )
+
+                    NavigationDrawerItem(
+                        label = { Text(text = "Cloud Storage", color = Color.Black) },
+                        selected = selectedIcon.value == Icons.Default.Lock,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Lock,
+                                contentDescription = "cloud"
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch { drawerState.close() }
+                            selectedIcon.value = Icons.Default.Lock
+                            navController.navigate(Screen.FileUploadDownloadScreen.route) {
+                                popUpTo(0)
+                            }
+                        },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = Color.LightGray,
+                            unselectedContainerColor = Color.White,
+                            unselectedTextColor = Color.Black,
+                            selectedTextColor = Color.Black,
+                            selectedIconColor = Color.Black,
+                            unselectedIconColor = Color.Black
+                        ),
+                        modifier = Modifier.background(color = Color.White)
+                    )
+
+                    Spacer(modifier = Modifier.background(color = Color.White).weight(0.4f))
+
+                    NavigationDrawerItem(
+                        label = { Text(text = "Exit and Sign Out", color = Color.Black) },
+                        selected = selectedIcon.value == Icons.Default.ExitToApp,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.ExitToApp,
+                                contentDescription = "exit and sign out"
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch { drawerState.close() }
+                            selectedIcon.value = Icons.Default.ExitToApp
+                            Firebase.auth.signOut()
+                            navController.navigate(Screen.Login.route) {
+                                popUpTo(0)
+                            }
+                        },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = Color.LightGray,
+                            unselectedContainerColor = Color.White,
+                            unselectedTextColor = Color.Black,
+                            selectedTextColor = Color.Black,
+                            selectedIconColor = Color.Black,
+                            unselectedIconColor = Color.Black
+                        ),
+                        modifier = Modifier.background(color = Color.White)
+                    )
+
+                    Row(
+                        modifier = Modifier.background(color = Color.White).fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        TextButton(
+                            onClick = {
+                                val intent = Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://www.instagram.com/myhealthpassport?igsh=YzljYTk1ODg3Zg==")
+                                )
+                                context.startActivity(intent)
+                            },
+                            modifier = Modifier
+                                .align(alignment = Alignment.CenterVertically)
+                        ) {
+                            Text(
+                                text = "Community and Support",
+                                textDecoration = TextDecoration.Underline,
+                                fontSize = 16.sp,
+                            )
                         }
-                    }
-                )
-
-                NavigationDrawerItem(
-                    label = { Text(text = "Personal Therapist", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.Send,
-                    icon = { Icon(imageVector = Icons.Default.Send, contentDescription = "personal therapist") },
-                    onClick = {
-                        coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.Send
-                        navController.navigate(Screen.ChatScreen.route) {
-                            popUpTo(0)
-                        }
-                    }
-                )
-
-                NavigationDrawerItem(
-                    label = { Text(text = "Emergency Contacts", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.AccountCircle,
-                    icon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "emergency contacts") },
-                    onClick = {
-                        coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.AccountCircle
-                        navController.navigate(Screen.EmergencyContacts.route) {
-                            popUpTo(0)
-                        }
-                    }
-                )
-
-                NavigationDrawerItem(
-                    label = { Text(text = "Medical Certificate Analyser", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.Star,
-                    icon = { Icon(imageVector = Icons.Default.Star, contentDescription = "medical certificate analyser") },
-                    onClick = {
-                        coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.Star
-                        navController.navigate(Screen.HealthAiScreen.route) {
-                            popUpTo(0)
-                        }
-                    }
-                )
-
-                NavigationDrawerItem(
-                    label = { Text(text = "Agent", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.Build,
-                    icon = { Icon(imageVector = Icons.Default.Build, contentDescription = "agent") },
-                    onClick = {
-                        coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.Build
-                        navController.navigate(Screen.AgentScreen.route) {
-                            popUpTo(0)
-                        }
-                    }
-                )
-
-                NavigationDrawerItem(
-                    label = { Text(text = "Cloud Storage", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.Lock,
-                    icon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "cloud") },
-                    onClick = {
-                        coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.Lock
-                        navController.navigate(Screen.FileUploadDownloadScreen.route) {
-                            popUpTo(0)
-                        }
-                    }
-                )
-
-                Spacer(modifier = Modifier.weight(0.5f))
-
-                NavigationDrawerItem(
-                    label = { Text(text = "Exit and Sign Out", color = Color.Black) },
-                    selected = selectedIcon.value == Icons.Default.ExitToApp,
-                    icon = { Icon(imageVector = Icons.Default.ExitToApp, contentDescription = "exit and sign out") },
-                    onClick = {
-                        coroutineScope.launch { drawerState.close() }
-                        selectedIcon.value = Icons.Default.ExitToApp
-                        Firebase.auth.signOut()
-                        navController.navigate(Screen.Login.route){
-                            popUpTo(0)
-                        }
-                    }
-                )
-
-                Row(modifier = Modifier,
-                    verticalAlignment = Alignment.CenterVertically) {
-                    TextButton(
-                        onClick = { val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/myhealthpassport?igsh=YzljYTk1ODg3Zg=="))
-                        context.startActivity(intent)
-                    },
-                        modifier = Modifier
-                        .align(alignment = Alignment.CenterVertically)) {
-                        Text(text = "Community and Support",
-                            textDecoration = TextDecoration.Underline,
-                            fontSize = 16.sp,
-                        )
                     }
                 }
             }
@@ -362,7 +510,7 @@ fun NavigationDrawer(navController: NavController) {
                     TopAppBar(
                         title = { Text(text = "MyHealth Passport") },
                         colors = TopAppBarDefaults.topAppBarColors(
-                            containerColor = Color.Transparent,
+                            containerColor = Color.White,
                             titleContentColor = Color.Black,
                             navigationIconContentColor = Color.White
                         ),
