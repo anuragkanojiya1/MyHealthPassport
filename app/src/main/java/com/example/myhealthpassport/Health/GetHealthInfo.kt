@@ -92,7 +92,10 @@ fun GetHealthInfo(
                 horizontalArrangement = Arrangement.Start,
             ) {
                 IconButton(onClick = { navController.navigateUp() }) {
-                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "back_button")
+                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "back_button",
+                        tint = Color.Black
+                    )
                 }
             }
             Column(
@@ -266,10 +269,9 @@ fun GetHealthInfo(
                     }
                 )
                 ExtendedFloatingActionButton(modifier = Modifier
-                    .padding(10.dp)
-                    .width(100.dp)
-                    .background(gradient, shape = RoundedCornerShape(8.dp))
-                    .size(50.dp),
+                    .padding(12.dp)
+                    .padding(top = 8.dp)
+                    .background(gradient, shape = RoundedCornerShape(8.dp)),
                     onClick = {
                         healthViewModel.delete(
                             medicalID = medicalID,
@@ -280,9 +282,8 @@ fun GetHealthInfo(
                     Text(text = "Delete")
                 }
                 ExtendedFloatingActionButton(modifier = Modifier
-                    .padding(bottom = 54.dp)
-                    .background(gradient, shape = RoundedCornerShape(8.dp))
-                    .fillMaxSize(),
+                    .padding(bottom = 24.dp)
+                    .background(gradient, shape = RoundedCornerShape(8.dp)),
                     onClick = {
                         val patientData = listOf(
                             medicalID,
