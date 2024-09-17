@@ -43,6 +43,7 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
         Text(text = "Emergency Contact List",
             fontSize = 30.sp,
             fontFamily = FontFamily.Serif,
+            color = Color.Black,
             modifier = Modifier.align(Alignment.CenterHorizontally)
                 .padding(4.dp, 4.dp),
             textDecoration = TextDecoration.Underline)
@@ -59,6 +60,7 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
                             .background(color = getRandomColor())
                             .fillMaxWidth()
                             .padding(8.dp, 8.dp),
+                        color = Color.Black,
                         textAlign = TextAlign.Center
                     )
                     OutlinedButton(
