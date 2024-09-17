@@ -73,31 +73,32 @@ fun FileUploadDownloadScreen(navController: NavController, viewModel: FileViewMo
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(horizontal = 16.dp)
                 .verticalScroll(scrollState)
-                .padding(top = 32.dp),
+                .padding(top = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Text(
                 text = "Upload/Download Files",
                 style = MaterialTheme.typography.bodyMedium,
-                fontSize = 24.sp
+                fontSize = 24.sp,
+                color = Color.Black
             )
 
+            Spacer(modifier = Modifier.height(16.dp))
+
             OutlinedButton(onClick = { filePickerLauncher.launch("*/*") }) {
-                Text(text = "Upload File")
+                Text(text = "Upload File", color = Color.Black)
             }
 
             uploadState?.let { Text(text = it, color = Color.Green) }
 
-            Spacer(modifier = Modifier.height(16.dp))
-
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .paddingFromBaseline(top = 10.dp, bottom = 10.dp),
-                color = MaterialTheme.colorScheme.background
+                    .paddingFromBaseline(top = 4.dp, bottom = 4.dp),
+                color = Color.White
             ) {
                 Box {
                     com.example.myhealthpassport.SignInSignUp.AnimatedCloud(
@@ -123,7 +124,10 @@ fun FileUploadDownloadScreen(navController: NavController, viewModel: FileViewMo
             val environmentId by remember { mutableStateOf(environmentId) } // Replace with actual environment ID
             val projectId by remember { mutableStateOf(projectId) } // Replace with actual project ID
 
-            Column(modifier = Modifier.padding(16.dp)) {
+            Column(modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .padding(bottom = 8.dp)
+            ) {
                 OutlinedTextField(
                     value = fileName,
                     onValueChange = { fileName = it },
@@ -137,7 +141,7 @@ fun FileUploadDownloadScreen(navController: NavController, viewModel: FileViewMo
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Get Download Link")
+                    Text("Get Download Link", color = Color.Black)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -146,15 +150,15 @@ fun FileUploadDownloadScreen(navController: NavController, viewModel: FileViewMo
                 }
 
                 downloadUrl?.let {
-                    Text(text = "Download URL: $it")
+                    Text(text = "Download URL: $it", color = Color.Black)
                 }
                 if (downloadUrl?.isNotBlank() == true) {
-                    Button(onClick = {
+                    OutlinedButton(onClick = {
                         if (downloadUrl?.isNotEmpty() == true) {
                             downloadFile(downloadUrl!!, fileName, context)
                         }
                     }) {
-                        Text(text = "Download File")
+                        Text(text = "Download File", color = Color.Black)
                     }
                 }
             }
