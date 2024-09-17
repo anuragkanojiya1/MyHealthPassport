@@ -31,7 +31,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -68,6 +67,7 @@ fun DoctorLogin(navController: NavController,auth: FirebaseAuth) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(color = Color.White)
                 .paddingFromBaseline(top = 10.dp, bottom = 10.dp),
             color = MaterialTheme.colorScheme.background
         ) {
