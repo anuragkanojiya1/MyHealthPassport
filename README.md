@@ -25,6 +25,11 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 
 ## Mistral Agent for Personalized Diet and Exercise Plan
 
+1. **Set UP Mistral API:**
+   - Sign up for an account on [Mistral](https://mistral.ai/).
+   - Obtain your API key.
+   - Add the Mistral API key in `Constant.kt` file in `app/src/main/java/com/example/myhealthpassport` folder.
+   
 1. **Personalized Diet and Exercise Recommendation:**
    - The app integrates with Mistral Agent to provide users with personalized diet and exercise plans based on their medical data. By entering the unique medical ID, users can receive tailored health recommendations that suit their medical conditions and fitness goals.
 
@@ -74,6 +79,7 @@ Youtube Link- https://youtu.be/exwWNYkTmVg
    const val ANTHROPIC_API_KEY = "Enter_your_own_Anthropic_Api_key"
    const val environmentId = "Enter_your_Environment_Id"
    const val projectId = "Enter_your_Project_Id"
+   const val MISTRAL_API_KEY = "Enter_your_own_Mistral_Api_key"
    ```   
      
 4. **Build and Run:**
