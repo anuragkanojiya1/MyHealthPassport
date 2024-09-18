@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.myhealthpassport.Agent.AgentInstance
 import com.example.myhealthpassport.Agent.MistralMessage
 import com.example.myhealthpassport.Agent.MistralRequest
-import com.example.myhealthpassport.MISTRAL_API_KEY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -31,7 +30,7 @@ class AgentViewModel : ViewModel() {
 
                 // Make the API call
                 val response = withContext(Dispatchers.IO) {
-                    mistralAgentApi.agentCompletion("Bearer $MISTRAL_API_KEY", request).execute()
+                    mistralAgentApi.agentCompletion("Bearer Pbrf4jygSKAINCo2WW9ObwA0jLUZxTN3", request).execute()
                 }
 
                 // Handle the API response

@@ -2,6 +2,7 @@ package com.example.myhealthpassport.Health
 
 import android.provider.DocumentsContract.Root
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,12 +21,15 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.splashscreen.SplashScreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.myhealthpassport.Navigation.Screen
 import com.example.myhealthpassport.R
 import com.google.firebase.auth.FirebaseAuth
@@ -72,10 +76,10 @@ fun SplashScreen(navController: NavController, mainViewModel: MainViewModel = vi
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().background(color = Color.White)
     ) {
         Row(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().background(color = Color.White),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
         ) {
@@ -88,4 +92,10 @@ fun SplashScreen(navController: NavController, mainViewModel: MainViewModel = vi
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SplashScreenPreview(){
+    com.example.myhealthpassport.Health.SplashScreen(navController = rememberNavController(), mainViewModel = MainViewModel())
 }
