@@ -51,14 +51,14 @@ Youtube Link- https://youtu.be/HWaFyXuHNPQ
 ## Screenshots
 
 <img src="https://github.com/user-attachments/assets/934dc1b1-a076-4f41-a06c-6f1fb15da848" alt="Screenshot_20240909_225057" width="300"/>
-<img src="https://github.com/user-attachments/assets/b95d6e53-f969-4cdd-a739-b8b32986ee6f" alt="Screenshot_20240909_234008" width="300"/>
-<img src="https://github.com/user-attachments/assets/9be86b16-a920-4b68-b261-19940ddcd44f" alt="Screenshot_20240909_234029" width="300"/>
+<img src="https://github.com/user-attachments/assets/a8696ebc-9734-4080-a540-d98383a26f2e" alt="Screenshot_20240918_142927" width="300"/>
 <img src="https://github.com/user-attachments/assets/707f01f9-e9de-4924-813c-bed16e7f9228" alt="Screenshot_20240909_225024" width="300"/>
 <img src="https://github.com/user-attachments/assets/ecb61258-eeb9-4a1e-86d5-06a4a41a4547" alt="Screenshot_20240910_014029" width="300"/>
 <img src="https://github.com/user-attachments/assets/d7d55295-356a-4e1a-a228-00d8f20dba02" alt="Screenshot_20240917_183226" width="300"/>
 <img src="https://github.com/user-attachments/assets/b9180f51-5b18-41bf-9fb8-4a8ef24b295a" alt="Screenshot_20240917_181517" width="300"/>
 <img src="https://github.com/user-attachments/assets/dbfce296-0321-4ad3-96de-29149b56adcf" alt="Screenshot_20240625_015445" width="300"/>
 <img src="https://github.com/user-attachments/assets/76602f36-e36c-4fe6-a1f8-c319f761c2c7" alt="Screenshot_20240709_200116" width="300"/>
+<img src="https://github.com/user-attachments/assets/9be86b16-a920-4b68-b261-19940ddcd44f" alt="Screenshot_20240909_234029" width="300"/>
 <img src="https://github.com/user-attachments/assets/9d369237-4792-498e-83e3-9bb36cd1c55a" alt="Screenshot_20240917_182746" width="300"/>
 
 ## Installation
