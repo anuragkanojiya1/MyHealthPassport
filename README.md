@@ -17,6 +17,7 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 
 1. **Set Up CosmoCloud Object Storage:**
    - Create an account on [CosmoCloud](https://cosmocloud.io/).
+   - lick on Object Storage and create bucket by name of `medicalData` and of "Space(in GiBs) = 0.5".
    - Obtain your environmentId and projectId.
    - Put them in a file called Constant.kt in `app/src/main/java/com/example/myhealthpassport` folder.
 
@@ -25,11 +26,6 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 
 ## Mistral Agent for Personalized Diet and Exercise Plan
 
-1. **Set UP Mistral API:**
-   - Sign up for an account on [Mistral](https://mistral.ai/).
-   - Obtain your API key.
-   - Add the Mistral API key in `Constant.kt` file in `app/src/main/java/com/example/myhealthpassport` folder.
-   
 1. **Personalized Diet and Exercise Recommendation:**
    - The app integrates with Mistral Agent to provide users with personalized diet and exercise plans based on their medical data. By entering the unique medical ID, users can receive tailored health recommendations that suit their medical conditions and fitness goals.
 
@@ -73,13 +69,12 @@ Youtube Link- https://youtu.be/HWaFyXuHNPQ
 2. **Open the Project:**
    - Open the project in Android Studio.
   
-3. **Create a `Constant.kt` file in `app/src/main/java/com/example/myhealthpassport` folder and put below variables in the file with your Api Keys and IDs.**
+3. **Create a `Constant.kt` file in `app/src/main/java/com/example/myhealthpassport` folder and put below variables in the file with your Api Key and IDs.**
 
    ```sh
    const val ANTHROPIC_API_KEY = "Enter_your_own_Anthropic_Api_key"
-   const val environmentId = "Enter_your_Environment_Id"
-   const val projectId = "Enter_your_Project_Id"
-   const val MISTRAL_API_KEY = "Enter_your_own_Mistral_Api_key"
+   const val environmentId = "Enter_your_Cosmocloud_Environment_Id"
+   const val projectId = "Enter_your_Cosmocloud_Project_Id"
    ```   
      
 4. **Build and Run:**
