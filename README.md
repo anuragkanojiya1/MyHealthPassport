@@ -13,17 +13,6 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 - **Mistral Agent for Personalized Diet and Exercise Plan:** Provides personalized diet and exercise recommendations based on users' medical data via Mistral Agent.
 - **User-Friendly Interface:** Designed with Jetpack Compose for a modern and intuitive user experience.
 
-## Integration with CosmoCloud
-
-1. **Set Up CosmoCloud Object Storage:**
-   - Create an account on [CosmoCloud](https://cosmocloud.io/).
-   - lick on Object Storage and create bucket by name of `medicalData` and of "Space(in GiBs) = 0.5".
-   - Obtain your environmentId and projectId.
-   - Put them in a file called Constant.kt in `app/src/main/java/com/example/myhealthpassport` folder.
-
-2. **Uploading Medical Data to CosmoCloud:**
-   - Store medical files in PDF format using CosmoCloud’s object storage for safe and organized data management.
-
 ## Mistral Agent for Personalized Diet and Exercise Plan
 
 1. **Personalized Diet and Exercise Recommendation:**
@@ -43,6 +32,17 @@ MyHealthPassport is an Android application built using Jetpack Compose that secu
 
 2. **Using Anthropic API for Chatbot:**
    - Implement the chatbot using the Anthropic API key to offer personalized mental health advice.
+
+## Integration with CosmoCloud
+
+1. **Set Up CosmoCloud Object Storage:**
+   - Create an account on [CosmoCloud](https://cosmocloud.io/).
+   - lick on Object Storage and create bucket by name of `medicalData` and of "Space(in GiBs) = 0.5".
+   - Obtain your environmentId and projectId.
+   - Put them in a file called Constant.kt in `app/src/main/java/com/example/myhealthpassport` folder.
+
+2. **Uploading Medical Data to CosmoCloud:**
+   - Store medical files in PDF format using CosmoCloud’s object storage for safe and organized data management.
      
 ## App Demo
 
