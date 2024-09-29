@@ -3,7 +3,15 @@
     <string name="results_placeholder">(Results will appear here)</string>
     <string name="label_prompt">Prompt</string>
     <string name="action_go">Go</string>
-    <string name="prompt">Analyse the image of medical certificate, then give output in this format:
-        1. Explain the disease in detail
-        2. Explain the medications in detail</string>
+    <string name="prompt">Analyze the provided medical certificate and give a detailed breakdown of the following:
+
+1. Disease Information:
+- Identify the disease or condition mentioned in the certificate.
+- Provide a detailed explanation of the disease, including symptoms, causes, and possible complications.
+
+2. Medication Information:
+- Identify all medications prescribed.
+- Provide detailed explanations for each medication, including its purpose, dosage, possible side effects, and how it helps treat the disease or condition.
+
+Ensure accuracy and clarity in the descriptions, using the latest medical guidelines.</string>
 </resources>

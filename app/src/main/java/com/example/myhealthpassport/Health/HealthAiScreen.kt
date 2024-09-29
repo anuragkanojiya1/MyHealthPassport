@@ -46,8 +46,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -218,10 +223,10 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
             }
             val scrollState = rememberScrollState()
             Text(
-                text = result,
-                textAlign = TextAlign.Center,
+                text = formatText(result),
+                textAlign = TextAlign.Start,
                 modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
+                    .align(Alignment.Start)
                     .padding(bottom = 0.dp)
                     .padding(horizontal = 16.dp)
                     .fillMaxSize(),
@@ -236,8 +241,33 @@ private fun openGallery(context: Context, getImageLauncher: ActivityResultLaunch
     getImageLauncher.launch("image/*")
 }
 
+// Function to format text by bolding and enlarging words enclosed in **
+@Composable
+fun formatText(text: String): AnnotatedString {
+    return buildAnnotatedString {
+        var currentIndex = 0
+
+        // Split the text by **
+        val parts = text.split("**")
+
+        parts.forEachIndexed { index, part ->
+            if (index % 2 == 0) {
+                // Regular text (outside of **)
+                append(part)
+            } else {
+                // Bold and larger text (inside **)
+                withStyle(style = SpanStyle(fontWeight = FontWeight.W400, fontSize = 20.sp)) {
+                    append(part)
+                }
+            }
+            currentIndex += part.length
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun HealthAiScreenPreview(){
     HealthAiScreen(navController = rememberNavController())
 }
+

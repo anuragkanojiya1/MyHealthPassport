@@ -26,11 +26,11 @@ class AgentViewModel : ViewModel() {
             try {
                 // Create the request body
                 val messages = listOf(MistralMessage(role = "user", content = query))
-                val request = MistralRequest(agent_id = "ag:3ac91f01:20240914:untitled-agent:ad097490", messages = messages)
+                val request = MistralRequest(agent_id = "ag:54631716:20240929:untitled-agent:1c20a87a", messages = messages)
 
                 // Make the API call
                 val response = withContext(Dispatchers.IO) {
-                    mistralAgentApi.agentCompletion("Bearer Pbrf4jygSKAINCo2WW9ObwA0jLUZxTN3", request).execute()
+                    mistralAgentApi.agentCompletion("Bearer 5WayNMBMumbUkfrDh3yoJDO9mdtn8niM", request).execute()
                 }
 
                 // Handle the API response
