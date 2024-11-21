@@ -92,7 +92,8 @@ fun GetHealthInfo(
                 horizontalArrangement = Arrangement.Start,
             ) {
                 IconButton(onClick = { navController.navigateUp() }) {
-                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "back_button",
                         tint = Color.Black
                     )

@@ -5,15 +5,27 @@ import android.graphics.Paint.Align
 import android.net.Uri
 import androidx.annotation.ColorRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.outlined.Call
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,7 +33,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -39,30 +53,58 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
         colors = listOf(Color(0xFF44A6FC), Color(0xFF75F8F2))
     )
 
-    Column(Modifier.background(color = Color.White).padding(0.dp, top = 16.dp)) {
+    Column(Modifier.background(color = Color.White).padding(0.dp, top = 16.dp).fillMaxSize()) {
         Text(text = "Emergency Contact List",
-            fontSize = 30.sp,
+            fontSize = 24.sp,
             fontFamily = FontFamily.Serif,
             color = Color.Black,
             modifier = Modifier.align(Alignment.CenterHorizontally)
                 .padding(4.dp, 4.dp),
             textDecoration = TextDecoration.Underline)
 
-        LazyColumn(modifier = Modifier.padding(horizontal = 24.dp).padding(top = 24.dp)) {
+        LazyColumn(modifier = Modifier.padding(top = 24.dp).fillMaxSize()) {
 
             items(contacts) { contact ->
-                Column(modifier = Modifier.padding(vertical = 16.dp).clip(RoundedCornerShape(10.dp,10.dp,20.dp,20.dp))) {
-                    Text(
-                        text = contact.name,
-                        fontSize = 20.sp,
-                        style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier
-                            .background(color = getRandomColor())
-                            .fillMaxWidth()
-                            .padding(8.dp, 8.dp),
-                        color = Color.Black,
-                        textAlign = TextAlign.Center
-                    )
+                Row(modifier = Modifier
+                    .padding(
+                        horizontal = 16.dp,
+                    vertical = 16.dp)
+                    .clip(RoundedCornerShape(10.dp,10.dp,20.dp,20.dp)),
+                    verticalAlignment = Alignment.CenterVertically,
+
+                ) {
+
+                    Card(shape = CardDefaults.outlinedShape,
+                        modifier = Modifier.size(40.dp).align(Alignment.CenterVertically)
+                            .border(1.dp, Color.Blue, shape = CardDefaults.outlinedShape),
+                        colors = CardDefaults.outlinedCardColors(containerColor = Color.White)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Call,
+                            contentDescription = "",
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                                .padding(vertical = 8.dp),
+                            )
+                    }
+                    Column(modifier = Modifier.fillMaxWidth(0.7f).padding(start = 16.dp)){
+                        Text(text = contact.phoneNumber,
+                            fontSize = 20.sp)
+                        Text(text = contact.name,
+                            color = Color.Blue,
+                            fontSize = 16.sp,
+                            modifier = Modifier.align(Alignment.Start))
+                    }
+//                    Text(
+//                        text = contact.name,
+//                        fontSize = 20.sp,
+//                        style = MaterialTheme.typography.bodyLarge,
+//                        modifier = Modifier
+//                            .background(color = getRandomColor())
+//                            .fillMaxWidth()
+//                            .padding(8.dp, 8.dp),
+//                        color = Color.Black,
+//                        textAlign = TextAlign.Center
+//                    )
                     OutlinedButton(
                         onClick = {
                             val intent = Intent(Intent.ACTION_DIAL).apply {
@@ -71,11 +113,9 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
                             context.startActivity(intent)
                         },
                         modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .padding(4.dp, 4.dp)
-                            .fillMaxWidth()
+                            .padding(4.dp, 4.dp),
                     ) {
-                        Text(text = "Call ${contact.name}",
+                        Text(text = "Call",
                             fontSize = 18.sp,
                             color = Color.Black,
                             fontFamily = FontFamily.SansSerif)
@@ -86,6 +126,7 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
     }
 }
 
+@Preview(showBackground = true)
 @Composable
 fun EmergencyContactsListPreview(navController: NavController) {
     val contacts = listOf(
