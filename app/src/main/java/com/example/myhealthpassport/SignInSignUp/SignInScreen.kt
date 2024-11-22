@@ -55,20 +55,22 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
         colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
     )
 
-    Column(modifier = Modifier.fillMaxSize(),
+    Column(modifier = Modifier.fillMaxSize()
+        .background(Color.White),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = Color.White)
-                .paddingFromBaseline(top = 10.dp, bottom = 10.dp),
+                .paddingFromBaseline(top = 8.dp, bottom = 8.dp),
             color = MaterialTheme.colorScheme.background
         ) {
             Box {
                 com.example.myhealthpassport.SignInSignUp.AnimatedPatientSignIn(modifier = Modifier
                     .size(500.dp, 400.dp)
                     .align(Alignment.Center)
+                    .background(Color.White)
                     // .scale(scaleX = 1.3f, scaleY = 1.6f)
                 )
             }

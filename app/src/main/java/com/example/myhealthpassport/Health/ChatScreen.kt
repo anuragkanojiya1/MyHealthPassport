@@ -113,8 +113,8 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel) {
                 onClick = {
                     viewModel.sendMessage(
                         MessageRequest(
-                            model = "claude-3-5-sonnet-20240620", // Specify your model here
-                            max_tokens = 1000, // Adjust as needed
+                            model = "claude-3-5-sonnet-20241022", // Specify your model here
+                            max_tokens = 200, // Adjust as needed
                             messages = listOf(
                                 Message(
                                     role = "user",

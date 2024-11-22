@@ -197,7 +197,7 @@ fun GetHealthInfo(
                         }
                     },
                     label = {
-                        Text(text = "Enter Weight in Kg")
+                        Text(text = "Weight")
                     },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )

@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,11 +27,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.myhealthpassport.Navigation.Screen
 import com.google.firebase.auth.FirebaseAuth
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
     var email by remember { mutableStateOf("") }
@@ -41,7 +45,8 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
         colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
     )
 
-    Column(modifier = Modifier.fillMaxSize(),
+    Column(modifier = Modifier.fillMaxSize()
+        .background(Color.White),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -49,13 +54,14 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = Color.White)
-                .paddingFromBaseline(top = 10.dp, bottom = 10.dp),
+                .paddingFromBaseline(top = 8.dp, bottom = 8.dp),
             color = MaterialTheme.colorScheme.background
         ) {
             Box {
                 com.example.myhealthpassport.SignInSignUp.AnimatedPatientSignUp(modifier = Modifier
                     .size(500.dp, 400.dp)
                     .align(Alignment.Center)
+                    .background(Color.White)
                     // .scale(scaleX = 1.3f, scaleY = 1.6f)
                 )
             }
@@ -64,17 +70,43 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text(text = "Email") }
+            label = { Text(text = "Email") },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.Blue,
+                unfocusedBorderColor = Color.Gray,
+                cursorColor = Color.Blue,
+                focusedTextColor = Color.Black,
+                focusedPlaceholderColor = Color.Gray,
+                errorTextColor = Color.Red
+            ),
         )
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text(text = "Password") }
+            label = { Text(text = "Password") },
+            visualTransformation = PasswordVisualTransformation(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.Blue,
+                unfocusedBorderColor = Color.Gray,
+                cursorColor = Color.Blue,
+                focusedTextColor = Color.Black,
+                focusedPlaceholderColor = Color.Gray,
+                errorTextColor = Color.Red
+            ),
         )
         OutlinedTextField(
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
-            label = { Text(text = "Confirm Password") }
+            label = { Text(text = "Confirm Password") },
+            visualTransformation = PasswordVisualTransformation(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.Blue,
+                unfocusedBorderColor = Color.Gray,
+                cursorColor = Color.Blue,
+                focusedTextColor = Color.Black,
+                focusedPlaceholderColor = Color.Gray,
+                errorTextColor = Color.Red
+            ),
         )
         errorMessage?.let {
             Text(text = it, color = Color.Red)

@@ -15,11 +15,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -49,6 +51,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myhealthpassport.ViewModels.AgentViewModel
 import com.example.myhealthpassport.ViewModels.HealthViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, healthViewModel: HealthViewModel) {
 
@@ -105,7 +108,15 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                 onValueChange = { medicalID = it },
                 label = {
                     Text(text = "MedicalID")
-                }
+                },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Blue,
+                    unfocusedBorderColor = Color.Gray,
+                    cursorColor = Color.Blue,
+                    focusedTextColor = Color.Black,
+                    focusedPlaceholderColor = Color.Gray,
+                    errorTextColor = Color.Red
+                ),
             )
             ExtendedFloatingActionButton(
                 modifier = Modifier
@@ -161,7 +172,8 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                                 modifier = Modifier.padding(top = 20.dp, bottom = 20.dp),
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.W400,
-                                fontStyle = FontStyle.Italic
+                                fontStyle = FontStyle.Italic,
+                                color = Color.Black
                             )
                         }
                         result.isFailure -> {
@@ -218,7 +230,15 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                         label = { Text("Add additional info") },
                         modifier = Modifier
                             .padding(end = 8.dp)
-                            .weight(0.5f)
+                            .weight(0.5f),
+                        colors = TextFieldDefaults.outlinedTextFieldColors(
+                            focusedBorderColor = Color.Blue,
+                            unfocusedBorderColor = Color.Gray,
+                            cursorColor = Color.Blue,
+                            focusedTextColor = Color.Black,
+                            focusedPlaceholderColor = Color.Gray,
+                            errorTextColor = Color.Red
+                        ),
                     )
 
                     queryAdd = "I am $name, have $bloodGroup, $age years old," +
