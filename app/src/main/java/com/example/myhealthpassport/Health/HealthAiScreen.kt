@@ -135,7 +135,6 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
             .background(brush = gradient)
             .verticalScroll(rememberScrollState())
     ) {
-
         Text(
             text = "Medical Certificate Analyser",
             style = MaterialTheme.typography.titleLarge,

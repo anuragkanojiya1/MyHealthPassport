@@ -289,7 +289,7 @@ fun FlipAnimation(navController: NavController) {
                     .padding(bottom = 8.dp)
             ) {
 
-                Column(modifier = Modifier.padding(top = 4.dp).padding(start = 4.dp)) {
+                Column(modifier = Modifier.padding(top = 4.dp).padding(start = 4.dp).weight(0.5f)) {
                     ElevatedCard(
                         onClick = { navController.navigate(Screen.ChatScreen.route) },
                         modifier = Modifier
@@ -302,6 +302,7 @@ fun FlipAnimation(navController: NavController) {
                             modifier = Modifier
                                 .size(200.dp)
                                 .align(Alignment.Start)
+                                .background(Color.White)
                         )
                     }
                     Text(
@@ -312,7 +313,7 @@ fun FlipAnimation(navController: NavController) {
                         fontSize = 12.sp
                     )
                 }
-                Column(modifier = Modifier.padding(top = 4.dp).padding(end = 4.dp)) {
+                Column(modifier = Modifier.padding(top = 4.dp).padding(end = 4.dp).weight(0.5f)) {
                     ElevatedCard(
                         onClick = { navController.navigate(Screen.HealthAiScreen.route) },
                         modifier = Modifier
