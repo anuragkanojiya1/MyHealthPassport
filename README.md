@@ -19,7 +19,7 @@ MyHealthPassport is a comprehensive Android health management app built with Jet
 ## Features
 
 - **Multi-Agent System**  
-  VitaSync offers separate AI agents dedicated to various tasks:
+  MyHealthPassport offers separate AI agents dedicated to various tasks:
   - **AI Symptom Checker:** Analyzes symptoms using a fine-tuned Gemini model with voice-based interaction.
   - **Medical Report Analyzer:** Extracts details from medical reports to update your Medical ID or provide direct analysis.
   - **Personalized Diet & Exercise Plan:** Leverages the Mistral AI agent to provide custom health recommendations based on your medical data.
@@ -32,7 +32,7 @@ MyHealthPassport is a comprehensive Android health management app built with Jet
   - **Detailed Analysis:** Users can tap on the "Insights" button under each chart to receive an in-depth analysis of trends and recommendations, powered by Gemini AI.
   
 - **Voice-Based AI Interaction**  
-  Integrated using Google AI services, allowing users to:
+  Integrated using Google speech services, allowing users to:
   - Interact hands-free with the symptom checker, report analyzer, and other features.
   - Receive spoken health reports and guidance.
 
@@ -103,7 +103,7 @@ MyHealthPassport is a comprehensive Android health management app built with Jet
   - Tap "Insights" on any chart for detailed analysis and recommendations.
 
 - **Voice-Based Interaction:**  
-  Engage with various features using voice commands powered by Google AI services.
+  Engage with various features using voice commands powered by Google speech services.
 
 - **Emergency Contacts:**  
   Access essential emergency contacts quickly in critical situations.
