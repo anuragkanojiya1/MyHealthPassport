@@ -51,7 +51,7 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
 - **Firebase Authentication & Cloud Firestore:** For secure user authentication and cloud data storage.
 - **Room Database:** For local storage (e.g., chat history).
 - **Gemini AI:** Powers the AI Symptom Checker and generates detailed health insights.
-- **Google AI Services:** Enables voice-based interactions.
+- **Google Speech Services:** Enables voice-based interactions.
 - **Mistral AI Agent:** Provides personalized diet and exercise recommendations.
 
 ---
@@ -78,7 +78,7 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
    - Sync Gradle and build the project in Android Studio.
 
 4. **Run on an Emulator or Device:**
-   - Deploy the app to an emulator or physical device to start using VitaSync.
+   - Deploy the app to an emulator or physical device to start using MyHealthPassport.
 
 ---
 
@@ -112,7 +112,7 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to VitaSync, please follow these steps:
+Contributions are welcome! If you'd like to contribute to MyHealthPassport, please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch for your feature or bugfix.
