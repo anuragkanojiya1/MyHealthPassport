@@ -29,7 +29,6 @@ import com.example.myhealthpassport.Composables.GetHealthInfo
 import com.example.myhealthpassport.Composables.HealthAiScreen
 import com.example.myhealthpassport.Composables.HealthInfo
 import com.example.myhealthpassport.ViewModels.HealthViewModel
-import com.example.myhealthpassport.Composables.MainHealthActivity
 import com.example.myhealthpassport.Composables.NavigationDrawer
 import com.example.myhealthpassport.Composables.PatientDetails
 import com.example.myhealthpassport.Composables.SplashScreen
@@ -82,11 +81,11 @@ fun NavGraph(navController: NavController,
 //        composable(Screen.Home.route) {
 //            HomeScreen()
 //        }
-        composable(Screen.MainHealthActivity.route,
-            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){
-            MainHealthActivity(navController = navController)
-        }
+//        composable(Screen.MainHealthActivity.route,
+//            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
+//            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){
+//            MainHealthActivity(navController = navController)
+//        }
         composable(Screen.HealthInfo.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){

@@ -89,106 +89,25 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import kotlinx.coroutines.launch
 
-@Composable
-fun MainHealthActivity(navController: NavController){
-
-    val context = LocalContext.current
-
-    val gradient = Brush.horizontalGradient(
-        colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
-    )
-
-    val gradientx = Brush.horizontalGradient(
-        colors = listOf(Color(0xFFDF1039),Color(0xFFDF1039))
-    )
-
-    Column(modifier = Modifier
-        .fillMaxWidth()) {
-
-        Text(text = "Life is all about being Healthy!", fontSize = 26.sp, modifier = Modifier
-            .padding(30.dp),
-            color = Color.Black,
-            textAlign = TextAlign.Center
-        )
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .paddingFromBaseline(top = 10.dp, bottom = 10.dp),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            Box {
-                AnimatedPreloaderMainHealthActivity(modifier = Modifier
-                    .size(400.dp, 350.dp)
-                    .align(Alignment.Center)
-                   // .scale(scaleX = 1.3f, scaleY = 1.6f)
-                )
-            }
-        }
-        Row(modifier = Modifier
-            .fillMaxWidth()) {
-            ExtendedFloatingActionButton(
-                onClick = { navController.navigate(Screen.HealthInfo.route) },
-                modifier = Modifier
-                    .padding(30.dp)
-                    .padding(0.dp, 10.dp)
-                    .weight(1f)
-                    .background(gradient, shape = RoundedCornerShape(8.dp))
-            ) {
-                Text(text = "Save your Data!")
-            }
-            ExtendedFloatingActionButton(
-                onClick = { navController.navigate(Screen.GetHealthInfo.route) },
-                modifier = Modifier
-                    .padding(30.dp)
-                    .padding(0.dp, 10.dp)
-                    .weight(1f)
-                    .background(gradient, shape = RoundedCornerShape(8.dp))
-            ) {
-                Text(text = "Get your Data!")
-            }
-        }
-        ExtendedFloatingActionButton(onClick = { navController.navigate(Screen.EmergencyContacts.route) },
-            modifier = Modifier
-                .padding(8.dp)
-                .align(Alignment.CenterHorizontally)
-                .background(gradientx, shape = RoundedCornerShape(8.dp))
-        ) {
-            Text(text = "Emergency Helpline numbers")
-        }
-        ExtendedFloatingActionButton(onClick = { navController.navigate(Screen.HealthAiScreen.route) },
-            modifier = Modifier
-                .padding(8.dp)
-                .align(Alignment.CenterHorizontally)
-                .background(gradientx, shape = RoundedCornerShape(8.dp))
-        ) {
-            Text(text = "Medical Report Analyser")
-        }
-
-        TextButton(onClick = { val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/myhealthpassport?igsh=YzljYTk1ODg3Zg=="))
-                                context.startActivity(intent)
-                             }, modifier = Modifier
-            .padding(50.dp)
-            .align(alignment = Alignment.CenterHorizontally)) {
-            Text(text = "Community and Support", textDecoration = TextDecoration.Underline)
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MainHealthActivityPreview(){
-    MainHealthActivity(navController = rememberNavController())
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavigationDrawer(navController: NavController) {
     val navController = rememberNavController()
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val selectedIcon = remember { mutableStateOf(Icons.Default.Home) }
+//    val selectedIcon = remember { mutableStateOf(Icons.Default.Home) }
+    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+
+    val drawerBackgroundColor = Color(0xFFE3F2FD) // Light grayish-blue
+    val selectedItemColor = Color(0xFF90CAF9) // Muted blue
+    val unselectedItemColor = Color.White
+    val textPrimaryColor = Color(0xFF1A237E) // Dark navy blue
+    val textUnselectedColor = Color.Black
+    val iconSelectedColor = Color(0xFF0D47A1) // Deep blue
+    val iconUnselectedColor = Color(0xFF37474F) // Dark gray
+
     val gradient = Brush.horizontalGradient(
-        colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
+        colors = listOf(Color(0xFF00897B), Color(0xFF1E88E5))
     )
 
     val context = LocalContext.current
@@ -236,163 +155,163 @@ fun NavigationDrawer(navController: NavController) {
                 Column(modifier = Modifier.background(color = Color.White)) {
 
                     NavigationDrawerItem(
-                        label = { Text(text = "Home", color = Color.Black) },
-                        selected = selectedIcon.value == Icons.Default.Home,
+                        label = { Text(text = "Home", color = if (currentRoute == Screen.FlipAnimation.route) iconSelectedColor else iconUnselectedColor) },
+                        selected = currentRoute == Screen.FlipAnimation.route,
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Home,
-                                contentDescription = "home"
+                                contentDescription = "home",
+                                tint = if (currentRoute == Screen.FlipAnimation.route) iconSelectedColor else iconUnselectedColor
                             )
                         },
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
-                            selectedIcon.value = Icons.Default.Home
                             navController.navigate(Screen.FlipAnimation.route) {
-                                popUpTo(0)
+                                popUpTo(Screen.FlipAnimation.route) { inclusive = false }
                             }
                         },
                         colors = NavigationDrawerItemDefaults.colors(
-                            selectedContainerColor = Color.LightGray,
-                            unselectedContainerColor = Color.White,
-                            unselectedTextColor = Color.Black,
-                            selectedTextColor = Color.Black,
-                            selectedIconColor = Color.Black,
-                            unselectedIconColor = Color.Black
+                            selectedContainerColor = selectedItemColor,
+                            unselectedContainerColor = unselectedItemColor,
+                            unselectedTextColor = textPrimaryColor,
+                            selectedTextColor = textPrimaryColor,
+                            selectedIconColor = iconSelectedColor,
+                            unselectedIconColor = iconUnselectedColor
                         ),
                         modifier = Modifier.background(color = Color.White)
                     )
 
                     NavigationDrawerItem(
-                        label = { Text(text = "Agent", color = Color.Black) },
-                        selected = selectedIcon.value == Icons.Default.Build,
+                        label = { Text(text = "Agent", color = if (currentRoute == Screen.AgentScreen.route) iconSelectedColor else iconUnselectedColor) },
+                        selected = currentRoute == Screen.AgentScreen.route,
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Build,
-                                contentDescription = "agent"
+                                contentDescription = "agent",
+                                tint = if (currentRoute == Screen.AgentScreen.route) iconSelectedColor else iconUnselectedColor
                             )
                         },
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
-                            selectedIcon.value = Icons.Default.Build
                             navController.navigate(Screen.AgentScreen.route) {
-                                popUpTo(0)
+                                popUpTo(Screen.FlipAnimation.route) { inclusive = false }
                             }
                         },
                         colors = NavigationDrawerItemDefaults.colors(
-                            selectedContainerColor = Color.LightGray,
-                            unselectedContainerColor = Color.White,
-                            unselectedTextColor = Color.Black,
-                            selectedTextColor = Color.Black,
-                            selectedIconColor = Color.Black,
-                            unselectedIconColor = Color.Black
+                            selectedContainerColor = selectedItemColor,
+                            unselectedContainerColor = unselectedItemColor,
+                            unselectedTextColor = textPrimaryColor,
+                            selectedTextColor = textPrimaryColor,
+                            selectedIconColor = iconSelectedColor,
+                            unselectedIconColor = iconUnselectedColor
                         ),
                         modifier = Modifier.background(color = Color.White)
                     )
 
                     NavigationDrawerItem(
-                        label = { Text(text = "Emergency Contacts", color = Color.Black) },
-                        selected = selectedIcon.value == Icons.Default.AccountCircle,
+                        label = { Text(text = "Emergency Contacts", color = if (currentRoute == Screen.EmergencyContacts.route) iconSelectedColor else iconUnselectedColor) },
+                        selected = currentRoute == Screen.EmergencyContacts.route,
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.AccountCircle,
-                                contentDescription = "emergency contacts"
+                                contentDescription = "emergency contacts",
+                                tint = if (currentRoute == Screen.EmergencyContacts.route) iconSelectedColor else iconUnselectedColor
                             )
                         },
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
-                            selectedIcon.value = Icons.Default.AccountCircle
                             navController.navigate(Screen.EmergencyContacts.route) {
-                                popUpTo(0)
+                                popUpTo(Screen.FlipAnimation.route) { inclusive = false }
                             }
                         },
                         colors = NavigationDrawerItemDefaults.colors(
-                            selectedContainerColor = Color.LightGray,
-                            unselectedContainerColor = Color.White,
-                            unselectedTextColor = Color.Black,
-                            selectedTextColor = Color.Black,
-                            selectedIconColor = Color.Black,
-                            unselectedIconColor = Color.Black
+                            selectedContainerColor = selectedItemColor,
+                            unselectedContainerColor = unselectedItemColor,
+                            unselectedTextColor = textPrimaryColor,
+                            selectedTextColor = textPrimaryColor,
+                            selectedIconColor = iconSelectedColor,
+                            unselectedIconColor = iconUnselectedColor
                         ),
                         modifier = Modifier.background(color = Color.White)
                     )
 
                     NavigationDrawerItem(
-                        label = { Text(text = "Health info", color = Color.Black) },
-                        selected = selectedIcon.value == Icons.Default.Info,
+                        label = { Text(text = "Health info", color = if (currentRoute == Screen.HealthInfo.route) iconSelectedColor else iconUnselectedColor) },
+                        selected = currentRoute == Screen.HealthInfo.route,
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Info,
-                                contentDescription = "health info"
+                                contentDescription = "health info",
+                                tint = if (currentRoute == Screen.HealthInfo.route) iconSelectedColor else iconUnselectedColor
                             )
                         },
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
-                            selectedIcon.value = Icons.Default.Info
                             navController.navigate(Screen.HealthInfo.route) {
-                                popUpTo(0)
+                                popUpTo(Screen.FlipAnimation.route) { inclusive = false }
                             }
                         },
                         colors = NavigationDrawerItemDefaults.colors(
-                            selectedContainerColor = Color.LightGray,
-                            unselectedContainerColor = Color.White,
-                            unselectedTextColor = Color.Black,
-                            selectedTextColor = Color.Black,
-                            selectedIconColor = Color.Black,
-                            unselectedIconColor = Color.Black
+                            selectedContainerColor = selectedItemColor,
+                            unselectedContainerColor = unselectedItemColor,
+                            unselectedTextColor = textPrimaryColor,
+                            selectedTextColor = textPrimaryColor,
+                            selectedIconColor = iconSelectedColor,
+                            unselectedIconColor = iconUnselectedColor
                         ),
                         modifier = Modifier.background(color = Color.White)
                     )
 
                     NavigationDrawerItem(
-                        label = { Text(text = "Get Health info", color = Color.Black) },
-                        selected = selectedIcon.value == Icons.Default.Search,
+                        label = { Text(text = "Get Health info", color = if (currentRoute == Screen.GetHealthInfo.route) iconSelectedColor else iconUnselectedColor) },
+                        selected = currentRoute == Screen.GetHealthInfo.route,
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Search,
-                                contentDescription = "get health info"
+                                contentDescription = "get health info",
+                                tint = if (currentRoute == Screen.GetHealthInfo.route) iconSelectedColor else iconUnselectedColor
                             )
                         },
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
-                            selectedIcon.value = Icons.Default.Search
                             navController.navigate(Screen.GetHealthInfo.route) {
-                                popUpTo(0)
+                                popUpTo(Screen.FlipAnimation.route) { inclusive = false }
                             }
                         },
                         colors = NavigationDrawerItemDefaults.colors(
-                            selectedContainerColor = Color.LightGray,
-                            unselectedContainerColor = Color.White,
-                            unselectedTextColor = Color.Black,
-                            selectedTextColor = Color.Black,
-                            selectedIconColor = Color.Black,
-                            unselectedIconColor = Color.Black
+                            selectedContainerColor = selectedItemColor,
+                            unselectedContainerColor = unselectedItemColor,
+                            unselectedTextColor = textPrimaryColor,
+                            selectedTextColor = textPrimaryColor,
+                            selectedIconColor = iconSelectedColor,
+                            unselectedIconColor = iconUnselectedColor
                         ),
                         modifier = Modifier.background(color = Color.White)
                     )
 
                     NavigationDrawerItem(
-                        label = { Text(text = "AI Symptom Checker", color = Color.Black) },
-                        selected = selectedIcon.value == Icons.Default.Send,
+                        label = { Text(text = "AI Symptom Checker", color = if (currentRoute == Screen.ChatPage.route) iconSelectedColor else iconUnselectedColor) },
+                        selected = currentRoute == Screen.ChatPage.route,
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.AddCircle,
-                                contentDescription = "personal therapist"
+                                contentDescription = "personal therapist",
+                                tint = if (currentRoute == Screen.ChatPage.route) iconSelectedColor else iconUnselectedColor
                             )
                         },
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
-                            selectedIcon.value = Icons.Default.Send
                             navController.navigate(Screen.ChatPage.route) {
-                                popUpTo(0)
+                                popUpTo(Screen.FlipAnimation.route) { inclusive = false }
                             }
                         },
                         colors = NavigationDrawerItemDefaults.colors(
-                            selectedContainerColor = Color.LightGray,
-                            unselectedContainerColor = Color.White,
-                            unselectedTextColor = Color.Black,
-                            selectedTextColor = Color.Black,
-                            selectedIconColor = Color.Black,
-                            unselectedIconColor = Color.Black
+                            selectedContainerColor = selectedItemColor,
+                            unselectedContainerColor = unselectedItemColor,
+                            unselectedTextColor = textPrimaryColor,
+                            selectedTextColor = textPrimaryColor,
+                            selectedIconColor = iconSelectedColor,
+                            unselectedIconColor = iconUnselectedColor
                         ),
                         modifier = Modifier.background(color = Color.White)
                     )
@@ -401,30 +320,30 @@ fun NavigationDrawer(navController: NavController) {
                         label = {
                             Text(
                                 text = "Medical Report Analyser",
-                                color = Color.Black
+                                color = if (currentRoute == Screen.HealthAiScreen.route) iconSelectedColor else iconUnselectedColor
                             )
                         },
-                        selected = selectedIcon.value == Icons.Default.Star,
+                        selected = currentRoute == Screen.HealthAiScreen.route,
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Star,
-                                contentDescription = "medical report analyser"
+                                contentDescription = "medical report analyser",
+                                tint = if (currentRoute == Screen.HealthAiScreen.route) iconSelectedColor else iconUnselectedColor
                             )
                         },
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
-                            selectedIcon.value = Icons.Default.Star
                             navController.navigate(Screen.HealthAiScreen.route) {
-                                popUpTo(0)
+                                popUpTo(Screen.FlipAnimation.route) { inclusive = false }
                             }
                         },
                         colors = NavigationDrawerItemDefaults.colors(
-                            selectedContainerColor = Color.LightGray,
-                            unselectedContainerColor = Color.White,
-                            unselectedTextColor = Color.Black,
-                            selectedTextColor = Color.Black,
-                            selectedIconColor = Color.Black,
-                            unselectedIconColor = Color.Black
+                            selectedContainerColor = selectedItemColor,
+                            unselectedContainerColor = unselectedItemColor,
+                            unselectedTextColor = textPrimaryColor,
+                            selectedTextColor = textPrimaryColor,
+                            selectedIconColor = iconSelectedColor,
+                            unselectedIconColor = iconUnselectedColor
                         ),
                         modifier = Modifier.background(color = Color.White)
                     )
@@ -433,28 +352,27 @@ fun NavigationDrawer(navController: NavController) {
 
                     NavigationDrawerItem(
                         label = { Text(text = "Exit and Sign Out", color = Color.Black) },
-                        selected = selectedIcon.value == Icons.Default.ExitToApp,
+                        selected = false,
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.ExitToApp,
-                                contentDescription = "exit and sign out"
+                                contentDescription = "exit and sign out",
                             )
                         },
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
-                            selectedIcon.value = Icons.Default.ExitToApp
                             Firebase.auth.signOut()
                             navController.navigate(Screen.Login.route) {
-                                popUpTo(0)
+                                popUpTo(Screen.FlipAnimation.route) { inclusive = false }
                             }
                         },
                         colors = NavigationDrawerItemDefaults.colors(
-                            selectedContainerColor = Color.LightGray,
-                            unselectedContainerColor = Color.White,
-                            unselectedTextColor = Color.Black,
-                            selectedTextColor = Color.Black,
-                            selectedIconColor = Color.Black,
-                            unselectedIconColor = Color.Black
+                            selectedContainerColor = selectedItemColor,
+                            unselectedContainerColor = unselectedItemColor,
+                            unselectedTextColor = textPrimaryColor,
+                            selectedTextColor = textPrimaryColor,
+                            selectedIconColor = iconSelectedColor,
+                            unselectedIconColor = iconUnselectedColor
                         ),
                         modifier = Modifier.background(color = Color.White)
                     )
