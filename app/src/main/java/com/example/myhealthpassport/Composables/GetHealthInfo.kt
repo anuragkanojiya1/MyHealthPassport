@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -16,11 +18,13 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,21 +32,26 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.myhealthpassport.R
 import com.example.myhealthpassport.ViewModels.HealthViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GetHealthInfo(
     navController: NavController,
@@ -72,9 +81,31 @@ fun GetHealthInfo(
     var bloodSugarLevel: String by remember { mutableStateOf("") }
     var bloodSugarLevelInt: Int by remember { mutableStateOf(0) }
 
+    var errorMessage by remember { mutableStateOf("") }
+
     val gradient = Brush.horizontalGradient(
         colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
     )
+
+    val outlinedFieldColors = TextFieldDefaults.textFieldColors(
+        containerColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent,
+        focusedIndicatorColor = Color.Transparent,
+        focusedTextColor = Color(0xFF181411),
+        cursorColor = Color(0xFF1E88E5) // Blue for cursor
+    )
+
+    val rowModifier = Modifier
+        .padding(top = 12.dp)
+        .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp))
+
+    // Apply updated colors to all input fields
+    val textFieldModifier = Modifier
+        .fillMaxWidth()
+        .background(Color(0xFFE3F2FD)) // Light cyan
+
+    val labelTextColor = Color(0xFF0D47A1) // Dark navy blue
+
     val backgroundPainter: Painter = painterResource(id = R.drawable.healthcare)
 
     val context = LocalContext.current
@@ -85,7 +116,8 @@ fun GetHealthInfo(
             painter = backgroundPainter,
             contentDescription = null,
             contentScale = ContentScale.Fit,
-            modifier = Modifier.matchParentSize(),
+            modifier = Modifier.matchParentSize()
+                .alpha(0.5f),
         )
 
         Column(modifier = Modifier
@@ -94,7 +126,7 @@ fun GetHealthInfo(
 
             Column(
                 modifier = Modifier
-                    .padding(start = 60.dp, end = 60.dp)
+                    .padding(horizontal = 24.dp)
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
@@ -103,17 +135,34 @@ fun GetHealthInfo(
                     modifier = Modifier
                         .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
                 ) {
-                    OutlinedTextField(
-                        modifier = Modifier.fillMaxWidth(0.6f).background(Color.White),
-                        value = medicalID,
-                        onValueChange = { medicalID = it },
-                        label = {
-                            Text(text = "MedicalID")
-                        }
-                    )
+
+                    Row(modifier = rowModifier,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        OutlinedTextField(
+                            modifier = Modifier.fillMaxWidth(0.65f)
+                                .background(Color.Transparent),
+                            value = medicalID,
+                            onValueChange = { medicalID = it },
+                            label = {
+                                Text(text = "Medical ID")
+                            },
+                            colors = outlinedFieldColors,
+
+                            textStyle = TextStyle(fontSize = 18.sp),
+                        )
+                    }
+//                    OutlinedTextField(
+//                        modifier = Modifier.fillMaxWidth(0.6f).background(Color(0xFFE3F2FD)),
+//                        value = medicalID,
+//                        onValueChange = { medicalID = it },
+//                        label = {
+//                            Text(text = "MedicalID", color = Color(0xFF0D47A1))
+//                        }
+//                    )
                     ExtendedFloatingActionButton(
                         modifier = Modifier
-                            .padding(start = 10.dp)
+                            .padding(start = 8.dp)
                             .background(gradient, shape = RoundedCornerShape(8.dp))
                             .width(100.dp),
                         onClick = {
@@ -145,171 +194,449 @@ fun GetHealthInfo(
                             }
                         }
                     ) {
-                        Text(text = "Get Data", textAlign = TextAlign.Center)
+                        Text(text = "Get Data", textAlign = TextAlign.Center, color = Color.Black)
                     }
                 }
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = medicalID,
-                    onValueChange = { medicalID = it },
-                    label = {
-                        Text(text = "MedicalID")
-                    }
+
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Name",
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 16.sp
                 )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = name,
-                    onValueChange = { name = it },
-                    label = {
-                        Text(text = "Name")
-                    }
+                Row(modifier = rowModifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.Transparent),
+                        value = name,
+                        onValueChange = { name = it },
+                        label = {
+                            Text(text = "Name")
+                        },
+                        colors = outlinedFieldColors,
+
+                        textStyle = TextStyle(fontSize = 18.sp),
+                    )
+                }
+
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Blood Group",
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 16.sp
                 )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = bloodGroup,
-                    onValueChange = { bloodGroup = it },
-                    label = {
-                        Text(text = "Blood Group")
-                    }
+                Row(modifier = rowModifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.Transparent),
+                        value = bloodGroup,
+                        onValueChange = { bloodGroup = it },
+                        label = {
+                            Text(text = "Blood Group")
+                        },
+                        colors = outlinedFieldColors,
+
+                        textStyle = TextStyle(fontSize = 18.sp),
+                    )
+                }
+
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Age",
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 16.sp
                 )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = age,
-                    onValueChange = {
-                        age = it
-                        if (age.isNotEmpty()) {
-                            ageInt = age.toInt()
+                Row(modifier = rowModifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.Transparent),
+                        value = age,
+                        onValueChange = {
+                            age = it
+                            if (age.isNotEmpty()) {
+                                ageInt = age.toInt()
+                            }
+                        },
+                        label = {
+                            Text(text = "Age")
+                        },
+                        colors = outlinedFieldColors,
+
+                        textStyle = TextStyle(fontSize = 18.sp),
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+
+                Row(Modifier.fillMaxWidth()) {
+                    Column(
+                        Modifier
+                            .fillMaxWidth(0.5f)
+                            .padding(end = 4.dp)
+                    ) {
+                        Text(
+                            text = "Systolic BP",
+                            fontWeight = FontWeight.W500,
+                            fontSize = 16.sp
+                        )
+                        Row(
+                            modifier = Modifier
+                                .padding(top = 12.dp)
+                                .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp)),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            OutlinedTextField(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(Color.Transparent),
+                                value = systolicBP,
+                                onValueChange = {
+                                    systolicBP = it
+                                    if (systolicBP.isNotEmpty()) {
+                                        systolicBPInt = systolicBP.toInt()
+                                    }
+                                },
+                                label = { Text("Systolic (mmHg)") },
+                                isError = errorMessage.isNotEmpty(),
+                                colors = TextFieldDefaults.textFieldColors(
+                                    containerColor = Color.Transparent,
+                                    unfocusedIndicatorColor = Color.Transparent,
+                                    focusedIndicatorColor = Color.Transparent,
+                                    focusedTextColor = Color(0xFF181411)
+                                ),
+                                textStyle = TextStyle(fontSize = 18.sp),
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                singleLine = true
+                            )
                         }
-                    },
-                    label = {
-                        Text(text = "Age")
-                    },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = systolicBP,
-                    onValueChange = {
-                        systolicBP = it
-                        if (systolicBP.isNotEmpty()) {
-                            systolicBPInt = systolicBP.toInt()
-                        }
-                    },
-                    label = {
-                        Text(text = "Systolic BP")
-                    },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
-               OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = diastolicBP,
-                    onValueChange = {
-                        diastolicBP = it
-                        if (diastolicBP.isNotEmpty()) {
-                            diastolicBPInt = diastolicBP.toInt()
-                        }
-                    },
-                    label = {
-                        Text(text = "Diastolic BP")
-                    },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = bloodSugarLevel,
-                    onValueChange = {
-                        bloodSugarLevel = it
-                        if (bloodSugarLevel.isNotEmpty()) {
-                            bloodSugarLevelInt = bloodSugarLevel.toInt()
-                        }
-                    },
-                    label = {
-                        Text(text = "Blood Sugar Level")
-                    },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = weight,
-                    onValueChange = {
-                        weight = it
-                        if (weight.isNotEmpty()) {
-                            weightFloat = weight.toFloat()
-                        }
-                    },
-                    label = {
-                        Text(text = "Weight")
-                    },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = height,
-                    onValueChange = {
-                        height = it
-                        if (height.isNotEmpty()) {
-                            heightFloat = height.toFloat()
-                        }
-                    },
-                    label = {
-                        Text(text = "Height")
-                    },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = gender,
-                    onValueChange = { gender = it },
-                    label = {
-                        Text(text = "Gender")
                     }
-                )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = healthCondition,
-                    onValueChange = { healthCondition = it },
-                    label = {
-                        Text(text = "Health Condition")
-                    }
-                )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = emergencyPhoneNumber,
-                    onValueChange = {
-                        emergencyPhoneNumber = it
-                        if (emergencyPhoneNumber.isNotEmpty()) {
-                            emergencyPhoneNumberLong = emergencyPhoneNumber.toLong()
+
+                    Column(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(start = 4.dp)
+                    ) {
+                        Text(
+                            text = "Diastolic BP",
+                            fontWeight = FontWeight.W500,
+                            fontSize = 16.sp
+                        )
+                        Row(
+                            modifier = Modifier
+                                .padding(top = 12.dp)
+                                .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp)),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            OutlinedTextField(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(Color.Transparent),
+                                value = diastolicBP,
+                                onValueChange = {
+                                    diastolicBP = it
+                                    if (diastolicBP.isNotEmpty()) {
+                                        diastolicBPInt = diastolicBP.toInt()
+                                    }
+                                },
+                                label = { Text("Diastolic (mmHg)") },
+                                isError = errorMessage.isNotEmpty(),
+                                colors = TextFieldDefaults.textFieldColors(
+                                    containerColor = Color.Transparent,
+                                    unfocusedIndicatorColor = Color.Transparent,
+                                    focusedIndicatorColor = Color.Transparent,
+                                    focusedTextColor = Color(0xFF181411)
+                                ),
+                                textStyle = TextStyle(fontSize = 18.sp),
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                singleLine = true
+                            )
                         }
-                    },
-                    label = {
-                        Text(text = "Emergency Phone Number")
-                    },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = address,
-                    onValueChange = { address = it },
-                    label = {
-                        Text(text = "Address")
                     }
+                }
+
+                if (errorMessage.isNotEmpty()) {
+                    Text(text = errorMessage, color = Color.Red, modifier = Modifier.padding(top = 4.dp))
+                }
+
+
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Blood Sugar",
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 16.sp
                 )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = allergies,
-                    onValueChange = { allergies = it },
-                    label = {
-                        Text(text = "Allergies")
+                Row(modifier = rowModifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.Transparent),
+                        value = bloodSugarLevel,
+                        onValueChange = {
+                            bloodSugarLevel = it
+                            if (bloodSugarLevel.isNotEmpty()) {
+                                bloodSugarLevelInt = bloodSugarLevel.toInt()
+                            }
+                        },
+                        label = {
+                            Text(text = "Blood Sugar")
+                        },
+                        colors = outlinedFieldColors,
+
+                        textStyle = TextStyle(fontSize = 18.sp),
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+
+                Row(Modifier.fillMaxWidth()) {
+                    Column(Modifier.fillMaxWidth(0.5f).padding(end = 4.dp)){
+                        Text(
+                            text = "Weight",
+                            fontWeight = FontWeight.W500,
+                            modifier = Modifier,
+                            fontSize = 16.sp
+                        )
+                        Row(
+                            modifier = Modifier
+                                .padding(top = 12.dp)
+                                .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp)),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            OutlinedTextField(
+                                modifier = Modifier
+                                    .background(Color.Transparent),
+                                value = weight,
+                                onValueChange = {
+                                    weight = it
+                                    if (weight.isNotEmpty()) {
+                                        weightFloat = weight.toFloat()
+                                    }
+                                },
+                                label = {
+                                    Text(text = "Weight")
+                                },
+                                colors = TextFieldDefaults.textFieldColors(
+                                    containerColor = Color.Transparent,
+                                    unfocusedIndicatorColor = Color.Transparent,
+                                    focusedIndicatorColor = Color.Transparent,
+                                    focusedTextColor = Color(0xFF181411)
+                                ),
+                                textStyle = TextStyle(fontSize = 18.sp),
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                            )
+                        }
                     }
-                )
-                OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().background(Color.White),
-                    value = medications,
-                    onValueChange = { medications = it },
-                    label = {
-                        Text(text = "Medications")
+                    Column(Modifier.fillMaxWidth().padding(start = 4.dp)) {
+                        Text(
+                            text = "Height",
+                            fontWeight = FontWeight.W500,
+                            modifier = Modifier,
+                            fontSize = 16.sp
+                        )
+                        Row(
+                            modifier = Modifier
+                                .padding(top = 12.dp)
+                                .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp)),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            OutlinedTextField(
+                                modifier = Modifier
+                                    .background(Color.Transparent),
+                                value = height,
+                                onValueChange = {
+                                    height = it
+                                    if (height.isNotEmpty()) {
+                                        heightFloat = height.toFloat()
+                                    }
+                                },
+                                label = {
+                                    Text(text = "Height")
+                                },
+                                colors = TextFieldDefaults.textFieldColors(
+                                    containerColor = Color.Transparent,
+                                    unfocusedIndicatorColor = Color.Transparent,
+                                    focusedIndicatorColor = Color.Transparent,
+                                    focusedTextColor = Color(0xFF181411)
+                                ),
+                                textStyle = TextStyle(fontSize = 18.sp),
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                            )
+                        }
                     }
+                }
+
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Gender",
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 16.sp
                 )
+                Row(modifier = rowModifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.Transparent),
+                        value = gender,
+                        onValueChange = { gender = it },
+                        label = {
+                            Text(text = "Gender")
+                        },
+                        colors = outlinedFieldColors,
+
+                        textStyle = TextStyle(fontSize = 18.sp),
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Health Condition",
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 16.sp
+                )
+                Row(modifier = rowModifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.Transparent),
+                        value = healthCondition,
+                        onValueChange = { healthCondition = it },
+                        label = {
+                            Text(text = "Health Condition")
+                        },
+                        colors = outlinedFieldColors,
+
+                        textStyle = TextStyle(fontSize = 18.sp),
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Emergency Phone Number",
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 16.sp
+                )
+                Row(modifier = rowModifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth().background(Color.Transparent),
+                        value = emergencyPhoneNumber,
+                        onValueChange = {
+                            emergencyPhoneNumber = it
+                            if (emergencyPhoneNumber.isNotEmpty()) {
+                                emergencyPhoneNumberLong = emergencyPhoneNumber.toLong()
+                            }
+                        },
+                        label = { Text("Emergency Phone Number") },
+                        isError = errorMessage.isNotEmpty(),
+                        colors = outlinedFieldColors,
+
+                        textStyle = TextStyle(fontSize = 18.sp),
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                    )
+
+                }
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Address",
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 16.sp
+                )
+                Row(modifier = rowModifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth().background(Color.Transparent),
+                        value = address,
+                        onValueChange = { address = it },
+                        label = {
+                            Text(text = "Address")
+                        },
+                        colors = outlinedFieldColors,
+
+                        textStyle = TextStyle(fontSize = 18.sp),
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Allergies",
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 16.sp
+                )
+                Row(modifier = rowModifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth().background(Color.Transparent),
+                        value = allergies,
+                        onValueChange = { allergies = it },
+                        label = {
+                            Text(text = "Allergies")
+                        },
+                        colors = outlinedFieldColors,
+
+                        textStyle = TextStyle(fontSize = 18.sp),
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Medications",
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 16.sp
+                )
+                Row(modifier = rowModifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.Transparent),
+                        value = medications,
+                        onValueChange = { medications = it },
+                        label = {
+                            Text(text = "Medications")
+                        },
+                        colors = outlinedFieldColors,
+
+                        textStyle = TextStyle(fontSize = 18.sp),
+                    )
+                }
                 ExtendedFloatingActionButton(modifier = Modifier
                     .padding(12.dp)
                     .padding(top = 8.dp)
