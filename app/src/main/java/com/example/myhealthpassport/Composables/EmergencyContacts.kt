@@ -42,6 +42,10 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
     val context = LocalContext.current
 
     val gradient = Brush.horizontalGradient(
+        colors = listOf(Color(0xFF81D4FA), Color(0xFFB3E5FC)) // Softer gradient
+    )
+
+    val gradient2 = Brush.horizontalGradient(
         colors = listOf(Color(0xFF44A6FC), Color(0xFF75F8F2))
     )
 
@@ -63,14 +67,19 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
                     .padding(
                         horizontal = 16.dp,
                     vertical = 16.dp)
-                    .clip(RoundedCornerShape(10.dp,10.dp,20.dp,20.dp)),
+                    .border(1.dp,  Color(0xFF1E88E5), shape = RoundedCornerShape(12.dp))
+                    .fillMaxWidth()
+                    .background(Color(0xFFB2EBF2), RoundedCornerShape(12.dp)) // Lighter but visible cyan
+                    .clip(RoundedCornerShape(12.dp)),
                     verticalAlignment = Alignment.CenterVertically,
-
                 ) {
 
                     Card(shape = CardDefaults.outlinedShape,
-                        modifier = Modifier.size(40.dp).align(Alignment.CenterVertically)
-                            .border(1.dp, Color.Blue, shape = CardDefaults.outlinedShape),
+                        modifier = Modifier
+                            .size(width = 44.dp, height = 40.dp)
+                            .padding(horizontal = 4.dp)
+                            .align(Alignment.CenterVertically)
+                            .border(1.dp, Color(0xFF1E88E5), shape = CardDefaults.outlinedShape),
                         colors = CardDefaults.outlinedCardColors(containerColor = Color.White)
                     ) {
                         Icon(
@@ -78,13 +87,15 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
                             contentDescription = "",
                             modifier = Modifier.align(Alignment.CenterHorizontally)
                                 .padding(vertical = 8.dp),
+                            tint = Color(0xFF1E88E5),
                             )
                     }
                     Column(modifier = Modifier.fillMaxWidth(0.7f).padding(start = 16.dp)){
                         Text(text = contact.phoneNumber,
-                            fontSize = 20.sp)
+                            color = Color.Black,
+                                    fontSize = 20.sp)
                         Text(text = contact.name,
-                            color = Color.Blue,
+                            color = Color(0xFF0288D1), // Softer blue
                             fontSize = 16.sp,
                             modifier = Modifier.align(Alignment.Start))
                     }
@@ -108,10 +119,12 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
                         },
                         modifier = Modifier
                             .padding(4.dp, 4.dp),
+                        border = _root_ide_package_.androidx.compose.foundation.BorderStroke(1.dp,Color(0xFF1E88E5)
+                        )
                     ) {
                         Text(text = "Call",
                             fontSize = 18.sp,
-                            color = Color.Black,
+                            color = Color.White,
                             fontFamily = FontFamily.SansSerif)
                     }
                 }
@@ -120,9 +133,29 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
 fun EmergencyContactsListPreview(navController: NavController) {
+    val contacts = listOf(
+        EmergencyContact("Police", "100"),
+        EmergencyContact("Ambulance", "102"),
+        EmergencyContact("Fire Department", "101"),
+        EmergencyContact("Poison Control", "1066"),
+        EmergencyContact("Electricity Emergency", "115"),
+        EmergencyContact("Women Helpline", "1091"),
+        EmergencyContact("Disaster Management ( N.D.M.A )", "1078"),
+        EmergencyContact("Senior Citizen Helpline", "14567"),
+        EmergencyContact("Railway Accident Emergency Service", "1072"),
+        EmergencyContact("Road Accident Emergency Service", "1912"),
+    )
+
+    MaterialTheme {
+        EmergencyContactsList(contacts = contacts)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun EmergencyContactsListPrevie() {
     val contacts = listOf(
         EmergencyContact("Police", "100"),
         EmergencyContact("Ambulance", "102"),
