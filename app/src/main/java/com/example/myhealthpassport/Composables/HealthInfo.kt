@@ -1,5 +1,6 @@
 package com.example.myhealthpassport.Composables
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -36,10 +37,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -96,10 +101,30 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
         colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
     )
 
+    val outlinedFieldColors = TextFieldDefaults.textFieldColors(
+        containerColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent,
+        focusedIndicatorColor = Color.Transparent,
+        focusedTextColor = Color(0xFF181411),
+        cursorColor = Color(0xFF1E88E5) // Blue for cursor
+    )
+
+    val rowModifier = Modifier
+        .padding(top = 12.dp)
+        .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp))
+
     val context = LocalContext.current
     val scrollView = rememberScrollState()
+    val backgroundPainter: Painter = painterResource(id = R.drawable.healthcare)
 
     Box(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
+            Image(
+                painter = backgroundPainter,
+                contentDescription = null,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier.matchParentSize()
+                    .alpha(0.5f),
+            )
         Column(
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp, bottom = 0.dp)
@@ -140,10 +165,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -155,12 +177,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     label = {
                         Text(text = "Medical ID")
                     },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                 )
             }
@@ -173,10 +191,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -188,12 +203,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     label = {
                         Text(text = "Name")
                     },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                 )
             }
@@ -206,10 +217,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -221,12 +229,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     label = {
                         Text(text = "Blood Group")
                     },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                 )
             }
@@ -239,10 +243,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -259,12 +260,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     label = {
                         Text(text = "Age")
                     },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
@@ -285,7 +282,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     Row(
                         modifier = Modifier
                             .padding(top = 12.dp)
-                            .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+                .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp)),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         OutlinedTextField(
@@ -327,7 +324,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     Row(
                         modifier = Modifier
                             .padding(top = 12.dp)
-                            .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+                .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp)),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         OutlinedTextField(
@@ -370,10 +367,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -390,12 +384,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     label = {
                         Text(text = "Blood Sugar")
                     },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
@@ -413,7 +403,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 Row(
                     modifier = Modifier
                         .padding(top = 12.dp)
-                        .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+            .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp)),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     OutlinedTextField(
@@ -450,7 +440,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     Row(
                         modifier = Modifier
                             .padding(top = 12.dp)
-                            .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+                .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp)),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         OutlinedTextField(
@@ -487,10 +477,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -502,12 +489,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     label = {
                         Text(text = "Gender")
                     },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                 )
             }
@@ -519,10 +502,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -534,12 +514,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     label = {
                         Text(text = "Health Condition")
                     },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                 )
             }
@@ -551,10 +527,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -569,12 +542,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     },
                     label = { Text("Emergency Phone Number") },
                     isError = errorMessage.isNotEmpty(),
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
@@ -588,10 +557,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -602,12 +568,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     label = {
                         Text(text = "Address")
                     },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                 )
             }
@@ -619,10 +581,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -633,12 +592,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     label = {
                         Text(text = "Allergies")
                     },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                 )
             }
@@ -650,10 +605,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
-            Row(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .background(Color(0xFFF4F2F0), shape = RoundedCornerShape(12.dp)),
+           Row(modifier = rowModifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
@@ -665,12 +617,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     label = {
                         Text(text = "Medications")
                     },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedTextColor = Color(0xFF181411)
-                    ),
+                   colors = outlinedFieldColors,
+
                     textStyle = TextStyle(fontSize = 18.sp),
                 )
             }
@@ -702,7 +650,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                         context = context
                     )
                 }) {
-                Text(text = "Save Health Data")
+                Text(text = "Save Health Data", color = Color.White)
             }
         }
     }
