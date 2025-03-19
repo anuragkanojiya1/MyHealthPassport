@@ -125,7 +125,7 @@ fun FlipAnimation1() {
 @Composable
 fun FlipAnimation(navController: NavController) {
     var isCardFlipped by remember { mutableStateOf(false) }
-    val animDuration = 9000
+    val animDuration = 1000
     val zAxisDistance = 10f
     val gradient = Brush.horizontalGradient(
         colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
