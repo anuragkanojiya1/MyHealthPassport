@@ -40,6 +40,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -131,6 +132,17 @@ fun GetHealthInfo(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
+
+                Text(
+                    text = "Get Medical Info", fontSize = 24.sp, fontStyle = FontStyle.Normal,
+                    modifier = Modifier
+                        .padding(vertical = 12.dp),
+                    color = Color.Black,
+                    fontWeight = FontWeight.W500
+                )
+
+                Spacer(Modifier.height(8.dp))
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
@@ -145,7 +157,7 @@ fun GetHealthInfo(
                             value = medicalID,
                             onValueChange = { medicalID = it },
                             label = {
-                                Text(text = "Medical ID")
+                                Text(text = "Medical ID", color = Color.Gray)
                             },
                             colors = outlinedFieldColors,
 
@@ -165,6 +177,7 @@ fun GetHealthInfo(
                             .padding(start = 8.dp)
                             .background(gradient, shape = RoundedCornerShape(8.dp))
                             .width(100.dp),
+                        containerColor = Color(0xFFE9EFF9),
                         onClick = {
                             healthViewModel.retrieveHealthData(
                                 medicalID = medicalID,
@@ -203,6 +216,7 @@ fun GetHealthInfo(
                 Text(
                     text = "Name",
                     fontWeight = FontWeight.W500,
+                    color = Color.Black,
                     modifier = Modifier.align(Alignment.Start),
                     fontSize = 16.sp
                 )
@@ -216,7 +230,7 @@ fun GetHealthInfo(
                         value = name,
                         onValueChange = { name = it },
                         label = {
-                            Text(text = "Name")
+                            Text(text = "Name", color = Color.Gray)
                         },
                         colors = outlinedFieldColors,
 
@@ -229,6 +243,7 @@ fun GetHealthInfo(
                 Text(
                     text = "Blood Group",
                     fontWeight = FontWeight.W500,
+                    color = Color.Black,
                     modifier = Modifier.align(Alignment.Start),
                     fontSize = 16.sp
                 )
@@ -242,7 +257,7 @@ fun GetHealthInfo(
                         value = bloodGroup,
                         onValueChange = { bloodGroup = it },
                         label = {
-                            Text(text = "Blood Group")
+                            Text(text = "Blood Group", color = Color.Gray)
                         },
                         colors = outlinedFieldColors,
 
@@ -255,6 +270,7 @@ fun GetHealthInfo(
                 Text(
                     text = "Age",
                     fontWeight = FontWeight.W500,
+                    color = Color.Black,
                     modifier = Modifier.align(Alignment.Start),
                     fontSize = 16.sp
                 )
@@ -273,7 +289,7 @@ fun GetHealthInfo(
                             }
                         },
                         label = {
-                            Text(text = "Age")
+                            Text(text = "Age", color = Color.Gray)
                         },
                         colors = outlinedFieldColors,
 
@@ -292,6 +308,7 @@ fun GetHealthInfo(
                         Text(
                             text = "Systolic BP",
                             fontWeight = FontWeight.W500,
+                            color = Color.Black,
                             fontSize = 16.sp
                         )
                         Row(
@@ -311,7 +328,7 @@ fun GetHealthInfo(
                                         systolicBPInt = systolicBP.toInt()
                                     }
                                 },
-                                label = { Text("Systolic (mmHg)") },
+                                label = { Text("Systolic (mmHg)", color = Color.Gray) },
                                 isError = errorMessage.isNotEmpty(),
                                 colors = TextFieldDefaults.textFieldColors(
                                     containerColor = Color.Transparent,
@@ -333,6 +350,7 @@ fun GetHealthInfo(
                     ) {
                         Text(
                             text = "Diastolic BP",
+                            color = Color.Black,
                             fontWeight = FontWeight.W500,
                             fontSize = 16.sp
                         )
@@ -353,7 +371,7 @@ fun GetHealthInfo(
                                         diastolicBPInt = diastolicBP.toInt()
                                     }
                                 },
-                                label = { Text("Diastolic (mmHg)") },
+                                label = { Text("Diastolic (mmHg)", color = Color.Gray) },
                                 isError = errorMessage.isNotEmpty(),
                                 colors = TextFieldDefaults.textFieldColors(
                                     containerColor = Color.Transparent,
@@ -379,6 +397,7 @@ fun GetHealthInfo(
                 Text(
                     text = "Blood Sugar",
                     fontWeight = FontWeight.W500,
+                    color = Color.Black,
                     modifier = Modifier.align(Alignment.Start),
                     fontSize = 16.sp
                 )
@@ -397,7 +416,7 @@ fun GetHealthInfo(
                             }
                         },
                         label = {
-                            Text(text = "Blood Sugar")
+                            Text(text = "Blood Sugar", color = Color.Gray)
                         },
                         colors = outlinedFieldColors,
 
@@ -411,6 +430,7 @@ fun GetHealthInfo(
                     Column(Modifier.fillMaxWidth(0.5f).padding(end = 4.dp)){
                         Text(
                             text = "Weight",
+                            color = Color.Black,
                             fontWeight = FontWeight.W500,
                             modifier = Modifier,
                             fontSize = 16.sp
@@ -432,7 +452,7 @@ fun GetHealthInfo(
                                     }
                                 },
                                 label = {
-                                    Text(text = "Weight")
+                                    Text(text = "Weight", color = Color.Gray)
                                 },
                                 colors = TextFieldDefaults.textFieldColors(
                                     containerColor = Color.Transparent,
@@ -448,6 +468,7 @@ fun GetHealthInfo(
                     Column(Modifier.fillMaxWidth().padding(start = 4.dp)) {
                         Text(
                             text = "Height",
+                            color = Color.Black,
                             fontWeight = FontWeight.W500,
                             modifier = Modifier,
                             fontSize = 16.sp
@@ -469,7 +490,7 @@ fun GetHealthInfo(
                                     }
                                 },
                                 label = {
-                                    Text(text = "Height")
+                                    Text(text = "Height", color = Color.Gray)
                                 },
                                 colors = TextFieldDefaults.textFieldColors(
                                     containerColor = Color.Transparent,
@@ -488,6 +509,7 @@ fun GetHealthInfo(
 
                 Text(
                     text = "Gender",
+                    color = Color.Black,
                     fontWeight = FontWeight.W500,
                     modifier = Modifier.align(Alignment.Start),
                     fontSize = 16.sp
@@ -502,7 +524,7 @@ fun GetHealthInfo(
                         value = gender,
                         onValueChange = { gender = it },
                         label = {
-                            Text(text = "Gender")
+                            Text(text = "Gender", color = Color.Gray)
                         },
                         colors = outlinedFieldColors,
 
@@ -513,6 +535,7 @@ fun GetHealthInfo(
 
                 Text(
                     text = "Health Condition",
+                    color = Color.Black,
                     fontWeight = FontWeight.W500,
                     modifier = Modifier.align(Alignment.Start),
                     fontSize = 16.sp
@@ -527,7 +550,7 @@ fun GetHealthInfo(
                         value = healthCondition,
                         onValueChange = { healthCondition = it },
                         label = {
-                            Text(text = "Health Condition")
+                            Text(text = "Health Condition", color = Color.Gray)
                         },
                         colors = outlinedFieldColors,
 
@@ -538,6 +561,7 @@ fun GetHealthInfo(
 
                 Text(
                     text = "Emergency Phone Number",
+                    color = Color.Black,
                     fontWeight = FontWeight.W500,
                     modifier = Modifier.align(Alignment.Start),
                     fontSize = 16.sp
@@ -555,7 +579,7 @@ fun GetHealthInfo(
                                 emergencyPhoneNumberLong = emergencyPhoneNumber.toLong()
                             }
                         },
-                        label = { Text("Emergency Phone Number") },
+                        label = { Text("Emergency Phone Number", color = Color.Gray) },
                         isError = errorMessage.isNotEmpty(),
                         colors = outlinedFieldColors,
 
@@ -568,6 +592,7 @@ fun GetHealthInfo(
 
                 Text(
                     text = "Address",
+                    color = Color.Black,
                     fontWeight = FontWeight.W500,
                     modifier = Modifier.align(Alignment.Start),
                     fontSize = 16.sp
@@ -581,7 +606,7 @@ fun GetHealthInfo(
                         value = address,
                         onValueChange = { address = it },
                         label = {
-                            Text(text = "Address")
+                            Text(text = "Address", color = Color.Gray)
                         },
                         colors = outlinedFieldColors,
 
@@ -592,6 +617,7 @@ fun GetHealthInfo(
 
                 Text(
                     text = "Allergies",
+                    color = Color.Black,
                     fontWeight = FontWeight.W500,
                     modifier = Modifier.align(Alignment.Start),
                     fontSize = 16.sp
@@ -605,7 +631,7 @@ fun GetHealthInfo(
                         value = allergies,
                         onValueChange = { allergies = it },
                         label = {
-                            Text(text = "Allergies")
+                            Text(text = "Allergies", color = Color.Gray)
                         },
                         colors = outlinedFieldColors,
 
@@ -616,6 +642,7 @@ fun GetHealthInfo(
 
                 Text(
                     text = "Medications",
+                    color = Color.Black,
                     fontWeight = FontWeight.W500,
                     modifier = Modifier.align(Alignment.Start),
                     fontSize = 16.sp
@@ -630,7 +657,7 @@ fun GetHealthInfo(
                         value = medications,
                         onValueChange = { medications = it },
                         label = {
-                            Text(text = "Medications")
+                            Text(text = "Medications", color = Color.Gray)
                         },
                         colors = outlinedFieldColors,
 
@@ -641,6 +668,7 @@ fun GetHealthInfo(
                     .padding(12.dp)
                     .padding(top = 8.dp)
                     .background(gradient, shape = RoundedCornerShape(8.dp)),
+                    containerColor = Color(0xFFE9EFF9),
                     onClick = {
                         healthViewModel.delete(
                             medicalID = medicalID,
@@ -648,11 +676,12 @@ fun GetHealthInfo(
                             navController = navController
                         )
                     }) {
-                    Text(text = "Delete")
+                    Text(text = "Delete", color = Color.Black)
                 }
                 ExtendedFloatingActionButton(modifier = Modifier
                     .padding(bottom = 24.dp)
                     .background(gradient, shape = RoundedCornerShape(8.dp)),
+                    containerColor = Color(0xFFE9EFF9),
                     onClick = {
                         val patientData = listOf(
                             medicalID,
@@ -668,7 +697,7 @@ fun GetHealthInfo(
                         )
                         navController.navigate("patient_details/$patientData")
                     }) {
-                    Text(text = "Open Data in new Screen")
+                    Text(text = "Open Data in new Screen", color = Color.Black)
                 }
             }
         }

@@ -125,7 +125,7 @@ fun FlipAnimation1() {
 @Composable
 fun FlipAnimation(navController: NavController) {
     var isCardFlipped by remember { mutableStateOf(false) }
-    val animDuration = 900
+    val animDuration = 9000
     val zAxisDistance = 10f
     val gradient = Brush.horizontalGradient(
         colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
@@ -201,8 +201,8 @@ fun FlipAnimation(navController: NavController) {
                     onClick = {
                         navController.navigate(Screen.HealthInfo.route)
                     },
-                    border = BorderStroke(1.dp, color = Color.Blue),
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    border = BorderStroke(1.dp, color = Color(0xFF1E88E5)),
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
                 ) {
                     Text(text = "Save Data", color = Color.Black)
                 }
@@ -210,7 +210,7 @@ fun FlipAnimation(navController: NavController) {
                 onClick = {
                     navController.navigate(Screen.GetHealthInfo.route)
                 },
-                border = BorderStroke(1.dp, color = Color.Blue),
+                border = BorderStroke(1.dp, color = Color(0xFF1E88E5)),
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 Text(text = "Get Data", color = Color.Black)

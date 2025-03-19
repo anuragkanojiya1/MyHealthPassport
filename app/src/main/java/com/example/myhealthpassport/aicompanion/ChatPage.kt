@@ -31,7 +31,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun ChatPage(navController: NavController, context: Context, viewModel: ChatViewModel) {
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize()
+        .background(Color.White)) {
 
         MessageList(modifier = Modifier.weight(1f), messageList = viewModel.messageList)
 
@@ -41,8 +42,12 @@ fun ChatPage(navController: NavController, context: Context, viewModel: ChatView
                 .padding(8.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            FloatingActionButton(onClick = { viewModel.clearChat() }, modifier = Modifier.padding(top = 8.dp)) {
-                Icon(imageVector = Icons.Default.Delete, contentDescription = "Clear Chat")
+            FloatingActionButton(onClick = { viewModel.clearChat() },
+                containerColor = Color(0xFFE9EFF9),
+                modifier = Modifier.padding(top = 8.dp)) {
+                Icon(imageVector = Icons.Default.Delete,
+                    contentDescription = "Clear Chat",
+                    tint = Color.Black)
             }
             MessageInput(context, onMessageSend = { viewModel.sendMessage(it) })
         }
@@ -72,7 +77,7 @@ fun MessageInput(context: Context, onMessageSend: (String) -> Unit) {
             value = message,
             onValueChange = { message = it },
             modifier = Modifier.weight(1f),
-            placeholder = { Text("Type a message...") }
+            placeholder = { Text("Type a message...", color = Color.Gray) }
         )
 
         IconButton(onClick = {
@@ -81,17 +86,20 @@ fun MessageInput(context: Context, onMessageSend: (String) -> Unit) {
                 message = ""
             }
         }) {
-            Icon(imageVector = Icons.Default.Send, contentDescription = "Send")
+            Icon(imageVector = Icons.Default.Send,
+                contentDescription = "Send",
+                tint = Color.Black)
         }
 
         FloatingActionButton(
             onClick = { speechContext.askSpeechInput(context) },
-            modifier = Modifier.padding(start = 8.dp)
+            modifier = Modifier.padding(start = 8.dp),
+            containerColor = Color(0xFFE9EFF9)
         ) {
             Icon(
                 imageVector = Icons.Default.Mic,
                 contentDescription = "Voice Input",
-                tint = Color.Yellow
+                tint = Color.Black
             )
         }
     }

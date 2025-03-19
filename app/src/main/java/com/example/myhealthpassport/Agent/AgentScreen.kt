@@ -112,7 +112,7 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                 value = medicalID,
                 onValueChange = { medicalID = it },
                 label = {
-                    Text(text = "MedicalID")
+                    Text(text = "MedicalID", color = Color.Gray)
                 },
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color.Blue,
@@ -127,6 +127,7 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                 modifier = Modifier
                     .padding(start = 8.dp)
                     .background(gradient, shape = RoundedCornerShape(8.dp)),
+                containerColor = Color(0xFFE9EFF9),
                 onClick = {
                     healthViewModel.retrieveHealthData(
                         medicalID = medicalID,
@@ -154,7 +155,7 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                     agentViewModel.sendQueryToAgent(queryAdd + query)
                 }
             ) {
-                Text(text = "Get Plan", textAlign = TextAlign.Center)
+                Text(text = "Get Plan", textAlign = TextAlign.Center, color = Color.Black)
             }
         }
 
@@ -235,7 +236,7 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                     OutlinedTextField(
                         value = query,
                         onValueChange = { newValue -> query = newValue },
-                        label = { Text("Add additional info") },
+                        label = { Text("Add additional info", color = Color.Gray) },
                         modifier = Modifier
                             .padding(end = 8.dp)
                             .weight(0.5f),
@@ -260,10 +261,11 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                             loading = true // Set loading to true when button is clicked
                             agentViewModel.sendQueryToAgent(queryAdd + query)
                         },
+                        containerColor = Color(0xFFE9EFF9),
                         modifier = Modifier
                             .background(brush = gradient, shape = RoundedCornerShape(8.dp))
                     ) {
-                        Text("Send Query")
+                        Text("Send Query", color = Color.Black)
                     }
                 }
             }

@@ -159,9 +159,12 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
 ////                }
 //            }
 
+            Spacer(Modifier.height(8.dp))
+
             Text(
                 text = "Medical ID",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -175,7 +178,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     value = medicalID,
                     onValueChange = { medicalID = it },
                     label = {
-                        Text(text = "Medical ID")
+                        Text(text = "Medical ID", color = Color.Gray)
                     },
                    colors = outlinedFieldColors,
 
@@ -188,6 +191,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             Text(
                 text = "Name",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -201,7 +205,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     value = name,
                     onValueChange = { name = it },
                     label = {
-                        Text(text = "Name")
+                        Text(text = "Name",
+                            color = Color.Gray)
                     },
                    colors = outlinedFieldColors,
 
@@ -214,6 +219,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             Text(
                 text = "Blood Group",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -227,7 +233,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     value = bloodGroup,
                     onValueChange = { bloodGroup = it },
                     label = {
-                        Text(text = "Blood Group")
+                        Text(text = "Blood Group",
+                            color = Color.Gray)
                     },
                    colors = outlinedFieldColors,
 
@@ -240,6 +247,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             Text(
                 text = "Age",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -258,7 +266,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                         }
                     },
                     label = {
-                        Text(text = "Age")
+                        Text(text = "Age", color = Color.Gray)
                     },
                    colors = outlinedFieldColors,
 
@@ -277,6 +285,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     Text(
                         text = "Systolic BP",
                         fontWeight = FontWeight.W500,
+                        color = Color.Black,
                         fontSize = 16.sp
                     )
                     Row(
@@ -296,7 +305,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                                     systolicBPInt = systolicBP.toInt()
                                 }
                             },
-                            label = { Text("Systolic (mmHg)") },
+                            label = { Text("Systolic (mmHg)", color = Color.Gray) },
                             isError = errorMessage.isNotEmpty(),
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = Color.Transparent,
@@ -319,6 +328,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     Text(
                         text = "Diastolic BP",
                         fontWeight = FontWeight.W500,
+                        color = Color.Black,
                         fontSize = 16.sp
                     )
                     Row(
@@ -338,7 +348,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                                     diastolicBPInt = diastolicBP.toInt()
                                 }
                             },
-                            label = { Text("Diastolic (mmHg)") },
+                            label = { Text("Diastolic (mmHg)", color = Color.Gray) },
                             isError = errorMessage.isNotEmpty(),
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = Color.Transparent,
@@ -364,6 +374,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             Text(
                 text = "Blood Sugar",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -382,7 +393,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                         }
                     },
                     label = {
-                        Text(text = "Blood Sugar")
+                        Text(text = "Blood Sugar", color = Color.Gray)
                     },
                    colors = outlinedFieldColors,
 
@@ -397,6 +408,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 Text(
                     text = "Weight",
                     fontWeight = FontWeight.W500,
+                    color = Color.Black,
                     modifier = Modifier,
                     fontSize = 16.sp
                 )
@@ -417,7 +429,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                             }
                         },
                         label = {
-                            Text(text = "Weight")
+                            Text(text = "Weight", color = Color.Gray)
                         },
                         colors = TextFieldDefaults.textFieldColors(
                             containerColor = Color.Transparent,
@@ -434,6 +446,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     Text(
                         text = "Height",
                         fontWeight = FontWeight.W500,
+                        color = Color.Black,
                         modifier = Modifier,
                         fontSize = 16.sp
                     )
@@ -454,7 +467,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                                 }
                             },
                             label = {
-                                Text(text = "Height")
+                                Text(text = "Height", color = Color.Gray)
                             },
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = Color.Transparent,
@@ -474,6 +487,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             Text(
                 text = "Gender",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -487,7 +501,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     value = gender,
                     onValueChange = { gender = it },
                     label = {
-                        Text(text = "Gender")
+                        Text(text = "Gender", color = Color.Gray)
                     },
                    colors = outlinedFieldColors,
 
@@ -499,6 +513,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             Text(
                 text = "Health Condition",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -512,7 +527,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     value = healthCondition,
                     onValueChange = { healthCondition = it },
                     label = {
-                        Text(text = "Health Condition")
+                        Text(text = "Health Condition", color = Color.Gray)
                     },
                    colors = outlinedFieldColors,
 
@@ -524,6 +539,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             Text(
                 text = "Emergency Phone Number",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -540,7 +556,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                             emergencyPhoneNumberLong = emergencyPhoneNumber.toLong()
                         }
                     },
-                    label = { Text("Emergency Phone Number") },
+                    label = { Text("Emergency Phone Number", color = Color.Gray) },
                     isError = errorMessage.isNotEmpty(),
                    colors = outlinedFieldColors,
 
@@ -554,6 +570,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             Text(
                 text = "Address",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -566,7 +583,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     value = address,
                     onValueChange = { address = it },
                     label = {
-                        Text(text = "Address")
+                        Text(text = "Address", color = Color.Gray)
                     },
                    colors = outlinedFieldColors,
 
@@ -578,6 +595,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             Text(
                 text = "Allergies",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -590,7 +608,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     value = allergies,
                     onValueChange = { allergies = it },
                     label = {
-                        Text(text = "Allergies")
+                        Text(text = "Allergies", color = Color.Gray)
                     },
                    colors = outlinedFieldColors,
 
@@ -602,6 +620,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
             Text(
                 text = "Medications",
                 fontWeight = FontWeight.W500,
+                color = Color.Black,
                 modifier = Modifier.align(Alignment.Start),
                 fontSize = 16.sp
             )
@@ -615,7 +634,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                     value = medications,
                     onValueChange = { medications = it },
                     label = {
-                        Text(text = "Medications")
+                        Text(text = "Medications", color = Color.Gray)
                     },
                    colors = outlinedFieldColors,
 
@@ -627,6 +646,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                 modifier = Modifier
                     .padding(top = 24.dp, bottom = 16.dp)
                     .background(brush = gradient, shape = RoundedCornerShape(8.dp)),
+                containerColor = Color(0xFFE9EFF9),
                 onClick = {
                     val userHealthData = UserHealthData(
                         medicalID = medicalID,
@@ -650,7 +670,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                         context = context
                     )
                 }) {
-                Text(text = "Save Health Data", color = Color.White)
+                Text(text = "Save Health Data", color = Color.Black)
             }
         }
     }

@@ -47,6 +47,7 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Scaffold
@@ -98,16 +99,16 @@ fun NavigationDrawer(navController: NavController) {
 //    val selectedIcon = remember { mutableStateOf(Icons.Default.Home) }
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
 
-    val drawerBackgroundColor = Color(0xFFE3F2FD) // Light grayish-blue
-    val selectedItemColor = Color(0xFF90CAF9) // Muted blue
+    val drawerBackgroundColor = Color(0xFFE3F2FD)
+    val selectedItemColor = Color(0xFFB2EBF2)
     val unselectedItemColor = Color.White
-    val textPrimaryColor = Color(0xFF1A237E) // Dark navy blue
+    val textPrimaryColor = Color(0xFF1A237E)
     val textUnselectedColor = Color.Black
-    val iconSelectedColor = Color(0xFF0D47A1) // Deep blue
-    val iconUnselectedColor = Color(0xFF37474F) // Dark gray
+    val iconSelectedColor = Color(0xFF0288D1)
+    val iconUnselectedColor = Color(0xFF37474F)
 
     val gradient = Brush.horizontalGradient(
-        colors = listOf(Color(0xFF00897B), Color(0xFF1E88E5))
+        colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
     )
 
     val context = LocalContext.current
@@ -519,11 +520,18 @@ fun BottomNavigationBar(navController: NavController) {
     )
     var selectedItem = remember { mutableStateOf(0) }
 
-    NavigationBar {
+    NavigationBar(containerColor = Color(0xFFF0F1F2)) {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
-                icon = { Icon(imageVector = item.icon, contentDescription = item.label) },
-                label = { Text(text = item.label) },
+                icon = {
+                    Icon(
+                        imageVector = item.icon,
+                        contentDescription = item.label,
+                        tint = if (selectedItem.value == index) Color(0xFFF0F1F2) else Color.Black
+                        )
+                       },
+                label = { Text(text = item.label,
+                    color = Color.Black) },
                 selected = selectedItem.value == index,
                 onClick = {
                     selectedItem.value = index

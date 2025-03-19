@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -54,6 +55,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -102,6 +104,18 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
     val gradient = Brush.linearGradient(
         colors = listOf(Color(0xFFF2F5F7),Color(0xFF7FE2F0))
     )
+
+    val outlinedFieldColors = TextFieldDefaults.textFieldColors(
+        containerColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent,
+        focusedIndicatorColor = Color.Transparent,
+        focusedTextColor = Color(0xFF181411),
+        cursorColor = Color(0xFF1E88E5) // Blue for cursor
+    )
+
+    val rowModifier = Modifier
+        .padding(top = 12.dp)
+        .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp))
 
     val getImageLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.GetContent()
@@ -184,10 +198,11 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
             },
             modifier = Modifier
                 .padding(vertical = 16.dp)
-                .background(brush = gradient2, shape = RoundedCornerShape(9.dp))
-                .align(Alignment.CenterHorizontally)
+                .background(brush = gradient2, shape = RoundedCornerShape(8.dp))
+                .align(Alignment.CenterHorizontally),
+            containerColor = Color(0xFFE9E9F9)
         ) {
-            Text(text = "Select an Image")
+            Text(text = "Select an Image", color = Color.Black)
         }
 
         selectedImageUri?.let {
@@ -261,7 +276,20 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
         }
 
         if (uiState is UiState.Loading) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+
+            Row(modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                if (isExtraction) {
+                    Text(text = "Extracting Data...", modifier = Modifier.padding(end = 16.dp))
+                } else if (isAnalysis) {
+                    Text(text = "Analyzing Data...", modifier = Modifier.padding(end = 16.dp))
+                }
+                CircularProgressIndicator(modifier = Modifier)
+            }
         } else {
             var textColor = Color.Black
             if (uiState is UiState.Error) {
@@ -304,24 +332,30 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
 
                     if (userHealthData != null) {
                         Column(modifier = Modifier.padding(16.dp)) {
-                            Text("Enter Medical ID:", color = Color.Black)
-                            OutlinedTextField(
-                                value = medicalID,
-                                onValueChange = { medicalID = it },
-                                label = { Text("Medical ID") },
-                                modifier = Modifier.fillMaxWidth(),
-                                colors = TextFieldDefaults.outlinedTextFieldColors(
-                                    focusedTextColor = Color.Black,
-                                    unfocusedTextColor = Color.Gray,
-                                    focusedLabelColor = Color.Black,
-                                    unfocusedLabelColor = Color.Black,
-                                    disabledBorderColor = Color.Black,
-                                    focusedBorderColor = Color.Black,
-                                    unfocusedBorderColor = Color.Black
-                                )
-                            )
 
-                            Button(
+                            Text("Enter Medical ID:",
+                                fontWeight = FontWeight.W500,
+                                color = Color.Black,
+                                modifier = Modifier.align(Alignment.Start),
+                                fontSize = 16.sp)
+
+                            Row(modifier = rowModifier,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                OutlinedTextField(
+                                    value = medicalID,
+                                    onValueChange = { medicalID = it },
+                                    label = { Text("Medical ID", color = Color.Gray) },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .border(width = 1.dp, color = Color.Gray, shape = RoundedCornerShape(12.dp))
+                                        .background(Color.Transparent),
+                                    colors = outlinedFieldColors,
+                                    textStyle = TextStyle(fontSize = 18.sp),
+                                    )
+                            }
+
+                            ExtendedFloatingActionButton(
                                 onClick = {
                                     userHealthData?.let {
                                         healthViewModel.saveHealthData(
@@ -330,7 +364,11 @@ fun HealthAiScreen(navController: NavController, aiViewModel: AiViewModel = view
                                         )
                                     }
                                 },
-                                modifier = Modifier.align(Alignment.CenterHorizontally)
+                                modifier = Modifier
+                                    .padding(top = 12.dp)
+                                    .background(brush = gradient2, shape = RoundedCornerShape(8.dp))
+                                    .align(Alignment.CenterHorizontally),
+                                containerColor = Color(0xFFE9E9F9)
                             ) {
                                 Text("Save Data")
                             }

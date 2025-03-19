@@ -171,7 +171,7 @@ fun ChartCard(title: String, content: @Composable () -> Unit, analyzeData: () ->
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
     ) {
-        Column(modifier = Modifier.padding(8.dp).background(Color.Transparent)) {
+        Column(modifier = Modifier.padding(8.dp).background(Color.White)) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
@@ -255,20 +255,22 @@ fun BloodPressureChart(bloodPressureList: List<Pair<Int, Int>>) {
         xAxisData = AxisData.Builder()
             .axisStepSize(60.dp)
             .axisLabelColor(Color.Black)
+            .axisLineColor(Color.Gray)
             .steps(pointsSystolic.size - 1)
             .labelData { i -> "${i + 1}" }
             .labelAndAxisLinePadding(15.dp)
-            .backgroundColor(Color.Transparent)
+            .backgroundColor(Color.White)
             .build(),
         yAxisData = AxisData.Builder()
             .steps(4)
             .axisLabelColor(Color.Black)
+            .axisLineColor(Color.Gray)
             .labelData { i -> "${(minBP + (i * stepSize)).toInt()} mmHg" }
             .labelAndAxisLinePadding(16.dp)
-            .backgroundColor(Color.Transparent)
+            .backgroundColor(Color.White)
             .build(),
         gridLines = GridLines(),
-        backgroundColor = Color.Transparent
+        backgroundColor = Color.White
     )
 
     AnimatedVisibility(visible = isVisible.value) {
@@ -276,6 +278,7 @@ fun BloodPressureChart(bloodPressureList: List<Pair<Int, Int>>) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(320.dp)
+                .background(Color.White)
                 .graphicsLayer(alpha = if (isVisible.value) 1f else 0f),
             lineChartData = lineChartData
         )
@@ -300,16 +303,19 @@ fun BloodSugarChart(bloodSugarLevelList: List<Int>) {
             .labelData { i -> "${i + 1}" }
             .labelAndAxisLinePadding(15.dp)
             .axisLabelColor(Color.Black)
-            .backgroundColor(Color.Transparent)
+            .axisLineColor(Color.Gray)
+            .backgroundColor(Color.White)
             .build(),
         yAxisData = AxisData.Builder()
             .steps(uniqueBloodSugarValues.size - 1)
             .axisLabelColor(Color.Black)
-            .backgroundColor(Color.Transparent)
+            .axisLineColor(Color.Gray)
+            .backgroundColor(Color.White)
             .labelAndAxisLinePadding(16.dp)
             .labelData { i -> "${uniqueBloodSugarValues[i]} mg/dL" }
             .build(),
-        backgroundColor = Color.Transparent
+        gridLines = GridLines(),
+        backgroundColor = Color.White
     )
 
     AnimatedVisibility(visible = isVisible.value) {
@@ -317,6 +323,7 @@ fun BloodSugarChart(bloodSugarLevelList: List<Int>) {
             modifier = Modifier
             .fillMaxWidth()
             .height(250.dp)
+            .background(Color.White)
             .graphicsLayer(alpha = if (isVisible.value) 1f else 0f),
             lineChartData = lineChartData
         )
