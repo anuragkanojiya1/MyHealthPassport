@@ -63,6 +63,7 @@ import com.example.myhealthpassport.R
 
 import com.example.myhealthpassport.SignInSignUp.AnimatedPreloaderPatient
 import com.example.myhealthpassport.ViewModels.HealthViewModel
+import com.google.firebase.Timestamp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -663,7 +664,8 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel){
                         allergies = allergies,
                         medications = medications,
                         weight = weightFloat,
-                        height = heightFloat
+                        height = heightFloat,
+                        timestamp = Timestamp.now()
                     )
                     healthViewModel.saveHealthData(
                         userHealthData = userHealthData,

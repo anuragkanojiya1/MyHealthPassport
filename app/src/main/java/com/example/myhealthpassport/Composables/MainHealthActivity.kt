@@ -516,7 +516,7 @@ fun NavigationDrawer(navController: NavController) {
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         BottomNavItem("Home", Icons.Default.Home, Screen.FlipAnimation.route),
-        BottomNavItem("Health Info", Icons.Default.Info, Screen.ChartScreen.route)
+        BottomNavItem("Health Charts", Icons.Default.Info, Screen.ChartScreen.route)
     )
     var selectedItem = remember { mutableStateOf(0) }
 

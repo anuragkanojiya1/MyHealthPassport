@@ -1,5 +1,7 @@
 package com.example.myhealthpassport.Composables
 
+import com.google.firebase.Timestamp
+
 data class UserHealthData(
     var medicalID: String="",
     var name: String="",
@@ -15,5 +17,6 @@ data class UserHealthData(
     var emergencyPhoneNumber: String="",
     var address: String="",
     var allergies: String="",
-    var medications: String=""
+    var medications: String="",
+    var timestamp: Timestamp = Timestamp.now()
 )

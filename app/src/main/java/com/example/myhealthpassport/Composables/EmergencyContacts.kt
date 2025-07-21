@@ -95,7 +95,7 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
                             color = Color.Black,
                                     fontSize = 20.sp)
                         Text(text = contact.name,
-                            color = Color(0xFF0288D1), // Softer blue
+                            color = Color(0xFF0288D1), //softer blue
                             fontSize = 16.sp,
                             modifier = Modifier.align(Alignment.Start))
                     }

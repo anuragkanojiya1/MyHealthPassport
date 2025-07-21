@@ -41,6 +41,8 @@ import co.yml.charts.ui.piechart.models.PieChartConfig
 import co.yml.charts.ui.piechart.models.PieChartData
 import com.example.myhealthpassport.ViewModels.AiViewModel
 import com.example.myhealthpassport.ViewModels.HealthViewModel
+import com.google.firebase.Timestamp
+import java.text.SimpleDateFormat
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.min
@@ -54,13 +56,17 @@ fun ChartScreen(navController: NavController) {
     val healthViewModel: HealthViewModel = viewModel()
     val aiViewModel: AiViewModel = viewModel()
 
-    val bloodPressureList = remember { mutableStateListOf<Pair<Int, Int>>() }
-    val bloodSugarLevelList = remember { mutableStateListOf<Int>() }
+    val bloodPressureList = remember { mutableStateListOf<Triple<Timestamp,Int, Int>>() }
+    val bloodSugarLevelList = remember { mutableStateListOf<Pair<Timestamp, Int>>() }
     val medications = remember { mutableStateMapOf<String, Int>() }
 
     var bloodPressureAnalysis by remember { mutableStateOf("") }
     var bloodSugarAnalysis by remember { mutableStateOf("") }
     var medicationAnalysis by remember { mutableStateOf("") }
+
+    fun Timestamp.toFloatDate(): Float {
+        return this.seconds.toFloat() / (24 * 60 * 60)
+    }
 
     var prompt = """Analyze the following health data and provide insights. Identify any trends, potential health risks, and suggest recommendations for improvement. If the data indicates an abnormal pattern, highlight it with possible causes and solutions. Keep the explanation simple and actionable.
 Ensure the analysis is easy to understand. Summarize key takeaways in a concise format and include any necessary health precautions."""
@@ -69,8 +75,10 @@ Ensure the analysis is easy to understand. Summarize key takeaways in a concise 
         healthViewModel.fetchMedicalIDs(context) { ids ->
             ids.forEach { id ->
                 healthViewModel.retrieveHealthData(id, context) { data ->
-                    bloodPressureList.add(Pair(data.systolicBP, data.diastolicBP))
-                    bloodSugarLevelList.add(data.bloodSugarLevel)
+                    bloodPressureList.add(Triple(data.timestamp, data.systolicBP, data.diastolicBP))
+                    bloodPressureList.sortBy { it.first.seconds }
+                    bloodSugarLevelList.add(Pair(data.timestamp, data.bloodSugarLevel))
+                    bloodSugarLevelList.sortBy { it.first.seconds }
                     data.medications.split(",").forEach { med ->
                         val trimmedMed = med.trim()
                         medications[trimmedMed] = medications.getOrDefault(trimmedMed, 0) + 1
@@ -79,6 +87,8 @@ Ensure the analysis is easy to understand. Summarize key takeaways in a concise 
             }
         }
     }
+
+    Log.d("med", medications.toString())
 
     Column(
         modifier = Modifier
@@ -226,16 +236,21 @@ fun ChartCard(title: String, content: @Composable () -> Unit, analyzeData: () ->
 
 /** 📈 Blood Pressure Chart **/
 @Composable
-fun BloodPressureChart(bloodPressureList: List<Pair<Int, Int>>) {
-    val pointsSystolic = bloodPressureList.mapIndexed { index, pair -> Point(index.toFloat(), pair.first.toFloat()) }
-    val pointsDiastolic = bloodPressureList.mapIndexed { index, pair -> Point(index.toFloat(), pair.second.toFloat()) }
+fun BloodPressureChart(bloodPressureList: List<Triple<Timestamp, Int, Int>>) {
+    val processedList = bloodPressureList.map { Pair(it.second, it.third) }
+
+    Log.d("Process", "Blood pressure chart data: $processedList")
+    val pointsSystolic = processedList.mapIndexed { index, pair -> Point(index.toFloat(), pair.first.toFloat()) }
+    val pointsDiastolic = processedList.mapIndexed { index, pair -> Point(index.toFloat(), pair.second.toFloat()) }
 
     val isVisible = remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { isVisible.value = true }
 
-    val minBP = bloodPressureList.minOfOrNull { min(it.first, it.second) } ?: 50
-    val maxBP = bloodPressureList.maxOfOrNull { max(it.first, it.second) } ?: 180
+    val minBP = processedList.minOfOrNull { min(it.first, it.second) } ?: 50
+    val maxBP = processedList.maxOfOrNull { max(it.first, it.second) } ?: 180
     val stepSize = (maxBP - minBP) / 4
+    val dateFormatter = SimpleDateFormat("MMM dd", Locale.getDefault())
+    val xLabels = bloodPressureList.map { dateFormatter.format(it.first.toDate()) }
 
     val lineChartData = LineChartData(
         linePlotData = LinePlotData(
@@ -256,8 +271,8 @@ fun BloodPressureChart(bloodPressureList: List<Pair<Int, Int>>) {
             .axisStepSize(60.dp)
             .axisLabelColor(Color.Black)
             .axisLineColor(Color.Gray)
-            .steps(pointsSystolic.size - 1)
-            .labelData { i -> "${i + 1}" }
+            .steps(xLabels.size - 1)
+            .labelData { i -> xLabels[i] }
             .labelAndAxisLinePadding(15.dp)
             .backgroundColor(Color.White)
             .build(),
@@ -287,20 +302,27 @@ fun BloodPressureChart(bloodPressureList: List<Pair<Int, Int>>) {
 
 /** 📈 Blood Sugar Chart **/
 @Composable
-fun BloodSugarChart(bloodSugarLevelList: List<Int>) {
-    val points = bloodSugarLevelList.mapIndexed { index, level -> Point(index.toFloat(), level.toFloat()) }
+fun BloodSugarChart(bloodSugarLevelList: List<Pair<Timestamp, Int>>) {
+    val processedList = bloodSugarLevelList.map { it.second }
 
-    val uniqueBloodSugarValues = bloodSugarLevelList.distinct().sorted()
+    Log.d("Process", "Blood pressure chart data: $processedList")
+    val points = processedList.mapIndexed { index, level -> Point(index.toFloat(), level.toFloat()) }
+
+    val uniqueBloodSugarValues = processedList.distinct().sorted()
 
     val isVisible = remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { isVisible.value = true }
 
+    val dateFormatter = SimpleDateFormat("MMM dd", Locale.getDefault())
+
+    val xLabels = bloodSugarLevelList.map { dateFormatter.format(it.first.toDate()) }
+
     val lineChartData = LineChartData(
         linePlotData = LinePlotData(lines = listOf(Line(points, LineStyle(color = Color(0xFF388E3C))))),
         xAxisData = AxisData.Builder()
-            .steps(points.size - 1)
+            .steps(xLabels.size - 1)
             .axisStepSize(60.dp)
-            .labelData { i -> "${i + 1}" }
+            .labelData { i -> xLabels[i] }
             .labelAndAxisLinePadding(15.dp)
             .axisLabelColor(Color.Black)
             .axisLineColor(Color.Gray)
@@ -379,7 +401,7 @@ fun MedicationPieChart(medications: Map<String, Int>) {
                             .background(animatedColors[medication]?.value ?: Color.Gray, shape = CircleShape)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(medication, style = MaterialTheme.typography.bodyMedium, color = Color.Black)
+                    Text(medication + " - \t Amount: " + medications[medication], style = MaterialTheme.typography.bodyMedium, color = Color.Black)
                 }
             }
         }
