@@ -18,7 +18,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myhealthpassport.ViewModels.HealthViewModel
 import com.example.myhealthpassport.Navigation.NavGraph
 import com.example.myhealthpassport.ViewModels.AiViewModel
-import com.example.myhealthpassport.aicompanion.ChatViewModel
 import com.example.myhealthpassport.ui.theme.MyHealthPassportTheme
 import com.example.myhealthpassport.widget.HealthDataWorker
 import com.google.firebase.auth.FirebaseAuth
@@ -32,7 +31,6 @@ class MainActivity : ComponentActivity() {
     var speechInput = mutableStateOf("")
 
     private lateinit var navController : NavController
-    private val chatViewModel: ChatViewModel by viewModels()
     private val healthViewModel: HealthViewModel by viewModels()
     private val aiViewModel: AiViewModel by viewModels()
     private val agentViewModel: AgentViewModel by viewModels()
@@ -55,7 +53,6 @@ class MainActivity : ComponentActivity() {
                     healthViewModel = healthViewModel,
                     aiViewModel = aiViewModel,
                     agentViewModel = agentViewModel,
-                    chatViewModel = ChatViewModel(this)
                     )
             }
         }

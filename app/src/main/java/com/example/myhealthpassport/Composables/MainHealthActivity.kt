@@ -83,8 +83,6 @@ import com.example.myhealthpassport.FlipAnimation
 import com.example.myhealthpassport.Navigation.Screen
 import com.example.myhealthpassport.R
 import com.example.myhealthpassport.ViewModels.HealthViewModel
-import com.example.myhealthpassport.aicompanion.ChatPage
-import com.example.myhealthpassport.aicompanion.ChatViewModel
 import com.example.myhealthpassport.graph.ChartScreen
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -290,32 +288,32 @@ fun NavigationDrawer(navController: NavController) {
                         modifier = Modifier.background(color = Color.White)
                     )
 
-                    NavigationDrawerItem(
-                        label = { Text(text = "AI Symptom Checker", color = if (currentRoute == Screen.ChatPage.route) iconSelectedColor else iconUnselectedColor) },
-                        selected = currentRoute == Screen.ChatPage.route,
-                        icon = {
-                            Icon(
-                                imageVector = Icons.Default.AddCircle,
-                                contentDescription = "personal therapist",
-                                tint = if (currentRoute == Screen.ChatPage.route) iconSelectedColor else iconUnselectedColor
-                            )
-                        },
-                        onClick = {
-                            coroutineScope.launch { drawerState.close() }
-                            navController.navigate(Screen.ChatPage.route) {
-                                popUpTo(Screen.FlipAnimation.route) { inclusive = false }
-                            }
-                        },
-                        colors = NavigationDrawerItemDefaults.colors(
-                            selectedContainerColor = selectedItemColor,
-                            unselectedContainerColor = unselectedItemColor,
-                            unselectedTextColor = textPrimaryColor,
-                            selectedTextColor = textPrimaryColor,
-                            selectedIconColor = iconSelectedColor,
-                            unselectedIconColor = iconUnselectedColor
-                        ),
-                        modifier = Modifier.background(color = Color.White)
-                    )
+//                    NavigationDrawerItem(
+//                        label = { Text(text = "Recommendation Agent", color = if (currentRoute == Screen.ChatPage.route) iconSelectedColor else iconUnselectedColor) },
+//                        selected = currentRoute == Screen.ChatPage.route,
+//                        icon = {
+//                            Icon(
+//                                imageVector = Icons.Default.AddCircle,
+//                                contentDescription = "personal therapist",
+//                                tint = if (currentRoute == Screen.ChatPage.route) iconSelectedColor else iconUnselectedColor
+//                            )
+//                        },
+//                        onClick = {
+//                            coroutineScope.launch { drawerState.close() }
+//                            navController.navigate(Screen.ChatPage.route) {
+//                                popUpTo(Screen.FlipAnimation.route) { inclusive = false }
+//                            }
+//                        },
+//                        colors = NavigationDrawerItemDefaults.colors(
+//                            selectedContainerColor = selectedItemColor,
+//                            unselectedContainerColor = unselectedItemColor,
+//                            unselectedTextColor = textPrimaryColor,
+//                            selectedTextColor = textPrimaryColor,
+//                            selectedIconColor = iconSelectedColor,
+//                            unselectedIconColor = iconUnselectedColor
+//                        ),
+//                        modifier = Modifier.background(color = Color.White)
+//                    )
 
                     NavigationDrawerItem(
                         label = {
@@ -482,15 +480,15 @@ fun NavigationDrawer(navController: NavController) {
                         exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
                         EmergencyContactsListPreview(navController = navController)
                     }
-                    composable(Screen.ChatPage.route,
-                        enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-                        exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
-                        ChatPage(
-                            navController,
-                            context,
-                            ChatViewModel(context)
-                        )
-                    }
+//                    composable(Screen.ChatPage.route,
+//                        enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
+//                        exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
+//                        ChatPage(
+//                            navController,
+//                            context,
+//                            ChatViewModel(context)
+//                        )
+//                    }
                     composable(Screen.AgentScreen.route,
                         enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
                         exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {

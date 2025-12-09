@@ -61,7 +61,6 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.myhealthpassport.R
 
-import com.example.myhealthpassport.SignInSignUp.AnimatedPreloaderPatient
 import com.example.myhealthpassport.ViewModels.HealthViewModel
 import com.google.firebase.Timestamp
 

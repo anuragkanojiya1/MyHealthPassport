@@ -286,7 +286,7 @@ fun FlipAnimation(navController: NavController) {
 
                 Column(modifier = Modifier.padding(top = 4.dp).padding(start = 4.dp).weight(0.5f)) {
                     ElevatedCard(
-                        onClick = { navController.navigate(Screen.ChatPage.route) },
+                        onClick = { navController.navigate(Screen.AgentScreen.route) },
                         modifier = Modifier
                             .padding(top = 16.dp, end = 4.dp, bottom = 8.dp)
                             .background(color = Color.White)
@@ -301,7 +301,7 @@ fun FlipAnimation(navController: NavController) {
                         )
                     }
                     Text(
-                        text = "AI Symptom Checker",
+                        text = "Recommendation Agent",
                         textAlign = TextAlign.Center,
                         color = Color.Gray,
                         modifier = Modifier.align(Alignment.CenterHorizontally),

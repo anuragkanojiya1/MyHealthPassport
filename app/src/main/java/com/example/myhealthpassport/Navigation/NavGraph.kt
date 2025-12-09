@@ -32,7 +32,6 @@ import com.example.myhealthpassport.ViewModels.HealthViewModel
 import com.example.myhealthpassport.Composables.NavigationDrawer
 import com.example.myhealthpassport.Composables.PatientDetails
 import com.example.myhealthpassport.Composables.SplashScreen
-import com.example.myhealthpassport.SignInSignUp.DoctorLogin
 import com.example.myhealthpassport.SignInSignUp.SignInScreen
 import com.example.myhealthpassport.SignInSignUp.SignUpScreen
 import com.example.myhealthpassport.ViewModels.AiViewModel
@@ -44,7 +43,6 @@ fun NavGraph(navController: NavController,
              healthViewModel: HealthViewModel,
              aiViewModel: AiViewModel,
              agentViewModel: AgentViewModel,
-//             chatViewModel: ChatViewModel
 ) {
     val context = LocalContext.current
     val navController = rememberNavController()
@@ -71,11 +69,11 @@ fun NavGraph(navController: NavController,
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
             SignInScreen(navController, auth)
         }
-        composable(Screen.DoctorLogin.route,
-            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){
-            DoctorLogin(navController, auth)
-        }
+//        composable(Screen.DoctorLogin.route,
+//            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
+//            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){
+//            DoctorLogin(navController, auth)
+//        }
 //        composable(Screen.Home.route) {
 //            HomeScreen()
 //        }
