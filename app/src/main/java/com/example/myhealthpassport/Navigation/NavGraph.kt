@@ -36,8 +36,6 @@ import com.example.myhealthpassport.SignInSignUp.DoctorLogin
 import com.example.myhealthpassport.SignInSignUp.SignInScreen
 import com.example.myhealthpassport.SignInSignUp.SignUpScreen
 import com.example.myhealthpassport.ViewModels.AiViewModel
-import com.example.myhealthpassport.aicompanion.ChatPage
-import com.example.myhealthpassport.aicompanion.ChatViewModel
 import com.example.myhealthpassport.graph.ChartScreen
 import com.google.firebase.auth.FirebaseAuth
 
@@ -46,7 +44,7 @@ fun NavGraph(navController: NavController,
              healthViewModel: HealthViewModel,
              aiViewModel: AiViewModel,
              agentViewModel: AgentViewModel,
-             chatViewModel: ChatViewModel
+//             chatViewModel: ChatViewModel
 ) {
     val context = LocalContext.current
     val navController = rememberNavController()
@@ -58,11 +56,11 @@ fun NavGraph(navController: NavController,
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
             SignUpScreen(navController, auth)
         }
-        composable(Screen.ChatPage.route,
-            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){
-            ChatPage(navController,context, chatViewModel)
-        }
+//        composable(Screen.ChatPage.route,
+//            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
+//            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){
+//            ChatPage(navController,context, chatViewModel)
+//        }
         composable(Screen.ChartScreen.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){

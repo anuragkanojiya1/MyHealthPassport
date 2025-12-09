@@ -20,6 +20,7 @@ import com.example.myhealthpassport.Navigation.NavGraph
 import com.example.myhealthpassport.ViewModels.AiViewModel
 import com.example.myhealthpassport.aicompanion.ChatViewModel
 import com.example.myhealthpassport.ui.theme.MyHealthPassportTheme
+import com.example.myhealthpassport.widget.HealthDataWorker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -47,6 +48,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyHealthPassportTheme {
                 val navController = rememberNavController()
+
+                scheduleHealthWidgetWorker(this)
 
                 NavGraph(navController = navController,
                     healthViewModel = healthViewModel,
@@ -80,6 +83,18 @@ class MainActivity : ComponentActivity() {
             val result = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             speechInput.value = result?.get(0).toString()
         }
+    }
+
+    fun scheduleHealthWidgetWorker(context: Context) {
+        val request = androidx.work.PeriodicWorkRequestBuilder<HealthDataWorker>(15, java.util.concurrent.TimeUnit.MINUTES)
+            .build()
+
+        androidx.work.WorkManager.getInstance(context)
+            .enqueueUniquePeriodicWork(
+                "HealthWidgetWorker",
+                androidx.work.ExistingPeriodicWorkPolicy.UPDATE,
+                request
+            )
     }
 
 }

@@ -39,7 +39,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.myhealthpassport.Navigation.Screen
+import com.example.myhealthpassport.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -144,10 +150,32 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
         TextButton(onClick = { navController.navigate(Screen.SignUp.route) }) {
             Text(text = "Don't have an account? Sign Up")
         }
-        TextButton(onClick = { navController.navigate(Screen.DoctorLogin.route) }) {
-            Text(text = "Are you a Doctor? Log in")
-        }
+//        TextButton(onClick = { navController.navigate(Screen.DoctorLogin.route) }) {
+//            Text(text = "Are you a Doctor? Log in")
+//        }
     }
+}
+
+@Composable
+fun AnimatedPatientSignIn(modifier: Modifier = Modifier) {
+    val preloaderLottieComposition by rememberLottieComposition(
+        LottieCompositionSpec.RawRes(
+            R.raw.heartanimation
+        )
+    )
+
+    val preloaderProgress by animateLottieCompositionAsState(
+        preloaderLottieComposition,
+        iterations = LottieConstants.IterateForever,
+        isPlaying = true
+    )
+
+
+    LottieAnimation(
+        composition = preloaderLottieComposition,
+        progress = preloaderProgress,
+        modifier = modifier
+    )
 }
 
 @Preview(showBackground = true)

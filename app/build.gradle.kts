@@ -114,9 +114,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 
-    implementation("io.github.sceneview:arsceneview:2.2.1")
     implementation("androidx.navigation:navigation-compose:2.7.7")
-    implementation("io.appwrite:sdk-for-android:5.1.0")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
@@ -136,6 +134,15 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
 
     implementation("co.yml:ycharts:2.1.0")
+
+    // For Glance support
+    implementation("androidx.glance:glance:1.2.0-alpha01")
+
+    // For AppWidgets support
+    implementation("androidx.glance:glance-appwidget:1.2.0-alpha01")
+
+    implementation("androidx.work:work-runtime-ktx:2.10.3")
+
     //MongoDB driver
     // implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.1.2")
 }
