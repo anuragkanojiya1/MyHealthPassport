@@ -28,6 +28,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -161,7 +162,8 @@ fun ChartCard(title: String, content: @Composable () -> Unit, analyzeData: () ->
         if (status != TextToSpeech.SUCCESS) {
             Log.e("TTS", "Initialization failed!")
         }
-    } }
+    }
+    }
 
     LaunchedEffect(aiResponse) {
         if (aiResponse.isNotEmpty()) {
@@ -188,7 +190,27 @@ fun ChartCard(title: String, content: @Composable () -> Unit, analyzeData: () ->
                 color = Color.Black
             )
             Spacer(modifier = Modifier.height(8.dp))
-            content()
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+//                    .height(320.dp)
+            ) {
+                content()
+
+                // Right-edge overlay to visually align the chart inside the rounded card
+                Box(
+                    modifier = Modifier
+                        .height(320.dp)
+                        .width(20.dp)
+                        .background(Color.White)
+                        .align(Alignment.CenterEnd)
+                        .offset(x = (-20).dp)
+                        .zIndex(1f)
+                )
+            }
+//            content()
 
             Button(
                 onClick = {
