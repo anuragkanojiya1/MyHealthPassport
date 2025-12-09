@@ -2,8 +2,11 @@ package com.example.myhealthpassport.Composables
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,42 +17,98 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.outlined.Call
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.myhealthpassport.data.database.EmergencyContactDao
+import com.example.myhealthpassport.data.database.EmergencyContactDatabase
+import com.example.myhealthpassport.data.database.EmergencyContactRepository
+import com.example.myhealthpassport.data.database.EmergencyContactViewModel
+import com.example.myhealthpassport.data.database.EmergencyContactViewModelFactory
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EmergencyContactsList(contacts: List<EmergencyContact>) {
     val context = LocalContext.current
 
-    val gradient = Brush.horizontalGradient(
+    var phone by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
+
+    val gradient2 = Brush.horizontalGradient(
         colors = listOf(Color(0xFF81D4FA), Color(0xFFB3E5FC)) // Softer gradient
     )
 
-    val gradient2 = Brush.horizontalGradient(
-        colors = listOf(Color(0xFF44A6FC), Color(0xFF75F8F2))
+    val gradient = Brush.horizontalGradient(
+        colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
     )
 
-    Column(Modifier.background(color = Color.White).padding(0.dp, top = 16.dp).fillMaxSize()) {
+    val outlinedFieldColors = TextFieldDefaults.textFieldColors(
+        containerColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent,
+        focusedIndicatorColor = Color.Transparent,
+        unfocusedTextColor = Color.DarkGray,
+        focusedTextColor = Color(0xFF181411),
+
+        cursorColor = Color(0xFF1E88E5) // Blue for cursor
+    )
+
+    val rowModifier = Modifier
+        .padding(top = 12.dp)
+        .background(Color(0xFFB2EBF2).copy(alpha = 0.3f), shape = RoundedCornerShape(12.dp))
+
+    val db = EmergencyContactDatabase.getDatabase(context)
+    val dao = db.contactDao()
+    val repository = remember { EmergencyContactRepository(dao) }
+
+    val viewModel: EmergencyContactViewModel = viewModel(
+        factory = EmergencyContactViewModelFactory(repository)
+    )
+    val emergencyContacts by viewModel.contacts.collectAsState()
+
+    val coroutineScope = rememberCoroutineScope()
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+    Column(Modifier.background(color = Color.White
+    ).padding(0.dp, top = 16.dp).fillMaxSize()) {
 
         Text(text = "Emergency Contact List",
             fontSize = 24.sp,
@@ -59,6 +118,12 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
                 .padding(4.dp, 4.dp),
             fontWeight = FontWeight.W500
             )
+
+        LazyColumn {
+            items(emergencyContacts) { contact ->
+                Text(emergencyContacts.toString())
+            }
+        }
 
         LazyColumn(modifier = Modifier.padding(top = 24.dp).fillMaxSize()) {
 
@@ -131,6 +196,134 @@ fun EmergencyContactsList(contacts: List<EmergencyContact>) {
             }
         }
     }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 8.dp)
+            .animateContentSize(), // Animate size changes
+        verticalAlignment = Alignment.Bottom,
+    ) {
+        var check by remember { mutableStateOf(false) }
+
+        Box(modifier = Modifier.padding(horizontal = 4.dp)) {
+            IconButton(
+                onClick = {
+                    check = !check
+                },
+                modifier = Modifier
+                    .background(brush = gradient, shape = RoundedCornerShape(100))
+                    .shadow(elevation = 36.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Add, contentDescription = "",
+                    modifier = Modifier.clip(shape = RoundedCornerShape(100))
+                        .background(color = Color.Transparent, shape = RoundedCornerShape(100)),
+                    tint = Color.White
+                )
+            }
+        }
+
+        // Animate visibility of the TextField and Floating Action Button
+        AnimatedVisibility(visible = check) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 4.dp)
+                    .padding(end = 4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 8.dp)
+                ) {
+//                    OutlinedTextField(
+//                        value = name,
+//                        onValueChange = { newValue -> name = newValue },
+//                        label = { Text("Add Emergency Name", color = Color.Gray) },
+//                        modifier = Modifier
+//                            .padding(end = 8.dp),
+//                        singleLine = true,
+//                        colors = TextFieldDefaults.outlinedTextFieldColors(
+//                            focusedBorderColor = Color.Blue,
+//                            unfocusedBorderColor = Color.Gray,
+//                            cursorColor = Color.Blue,
+//                            focusedTextColor = Color.Black,
+//                            focusedPlaceholderColor = Color.Gray,
+//                            errorTextColor = Color.Red
+//                        ),
+//                    )
+                    Row(modifier = rowModifier,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        OutlinedTextField(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(Color.Transparent),
+                            value = name,
+                            onValueChange = { newValue -> name = newValue },
+                            label = {
+                                Text(text = "Add Emergency Name", color = Color.DarkGray)
+                            },
+                            colors = outlinedFieldColors,
+                            textStyle = TextStyle(fontSize = 18.sp),
+                        )
+                    }
+
+//                    OutlinedTextField(
+//                        value = phone,
+//                        onValueChange = { newValue -> phone = newValue },
+//                        label = { Text("Add Emergency Contact", color = Color.Gray) },
+//                        modifier = Modifier
+//                            .padding(end = 8.dp),
+//                        singleLine = true,
+//                        colors = TextFieldDefaults.outlinedTextFieldColors(
+//                            focusedBorderColor = Color.Blue,
+//                            unfocusedBorderColor = Color.Gray,
+//                            cursorColor = Color.Blue,
+//                            focusedTextColor = Color.Black,
+//                            focusedPlaceholderColor = Color.Gray,
+//                            errorTextColor = Color.Red
+//                        ),
+//                    )
+
+                    Row(modifier = rowModifier,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        OutlinedTextField(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(Color.Transparent),
+                            value = phone,
+                            onValueChange = { newValue -> phone = newValue },
+                            label = {
+                                Text(text = "Add Emergency Name", color = Color.DarkGray)
+                            },
+                            colors = outlinedFieldColors,
+
+                            textStyle = TextStyle(fontSize = 18.sp),
+                        )
+                    }
+                }
+
+                // Button to trigger the query
+                ExtendedFloatingActionButton(
+                    onClick = {
+                        coroutineScope.launch {
+                            viewModel.addContact(name, phone)
+                        }
+                    },
+                    containerColor = Color(0xFFE9EFF9),
+                    modifier = Modifier
+                        .background(brush = gradient, shape = RoundedCornerShape(8.dp))
+                ) {
+                    Text("Add", color = Color.Black)
+                }
+            }
+        }
+    }
+        }
 }
 
 @Composable
