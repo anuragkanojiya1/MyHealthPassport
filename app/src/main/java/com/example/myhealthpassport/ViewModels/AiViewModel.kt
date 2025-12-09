@@ -13,6 +13,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.compose.rememberNavController
 import com.example.myhealthpassport.Composables.UiState
 import com.example.myhealthpassport.Composables.UserHealthData
+import com.example.myhealthpassport.GEMINI_API_KEY
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +31,7 @@ class AiViewModel: ViewModel(){
 
     private val generativeModel = GenerativeModel(
         modelName = "gemini-2.0-flash-001",
-        apiKey = "AIzaSyCer8XVmetAX8AdWxg4x470ujEchgYlwYI"
+        apiKey = GEMINI_API_KEY
     )
     fun extractMedicalReport(jsonResponse: String): UserHealthData {
         val jsonObject = JSONObject(jsonResponse)

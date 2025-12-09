@@ -8,11 +8,14 @@ import androidx.navigation.NavController
 import com.example.myhealthpassport.Composables.UserHealthData
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class HealthViewModel: ViewModel(){
 
@@ -56,6 +59,7 @@ class HealthViewModel: ViewModel(){
             .collection("users")
             .document(userId)
             .collection("health")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
 
         try {
             firestoreRef.get()
@@ -124,6 +128,24 @@ class HealthViewModel: ViewModel(){
         } catch (e:Exception){
             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
         }
+    }
+
+
+    suspend fun getLatestHealthData(context: Context): UserHealthData? {
+
+        val db = FirebaseFirestore.getInstance()
+
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return null
+
+        val snapshot = db.collection("users")
+            .document(uid)
+            .collection("health")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
+            .limit(1)
+            .get()
+            .await()
+
+        return snapshot.documents.firstOrNull()?.toObject(UserHealthData::class.java)
     }
 
 }
