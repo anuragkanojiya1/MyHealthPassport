@@ -1,0 +1,99 @@
+name: Android Release CI/CD for MyHealthPassport
+
+on:
+  push:
+    tags:
+      - "v*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build Release APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Clean project
+        run: ./gradlew clean
+
+      - name: Decode google-services.json
+        run: echo "$GOOGLE_SERVICES_JSON" | base64 -d > app/google-services.json
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+
+      - name: Reconstruct Constants.kt
+        run: |
+          mkdir -p app/src/main/java/com/example/myhealthpassport/utils
+          echo "$CONSTANTS_KT" | base64 -d > app/src/main/java/com/example/myhealthpassport/utils/Constants.kt
+        env:
+          CONSTANTS_KT: ${{ secrets.CONSTANTS_KT }}
+
+      - name: Decode Keystore
+        run: echo "$KEYSTORE_BASE64" | base64 --decode > app/my-release-key.jks
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+
+      - name: Build Signed APK
+        run: ./gradlew assembleRelease
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Find APK
+        id: apk-path
+        run: echo "APK_PATH=$(find app/build/outputs/apk/release -name '*.apk')" >> $GITHUB_ENV
+
+      - name: Rename APK with App Name + Tag
+        run: |
+          NEW_NAME="MyHealthPassport-${{ github.ref_name }}.apk"
+          mv $APK_PATH app/build/outputs/apk/release/$NEW_NAME
+          echo "APK_PATH=app/build/outputs/apk/release/$NEW_NAME" >> $GITHUB_ENV
+
+      - name: Load Tag Message
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          TAG=$(git for-each-ref ${{ github.ref }} --format="%(contents)")
+          echo "TAG_MESSAGE<<EOF" >> $GITHUB_ENV
+          echo "$TAG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Debug tag message
+        run: |
+          echo "----- TAG MESSAGE -----"
+          printf "%s\n" "$TAG_MESSAGE"
+          echo "------------------------"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: |
+            🚀 **Release Notes for ${{ github.ref_name }}**
+            
+            - ${{ env.TAG_MESSAGE }}
+            
+            ---
+            
+            Download the apk of MyHealthPassport from down below!
+
+          files: ${{ env.APK_PATH }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

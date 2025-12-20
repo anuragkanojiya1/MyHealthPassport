@@ -14,3 +14,8 @@
 .cxx
 local.properties
 /.idea
+my-release-key.jks
+base64.txt
+gbase64.txt
+cbase64.txt
+.idea
