@@ -136,10 +136,10 @@ dependencies {
     implementation("co.yml:ycharts:2.1.0")
 
     // For Glance support
-    implementation("androidx.glance:glance:1.2.0-alpha01")
+    implementation("androidx.glance:glance:1.2.0-rc01")
 
     // For AppWidgets support
-    implementation("androidx.glance:glance-appwidget:1.2.0-alpha01")
+    implementation("androidx.glance:glance-appwidget:1.2.0-rc01")
 
     implementation("androidx.work:work-runtime-ktx:2.10.3")
 
