@@ -516,7 +516,7 @@ fun BottomNavigationBar(navController: NavController) {
         BottomNavItem("Home", Icons.Default.Home, Screen.FlipAnimation.route),
         BottomNavItem("Health Charts", Icons.Default.Info, Screen.ChartScreen.route)
     )
-    var selectedItem = remember { mutableStateOf(0) }
+    val selectedItem = remember { mutableStateOf(0) }
 
     NavigationBar(containerColor = Color(0xFFF0F1F2)) {
         items.forEachIndexed { index, item ->

@@ -4,12 +4,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +40,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.autocompose.auth.GoogleSignInButton
 import com.example.myhealthpassport.Navigation.Screen
 import com.example.myhealthpassport.R
 import com.google.firebase.Firebase
@@ -82,9 +86,9 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             onValueChange = { email = it },
             label = { Text(text = "Email") },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Blue,
+                focusedBorderColor = Color(0xFF00BCD4),
                 unfocusedBorderColor = Color.Gray,
-                cursorColor = Color.Blue,
+                cursorColor = Color(0xFF00BCD4),
                 focusedTextColor = Color.Black,
                 focusedPlaceholderColor = Color.Gray,
                 errorTextColor = Color.Red
@@ -96,9 +100,9 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             label = { Text(text = "Password") },
             visualTransformation = PasswordVisualTransformation(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Blue,
+                focusedBorderColor = Color(0xFF00BCD4),
                 unfocusedBorderColor = Color.Gray,
-                cursorColor = Color.Blue,
+                cursorColor = Color(0xFF00BCD4),
                 focusedTextColor = Color.Black,
                 focusedPlaceholderColor = Color.Gray,
                 errorTextColor = Color.Red
@@ -110,9 +114,9 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             label = { Text(text = "Confirm Password") },
             visualTransformation = PasswordVisualTransformation(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Blue,
+                focusedBorderColor = Color(0xFF00BCD4),
                 unfocusedBorderColor = Color.Gray,
-                cursorColor = Color.Blue,
+                cursorColor = Color(0xFF00BCD4),
                 focusedTextColor = Color.Black,
                 focusedPlaceholderColor = Color.Gray,
                 errorTextColor = Color.Red
@@ -140,6 +144,44 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
                 .background(gradient, shape = RoundedCornerShape(8.dp))) {
             Text(text = "Sign Up")
         }
+
+
+        // Divider with text
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 24.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Divider(
+                modifier = Modifier.weight(1f)
+                    .padding(start = 12.dp),
+                color = Color.LightGray.copy(0.5f)
+            )
+            Text(
+                text = "Or continue with",
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = Color.DarkGray.copy(0.3f),
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Divider(
+                modifier = Modifier.weight(1f)
+                    .padding(start = 12.dp),
+                color = Color.LightGray.copy(0.5f)
+            )
+        }
+
+        // Social login options
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            GoogleSignInButton(navController)
+        }
+
+        Spacer(modifier = Modifier.weight(0.1f))
+
+
         TextButton(onClick = { navController.navigate(Screen.Login.route) }) {
             Text(text = "Already have an account? Log In")
         }
