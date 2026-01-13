@@ -156,7 +156,7 @@ dependencies {
     // For AppWidgets support
     implementation("androidx.glance:glance-appwidget:1.2.0-alpha01")
 
-    implementation("androidx.work:work-runtime-ktx:2.10.3")
+    implementation("androidx.work:work-runtime-ktx:2.11.0")
 
     //MongoDB driver
     // implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.1.2")
