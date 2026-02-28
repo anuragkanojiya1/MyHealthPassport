@@ -30,7 +30,7 @@ class AiViewModel: ViewModel(){
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
     private val generativeModel = GenerativeModel(
-        modelName = "gemini-2.0-flash-001",
+        modelName = "gemini-2.5-flash-lite",
         apiKey = GEMINI_API_KEY
     )
     fun extractMedicalReport(jsonResponse: String): UserHealthData {
