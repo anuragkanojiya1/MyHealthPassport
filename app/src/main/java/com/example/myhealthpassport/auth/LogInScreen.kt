@@ -48,8 +48,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.myhealthpassport.Navigation.Screen
+import com.example.myhealthpassport.ui.theme.MyHealthPassportTheme
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,16 +68,21 @@ fun LogInScreen(navController: NavController, auth: FirebaseAuth) {
 
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) {
-        GoogleSignInUtils.doGoogleSignIn(
-            context = context,
-            scope = scope,
-            launcher = null,
-            login = {
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) {
+        scope.launch {
+            val result = GoogleSignInUtils.signIn(context)
+
+            result.onSuccess {
                 Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
-                navController.navigate(Screen.Home.route)
+                navController.navigate(Screen.FlipAnimation.route) {
+                    popUpTo(Screen.Login.route) { inclusive = true }
+                }
+            }.onFailure {
+                Toast.makeText(context, "Google Sign-In failed", Toast.LENGTH_SHORT).show()
             }
-        )
+        }
     }
 
     Box(
@@ -112,10 +122,10 @@ fun LogInScreen(navController: NavController, auth: FirebaseAuth) {
                     .fillMaxWidth()
                     .padding(bottom = 16.dp)
                     .clip(RoundedCornerShape(12.dp)),
-                colors = TextFieldDefaults.outlinedTextFieldColors(
+                colors = TextFieldDefaults.colors(
                     unfocusedTextColor = Color.Gray,
-                    unfocusedBorderColor = Color(0xFFE7E6E6),
-                    focusedBorderColor = primaryBlue
+                    unfocusedIndicatorColor = Color(0xFFE7E6E6),
+                    focusedIndicatorColor = primaryBlue
                 ),
                 shape = RoundedCornerShape(12.dp),
                 label = { Text("Email") },
@@ -138,10 +148,10 @@ fun LogInScreen(navController: NavController, auth: FirebaseAuth) {
                     .padding(bottom = 8.dp)
                     .clip(RoundedCornerShape(12.dp)),
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                colors = TextFieldDefaults.outlinedTextFieldColors(
+                colors = TextFieldDefaults.colors(
                     unfocusedTextColor = Color.Gray,
-                    unfocusedBorderColor = Color(0xFFE7E6E6),
-                    focusedBorderColor = primaryBlue
+                    unfocusedIndicatorColor = Color(0xFFE7E6E6),
+                    focusedIndicatorColor = primaryBlue
                 ),
                 shape = RoundedCornerShape(12.dp),
                 label = { Text("Password") },
@@ -163,7 +173,7 @@ fun LogInScreen(navController: NavController, auth: FirebaseAuth) {
                 },
                 singleLine = true
             )
-            
+
             // Forgot Password
             TextButton(
                 onClick = { /* Handle forgot password */ },
@@ -190,7 +200,7 @@ fun LogInScreen(navController: NavController, auth: FirebaseAuth) {
                     auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                navController.navigate(Screen.Home.route) {
+                                navController.navigate(Screen.FlipAnimation.route) {
                                     popUpTo(Screen.Login.route) { inclusive = true }
                                 }
                             } else {
@@ -270,8 +280,8 @@ fun LogInScreen(navController: NavController, auth: FirebaseAuth) {
 @Preview(showBackground = true)
 @Composable
 fun LogInPreview(){
-//    AutoComposeTheme {
-//        LogInScreen(navController = rememberNavController(),
-//            auth = Firebase.auth)
-//    }
+    MyHealthPassportTheme {
+        LogInScreen(navController = rememberNavController(),
+            auth = Firebase.auth)
+    }
 }

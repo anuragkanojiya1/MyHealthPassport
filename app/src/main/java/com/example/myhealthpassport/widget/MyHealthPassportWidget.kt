@@ -3,7 +3,6 @@ package com.example.myhealthpassport.widget
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceId
@@ -20,12 +19,10 @@ import androidx.glance.layout.height
 import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
-import androidx.glance.text.TextDefaults
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
-import com.example.myhealthpassport.Composables.UserHealthData
-import com.example.myhealthpassport.ViewModels.HealthViewModel
-import com.google.firebase.Timestamp
+import com.example.myhealthpassport.domain.model.UserHealthData
+import com.example.myhealthpassport.viewmodels.HealthViewModel
 import kotlinx.coroutines.runBlocking
 
 object HealthChartWidget : GlanceAppWidget() {

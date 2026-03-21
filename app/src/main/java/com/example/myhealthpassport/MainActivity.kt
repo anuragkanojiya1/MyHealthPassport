@@ -3,7 +3,7 @@ package com.example.myhealthpassport
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import com.example.myhealthpassport.ViewModels.AgentViewModel
+import com.example.myhealthpassport.viewmodels.AgentViewModel
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -15,9 +15,9 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.mutableStateOf
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.myhealthpassport.ViewModels.HealthViewModel
+import com.example.myhealthpassport.viewmodels.HealthViewModel
 import com.example.myhealthpassport.Navigation.NavGraph
-import com.example.myhealthpassport.ViewModels.AiViewModel
+import com.example.myhealthpassport.viewmodels.AiViewModel
 import com.example.myhealthpassport.ui.theme.MyHealthPassportTheme
 import com.example.myhealthpassport.widget.HealthDataWorker
 import com.google.firebase.auth.FirebaseAuth
