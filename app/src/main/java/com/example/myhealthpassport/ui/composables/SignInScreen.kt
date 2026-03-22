@@ -48,7 +48,7 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.autocompose.auth.GoogleSignInButton
-import com.example.myhealthpassport.Navigation.Screen
+import com.example.myhealthpassport.ui.navigation.Screen
 import com.example.myhealthpassport.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

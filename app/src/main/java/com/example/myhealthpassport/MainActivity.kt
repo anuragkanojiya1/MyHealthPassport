@@ -16,7 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.myhealthpassport.viewmodels.HealthViewModel
-import com.example.myhealthpassport.Navigation.NavGraph
+import com.example.myhealthpassport.ui.navigation.NavGraph
 import com.example.myhealthpassport.viewmodels.AiViewModel
 import com.example.myhealthpassport.ui.theme.MyHealthPassportTheme
 import com.example.myhealthpassport.widget.HealthDataWorker

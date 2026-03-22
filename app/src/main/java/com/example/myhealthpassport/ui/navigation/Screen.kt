@@ -1,4 +1,4 @@
-package com.example.myhealthpassport.Navigation
+package com.example.myhealthpassport.ui.navigation
 
 sealed class Screen(val route: String) {
     object SignUp : Screen("signup")

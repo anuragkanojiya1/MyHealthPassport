@@ -49,7 +49,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.myhealthpassport.Navigation.Screen
+import com.example.myhealthpassport.ui.navigation.Screen
 import com.example.myhealthpassport.ui.theme.MyHealthPassportTheme
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth

@@ -26,7 +26,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.myhealthpassport.Navigation.Screen
+import com.example.myhealthpassport.ui.navigation.Screen
 import com.example.myhealthpassport.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay

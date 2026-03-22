@@ -1,4 +1,4 @@
-package com.example.myhealthpassport.Navigation
+package com.example.myhealthpassport.ui.navigation
 
 import  AgentScreen
 import com.example.myhealthpassport.viewmodels.AgentViewModel
