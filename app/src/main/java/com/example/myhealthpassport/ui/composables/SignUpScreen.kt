@@ -1,48 +1,32 @@
 package com.example.myhealthpassport.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.paddingFromBaseline
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.LottieConstants
-import com.airbnb.lottie.compose.animateLottieCompositionAsState
-import com.airbnb.lottie.compose.rememberLottieComposition
+import com.airbnb.lottie.compose.*
 import com.example.autocompose.auth.GoogleSignInButton
-import com.example.myhealthpassport.ui.navigation.Screen
 import com.example.myhealthpassport.R
+import com.example.myhealthpassport.ui.navigation.Screen
+import com.example.myhealthpassport.ui.theme.HealthBlue
+import com.example.myhealthpassport.ui.theme.HealthBlueDark
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -53,160 +37,208 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
+    var passwordVisible by remember { mutableStateOf(false) }
+    var confirmPasswordVisible by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
+    var isLoading by remember { mutableStateOf(false) }
 
     val gradient = Brush.horizontalGradient(
-        colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
+        colors = listOf(HealthBlue, HealthBlueDark)
     )
 
-    Column(modifier = Modifier.fillMaxSize()
-        .background(Color.White),
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+            .verticalScroll(rememberScrollState())
+            .padding(24.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Surface(
+        // Animated Header
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = Color.White)
-                .paddingFromBaseline(top = 8.dp, bottom = 8.dp),
-            color = MaterialTheme.colorScheme.background
+                .height(220.dp),
+            contentAlignment = Alignment.Center
         ) {
-            Box {
-                AnimatedPatientSignUp(
-                    modifier = Modifier
-                        .size(500.dp, 400.dp)
-                        .align(Alignment.Center)
-                        .background(Color.White)
-                    // .scale(scaleX = 1.3f, scaleY = 1.6f)
-                )
-            }
+            AnimatedPatientSignUp(modifier = Modifier.size(250.dp))
         }
 
+        Text(
+            text = "Create Account",
+            style = MaterialTheme.typography.headlineMedium,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onBackground
+        )
+        Text(
+            text = "Join us to manage your health journey",
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(bottom = 24.dp)
+        )
+
+        // Email Field
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text(text = "Email") },
-            colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color(0xFF00BCD4),
-                unfocusedIndicatorColor = Color.Gray,
-                cursorColor = Color(0xFF00BCD4),
-                focusedTextColor = Color.Black,
-                focusedPlaceholderColor = Color.Gray,
-                errorTextColor = Color.Red
-            ),
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text("Email") },
+            placeholder = { Text("example@gmail.com") },
+            singleLine = true,
+            leadingIcon = {
+                Icon(Icons.Default.Email, contentDescription = null, tint = HealthBlue)
+            },
+            shape = RoundedCornerShape(12.dp),
+            colors = authTextFieldColors(),
+            enabled = !isLoading
         )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // Password Field
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text(text = "Password") },
-            visualTransformation = PasswordVisualTransformation(),
-            colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color(0xFF00BCD4),
-                unfocusedIndicatorColor = Color.Gray,
-                cursorColor = Color(0xFF00BCD4),
-                focusedTextColor = Color.Black,
-                focusedPlaceholderColor = Color.Gray,
-                errorTextColor = Color.Red
-            ),
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text("Password") },
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            singleLine = true,
+            leadingIcon = {
+                Icon(Icons.Default.Lock, contentDescription = null, tint = HealthBlue)
+            },
+            trailingIcon = {
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(
+                        imageVector = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                        contentDescription = null
+                    )
+                }
+            },
+            shape = RoundedCornerShape(12.dp),
+            colors = authTextFieldColors(),
+            enabled = !isLoading
         )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // Confirm Password Field
         OutlinedTextField(
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
-            label = { Text(text = "Confirm Password") },
-            visualTransformation = PasswordVisualTransformation(),
-            colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color(0xFF00BCD4),
-                unfocusedIndicatorColor = Color.Gray,
-                cursorColor = Color(0xFF00BCD4),
-                focusedTextColor = Color.Black,
-                focusedPlaceholderColor = Color.Gray,
-                errorTextColor = Color.Red
-            ),
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text("Confirm Password") },
+            visualTransformation = if (confirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            singleLine = true,
+            leadingIcon = {
+                Icon(Icons.Default.Lock, contentDescription = null, tint = HealthBlue)
+            },
+            trailingIcon = {
+                IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
+                    Icon(
+                        imageVector = if (confirmPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                        contentDescription = null
+                    )
+                }
+            },
+            shape = RoundedCornerShape(12.dp),
+            colors = authTextFieldColors(),
+            enabled = !isLoading
         )
+
         errorMessage?.let {
-            Text(text = it, color = Color.Red)
+            Text(
+                text = it,
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(top = 8.dp)
+            )
         }
-        ExtendedFloatingActionButton(onClick = {
-            if (password == confirmPassword) {
-                auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            navController.navigate(Screen.FlipAnimation.route)
-                        } else {
-                            errorMessage = task.exception?.message
-                        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Sign Up Button
+        Button(
+            onClick = {
+                if (email.isNotBlank() && password.isNotBlank() && confirmPassword.isNotBlank()) {
+                    if (password == confirmPassword) {
+                        isLoading = true
+                        errorMessage = null
+                        auth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener { task ->
+                                isLoading = false
+                                if (task.isSuccessful) {
+                                    navController.navigate(Screen.FlipAnimation.route) {
+                                        popUpTo(Screen.SignUp.route) { inclusive = true }
+                                    }
+                                } else {
+                                    errorMessage = task.exception?.message ?: "Sign up failed"
+                                }
+                            }
+                    } else {
+                        errorMessage = "Passwords do not match"
                     }
-            } else {
-                errorMessage = "Passwords do not match"
-            }
-        },
+                } else {
+                    errorMessage = "Please fill all fields"
+                }
+            },
             modifier = Modifier
-                .padding(16.dp)
-                .background(gradient, shape = RoundedCornerShape(8.dp))) {
-            Text(text = "Sign Up")
+                .fillMaxWidth()
+                .height(56.dp)
+                .background(gradient, RoundedCornerShape(12.dp)),
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+            shape = RoundedCornerShape(12.dp),
+            enabled = !isLoading
+        ) {
+            if (isLoading) {
+                CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
+            } else {
+                Text("Sign Up", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            }
         }
 
-
-        // Divider with text
+        // Divider
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 24.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Divider(
-                modifier = Modifier.weight(1f)
-                    .padding(start = 12.dp),
-                color = Color.LightGray.copy(0.5f)
-            )
+            HorizontalDivider(modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.outlineVariant)
             Text(
                 text = "Or continue with",
                 modifier = Modifier.padding(horizontal = 16.dp),
-                color = Color.DarkGray.copy(0.3f),
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
-            Divider(
-                modifier = Modifier.weight(1f)
-                    .padding(start = 12.dp),
-                color = Color.LightGray.copy(0.5f)
-            )
+            HorizontalDivider(modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.outlineVariant)
         }
 
-        // Social login options
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            GoogleSignInButton(navController)
-        }
+        // Google Sign In
+        GoogleSignInButton(navController)
 
-        Spacer(modifier = Modifier.weight(0.1f))
-
+        Spacer(modifier = Modifier.height(24.dp))
 
         TextButton(onClick = { navController.navigate(Screen.Login.route) }) {
-            Text(text = "Already have an account? Log In")
+            Row {
+                Text("Already have an account? ", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("Log In", color = HealthBlue, fontWeight = FontWeight.Bold)
+            }
         }
     }
 }
 
 @Composable
 fun AnimatedPatientSignUp(modifier: Modifier = Modifier) {
-    val preloaderLottieComposition by rememberLottieComposition(
-        LottieCompositionSpec.RawRes(
-            R.raw.heartanimation
-        )
-    )
-
+    val preloaderLottieComposition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.heartanimation))
     val preloaderProgress by animateLottieCompositionAsState(
         preloaderLottieComposition,
         iterations = LottieConstants.IterateForever,
         isPlaying = true
     )
-
-
     LottieAnimation(
         composition = preloaderLottieComposition,
-        progress = preloaderProgress,
+        progress = { preloaderProgress },
         modifier = modifier
     )
 }

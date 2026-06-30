@@ -1,163 +1,153 @@
 package com.example.myhealthpassport.ui.navigation
 
-import  AgentScreen
-import com.example.myhealthpassport.viewmodels.AgentViewModel
-import android.util.Log
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.myhealthpassport.FlipAnimation
-import com.example.myhealthpassport.ui.composables.EmergencyContactsListPreview
-import com.example.myhealthpassport.ui.composables.GetHealthInfo
-import com.example.myhealthpassport.ui.composables.HealthAiScreen
-import com.example.myhealthpassport.ui.composables.HealthInfo
-import com.example.myhealthpassport.viewmodels.HealthViewModel
-import com.example.myhealthpassport.ui.composables.NavigationDrawer
-import com.example.myhealthpassport.ui.composables.PatientDetails
-import com.example.myhealthpassport.ui.composables.SplashScreen
+import com.example.myhealthpassport.ui.composables.*
 import com.example.myhealthpassport.ui.screens.SignInScreen
 import com.example.myhealthpassport.ui.screens.SignUpScreen
+import com.example.myhealthpassport.util.BiometricPromptManager
+import com.example.myhealthpassport.viewmodels.AgentViewModel
 import com.example.myhealthpassport.viewmodels.AiViewModel
-import com.example.myhealthpassport.ui.composables.ChartScreen
+import com.example.myhealthpassport.viewmodels.ApiKeyViewModel
+import com.example.myhealthpassport.viewmodels.HealthViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun NavGraph(navController: NavHostController,
-             healthViewModel: HealthViewModel,
-             aiViewModel: AiViewModel,
-             agentViewModel: AgentViewModel,
+fun NavGraph(
+    navController: NavHostController,
+    healthViewModel: HealthViewModel = hiltViewModel(),
+    aiViewModel: AiViewModel = hiltViewModel(),
+    agentViewModel: AgentViewModel = hiltViewModel(),
+    apiKeyViewModel: ApiKeyViewModel = hiltViewModel(),
+    promptManager: BiometricPromptManager
 ) {
-    val context = LocalContext.current
-//    val navController = rememberNavController()
+
     val auth = FirebaseAuth.getInstance()
 
     NavHost(navController, startDestination = Screen.SplashScreen.route) {
-        composable(Screen.SignUp.route,
+
+        composable(
+            Screen.SignUp.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
             SignUpScreen(navController, auth)
         }
-//        composable(Screen.ChatPage.route,
-//            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-//            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){
-//            ChatPage(navController,context, chatViewModel)
-//        }
 
-        composable(Screen.Login.route,
+        composable(
+            Screen.Login.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
             SignInScreen(navController, auth)
         }
-//        composable(Screen.DoctorLogin.route,
-//            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-//            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){
-//            DoctorLogin(navController, auth)
-//        }
-//        composable(Screen.Home.route) {
-//            HomeScreen()
-//        }
-//        composable(Screen.MainHealthActivity.route,
-//            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-//            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){
-//            MainHealthActivity(navController = navController)
-//        }
-        composable(Screen.HealthInfo.route,
+
+        composable(
+            Screen.HealthInfo.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
             NavigationDrawer(navController = navController) {
-                HealthInfo(navController = navController, healthViewModel = healthViewModel)
+                HealthInfo(
+                    navController = navController,
+                    healthViewModel = hiltViewModel()
+                )
             }
         }
 
-        composable(Screen.GetHealthInfo.route,
+        composable(
+            Screen.GetHealthInfo.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
             NavigationDrawer(navController = navController) {
-                GetHealthInfo(navController = navController, healthViewModel = healthViewModel)
+                GetHealthInfo(
+                    navController = navController,
+                    healthViewModel = hiltViewModel()
+                )
             }
         }
 
         composable(
             Screen.PatientDetails.route,
-            arguments = listOf(navArgument("patientData") {
-                type = NavType.StringArrayType
-            }),
+            arguments = listOf(navArgument("patientData") { type = NavType.StringType }),
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }
-        ) {
-            val patientData = it.arguments?.getStringArray("patientData")?.toList() ?: emptyList()
-            Log.d("Args", patientData.toString())
-            NavigationDrawer(navController = navController) {
-                PatientDetails(navController = navController, patientData = patientData)
-            }
+        ) { backStackEntry ->
+            val patientData = backStackEntry.arguments?.getString("patientData") ?: ""
+
+            PatientDetails(
+                navController = navController,
+                patientData = patientData,
+                healthViewModel = hiltViewModel()
+            )
         }
 
-
-        composable(Screen.EmergencyContacts.route,
+        composable(
+            Screen.EmergencyContacts.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
             NavigationDrawer(navController = navController) {
-                EmergencyContactsListPreview(navController = navController)
+                EmergencyContactsScreen(navController = navController)
             }
         }
-        composable(Screen.SplashScreen.route,
+
+        composable(
+            Screen.ApiKeySettings.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() })
-        {
+            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
+            NavigationDrawer(navController = navController) {
+                ApiKeySettingsScreen(navController = navController, viewModel = hiltViewModel())
+            }
+        }
+
+        composable(Screen.SplashScreen.route) {
             SplashScreen(navController = navController)
         }
-        composable(Screen.HealthAiScreen.route,
+
+        composable(
+            Screen.HealthAiScreen.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
             NavigationDrawer(navController = navController) {
-                HealthAiScreen(navController = navController, aiViewModel = aiViewModel)
-            }
-        }
-        composable(Screen.FlipAnimation.route,
-            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
-            NavigationDrawer(navController = navController) {
-                FlipAnimation(navController = navController)
-            }
-        }
-
-//        composable(Screen.NavigationDrawer.route,
-//            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-//            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }){
-//            NavigationDrawer(navController = navController){
-//                FlipAnimation(navController = navController)
-//            }
-//        }
-
-        composable(Screen.AgentScreen.route,
-            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
-            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }
-            ) {
-            NavigationDrawer(navController = navController) {
-                AgentScreen(
+                HealthAiScreen(
                     navController = navController,
-                    agentViewModel = agentViewModel,
-                    healthViewModel = healthViewModel
+                    aiViewModel = hiltViewModel(),
+                    apiKeyViewModel = hiltViewModel()
                 )
             }
         }
-        composable(Screen.ChartScreen.route,
+
+        composable(
+            Screen.FlipAnimation.route,
+            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
+            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
+            NavigationDrawer(navController = navController) {
+                HomeScreen(navController = navController)
+            }
+        }
+
+        composable(
+            Screen.AgentScreen.route,
+            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
+            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }
+        ) {
+            NavigationDrawer(navController = navController) {
+                AgentScreen(
+                    navController = navController,
+                    agentViewModel = hiltViewModel(),
+                    healthViewModel = hiltViewModel()
+                )
+            }
+        }
+
+        composable(
+            Screen.ChartScreen.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
             NavigationDrawer(navController = navController) {
@@ -165,17 +155,14 @@ fun NavGraph(navController: NavHostController,
             }
         }
 
-    }
-}
-
-@Composable
-fun HomeScreen() {
-    Surface(modifier = Modifier.fillMaxSize()) {
-
-        Column(modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "HELLO", color = Color.Black)
+        composable(
+            Screen.SettingsScreen.route,
+            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
+            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
+            SettingsScreen(
+                navController = navController,
+                promptManager = promptManager
+            )
         }
     }
 }

@@ -1,15 +1,11 @@
-import org.gradle.kotlin.dsl.support.kotlinCompilerOptions
-
 plugins {
-    //alias(libs.plugins.jetbrains.kotlin.android)
-    //id("kotlin-parcelize")
     alias(libs.plugins.google.gms.google.services)
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     alias(libs.plugins.google.firebase.crashlytics)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -19,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "com.example.myhealthpassport"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35 
         versionCode = 1
         versionName = "1.0"
 
@@ -71,12 +67,6 @@ android {
     }
 }
 
-buildscript {
-    dependencies {
-        classpath(libs.secrets.gradle.plugin)
-    }
-}
-
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -92,12 +82,9 @@ dependencies {
     implementation(libs.firebase.crashlytics)
     implementation(libs.androidx.navigation.compose)
 
-    // AI dependency
     implementation(libs.generativeai)
-
     implementation(libs.adaptive)
 
-    // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -111,54 +98,34 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
-    // Import the BoM for the Firebase platform
-    implementation(libs.firebase.bom)
-
-    // Declare the dependency for the Cloud Firestore library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
-
     implementation(libs.androidx.runtime.livedata)
-
     implementation(libs.coil.compose)
-
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
-
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.okhttp)
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
-    //alias(libs.plugins.compose.compiler)
-
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
-
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
-
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
-
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
-
     implementation(libs.androidx.material.icons.extended)
-    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
-    val room_version = "2.5.0"
 
+    val room_version = "2.7.0-alpha13"
     implementation("androidx.room:room-runtime:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
-
-    // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$room_version")
 
+    implementation("androidx.datastore:datastore-preferences:1.2.1")
+
     implementation("co.yml:ycharts:2.1.0")
-
-    // For Glance support
     implementation("androidx.glance:glance:1.2.0-alpha01")
-
-    // For AppWidgets support
     implementation("androidx.glance:glance-appwidget:1.2.0-alpha01")
-
     implementation("androidx.work:work-runtime-ktx:2.10.3")
 
-    //MongoDB driver
-    // implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.1.2")
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.biometric)
 }
-

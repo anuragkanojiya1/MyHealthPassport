@@ -9,12 +9,15 @@ import com.example.myhealthpassport.data.api.AgentInstance
 import com.example.myhealthpassport.domain.mistralModel.MistralMessage
 import com.example.myhealthpassport.domain.mistralModel.MistralRequest
 import com.example.myhealthpassport.MISTRAL_API_KEY
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+import javax.inject.Inject
 
-class AgentViewModel : ViewModel() {
+@HiltViewModel
+class AgentViewModel @Inject constructor() : ViewModel() {
 
     private val mistralAgentApi = AgentInstance.mistralAgentApi
 
@@ -24,15 +27,12 @@ class AgentViewModel : ViewModel() {
     fun sendQueryToAgent(query: String) {
         viewModelScope.launch {
             try {
-
                 val messages = listOf(MistralMessage(role = "user", content = query))
                 val request = MistralRequest(agent_id = AGENT_ID, messages = messages)
-
 
                 val response = withContext(Dispatchers.IO) {
                     mistralAgentApi.agentCompletion(MISTRAL_API_KEY, request).execute()
                 }
-
 
                 if (response.isSuccessful) {
                     val responseBody = response.body()

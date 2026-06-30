@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -72,16 +72,17 @@ fun SplashScreen(navController: NavController, mainViewModel: MainViewModel = vi
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize().background(color = Color.White)
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
     ) {
         Row(
-            modifier = Modifier.fillMaxSize().background(color = Color.White),
+            modifier = Modifier.fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
         ) {
             Image(
                 painter = painterResource(id = R.drawable.medicalcheck),
-                contentDescription = "Movie Galaxy",
+                contentDescription = "My Health Passport",
                 modifier = Modifier.size(128.dp).scale(2f,2f)
                     .clip(shape = RoundedCornerShape(45.dp)),
                 contentScale = ContentScale.Crop

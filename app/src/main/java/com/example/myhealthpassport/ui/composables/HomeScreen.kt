@@ -1,4 +1,4 @@
-package com.example.myhealthpassport
+package com.example.myhealthpassport.ui.composables
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.EaseInOut
@@ -29,6 +29,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,7 +53,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.myhealthpassport.R
 import com.example.myhealthpassport.ui.navigation.Screen
+import com.example.myhealthpassport.ui.theme.HealthBlue
+import com.example.myhealthpassport.ui.theme.HealthBlueDark
 
 @Preview
 @Composable
@@ -84,7 +88,7 @@ fun FlipAnimation1() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -105,14 +109,14 @@ fun FlipAnimation1() {
                 alpha = if (isCardFlipped) 1f - textAlpha else textAlpha
             },
             text = if (isCardFlipped) "Reveal" else "Hide",
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.onBackground,
         )
     }
 }
 
 
 @Composable
-fun FlipAnimation(navController: NavController) {
+fun HomeScreen(navController: NavController) {
 
     var isCardFlipped by remember { mutableStateOf(false) }
 
@@ -140,7 +144,7 @@ fun FlipAnimation(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.background)
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -201,16 +205,16 @@ fun FlipAnimation(navController: NavController) {
         if (isCardFlipped) {
             OutlinedButton(
                 onClick = { navController.navigate(Screen.HealthInfo.route) },
-                border = BorderStroke(1.dp, Color(0xFF1E88E5))
+                border = BorderStroke(1.5.dp, HealthBlueDark)
             ) {
-                Text("Save Data", color = Color.Black)
+                Text("Save Data", color = HealthBlue, fontWeight = FontWeight.W700)
             }
         } else {
             OutlinedButton(
                 onClick = { navController.navigate(Screen.GetHealthInfo.route) },
-                border = BorderStroke(1.dp, Color(0xFF1E88E5))
+                border = BorderStroke(1.5.dp, HealthBlueDark)
             ) {
-                Text("Get Data", color = Color.Black)
+                Text("Get Data", color = HealthBlue, fontWeight = FontWeight.W700)
             }
         }
 
@@ -224,7 +228,7 @@ fun FlipAnimation(navController: NavController) {
             text = "Emergency Contacts",
             fontWeight = FontWeight.W500,
             fontSize = 22.sp,
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -238,7 +242,7 @@ fun FlipAnimation(navController: NavController) {
             Text(
                 text = "Show Emergency Contacts",
                 fontSize = 16.sp,
-                color = Color.Gray,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.weight(1f)
             )
 
@@ -250,7 +254,7 @@ fun FlipAnimation(navController: NavController) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                     contentDescription = "Emergency Contacts",
-                    tint = Color.Black
+                    tint = MaterialTheme.colorScheme.onBackground
                 )
             }
         }
@@ -297,7 +301,7 @@ fun FlipAnimation(navController: NavController) {
                 Text(
                     text = "Recommendation Agent",
                     fontSize = 12.sp,
-                    color = Color.Gray,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -335,7 +339,7 @@ fun FlipAnimation(navController: NavController) {
                 Text(
                     text = "Medical Report Analyser",
                     fontSize = 12.sp,
-                    color = Color.Gray,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -349,6 +353,6 @@ fun FlipAnimation(navController: NavController) {
 @Preview(showBackground = true)
 @PreviewScreenSizes
 @Composable
-fun FlipAnimation1Preview(){
-    FlipAnimation(navController = rememberNavController())
+fun HomeScreenPreview(){
+    HomeScreen(navController = rememberNavController())
 }

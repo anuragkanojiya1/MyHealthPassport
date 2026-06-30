@@ -22,15 +22,23 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.myhealthpassport.R
+import com.example.myhealthpassport.data.repository.HealthRepositoryImpl
 import com.example.myhealthpassport.domain.model.UserHealthData
+import com.example.myhealthpassport.ui.theme.HealthBlue
+import com.example.myhealthpassport.ui.theme.HealthBlueDark
 import com.example.myhealthpassport.viewmodels.HealthViewModel
+import com.google.firebase.Firebase
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,99 +47,76 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
     var name by remember { mutableStateOf("") }
     var bloodGroup by remember { mutableStateOf("") }
     var age by remember { mutableStateOf("") }
-    var ageInt by remember { mutableIntStateOf(0) }
-
     var systolicBP by remember { mutableStateOf("") }
-    var systolicBPInt by remember { mutableIntStateOf(0) }
-
     var diastolicBP by remember { mutableStateOf("") }
-    var diastolicBPInt by remember { mutableIntStateOf(0) }
-
-    var errorMessage by remember { mutableStateOf("") }
-
     var bloodSugarLevel by remember { mutableStateOf("") }
-    var bloodSugarLevelInt by remember { mutableIntStateOf(0) }
     var weight by remember { mutableStateOf("") }
-    var weightFloat by remember { mutableFloatStateOf(0.0f) }
     var height by remember { mutableStateOf("") }
-    var heightFloat by remember { mutableFloatStateOf(0.0f) }
     var gender by remember { mutableStateOf("") }
     var healthCondition by remember { mutableStateOf("") }
     var emergencyPhoneNumber by remember { mutableStateOf("") }
-    var emergencyPhoneNumberLong by remember { mutableLongStateOf(0L) }
-
     var address by remember { mutableStateOf("") }
     var allergies by remember { mutableStateOf("") }
     var medications by remember { mutableStateOf("") }
+
+    var errorMessage by remember { mutableStateOf("") }
+    var isSaving by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
     val scrollView = rememberScrollState()
     val backgroundPainter: Painter = painterResource(id = R.drawable.healthcare)
 
     val gradient = Brush.horizontalGradient(
-        colors = listOf(Color(0xFF00BCD4), Color(0xFF1E88E5))
+        colors = listOf(HealthBlue, HealthBlueDark)
     )
 
     // Automatically load existing health data if it exists
-    LaunchedEffect(Unit) {
-        val latestData = healthViewModel.getLatestHealthData(context)
-        latestData?.let {
-            medicalID = it.medicalID
-            name = it.name
-            bloodGroup = it.bloodGroup
-            age = it.age.toString()
-            ageInt = it.age
-            systolicBP = it.systolicBP.toString()
-            systolicBPInt = it.systolicBP
-            diastolicBP = it.diastolicBP.toString()
-            diastolicBPInt = it.diastolicBP
-            bloodSugarLevel = it.bloodSugarLevel.toString()
-            bloodSugarLevelInt = it.bloodSugarLevel
-            weight = it.weight.toString()
-            weightFloat = it.weight
-            height = it.height.toString()
-            heightFloat = it.height
-            gender = it.gender
-            healthCondition = it.healthCondition
-            emergencyPhoneNumber = it.emergencyPhoneNumber
-            emergencyPhoneNumberLong = it.emergencyPhoneNumber.toLongOrNull() ?: 0L
-            address = it.address
-            allergies = it.allergies
-            medications = it.medications
-        }
-    }
+//    LaunchedEffect(Unit) {
+//        val latestData = healthViewModel.getLatestHealthData(context)
+//        latestData?.let {
+//            medicalID = it.medicalID
+//            name = it.name
+//            bloodGroup = it.bloodGroup
+//            age = it.age.toString()
+//            systolicBP = it.systolicBP.toString()
+//            diastolicBP = it.diastolicBP.toString()
+//            bloodSugarLevel = it.bloodSugarLevel.toString()
+//            weight = it.weight.toString()
+//            height = it.height.toString()
+//            gender = it.gender
+//            healthCondition = it.healthCondition
+//            emergencyPhoneNumber = it.emergencyPhoneNumber
+//            address = it.address
+//            allergies = it.allergies
+//            medications = it.medications
+//        }
+//    }
 
-    Box(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
+    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         Image(
             painter = backgroundPainter,
             contentDescription = null,
             contentScale = ContentScale.Fit,
-            modifier = Modifier.matchParentSize().alpha(0.15f),
+            modifier = Modifier.matchParentSize().alpha(0.35f),
         )
         Column(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
+                .fillMaxSize()
+                .imePadding()
                 .verticalScroll(scrollView)
-                .fillMaxWidth(),
+                .padding(horizontal = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top,
         ) {
             
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                IconButton(onClick = { navController.popBackStack() }) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color.Black)
-                }
-                Text(
-                    text = "Update Health Profile",
-                    fontSize = 22.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(start = 8.dp)
-                )
-            }
+            Spacer(modifier = Modifier.height(16.dp))
+            
+            Text(
+                text = "Update Health Profile",
+                style = MaterialTheme.typography.headlineSmall,
+                color = MaterialTheme.colorScheme.onBackground,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp)
+            )
 
             HealthInputField("Medical ID (Required)", medicalID, { medicalID = it })
             HealthInputField("Full Name", name, { name = it })
@@ -142,68 +127,75 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
                 }
                 Spacer(Modifier.width(12.dp))
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Age", age, { 
-                        age = it
-                        ageInt = it.toIntOrNull() ?: 0 
-                    }, keyboardType = KeyboardType.Number)
+                    HealthInputField("Age", age, { age = it }, keyboardType = KeyboardType.Number)
                 }
             }
 
-            HorizontalDivider(Modifier.padding(vertical = 16.dp), thickness = 0.5.dp, color = Color.LightGray)
-            Text("Vitals", fontWeight = FontWeight.Bold, fontSize = 16.sp, modifier = Modifier.align(Alignment.Start), color = Color(0xFF1E88E5))
+            HorizontalDivider(
+                Modifier.padding(vertical = 24.dp), 
+                color = MaterialTheme.colorScheme.outlineVariant
+            )
+            
+            Text(
+                text = "Vitals", 
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold, 
+                modifier = Modifier.align(Alignment.Start), 
+                color = MaterialTheme.colorScheme.primary
+            )
 
             Row(Modifier.fillMaxWidth()) {
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Systolic BP", systolicBP, { 
-                        systolicBP = it
-                        systolicBPInt = it.toIntOrNull() ?: 0 
-                    }, keyboardType = KeyboardType.Number)
+                    HealthInputField("Systolic BP", systolicBP, { systolicBP = it }, keyboardType = KeyboardType.Number)
                 }
                 Spacer(Modifier.width(12.dp))
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Diastolic BP", diastolicBP, { 
-                        diastolicBP = it
-                        diastolicBPInt = it.toIntOrNull() ?: 0 
-                    }, keyboardType = KeyboardType.Number)
+                    HealthInputField("Diastolic BP", diastolicBP, { diastolicBP = it }, keyboardType = KeyboardType.Number)
                 }
             }
 
-            HealthInputField("Blood Sugar", bloodSugarLevel, { 
-                bloodSugarLevel = it
-                bloodSugarLevelInt = it.toIntOrNull() ?: 0 
-            }, keyboardType = KeyboardType.Number)
+            HealthInputField("Blood Sugar Level", bloodSugarLevel, { bloodSugarLevel = it }, keyboardType = KeyboardType.Number)
 
             Row(Modifier.fillMaxWidth()) {
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Weight", weight, { 
-                        weight = it
-                        weightFloat = it.toFloatOrNull() ?: 0.0f 
-                    }, keyboardType = KeyboardType.Number)
+                    HealthInputField("Weight (Kg)", weight, { weight = it }, keyboardType = KeyboardType.Number)
                 }
                 Spacer(Modifier.width(12.dp))
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Height", height, { 
-                        height = it
-                        heightFloat = it.toFloatOrNull() ?: 0.0f 
-                    }, keyboardType = KeyboardType.Number)
+                    HealthInputField("Height (m)", height, { height = it }, keyboardType = KeyboardType.Number)
                 }
             }
 
-            HorizontalDivider(Modifier.padding(vertical = 16.dp), thickness = 0.5.dp, color = Color.LightGray)
+            HorizontalDivider(
+                Modifier.padding(vertical = 24.dp), 
+                color = MaterialTheme.colorScheme.outlineVariant
+            )
+            
+            Text(
+                text = "Additional Information", 
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold, 
+                modifier = Modifier.align(Alignment.Start), 
+                color = MaterialTheme.colorScheme.primary
+            )
 
             HealthInputField("Gender", gender, { gender = it })
             HealthInputField("Medical Conditions", healthCondition, { healthCondition = it })
-            HealthInputField("Emergency Phone", emergencyPhoneNumber, { 
-                emergencyPhoneNumber = it
-                emergencyPhoneNumberLong = it.toLongOrNull() ?: 0L 
-            }, keyboardType = KeyboardType.Number)
+            HealthInputField("Emergency Phone", emergencyPhoneNumber, { emergencyPhoneNumber = it }, keyboardType = KeyboardType.Phone)
             HealthInputField("Address", address, { address = it })
             HealthInputField("Allergies", allergies, { allergies = it })
             HealthInputField("Medications", medications, { medications = it })
 
             if (errorMessage.isNotEmpty()) {
-                Text(text = errorMessage, color = Color.Red, modifier = Modifier.padding(top = 12.dp), fontSize = 14.sp)
+                Text(
+                    text = errorMessage, 
+                    color = MaterialTheme.colorScheme.error, 
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(top = 12.dp)
+                )
             }
+
+            Spacer(modifier = Modifier.height(32.dp))
 
             Button(
                 onClick = {
@@ -211,44 +203,47 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
                         errorMessage = "Please enter Medical ID and Name."
                     } else {
                         errorMessage = ""
+                        isSaving = true
                         val userHealthData = UserHealthData(
                             medicalID = medicalID,
                             name = name,
                             bloodGroup = bloodGroup,
-                            age = ageInt,
-                            systolicBP = systolicBPInt,
-                            diastolicBP = diastolicBPInt,
-                            bloodSugarLevel = bloodSugarLevelInt,
+                            age = age.toIntOrNull() ?: 0,
+                            systolicBP = systolicBP.toIntOrNull() ?: 0,
+                            diastolicBP = diastolicBP.toIntOrNull() ?: 0,
+                            bloodSugarLevel = bloodSugarLevel.toIntOrNull() ?: 0,
                             gender = gender,
                             healthCondition = healthCondition,
-                            emergencyPhoneNumber = emergencyPhoneNumberLong.toString(),
+                            emergencyPhoneNumber = emergencyPhoneNumber,
                             address = address,
                             allergies = allergies,
                             medications = medications,
-                            weight = weightFloat,
-                            height = heightFloat,
+                            weight = weight.toFloatOrNull() ?: 0.0f,
+                            height = height.toFloatOrNull() ?: 0.0f,
                             timestamp = Timestamp.now()
                         )
                         healthViewModel.saveHealthData(userHealthData, context)
+                        isSaving = false
                     }
                 },
                 modifier = Modifier
-                    .padding(vertical = 32.dp)
                     .fillMaxWidth()
-                    .height(54.dp),
+                    .height(56.dp)
+                    .background(gradient, RoundedCornerShape(12.dp)),
                 shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
-                contentPadding = PaddingValues()
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent,
+                    contentColor = Color.White),
+                enabled = !isSaving
             ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(brush = gradient, shape = RoundedCornerShape(12.dp)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("SAVE HEALTH DATA", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                if (isSaving) {
+                    CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
+                } else {
+                    Text("SAVE HEALTH DATA", fontSize = 16.sp, fontWeight = FontWeight.Bold,
+                        )
                 }
             }
+            
+            Spacer(modifier = Modifier.height(32.dp))
         }
     }
 }
@@ -261,28 +256,31 @@ private fun HealthInputField(
     keyboardType: KeyboardType = KeyboardType.Text
 ) {
     Column(modifier = Modifier.padding(top = 12.dp)) {
-        Text(text = label, fontWeight = FontWeight.SemiBold, fontSize = 13.sp, color = Color.Gray)
         OutlinedTextField(
             value = value,
             onValueChange = onValueChange,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 4.dp)
-                .background(Color(0xFFB2EBF2).copy(alpha = 0.25f), shape = RoundedCornerShape(12.dp)),
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text(label) },
+            shape = RoundedCornerShape(12.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color(0xFF00BCD4),
-                unfocusedBorderColor = Color.Transparent,
-                cursorColor = Color(0xFF1E88E5)
+                focusedBorderColor = HealthBlue,
+                unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                cursorColor = HealthBlue,
+                focusedLabelColor = HealthBlue,
             ),
-            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = keyboardType,
+                imeAction = ImeAction.Next
+            ),
             singleLine = true,
-            textStyle = TextStyle(fontSize = 16.sp)
+            textStyle = MaterialTheme.typography.bodyLarge
         )
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HealthInfoPreview() {
-    // Preview
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun HealthInfoPreview() {
+//    HealthInfo(navController = rememberNavController(), healthViewModel = HealthViewModel(
+//        HealthRepositoryImpl(Firebase.firestore, Firebase.auth)))
+//}

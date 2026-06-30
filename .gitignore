@@ -19,3 +19,71 @@ base64.txt
 gbase64.txt
 cbase64.txt
 .idea
+
+ignore
+# --- Kotlin/JVM/Gradle ---
+.gradle/
+build/
+**/build/
+!src/**/build/
+*.class
+*.pyc
+
+# --- Android ---
+.externalNativeBuild/
+.cxx/
+local.properties
+captures/
+*.apk
+*.aar
+*.ap_
+*.dex
+
+# --- IntelliJ / Android Studio ---
+.idea/
+*.iml
+*.iws
+.project
+.settings
+.classpath
+out/
+# .idea/runConfigurations/
+
+# --- iOS (Xcode & Apple Specific) ---
+**/DerivedData/
+.DS_Store
+**/Pods/
+**/*.xcscmblueprint
+**/*.xcodeproj/xcuserdata/
+**/*.xcodeproj/lsdata/
+
+# Keep essential Xcode project files
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# --- Kotlin Multiplatform Specific ---
+.kotlin/
+.konan/
+**/build/bin/
+**/build/fat-framework/
+**/build/xcode-frameworks/
+
+# --- Environment / Secrets ---
+*.keystore
+*.jks
+google-services.json
+GoogleService-Info.plist
+
+# --- Version Control / Temp Files ---
+.svn
+.hg
+*.swp
+*.log
+*.bak
+*.tmp
+node_modules/
+/AGENTS.md

@@ -17,4 +17,7 @@ sealed class Screen(val route: String) {
     object ChatPage: Screen(route = "chat_screen")
     object AgentScreen: Screen(route = "agent_screen")
     object ChartScreen: Screen(route = "chart_screen")
+
+    object ApiKeySettings: Screen(route = "api_key_settings")
+    object SettingsScreen: Screen(route = "settings_screen")
 }

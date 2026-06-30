@@ -21,13 +21,17 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
+import com.example.myhealthpassport.data.repository.HealthRepositoryImpl
 import com.example.myhealthpassport.domain.model.UserHealthData
 import com.example.myhealthpassport.viewmodels.HealthViewModel
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.runBlocking
 
 object HealthChartWidget : GlanceAppWidget() {
     override suspend fun provideGlance(context: Context, id: GlanceId) {
-        val viewModel = HealthViewModel()
+        val viewModel = HealthViewModel(HealthRepositoryImpl(Firebase.firestore, Firebase.auth))
         val latestData = runBlocking {
             viewModel.getLatestHealthData(context)
         }
