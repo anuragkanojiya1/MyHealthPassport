@@ -5,7 +5,7 @@ data class SettingsUiState(
     val userName: String = "", // Hoisted from Repository
     val isDarkMode: Boolean = false,
     val hasApiKey: Boolean = false,
-    val appVersion: String = "1.0.0",
+    val appVersion: String = "1.0",
     val isNameDialogOpen: Boolean = false, // Control dialog visibility
     val tempUserName: String = "" // For text field input before saving
 )

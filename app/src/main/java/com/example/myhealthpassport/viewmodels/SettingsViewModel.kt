@@ -2,6 +2,7 @@ package com.example.myhealthpassport.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myhealthpassport.BuildConfig
 import com.example.myhealthpassport.data.datastore.UserPreferencesRepository
 import com.example.myhealthpassport.domain.model.SettingsEvent
 import com.example.myhealthpassport.domain.model.SettingsUiState
@@ -28,7 +29,7 @@ class SettingsViewModel @Inject constructor(
             userEmail = auth.currentUser?.email ?: "No Email",
             isDarkMode = isDarkMode,
             hasApiKey = !apiKey.isNullOrBlank(),
-            appVersion = "1.0.0" // This could be fetched from BuildConfig
+            appVersion = "${BuildConfig.VERSION_NAME} (${BuildConfig.BUILD_TYPE})"
         )
     }.stateIn(
         scope = viewModelScope,
