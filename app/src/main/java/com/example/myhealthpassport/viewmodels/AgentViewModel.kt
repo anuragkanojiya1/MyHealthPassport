@@ -4,47 +4,47 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myhealthpassport.AGENT_ID
-import com.example.myhealthpassport.data.api.AgentInstance
-import com.example.myhealthpassport.domain.mistralModel.MistralMessage
-import com.example.myhealthpassport.domain.mistralModel.MistralRequest
-import com.example.myhealthpassport.MISTRAL_API_KEY
+import com.example.myhealthpassport.data.datastore.GetApiKeyUseCase
+import com.google.ai.client.generativeai.GenerativeModel
+import com.google.ai.client.generativeai.type.content
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
-class AgentViewModel @Inject constructor() : ViewModel() {
-
-    private val mistralAgentApi = AgentInstance.mistralAgentApi
+class AgentViewModel @Inject constructor(
+    private val getApiKeyUseCase: GetApiKeyUseCase
+) : ViewModel() {
 
     private val _agentResponse = MutableLiveData<Result<String>>()
     val agentResponse: LiveData<Result<String>> = _agentResponse
 
+    private suspend fun getGenerativeModel(): GenerativeModel {
+        // Retrieve the Gemini API key stored in the app's DataStore
+        val apiKey = getApiKeyUseCase().first() ?: ""
+        return GenerativeModel(
+            modelName = "gemini-2.5-flash",
+            apiKey = apiKey,
+            systemInstruction = content {
+                text("You are a specialized health and diet agent for MyHealth Passport. " +
+                     "Your goal is to provide personalized diet plans and exercise recommendations based on the user's medical profile. " +
+                     "Be concise, professional, and health-focused.")
+            }
+        )
+    }
+
     fun sendQueryToAgent(query: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                val messages = listOf(MistralMessage(role = "user", content = query))
-                val request = MistralRequest(agent_id = AGENT_ID, messages = messages)
-
-                val response = withContext(Dispatchers.IO) {
-                    mistralAgentApi.agentCompletion(MISTRAL_API_KEY, request).execute()
-                }
-
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    val result = responseBody?.choices?.firstOrNull()?.message?.content
-                    _agentResponse.postValue(Result.success(result ?: "No content"))
-                } else {
-                    val errorResponse = response.errorBody()?.string() ?: "Unknown error"
-                    _agentResponse.postValue(Result.failure(Exception(errorResponse)))
-                }
-            } catch (e: HttpException) {
-                val errorMessage = e.response()?.errorBody()?.string() ?: "HTTP exception occurred"
-                _agentResponse.postValue(Result.failure(Exception(errorMessage)))
+                val model = getGenerativeModel()
+                val response = model.generateContent(
+                    content { text(query) }
+                )
+                
+                val result = response.text ?: "No content"
+                _agentResponse.postValue(Result.success(result))
             } catch (e: Exception) {
                 _agentResponse.postValue(Result.failure(e))
             }

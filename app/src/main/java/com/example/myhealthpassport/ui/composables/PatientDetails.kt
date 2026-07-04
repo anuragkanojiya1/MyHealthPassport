@@ -1,6 +1,7 @@
 package com.example.myhealthpassport.ui.composables
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -115,14 +116,15 @@ fun PatientDetails(
             } else if (records.isEmpty()) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
-                        "No records found", 
+                        text = "No records found",
                         style = MaterialTheme.typography.bodyLarge,
                         color = HealthBlueDark
                     )
                 }
             } else {
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize(),
                     contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
@@ -151,7 +153,10 @@ fun MedicalRecordCard(data: UserHealthData) {
         ),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
     ) {
-        Column(modifier = Modifier.padding(20.dp)) {
+        Column(modifier = Modifier
+            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.85f))
+            .padding(20.dp)
+        ) {
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth(),

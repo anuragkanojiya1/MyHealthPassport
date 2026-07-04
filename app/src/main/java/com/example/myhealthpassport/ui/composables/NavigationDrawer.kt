@@ -167,6 +167,31 @@ fun NavigationDrawer(
                     )
 
                     NavigationDrawerItem(
+                        label = { Text(text = "Community and Support", fontWeight = FontWeight.Medium) },
+                        selected = false,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Rounded.Public,
+                                contentDescription = "community and support",
+                            )
+                        },
+                        onClick = {
+                            coroutineScope.launch { drawerState.close() }
+                            val intent = Intent(
+                                Intent.ACTION_VIEW,
+                                "https://www.x.com/mHealthPassport".toUri()
+                            )
+                            context.startActivity(intent)
+                        },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            unselectedContainerColor = Color.Transparent,
+                            unselectedTextColor = MaterialTheme.colorScheme.primary,
+                            unselectedIconColor = MaterialTheme.colorScheme.primary
+                        ),
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp)
+                    )
+
+                    NavigationDrawerItem(
                         label = { Text(text = "Exit and Sign Out", fontWeight = FontWeight.Medium) },
                         selected = false,
                         icon = {
@@ -189,26 +214,6 @@ fun NavigationDrawer(
                         ),
                         modifier = Modifier.padding(horizontal = 12.dp)
                     )
-
-                    TextButton(
-                        onClick = {
-                            val intent = Intent(
-                                Intent.ACTION_VIEW,
-                                "https://www.instagram.com/myhealthpassport?igsh=YzljYTk1ODg3Zg==".toUri()
-                            )
-                            context.startActivity(intent)
-                        },
-                        modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
-                            .align(Alignment.Start)
-                    ) {
-                        Text(
-                            text = "Community and Support",
-                            textDecoration = TextDecoration.Underline,
-                            fontSize = 14.sp,
-                            color = MaterialTheme.colorScheme.primary,
-                            textAlign = TextAlign.Center
-                        )
-                    }
                 }
             }
         }
