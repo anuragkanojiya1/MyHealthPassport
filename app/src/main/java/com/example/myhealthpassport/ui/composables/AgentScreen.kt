@@ -23,6 +23,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -143,6 +144,7 @@ fun AgentScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.background)
+            .padding(vertical = 8.dp)
     ) {
         Box(modifier = Modifier
             .fillMaxSize()
@@ -289,7 +291,7 @@ fun AgentScreen(
                             .size(48.dp)
                     ) {
                         Icon(
-                            imageVector = Icons.Filled.Add,
+                            imageVector = if (isExpanded) Icons.Filled.Add else Icons.Filled.Close,
                             contentDescription = "Add info",
                             tint = Color.White
                         )

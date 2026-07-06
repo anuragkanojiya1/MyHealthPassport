@@ -158,7 +158,7 @@ fun HealthAiScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
                     .verticalScroll(rememberScrollState()),
             ) {
                 Text(
@@ -183,7 +183,7 @@ fun HealthAiScreen(
                         .aspectRatio(1.8f), // Dynamic height based on width
                     shape = RoundedCornerShape(24.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surface
+                        containerColor = Color.Transparent
                     ),
                     border = BorderStroke(
                         1.dp,

@@ -369,10 +369,10 @@ fun AddContactSection(
             }
         }
 
-        FloatingActionButton(
+        FilledIconButton(
             onClick = { isExpanded = !isExpanded },
-            containerColor = Color.Transparent,
-            contentColor = Color.White,
+            colors = IconButtonDefaults.iconButtonColors(containerColor = Color.Transparent,
+                contentColor = Color.White),
             shape = CircleShape,
             modifier = Modifier
                 .padding(bottom = 8.dp)
@@ -385,7 +385,7 @@ fun AddContactSection(
             Icon(
                 imageVector = if (isExpanded) Icons.Default.Close else Icons.Default.Add,
                 contentDescription = "Toggle Add Contact",
-                modifier = Modifier.size(28.dp)
+                modifier = Modifier.size(26.dp),
             )
         }
     }
