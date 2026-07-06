@@ -98,9 +98,9 @@ fun HealthAiScreen(
         }
     }
 
-    if (isApiKeyMissing == null) {
+    if (isApiKeyMissing != false) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator()
+            CircularProgressIndicator(color = HealthBlue)
         }
         return
     }

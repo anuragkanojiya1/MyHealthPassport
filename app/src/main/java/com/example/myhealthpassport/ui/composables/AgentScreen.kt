@@ -101,9 +101,9 @@ fun AgentScreen(
         }
     }
 
-    if (isApiKeyMissing == null) {
+    if (isApiKeyMissing != false) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator()
+            CircularProgressIndicator(color = HealthBlue)
         }
         return
     }
@@ -291,8 +291,8 @@ fun AgentScreen(
                             .size(48.dp)
                     ) {
                         Icon(
-                            imageVector = if (isExpanded) Icons.Filled.Add else Icons.Filled.Close,
-                            contentDescription = "Add info",
+                            imageVector = if (isExpanded) Icons.Filled.Close else Icons.Default.Add,
+                            contentDescription = "Toggle add info",
                             tint = Color.White
                         )
                     }
