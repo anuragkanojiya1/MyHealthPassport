@@ -39,8 +39,8 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Clean project
-        run: ./gradlew clean
+#      - name: Clean project
+#        run: ./gradlew clean
 
       - name: Prepare release files
         run: |
