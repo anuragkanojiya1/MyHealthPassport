@@ -14,8 +14,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -66,8 +68,12 @@ import com.example.myhealthpassport.data.repository.HealthRepositoryImpl
 import com.example.myhealthpassport.ui.components.formatText
 import com.example.myhealthpassport.ui.theme.HealthBlue
 import com.example.myhealthpassport.ui.theme.HealthBlueDark
+import com.example.myhealthpassport.ui.navigation.Screen
 import com.example.myhealthpassport.viewmodels.AgentViewModel
+import com.example.myhealthpassport.viewmodels.ApiKeyViewModel
 import com.example.myhealthpassport.viewmodels.HealthViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.runtime.collectAsState
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -75,7 +81,31 @@ import com.google.firebase.firestore.firestore
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, healthViewModel: HealthViewModel) {
+fun AgentScreen(
+    navController: NavController,
+    agentViewModel: AgentViewModel,
+    healthViewModel: HealthViewModel,
+    apiKeyViewModel: ApiKeyViewModel = hiltViewModel()
+) {
+
+    val isApiKeyMissing by apiKeyViewModel.isApiKeyMissing.collectAsState()
+
+    // NAVIGATION GUARD: Redirect if key is missing
+    LaunchedEffect(isApiKeyMissing) {
+        if (isApiKeyMissing == true) {
+            navController.navigate(Screen.ApiKeySettings.route) {
+                popUpTo(Screen.AgentScreen.route) { inclusive = true }
+                launchSingleTop = true
+            }
+        }
+    }
+
+    if (isApiKeyMissing == null) {
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
+        return
+    }
 
     var query by remember { mutableStateOf("") }
     var loading by remember { mutableStateOf(false) }
@@ -136,7 +166,7 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                     text = "Get your Personalized Diet with Exercise Recommendation Plan by our Agent...",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 24.dp),
+                        .padding(top = 4.dp, bottom = 24.dp),
                     fontWeight = FontWeight.Light,
                     color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 24.sp,
@@ -161,7 +191,7 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                         singleLine = true
                     )
 
-                    Spacer(modifier = Modifier.size(8.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
 
                     ExtendedFloatingActionButton(
                         onClick = {
@@ -195,7 +225,7 @@ fun AgentScreen(navController: NavController, agentViewModel: AgentViewModel, he
                         },
                         modifier = Modifier
                             .background(gradient, shape = RoundedCornerShape(12.dp))
-                            .height(56.dp),
+                            .heightIn(min = 56.dp),
                         containerColor = Color.Transparent,
                         contentColor = Color.White,
                         elevation = FloatingActionButtonDefaults.elevation(0.dp, 0.dp)

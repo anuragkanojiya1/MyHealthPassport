@@ -142,6 +142,7 @@ fun MedicalRecordCard(data: UserHealthData) {
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
+            .heightIn(min = 400.dp)
             .border(
                 width = 1.dp,
                 brush = Brush.horizontalGradient(listOf(HealthBlue.copy(alpha = 0.5f), HealthBlueDark.copy(alpha = 0.5f))),

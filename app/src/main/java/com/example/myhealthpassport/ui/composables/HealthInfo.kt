@@ -138,10 +138,10 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
             
             Text(
                 text = "Vitals", 
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold, 
-                modifier = Modifier.align(Alignment.Start), 
-                color = MaterialTheme.colorScheme.primary
+                modifier = Modifier.align(Alignment.Start).padding(vertical = 8.dp), 
+                color = HealthBlueDark
             )
 
             Row(Modifier.fillMaxWidth()) {
@@ -173,10 +173,10 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
             
             Text(
                 text = "Additional Information", 
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold, 
-                modifier = Modifier.align(Alignment.Start), 
-                color = MaterialTheme.colorScheme.primary
+                modifier = Modifier.align(Alignment.Start).padding(vertical = 8.dp), 
+                color = HealthBlueDark
             )
 
             HealthInputField("Gender", gender, { gender = it })
@@ -228,7 +228,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
+                    .heightIn(min = 48.dp, max = 56.dp)
                     .background(gradient, RoundedCornerShape(12.dp)),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent,

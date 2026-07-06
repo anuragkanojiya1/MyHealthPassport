@@ -51,7 +51,7 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .verticalScroll(rememberScrollState())
-            .padding(24.dp),
+            .padding(horizontal = 24.dp, vertical = 16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -59,11 +59,18 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(220.dp),
+                .heightIn(min = 160.dp, max = 280.dp)
+                .aspectRatio(1.4f),
             contentAlignment = Alignment.Center
         ) {
-            AnimatedPatientSignUp(modifier = Modifier.size(250.dp))
+            AnimatedPatientSignUp(
+                modifier = Modifier
+                    .fillMaxHeight(0.85f)
+                    .aspectRatio(1f)
+            )
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = "Create Account",
@@ -184,7 +191,7 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp)
+                .heightIn(min = 48.dp, max = 56.dp)
                 .background(gradient, RoundedCornerShape(12.dp)),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
             shape = RoundedCornerShape(12.dp),
@@ -193,7 +200,7 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             if (isLoading) {
                 CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
             } else {
-                Text("Sign Up", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text("Sign Up", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             }
         }
 

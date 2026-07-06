@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -37,6 +38,8 @@ import com.example.myhealthpassport.domain.model.ApiKeyUiEvent
 import com.example.myhealthpassport.ui.theme.HealthBlue
 import com.example.myhealthpassport.ui.theme.HealthBlueDark
 import com.example.myhealthpassport.viewmodels.ApiKeyViewModel
+import androidx.core.net.toUri
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -71,7 +74,7 @@ fun ApiKeySettingsScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(24.dp),
+                .padding(horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Scrollable Content
@@ -167,7 +170,7 @@ fun ApiKeySettingsScreen(
                     onClick = {
                         val intent = Intent(
                             Intent.ACTION_VIEW,
-                            Uri.parse("https://aistudio.google.com/app/apikey")
+                            "https://aistudio.google.com/app/apikey".toUri()
                         )
                         context.startActivity(intent)
                     }

@@ -309,11 +309,12 @@ fun ChartCard(
 
             Box(modifier = Modifier
                 .fillMaxWidth()
-                .height(
+                .heightIn(min = 200.dp, max = 500.dp)
+                .then(
                     if (chartName == "MedicationPieChart") {
-                        (298.dp + (medications.size * 40).dp)
+                        Modifier.heightIn(min = 340.dp, max = 600.dp)
                     } else {
-                        252.dp
+                        Modifier.aspectRatio(1.5f)
                     }
                 )) {
                 content()

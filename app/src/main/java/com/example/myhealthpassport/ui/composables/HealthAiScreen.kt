@@ -92,7 +92,8 @@ fun HealthAiScreen(
     LaunchedEffect(isApiKeyMissing) {
         if (isApiKeyMissing == true) {
             navController.navigate(Screen.ApiKeySettings.route) {
-                popUpTo(Screen.HealthAiScreen.route) { inclusive = false }
+                popUpTo(Screen.HealthAiScreen.route) { inclusive = true }
+                launchSingleTop = true
             }
         }
     }
@@ -131,22 +132,22 @@ fun HealthAiScreen(
         }
     }
 
-    Scaffold(
-        topBar = {
-            if (uiState is UiState.Loading) {
-                LinearProgressIndicator(
-                    modifier = Modifier.fillMaxWidth(),
-                    color = HealthBlue,
-                    trackColor = HealthBlue.copy(alpha = 0.2f)
-                )
-            }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+        if (uiState is UiState.Loading) {
+            LinearProgressIndicator(
+                modifier = Modifier.fillMaxWidth(),
+                color = HealthBlue,
+                trackColor = HealthBlue.copy(alpha = 0.2f)
+            )
         }
-    ) { paddingValues ->
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .background(MaterialTheme.colorScheme.background)
         ) {
             Image(
                 painter = backgroundPainter,
@@ -162,7 +163,8 @@ fun HealthAiScreen(
             ) {
                 Text(
                     text = "Medical Report Analysis",
-                    style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
@@ -173,14 +175,15 @@ fun HealthAiScreen(
 
                 Spacer(Modifier.height(24.dp))
 
-                // Upload Box
+                // Upload Box with responsive aspect ratio
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(180.dp),
-                    shape = RoundedCornerShape(20.dp),
+                        .padding(vertical = 8.dp)
+                        .aspectRatio(1.8f), // Dynamic height based on width
+                    shape = RoundedCornerShape(24.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
+                        containerColor = MaterialTheme.colorScheme.surface
                     ),
                     border = BorderStroke(
                         1.dp,
@@ -255,9 +258,10 @@ fun HealthAiScreen(
 
                 Text(
                     text = "Analysis benefits",
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = HealthBlueDark,
+                    modifier = Modifier.padding(vertical = 8.dp)
                 )
                 Spacer(Modifier.height(16.dp))
                 InfoItem("Detailed insights from your reports")

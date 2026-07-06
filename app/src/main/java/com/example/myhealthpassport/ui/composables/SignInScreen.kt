@@ -52,7 +52,7 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .verticalScroll(rememberScrollState())
-            .padding(24.dp),
+            .padding(horizontal = 24.dp, vertical = 16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -60,11 +60,18 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(250.dp),
+                .heightIn(min = 180.dp, max = 300.dp)
+                .aspectRatio(1.3f),
             contentAlignment = Alignment.Center
         ) {
-            AnimatedPatientSignIn(modifier = Modifier.size(280.dp))
+            AnimatedPatientSignIn(
+                modifier = Modifier
+                    .fillMaxHeight(0.85f)
+                    .aspectRatio(1f)
+            )
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = "Welcome Back",
@@ -155,8 +162,8 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp)
-                .background(gradient, RoundedCornerShape(12.dp)),
+                .heightIn(min = 48.dp, max = 56.dp)
+                .background(gradient, RoundedCornerShape(14.dp)),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
             shape = RoundedCornerShape(12.dp),
             enabled = !isLoading
@@ -164,7 +171,7 @@ fun SignInScreen(navController: NavController, auth: FirebaseAuth) {
             if (isLoading) {
                 CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
             } else {
-                Text("Log In", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text("Log In", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             }
         }
 

@@ -7,8 +7,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.rounded.*
@@ -70,17 +72,18 @@ fun NavigationDrawer(
                 drawerContainerColor = MaterialTheme.colorScheme.surface,
                 drawerShape = RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp)
             ) {
-                // Header section with gradient
+                // Header section with relative height
                 Box(
                     modifier = Modifier
                         .background(gradient)
                         .fillMaxWidth()
-                        .height(160.dp)
+                        .heightIn(min = 140.dp, max = 180.dp)
+                        .aspectRatio(1.8f) // Dynamic height based on width
                 ) {
                     Column(
                         modifier = Modifier
                             .align(Alignment.BottomStart)
-                            .padding(8.dp)
+                            .padding(16.dp)
                     ) {
                         Image(
                             painter = rememberAsyncImagePainter(
@@ -88,24 +91,27 @@ fun NavigationDrawer(
                             ),
                             contentDescription = "logo",
                             modifier = Modifier
-                                .size(100.dp)
+                                .sizeIn(maxWidth = 120.dp, maxHeight = 120.dp)
+                                .fillMaxWidth(0.8f)
+                                .aspectRatio(1f)
                                 .clip(CircleShape)
                                 .background(Color.White.copy(alpha = 0.2f))
-                                .padding(0.dp)
                         )
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.heightIn(max = 16.dp))
                         Text(
                             text = Firebase.auth.currentUser?.displayName.toString() ?: "MyHealthPassport",
                             color = Color.White,
-                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
                             fontSize = 22.sp
                         )
+                        Spacer(modifier = Modifier.height(8.dp))
                     }
                 }
 
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
                         .background(MaterialTheme.colorScheme.surface)
                         .padding(vertical = 12.dp)
                 ) {
@@ -243,7 +249,7 @@ fun NavigationDrawer(
                     )
                     HorizontalDivider(
                         modifier = Modifier,
-                        thickness = 0.35.dp,
+                        thickness = 0.25.dp,
                         color = Color(0xFFDCDBDB)
                     )
                 }

@@ -126,7 +126,7 @@ fun SettingsScreen(
 //                )
                 HorizontalDivider(
                     modifier = Modifier,
-                    thickness = 0.35.dp,
+                    thickness = 0.25.dp,
                     color = Color(0xFFDCDBDB)
                 )
             }
@@ -204,7 +204,11 @@ fun SettingsScreen(
                     title = "Gemini API Key",
                     subtitle = if (state.hasApiKey) "Configured ✓" else "Tap to configure",
                     icon = Icons.Default.VpnKey,
-                    onClick = { navController.navigate(Screen.ApiKeySettings.route) }
+                    onClick = { 
+                        navController.navigate(Screen.ApiKeySettings.route) {
+                            launchSingleTop = true
+                        }
+                    }
                 )
             }
             if (state.hasApiKey) {

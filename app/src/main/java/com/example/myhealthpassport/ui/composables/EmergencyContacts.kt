@@ -115,14 +115,16 @@ fun EmergencyContactsList(
             Column(
                 Modifier
                     .fillMaxSize()
-                    .padding(bottom = 80.dp)
+                    .padding(bottom = 88.dp) // Adjusted for the dynamic Add button
             ) {
                 Text(
                     text = "Emergency Contacts",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground,
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 20.dp)
                 )
 
                 LazyColumn(
@@ -132,8 +134,9 @@ fun EmergencyContactsList(
                     item {
                         Text(
                             text = "Standard Services",
-                            style = MaterialTheme.typography.titleSmall,
-                            color = HealthBlue,
+                            style = MaterialTheme.typography.labelLarge,
+                            color = HealthBlueDark,
+                            fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                         )
                     }
@@ -146,8 +149,9 @@ fun EmergencyContactsList(
                         item {
                             Text(
                                 text = "My Saved Contacts",
-                                style = MaterialTheme.typography.titleSmall,
-                                color = HealthBlue,
+                                style = MaterialTheme.typography.labelLarge,
+                                color = HealthBlueDark,
+                                fontWeight = FontWeight.Bold,
                                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)
                             )
                         }
@@ -370,9 +374,11 @@ fun AddContactSection(
             containerColor = Color.Transparent,
             contentColor = Color.White,
             shape = CircleShape,
-//            elevation = FloatingActionButtonDefaults.elevation(6.dp, 0.dp),
             modifier = Modifier
-                .size(56.dp)
+                .padding(bottom = 8.dp)
+                .sizeIn(minWidth = 56.dp, minHeight = 56.dp)
+                .fillMaxWidth(0.15f)
+                .aspectRatio(1f)
                 .background(gradient, CircleShape)
                 .shadow(elevation = 0.dp, shape = CircleShape),
         ) {

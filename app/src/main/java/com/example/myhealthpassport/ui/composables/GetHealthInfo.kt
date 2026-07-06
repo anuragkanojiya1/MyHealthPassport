@@ -132,7 +132,7 @@ fun GetHealthInfo(navController: NavController, healthViewModel: HealthViewModel
                         }
                     },
                     modifier = Modifier
-                        .height(56.dp)
+                        .heightIn(min = 48.dp, max = 56.dp)
                         .background(brush = gradient, shape = RoundedCornerShape(12.dp)),
                     containerColor = Color.Transparent,
                     contentColor = Color.White,
@@ -167,10 +167,10 @@ fun GetHealthInfo(navController: NavController, healthViewModel: HealthViewModel
             )
             Text(
                 text = "Vitals", 
+                style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold, 
-                fontSize = 18.sp, 
-                modifier = Modifier.align(Alignment.Start), 
-                color = MaterialTheme.colorScheme.primary
+                modifier = Modifier.align(Alignment.Start).padding(vertical = 8.dp), 
+                color = HealthBlueDark
             )
 
             Row(Modifier.fillMaxWidth()) {
@@ -219,7 +219,7 @@ fun GetHealthInfo(navController: NavController, healthViewModel: HealthViewModel
                 }
             }
 
-            Column(modifier = Modifier.padding(vertical = 32.dp).fillMaxWidth()) {
+            Column(modifier = Modifier.padding(vertical = 32.dp).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 
                 ExtendedFloatingActionButton(
                     onClick = {
@@ -227,7 +227,7 @@ fun GetHealthInfo(navController: NavController, healthViewModel: HealthViewModel
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(54.dp)
+                        .heightIn(min = 48.dp, max = 54.dp)
                         .background(brush = gradient, shape = RoundedCornerShape(12.dp)),
                     containerColor = Color.Transparent,
                     contentColor = Color.White,
@@ -235,8 +235,6 @@ fun GetHealthInfo(navController: NavController, healthViewModel: HealthViewModel
                 ) {
                     Text("VIEW DETAILED SUMMARY", fontWeight = FontWeight.Bold)
                 }
-
-                Spacer(modifier = Modifier.height(16.dp))
 
                 ExtendedFloatingActionButton(
                     onClick = {
@@ -246,7 +244,7 @@ fun GetHealthInfo(navController: NavController, healthViewModel: HealthViewModel
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(54.dp)
+                        .heightIn(min = 48.dp, max = 54.dp)
                         .background(
                             brush = Brush.horizontalGradient(listOf(Color(0xFFFF5252), Color(0xFFFF1744))), 
                             shape = RoundedCornerShape(12.dp)

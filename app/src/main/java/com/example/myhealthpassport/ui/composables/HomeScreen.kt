@@ -18,14 +18,18 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.filled.ContactPhone
+import androidx.compose.material3.Surface
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -147,10 +151,11 @@ fun HomeScreen(navController: NavController) {
             .background(MaterialTheme.colorScheme.background)
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         /**
          * Adaptive Flip Card
@@ -160,18 +165,16 @@ fun HomeScreen(navController: NavController) {
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
-
-            val cardWidth = maxWidth * 0.7f
-
             Box(
                 modifier = Modifier
-                    .width(cardWidth)
-                    .aspectRatio(1f)
+                    .widthIn(max = 500.dp)
+                    .fillMaxWidth(0.8f) // Increased from 0.85f
+                    .aspectRatio(1.15f)
                     .graphicsLayer {
                         rotationY = rotateCardY
                         cameraDistance = zAxisDistance
                     }
-                    .clip(RoundedCornerShape(24.dp))
+                    .clip(RoundedCornerShape(32.dp))
                     .clickable { isCardFlipped = !isCardFlipped }
             ) {
 
@@ -196,8 +199,6 @@ fun HomeScreen(navController: NavController) {
             }
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
-
         /**
          * Flip Button
          */
@@ -218,135 +219,140 @@ fun HomeScreen(navController: NavController) {
             }
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
-
         /**
          * Emergency Contacts Section
          */
 
-        Text(
-            text = "Emergency Contacts",
-            fontWeight = FontWeight.W500,
-            fontSize = 22.sp,
-            color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 6.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
+        Column(modifier = Modifier.fillMaxWidth()) {
             Text(
-                text = "Show Emergency Contacts",
-                fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.weight(1f)
+                text = "Account Services",
+                style = MaterialTheme.typography.labelLarge,
+                color = HealthBlueDark,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(vertical = 8.dp)
             )
 
-            IconButton(
-                onClick = {
-                    navController.navigate(Screen.EmergencyContacts.route)
-                }
+            Surface(
+                onClick = { navController.navigate(Screen.EmergencyContacts.route) },
+                shape = RoundedCornerShape(12.dp),
+                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
             ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                    contentDescription = "Emergency Contacts",
-                    tint = MaterialTheme.colorScheme.onBackground
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ContactPhone,
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp),
+                        tint = HealthBlue
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "Emergency Contacts",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Text(
+                            text = "Quick access to medical help",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         /**
          * AI Features Cards
          */
 
-        Row(
-            modifier = Modifier.fillMaxWidth()
-        ) {
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Text(
+                text = "AI Health Insights",
+                style = MaterialTheme.typography.labelLarge,
+                color = HealthBlueDark,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
 
-            /**
-             * Recommendation Agent
-             */
-
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(end = 6.dp)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-
-                ElevatedCard(
-                    onClick = {
-                        navController.navigate(Screen.AgentScreen.route)
-                    },
-                    modifier = Modifier.fillMaxWidth()
+                /**
+                 * Recommendation Agent
+                 */
+                Column(
+                    modifier = Modifier.weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
-                    Image(
-                        painter = painterResource(id = R.drawable.picturedoctorwithstethoscope),
-                        contentDescription = "Doctor",
+                    ElevatedCard(
+                        onClick = { navController.navigate(Screen.AgentScreen.route) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1f),
-                        contentScale = ContentScale.Crop
+                        shape = RoundedCornerShape(20.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.picturedoctorwithstethoscope),
+                            contentDescription = "Doctor",
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.FillBounds
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Health Agent",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        textAlign = TextAlign.Center
                     )
                 }
 
-                Spacer(modifier = Modifier.height(6.dp))
-
-                Text(
-                    text = "Recommendation Agent",
-                    fontSize = 12.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-
-            /**
-             * Medical Report Analyzer
-             */
-
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 6.dp)
-            ) {
-
-                ElevatedCard(
-                    onClick = {
-                        navController.navigate(Screen.HealthAiScreen.route)
-                    },
-                    modifier = Modifier.fillMaxWidth()
+                /**
+                 * Medical Report Analyzer
+                 */
+                Column(
+                    modifier = Modifier.weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
-                    Image(
-                        painter = painterResource(id = R.drawable.groupmedicalstaff),
-                        contentDescription = "Medical Staff",
+                    ElevatedCard(
+                        onClick = { navController.navigate(Screen.HealthAiScreen.route) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1f),
-                        contentScale = ContentScale.Crop
+                        shape = RoundedCornerShape(20.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.groupmedicalstaff),
+                            contentDescription = "Medical Staff",
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.FillBounds
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Report Analyser",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        textAlign = TextAlign.Center
                     )
                 }
-
-                Spacer(modifier = Modifier.height(6.dp))
-
-                Text(
-                    text = "Medical Report Analyser",
-                    fontSize = 12.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
-                )
             }
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(12.dp))
     }
 }
 

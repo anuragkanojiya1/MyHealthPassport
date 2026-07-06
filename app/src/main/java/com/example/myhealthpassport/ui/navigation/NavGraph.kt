@@ -101,9 +101,7 @@ fun NavGraph(
             Screen.ApiKeySettings.route,
             enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
             exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
-            NavigationDrawer(navController = navController) {
-                ApiKeySettingsScreen(navController = navController, viewModel = hiltViewModel())
-            }
+            ApiKeySettingsScreen(navController = navController, viewModel = hiltViewModel())
         }
 
         composable(Screen.SplashScreen.route) {
