@@ -14,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -86,10 +87,11 @@ fun PatientDetails(
                         containerColor = MaterialTheme.colorScheme.surface,
                         titleContentColor = HealthBlueDark
                     ),
-                    windowInsets = WindowInsets.statusBars
+                    windowInsets = WindowInsets.statusBars,
+                    modifier = Modifier.shadow(2.dp)
                 )
                 HorizontalDivider(
-                    thickness = 0.5.dp,
+                    thickness = 0.25.dp,
                     color = MaterialTheme.colorScheme.outlineVariant
                 )
             }
@@ -150,12 +152,11 @@ fun MedicalRecordCard(data: UserHealthData) {
             ),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.85f)
+            containerColor = Color.Transparent
         ),
-        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 0.dp)
     ) {
         Column(modifier = Modifier
-            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.85f))
             .padding(20.dp)
         ) {
             // Header

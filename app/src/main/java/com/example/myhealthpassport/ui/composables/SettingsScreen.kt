@@ -39,6 +39,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.shadow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -116,7 +117,8 @@ fun SettingsScreen(
                     colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = MaterialTheme.colorScheme.surface,
                         titleContentColor = HealthBlueDark
-                    )
+                    ),
+                    modifier = Modifier.shadow(elevation = 2.dp)
                 )
 //                Box(
 //                    modifier = Modifier
@@ -127,7 +129,7 @@ fun SettingsScreen(
                 HorizontalDivider(
                     modifier = Modifier,
                     thickness = 0.25.dp,
-                    color = Color(0xFFDCDBDB)
+                    color = MaterialTheme.colorScheme.outlineVariant
                 )
             }
         }

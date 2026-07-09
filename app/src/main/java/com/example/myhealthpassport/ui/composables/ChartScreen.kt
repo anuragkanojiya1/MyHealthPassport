@@ -572,7 +572,7 @@ fun MedicationPieChart(medications: Map<String, Int>) {
         PieChart(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(298.dp),
+                .height(312.dp),
             pieChartData = PieChartData(slices = pieSlices, plotType = PlotType.Pie),
             pieChartConfig = pieChartConfig
         )

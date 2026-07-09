@@ -69,7 +69,6 @@ fun NavigationDrawer(
         gesturesEnabled = true,
         drawerContent = {
             ModalDrawerSheet(
-                modifier = Modifier.fillMaxWidth(0.85f),
                 drawerContainerColor = MaterialTheme.colorScheme.surface,
                 drawerShape = RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp)
             ) {
@@ -252,7 +251,7 @@ fun NavigationDrawer(
                     HorizontalDivider(
                         modifier = Modifier,
                         thickness = 0.25.dp,
-                        color = Color(0xFFDCDBDB)
+                        color = MaterialTheme.colorScheme.outlineVariant
                     )
                 }
             },

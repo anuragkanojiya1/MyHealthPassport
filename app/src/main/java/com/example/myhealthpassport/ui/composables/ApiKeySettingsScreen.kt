@@ -60,21 +60,27 @@ fun ApiKeySettingsScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("AI Configuration", fontWeight = FontWeight.SemiBold) },
-                navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+            Column {
+                TopAppBar(
+                    title = { Text("AI Configuration", fontWeight = FontWeight.SemiBold) },
+                    navigationIcon = {
+                        IconButton(onClick = { navController.popBackStack() }) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        }
                     }
-                }
-            )
+                )
+                HorizontalDivider(
+                    thickness = 0.25.dp,
+                    color = MaterialTheme.colorScheme.outlineVariant
+                )
+            }
         }
     ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(horizontal = 24.dp),
+                .padding(horizontal = 24.dp, vertical = 12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Scrollable Content
@@ -160,7 +166,8 @@ fun ApiKeySettingsScreen(
                     if (state.isLoading) {
                         CircularProgressIndicator(modifier = Modifier.size(24.dp), color = Color.White)
                     } else {
-                        Text("SAVE & CONTINUE", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                        Text("SAVE & CONTINUE", fontSize = 16.sp, fontWeight = FontWeight.Bold,
+                            color = Color.White)
                     }
                 }
 
