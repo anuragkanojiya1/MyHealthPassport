@@ -21,7 +21,6 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
 
 - **Multi-Agent System**  
   MyHealthPassport offers separate AI agents dedicated to various tasks:
-  - **AI Symptom Checker:** Analyzes symptoms using a fine-tuned Gemini model with voice-based interaction.
   - **Medical Report Analyzer:** Extracts details from medical reports to update your Medical ID or provide direct analysis.
   - **Personalized Diet & Exercise Plan:** Leverages the Mistral AI agent to provide custom health recommendations based on your medical data.
   - **Additional Agents:** Other agents are available to support various aspects of health management.
@@ -53,7 +52,7 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
 - **Room Database:** For local storage (e.g., chat history).
 - **Gemini AI:** Powers the AI Symptom Checker and generates detailed health insights.
 - **Google Speech Services:** Enables voice-based interactions.
-- **Mistral AI Agent:** Provides personalized diet and exercise recommendations.
+- **AI Agent:** Provides personalized diet and exercise recommendations.
 
 ---
 
@@ -90,9 +89,6 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
 
 - **Medical ID & Data Management:**  
   After login, users create or update their Medical ID to save and retrieve their health details.
-
-- **AI Symptom Checker:**  
-  Use voice or text to input symptoms. The Gemini-powered agent analyzes the input and provides insights.
 
 - **Medical Report Analyzer:**  
   Upload a medical report to extract details automatically, with options to update your Medical ID or view a direct analysis.
