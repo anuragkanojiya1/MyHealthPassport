@@ -2,9 +2,13 @@ package com.example.myhealthpassport.data.repository
 
 import com.example.myhealthpassport.domain.model.UserHealthData
 import com.example.myhealthpassport.domain.repository.HealthRepository
+import com.example.myhealthpassport.util.CryptoManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.gson.Gson
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -12,8 +16,13 @@ import javax.inject.Singleton
 @Singleton
 class HealthRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore,
-    private val auth: FirebaseAuth
+    private val auth: FirebaseAuth,
+    private val gson: Gson,
+    private val cryptoManager: CryptoManager
 ) : HealthRepository {
+
+    private val mutex = Mutex()
+    private var cachedMasterKey: ByteArray? = null
 
     private val userId: String?
         get() = auth.currentUser?.uid
@@ -23,14 +32,51 @@ class HealthRepositoryImpl @Inject constructor(
         .document(userId.toString())
         .collection("health")
 
-    override suspend fun saveHealthData(data: UserHealthData): Result<Unit> = try {
-        val finalData = if (data.medicalID.isBlank()) {
-            val generatedId = getHealthCollection().document().id
-            data.copy(medicalID = generatedId)
+    private fun getSecretDocument() = firestore
+        .collection("users")
+        .document(userId.toString())
+        .collection("secret")
+        .document("metadata")
+
+    /**
+     * Retrieves the user's master key from Firestore or generates a new one.
+     * This key is tied to the user's account and persists across uninstalls.
+     */
+    private suspend fun getMasterKey(): ByteArray = mutex.withLock {
+        cachedMasterKey?.let { return it }
+
+        val doc = getSecretDocument().get().await()
+        val keyBase64 = doc.getString("masterKey")
+
+        if (keyBase64 != null) {
+            val key = android.util.Base64.decode(keyBase64, android.util.Base64.NO_WRAP)
+            cachedMasterKey = key
+            key
         } else {
-            data
+            val newKey = cryptoManager.generateRandomKey()
+            val newKeyBase64 = android.util.Base64.encodeToString(newKey, android.util.Base64.NO_WRAP)
+            getSecretDocument().set(mapOf("masterKey" to newKeyBase64)).await()
+            cachedMasterKey = newKey
+            newKey
         }
-        getHealthCollection().document(finalData.medicalID).set(finalData).await()
+    }
+
+    override suspend fun saveHealthData(data: UserHealthData): Result<Unit> = try {
+        val id = data.medicalID.ifBlank {
+            getHealthCollection().document().id
+        }
+        val finalData = data.copy(medicalID = id)
+        
+        val masterKey = getMasterKey()
+        val encryptedPayload = cryptoManager.encrypt(gson.toJson(finalData).toByteArray(), masterKey)
+        
+        val storageMap = mapOf(
+            "medicalID" to id,
+            "timestamp" to finalData.timestamp,
+            "payload" to encryptedPayload
+        )
+        
+        getHealthCollection().document(id).set(storageMap).await()
         Result.success(Unit)
     } catch (e: Exception) {
         Result.failure(e)
@@ -47,8 +93,8 @@ class HealthRepositoryImpl @Inject constructor(
 
     override suspend fun retrieveHealthData(medicalID: String): Result<UserHealthData> = try {
         val document = getHealthCollection().document(medicalID).get().await()
-        val data = document.toObject(UserHealthData::class.java)
-        if (data != null) Result.success(data) else Result.failure(Exception("Record not found"))
+        val data = document.data?.let { decryptData(it) }
+        if (data != null) Result.success(data) else Result.failure(Exception("Record not found or decryption failed"))
     } catch (e: Exception) {
         Result.failure(e)
     }
@@ -65,7 +111,7 @@ class HealthRepositoryImpl @Inject constructor(
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .limit(1)
             .get().await()
-        snapshot.documents.firstOrNull()?.toObject(UserHealthData::class.java)
+        snapshot.documents.firstOrNull()?.data?.let { decryptData(it) }
     } catch (e: Exception) {
         null
     }
@@ -74,9 +120,26 @@ class HealthRepositoryImpl @Inject constructor(
         val snapshot = getHealthCollection()
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .get().await()
-        val dataList = snapshot.documents.mapNotNull { it.toObject(UserHealthData::class.java) }
+        val dataList = snapshot.documents.mapNotNull { doc ->
+            doc.data?.let { decryptData(it) }
+        }
         Result.success(dataList)
     } catch (e: Exception) {
         Result.failure(e)
+    }
+
+    private suspend fun decryptData(document: Map<String, Any?>): UserHealthData? {
+        val payload = document["payload"] as? String
+        return if (payload != null) {
+            try {
+                val masterKey = getMasterKey()
+                val decryptedJson = cryptoManager.decrypt(payload, masterKey).decodeToString()
+                gson.fromJson(decryptedJson, UserHealthData::class.java)
+            } catch (e: Exception) {
+                null
+            }
+        } else {
+            null
+        }
     }
 }

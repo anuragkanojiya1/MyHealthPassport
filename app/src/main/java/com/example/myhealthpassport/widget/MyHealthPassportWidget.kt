@@ -21,20 +21,27 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
-import com.example.myhealthpassport.data.repository.HealthRepositoryImpl
 import com.example.myhealthpassport.domain.model.UserHealthData
-import com.example.myhealthpassport.viewmodels.HealthViewModel
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
-import com.google.firebase.firestore.firestore
-import kotlinx.coroutines.runBlocking
+import com.example.myhealthpassport.domain.repository.HealthRepository
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.components.SingletonComponent
 
 object HealthChartWidget : GlanceAppWidget() {
+
+    @EntryPoint
+    @InstallIn(SingletonComponent::class)
+    interface WidgetEntryPoint {
+        fun healthRepository(): HealthRepository
+    }
+
     override suspend fun provideGlance(context: Context, id: GlanceId) {
-        val viewModel = HealthViewModel(HealthRepositoryImpl(Firebase.firestore, Firebase.auth))
-        val latestData = runBlocking {
-            viewModel.getLatestHealthData(context)
-        }
+        val appContext = context.applicationContext
+        val entryPoint = EntryPointAccessors.fromApplication(appContext, WidgetEntryPoint::class.java)
+        val repository = entryPoint.healthRepository()
+        
+        val latestData = repository.getLatestHealthData()
 
         provideContent {
             HealthChartContent(latestData)
