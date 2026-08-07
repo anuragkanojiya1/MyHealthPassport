@@ -33,5 +33,8 @@ render.experimental.xml
 # Google Services (e.g. APIs or Firebase)
 google-services.json
 
+# Play Store
+play-account.json
+
 # Android Profiling
 *.hprof

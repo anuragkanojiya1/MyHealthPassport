@@ -6,14 +6,15 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    id("com.github.triplet.play") version "3.12.1"
 }
 
 android {
-    namespace = "com.example.myhealthpassport"
+    namespace = "com.anuragkanojiya.myhealthpassport"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.myhealthpassport"
+        applicationId = "com.anuragkanojiya.myhealthpassport"
         minSdk = 26
         targetSdk = 35 
         versionCode = 2
@@ -32,6 +33,15 @@ android {
                 keyAlias = System.getenv("KEY_ALIAS")
                 keyPassword = System.getenv("KEY_PASSWORD")
             }
+    }
+
+    play {
+
+        serviceAccountCredentials.set(
+            file("play-account.json")
+        )
+
+        track.set("internal")
     }
 
     buildTypes {
@@ -65,6 +75,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -86,10 +100,23 @@ dependencies {
     implementation(libs.adaptive)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.truth)
+    testImplementation(libs.turbine)
+    testImplementation(libs.hilt.android.testing)
+    testImplementation("org.json:json:20240303")
+    kspTest(libs.hilt.compiler)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.truth)
+    kspAndroidTest(libs.hilt.compiler)
+
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
@@ -123,6 +150,8 @@ dependencies {
     implementation("androidx.glance:glance:1.2.0-alpha01")
     implementation("androidx.glance:glance-appwidget:1.2.0-alpha01")
     implementation("androidx.work:work-runtime-ktx:2.10.3")
+    implementation("androidx.hilt:hilt-work:1.2.0")
+    ksp("androidx.hilt:hilt-compiler:1.2.0")
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

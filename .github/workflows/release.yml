@@ -50,8 +50,15 @@ jobs:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
 
+      - name: Decode Play JSON
+        run: |
+          echo "$PLAY_SERVICE_ACCOUNT_JSON" | base64 -d > play-account.json
+        env:
+          PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+
       - name: Build Signed APK
-        run: ./gradlew assembleRelease --build-cache --parallel
+        run: |
+          ./gradlew assembleRelease bundleRelease --build-cache --parallel
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
@@ -99,3 +106,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Upload to Google Play Internal Testing
+        run: ./gradlew publishReleaseBundle
