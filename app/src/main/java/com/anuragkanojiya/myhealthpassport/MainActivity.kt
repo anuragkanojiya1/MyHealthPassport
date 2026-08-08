@@ -33,7 +33,7 @@ import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : FragmentActivity() {
-    var speechInput = mutableStateOf("")
+    // var speechInput = mutableStateOf("")
 
     private val promptManager by lazy {
         BiometricPromptManager(this)
@@ -99,6 +99,7 @@ class MainActivity : FragmentActivity() {
         // You could handle deep linking here if you want to go to a specific screen
     }
 
+    /*
     fun askSpeechInput(context: Context) {
         if (!SpeechRecognizer.isRecognitionAvailable(context)) {
             Toast.makeText(context, "Speech not Available", Toast.LENGTH_SHORT).show()
@@ -122,6 +123,7 @@ class MainActivity : FragmentActivity() {
             speechInput.value = result?.get(0).toString()
         }
     }
+    */
 
     fun scheduleHealthWidgetWorker(context: Context) {
         val request = androidx.work.PeriodicWorkRequestBuilder<HealthDataWorker>(15, java.util.concurrent.TimeUnit.MINUTES)

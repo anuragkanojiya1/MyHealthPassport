@@ -8,119 +8,72 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
 
 ## Table of Contents
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [License](#-license)
+
+## 🚀 Key Features
+
+### 🤖 Intelligent AI Assistants
+*   **Medical Report Analyzer:** Parses medical documents (Images) using **Gemini AI** to extract vital health metrics and automatically update your digital Medical ID.
+*   **Personalized Health Coach:** A dedicated AI agent that provides custom diet and exercise recommendations based on your unique medical profile.
+*   **Health Insights:** Real-time analysis of blood pressure and glucose trends with AI-generated recommendations.
+
+### 🛡️ Privacy & Security
+*   **Biometric Authentication:** Native integration with the **Biometric API** (Fingerprint/Face Unlock) to protect sensitive health data.
+*   **Advanced Encryption:** Sensitive medical information is encrypted using **AES-256** encryption via `CryptoManager` integrated with the Android Keystore.
+*   **Secure Auth:** Robust authentication powered by **Firebase Auth** and Google Identity Services.
+
+### 📊 Health Analytics
+*   **Dynamic Visualizations:** Interactive line charts for blood pressure and blood sugar tracking, and pie charts for medication distribution.
+*   **Automated Tracking:** Syncs with your Medical ID to maintain a longitudinal history of your vitals.
+
+### 🎙️ Voice & Accessibility
+*   **Text-to-Speech (TTS):** Spoken health reports and analysis to make insights more accessible.
+*   **Modern UI:** A responsive interface built with **Jetpack Compose (Material 3)** that adapts to different screen sizes.
+
+### 📱 Home Screen Widget
+*   **Jetpack Glance:** Stay updated with vital health stats directly from your home screen with beautifully designed widgets.
 
 ---
 
-## Features
+## 🛠 Tech Stack
 
-- **Multi-Agent System**  
-  MyHealthPassport offers separate AI agents dedicated to various tasks:
-  - **Medical Report Analyzer:** Extracts details from medical reports to update your Medical ID or provide direct analysis.
-  - **Personalized Diet & Exercise Plan:** Leverages the Mistral AI agent to provide custom health recommendations based on your medical data.
-  - **Additional Agents:** Other agents are available to support various aspects of health management.
-
-- **AI-Generated Health Reports & Insights**  
-  - **Dynamic Visualizations:**  
-    - Line charts for tracking blood pressure and blood sugar trends.
-    - A pie chart for visualizing medication usage.
-  - **Detailed Analysis:** Users can tap on the "Insights" button under each chart to receive an in-depth analysis of trends and recommendations, powered by Gemini AI.
-  
-- **Voice-Based AI Interaction**  
-  Integrated using Google speech services, allowing users to:
-  - Interact hands-free with the symptom checker, report analyzer, and other features.
-  - Receive spoken health reports and guidance.
-
-- **Medical ID System & Data Management**  
-  - **Secure Authentication:** Users can register and log in securely.
-  - **Personal Medical Data:** Save and update your health details via a unique Medical ID.
-  - **Local Data Storage:** Chat history for the AI symptom checker is maintained locally with Room (with options for deletion).
-  - **Emergency Contact Screen:** Quick access to essential emergency contacts.
-  - **Data Synchronization:** Easily update or retrieve medical details using your Medical ID.
+- **UI:** Jetpack Compose, Material 3, Jetpack Glance (Widgets).
+- **Architecture:** Clean Architecture + MVVM + Unidirectional Data Flow.
+- **Dependency Injection:** Dagger-Hilt.
+- **Networking:** Retrofit, OkHttp.
+- **Local Database:** Room.
+- **Cloud/Backend:** Firebase (Auth, Firestore, Storage).
+- **AI/ML:** Google Gemini AI.
+- **Security:** Biometric API, Android Keystore (AES Encryption).
+- **Async:** Kotlin Coroutines & Flow.
+- **Image Loading:** Coil.
 
 ---
 
-## Technologies Used
-
-- **Jetpack Compose:** For building a modern, responsive UI.
-- **Firebase Authentication & Cloud Firestore:** For secure user authentication and cloud data storage.
-- **Room Database:** For local storage (e.g., chat history).
-- **Gemini AI:** Powers the AI Symptom Checker and generates detailed health insights.
-- **Google Speech Services:** Enables voice-based interactions.
-- **AI Agent:** Provides personalized diet and exercise recommendations.
-
----
-
-## Getting Started
+## 🏁 Getting Started
 
 ### Prerequisites
 
-- Android Studio.
-- An Android device or emulator.
+- Android Studio Ladybug or later.
+- An Android device with API 26+ and biometric support.
 
 ### Installation
 
 1. **Clone the repository:**
-
    ```bash
    git clone https://github.com/anuragkanojiya1/MyHealthPassport.git
-   cd MyHealthPassport
    ```
-
 2. **Open the project in Android Studio.**
-
-3. **Build the Project:**
-   - Sync Gradle and build the project in Android Studio.
-
-4. **Run on an Emulator or Device:**
-   - Deploy the app to an emulator or physical device to start using MyHealthPassport.
+3. **Configure Firebase:** Add your `google-services.json` to the `app/` folder.
+4. **API Keys:** Securely add your Gemini API key in the app settings or via `local.properties`.
+5. **Build and Run.**
 
 ---
 
-## Usage
-
-- **Registration & Login:**  
-  Users register using their email and password. Secure authentication is managed by Firebase.
-
-- **Medical ID & Data Management:**  
-  After login, users create or update their Medical ID to save and retrieve their health details.
-
-- **Medical Report Analyzer:**  
-  Upload a medical report to extract details automatically, with options to update your Medical ID or view a direct analysis.
-
-- **Health Reports & Insights:**  
-  View dynamic health reports:
-  - **Line Charts:** Track blood pressure and blood sugar trends.
-  - **Pie Chart:** Visualize medication usage.
-  - Tap "Insights" on any chart for detailed analysis and recommendations.
-
-- **Voice-Based Interaction:**  
-  Engage with various features using voice commands powered by Google speech services.
-
-- **Emergency Contacts:**  
-  Access essential emergency contacts quickly in critical situations.
-
----
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute to MyHealthPassport, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Commit your changes and push the branch.
-4. Open a pull request detailing your changes.
-
-For major changes, please open an issue first to discuss what you would like to change.
-
----
-
-## License
+## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
