@@ -95,7 +95,7 @@ fun NavigationDrawer(
                         )
                         Spacer(modifier = Modifier.heightIn(max = 16.dp))
                         Text(
-                            text = Firebase.auth.currentUser?.displayName.toString() ?: "MyHealthPassport",
+                            text = Firebase.auth.currentUser?.displayName ?: "MyHealthPassport",
                             color = Color.White,
                             style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
                             fontSize = 22.sp
