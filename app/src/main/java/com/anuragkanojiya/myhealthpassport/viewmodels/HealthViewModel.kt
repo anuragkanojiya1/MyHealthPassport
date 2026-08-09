@@ -103,6 +103,7 @@ class HealthViewModel @Inject constructor(
                 onResult(data)
             }.onFailure { e ->
                 Toast.makeText(context, "Error fetching all records: ${e.message}", Toast.LENGTH_SHORT).show()
+                onResult(emptyList()) // Signal end of loading even on failure
             }
         }
     }

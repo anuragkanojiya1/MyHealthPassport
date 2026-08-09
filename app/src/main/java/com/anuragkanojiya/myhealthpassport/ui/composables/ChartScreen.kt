@@ -78,37 +78,35 @@ fun ChartScreen(navController: NavController) {
     val prompt = """Analyze the following health data and provide insights. Identify any trends, potential health risks, and suggest recommendations for improvement. Keep it simple and actionable."""
 
     LaunchedEffect(Unit) {
-        healthViewModel.fetchMedicalIDs(context) { ids ->
-            if (ids.isEmpty()) {
-                isInitialLoading = false
+        healthViewModel.fetchAllHealthData(context) { dataList ->
+            bloodPressureList.clear()
+            bloodSugarLevelList.clear()
+            medications.clear()
+
+            if (dataList.isEmpty()) {
+                 isInitialLoading = false
             } else {
-                var loadedCount = 0
-                ids.forEach { id ->
-                    healthViewModel.retrieveHealthData(id, context) { data ->
-                        bloodPressureList.add(Triple(data.timestamp, data.systolicBP, data.diastolicBP))
-                        bloodPressureList.sortBy { it.first.seconds }
-                        bloodSugarLevelList.add(Pair(data.timestamp, data.bloodSugarLevel))
-                        bloodSugarLevelList.sortBy { it.first.seconds }
-                        data.medications.split(",").forEach { med ->
-                            val trimmedMed = med.trim()
-                            val lowerMed = trimmedMed.lowercase()
-                            if (trimmedMed.isNotEmpty() && 
-                                lowerMed != "null" && 
-                                lowerMed != "n.a." && 
-                                lowerMed != "na" && 
-                                lowerMed != "none" &&
-                                lowerMed != "N.A." &&
-                                lowerMed != "N/A"
-                                ) {
-                                medications[trimmedMed] = medications.getOrDefault(trimmedMed, 0) + 1
-                            }
-                        }
-                        loadedCount++
-                        if (loadedCount == ids.size) {
-                            isInitialLoading = false
+                dataList.forEach { data ->
+                    bloodPressureList.add(Triple(data.timestamp, data.systolicBP, data.diastolicBP))
+                    bloodSugarLevelList.add(Pair(data.timestamp, data.bloodSugarLevel))
+                    data.medications.split(",").forEach { med ->
+                        val trimmedMed = med.trim()
+                        val lowerMed = trimmedMed.lowercase()
+                        if (trimmedMed.isNotEmpty() && 
+                            lowerMed != "null" && 
+                            lowerMed != "n.a." && 
+                            lowerMed != "na" && 
+                            lowerMed != "none" &&
+                            lowerMed != "N.A." &&
+                            lowerMed != "N/A"
+                            ) {
+                            medications[trimmedMed] = medications.getOrDefault(trimmedMed, 0) + 1
                         }
                     }
                 }
+                bloodPressureList.sortBy { it.first.seconds }
+                bloodSugarLevelList.sortBy { it.first.seconds }
+                isInitialLoading = false
             }
         }
     }
