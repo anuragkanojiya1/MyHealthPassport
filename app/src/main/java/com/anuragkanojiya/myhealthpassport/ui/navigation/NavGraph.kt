@@ -162,5 +162,12 @@ fun NavGraph(
                 promptManager = promptManager
             )
         }
+
+        composable(
+            Screen.PrivacyPolicy.route,
+            enterTransition = { slideInHorizontally(initialOffsetX = { it }) + fadeIn() },
+            exitTransition = { slideOutHorizontally(targetOffsetX = { -it }) + fadeOut() }) {
+            PrivacyPolicyScreen(navController = navController)
+        }
     }
 }

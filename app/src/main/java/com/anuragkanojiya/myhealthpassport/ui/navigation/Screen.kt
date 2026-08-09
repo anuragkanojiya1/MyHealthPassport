@@ -20,4 +20,5 @@ sealed class Screen(val route: String) {
 
     object ApiKeySettings: Screen(route = "api_key_settings")
     object SettingsScreen: Screen(route = "settings_screen")
+    object PrivacyPolicy: Screen(route = "privacy_policy")
 }

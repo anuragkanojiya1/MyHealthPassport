@@ -226,6 +226,18 @@ fun SettingsScreen(
                     icon = Icons.Default.Info
                 )
             }
+            item {
+                SettingsItem(
+                    title = "Privacy Policy",
+                    subtitle = "Read our data protection policies",
+                    icon = Icons.Default.PrivacyTip,
+                    onClick = {
+                        navController.navigate(Screen.PrivacyPolicy.route) {
+                            launchSingleTop = true
+                        }
+                    }
+                )
+            }
         }
     }
 }
