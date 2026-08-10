@@ -9,6 +9,7 @@ import android.os.Build
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
@@ -131,7 +132,7 @@ fun HealthAiScreen(
     }
 
     val getImageLauncher = rememberLauncherForActivityResult(
-        ActivityResultContracts.GetContent()
+        ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         uri?.let {
             selectedImageUri = it
@@ -147,16 +148,10 @@ fun HealthAiScreen(
     val requestPermissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
-        val imageGranted = permissions[Manifest.permission.READ_MEDIA_IMAGES] ?: false
-                || permissions[Manifest.permission.READ_EXTERNAL_STORAGE] ?: false
         val notificationGranted = permissions[Manifest.permission.POST_NOTIFICATIONS] ?: true
 
-        if (imageGranted) {
-            openGallery(getImageLauncher)
-        } else {
-            Toast.makeText(context, "Storage permission denied", Toast.LENGTH_SHORT).show()
-        }
-        
+        openGallery(getImageLauncher)
+
         if (!notificationGranted) {
             Toast.makeText(context, "Notifications disabled. You won't receive background updates.", Toast.LENGTH_LONG).show()
         }
@@ -359,7 +354,7 @@ fun ReviewAndSaveBottomSheet(
     var editedData by remember { mutableStateOf(data) }
     var showEditDialog by remember { mutableStateOf<Pair<String, (String) -> Unit>?>(null) }
     var tempValue by remember { mutableStateOf("") }
-    
+
     var medicalIdExpanded by remember { mutableStateOf(false) }
 
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -548,7 +543,7 @@ fun ReviewAndSaveBottomSheet(
             ) {
                 Text("CONFIRM AND SAVE", fontWeight = FontWeight.Bold)
             }
-            
+
             TextButton(
                 onClick = onDismiss,
                 modifier = Modifier.fillMaxWidth()
@@ -613,9 +608,9 @@ fun ResultBottomSheet(result: String, onDismiss: () -> Unit) {
                 color = MaterialTheme.colorScheme.onSurface,
                 lineHeight = 24.sp
             )
-            
+
             Spacer(modifier = Modifier.height(24.dp))
-            
+
             Button(
                 onClick = onDismiss,
                 modifier = Modifier.fillMaxWidth(),
@@ -680,7 +675,7 @@ fun FeatureCard(
                     lineHeight = 18.sp
                 )
             }
-            
+
             if (!enabled) {
                 Box(
                     modifier = Modifier.fillMaxSize().background(Color.White.copy(alpha = 0.1f)),
@@ -695,12 +690,12 @@ fun FeatureCard(
 @Composable
 fun InfoItem(text: String) {
     Row(
-        verticalAlignment = Alignment.CenterVertically, 
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(vertical = 6.dp)
     ) {
         Icon(
-            imageVector = Icons.Default.Check, 
-            contentDescription = null, 
+            imageVector = Icons.Default.Check,
+            contentDescription = null,
             tint = Color(0xFF4CAF50),
             modifier = Modifier.size(20.dp)
         )
@@ -712,20 +707,9 @@ fun InfoItem(text: String) {
 private fun checkAndRequestPermission(
     context: Context,
     launcher: ActivityResultLauncher<Array<String>>,
-    galleryLauncher: ActivityResultLauncher<String>
+    galleryLauncher: ActivityResultLauncher<PickVisualMediaRequest>
 ) {
     val permissions = mutableListOf<String>()
-    
-    // Storage Permissions
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_IMAGES) != PermissionChecker.PERMISSION_GRANTED) {
-            permissions.add(Manifest.permission.READ_MEDIA_IMAGES)
-        }
-    } else {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PermissionChecker.PERMISSION_GRANTED) {
-            permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE)
-        }
-    }
 
     // Notification Permission (Android 13+)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -741,8 +725,8 @@ private fun checkAndRequestPermission(
     }
 }
 
-private fun openGallery(getImageLauncher: ActivityResultLauncher<String>) {
-    getImageLauncher.launch("image/*")
+private fun openGallery(getImageLauncher: ActivityResultLauncher<PickVisualMediaRequest>) {
+    getImageLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
 }
 
 @Composable
