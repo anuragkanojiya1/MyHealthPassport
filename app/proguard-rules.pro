@@ -19,3 +19,20 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Preserve attributes required for Firebase and Google Play Services
+-keepattributes SourceFile,LineNumberTable,RuntimeVisibleAnnotations,Signature
+
+# Credential Manager & Google ID
+-keep class androidx.credentials.** { *; }
+-keep class com.google.android.libraries.identity.googleid.** { *; }
+-dontwarn androidx.credentials.**
+
+# Google Play Services & Auth
+-keep class com.google.android.gms.auth.** { *; }
+-keep class com.google.android.gms.common.api.** { *; }
+-keep class com.google.android.gms.tasks.** { *; }
+-keep class com.google.firebase.** { *; }
+
+# Prevent shrinking of resources used by the auth UI
+-keep class com.google.android.libraries.identity.googleid.internal.** { *; }

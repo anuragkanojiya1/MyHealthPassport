@@ -48,11 +48,16 @@ class GoogleSignInUtils {
                 
                 Log.d(TAG, "Attempting sign-in with Client ID: $clientId")
 
+                // The Nonce is highly recommended in latest docs to prevent replay attacks
+                // and helps in some backend validation scenarios
+                val rawNonce = UUID.randomUUID().toString()
+
                 // 1. Google ID Option
                 val googleIdOption = GetGoogleIdOption.Builder()
                     .setFilterByAuthorizedAccounts(false)
                     .setAutoSelectEnabled(false)
                     .setServerClientId(clientId)
+                    .setNonce(rawNonce)
                     .build()
 
                 // 2. Password Option (Forces the UI to show even if Google ID metadata is stale)
@@ -81,8 +86,8 @@ class GoogleSignInUtils {
                 }
 
             } catch (e: NoCredentialException) {
-                Log.w(TAG, "No credentials found. Web Client ID: ${context.getString(R.string.web_client_id)}")
-                Log.w(TAG, "Exception Details: ${e.message}")
+                Log.e(TAG, "No credentials found. Error 10 [28444] usually means the SHA-1 isn't linked to the Web Client ID in the Google Cloud Console.")
+                Log.w(TAG, "Web Client ID: ${context.getString(R.string.web_client_id)}")
                 Result.failure(Exception("No accounts found. This usually means the SHA-1 fingerprint of this app isn't registered in your Firebase Console or the Web Client ID is incorrect. Check Logcat for details."))
             } catch (e: GetCredentialException) {
                 Log.e(TAG, "Credential error: ${e.type} - ${e.message}", e)

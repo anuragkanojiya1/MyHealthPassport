@@ -72,7 +72,7 @@ fun PrivacyPolicyScreen(navController: NavController) {
                 title = "1. Information We Collect",
                 content = "MyHealthPassport collects information needed to provide a secure, personalized digital health experience. This may include:\n" +
                         "• Account and authentication information, including email, sign-in details, and secure login state.\n" +
-                        "• Medical profile information such as your digital medical ID, vitals, symptoms, medication history, emergency contact details, and uploaded health reports.\n" +
+                        "• Medical profile information such as your digital medical ID, vitals, medication history, emergency contact details, and uploaded health reports.\n" +
                         "• Images, documents, and health data submitted for AI analysis, such as medical reports or scanned records.\n" +
                         "• Voice input, chat interactions, prompts, and AI-generated recommendations used to support health coaching and analysis.\n" +
                         "• Device, app usage, diagnostics, and performance information needed to improve reliability and security."

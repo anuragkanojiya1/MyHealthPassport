@@ -11,13 +11,14 @@ plugins {
 
 android {
     namespace = "com.anuragkanojiya.myhealthpassport"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.anuragkanojiya.myhealthpassport"
         minSdk = 26
-        targetSdk = 35 
-        versionCode = 6
+        targetSdk = 36
+
+        versionCode = 13
         versionName = "1.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
