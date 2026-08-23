@@ -134,7 +134,16 @@ class HealthRepositoryImpl @Inject constructor(
             try {
                 val masterKey = getMasterKey()
                 val decryptedJson = cryptoManager.decrypt(payload, masterKey).decodeToString()
-                gson.fromJson(decryptedJson, UserHealthData::class.java)
+                gson.fromJson(decryptedJson, UserHealthData::class.java)?.apply {
+                    // Ensure non-nullable strings are initialized if missing from JSON
+                    if (medications == null) medications = ""
+                    if (allergies == null) allergies = ""
+                    if (healthCondition == null) healthCondition = ""
+                    if (address == null) address = ""
+                    if (gender == null) gender = ""
+                    if (bloodGroup == null) bloodGroup = ""
+                    if (name == null) name = ""
+                }
             } catch (e: Exception) {
                 null
             }

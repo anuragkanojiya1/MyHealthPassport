@@ -99,7 +99,7 @@ fun HealthChartContent(data: UserHealthData?) {
             Spacer(GlanceModifier.height(6.dp))
 
             // Medications
-            val meds = it.medications.split(",").map { m -> m.trim() }.take(2)
+            val meds = it.medications?.split(",")?.map { m -> m.trim() }?.take(2) ?: emptyList()
             if (meds.isNotEmpty()) {
                 Text(
                     text = "💊 Meds: ${meds.joinToString()}",

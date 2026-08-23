@@ -89,7 +89,8 @@ fun ChartScreen(navController: NavController) {
                 dataList.forEach { data ->
                     bloodPressureList.add(Triple(data.timestamp, data.systolicBP, data.diastolicBP))
                     bloodSugarLevelList.add(Pair(data.timestamp, data.bloodSugarLevel))
-                    data.medications.split(",").forEach { med ->
+                    
+                    data.medications?.split(",")?.forEach { med ->
                         val trimmedMed = med.trim()
                         val lowerMed = trimmedMed.lowercase()
                         if (trimmedMed.isNotEmpty() && 

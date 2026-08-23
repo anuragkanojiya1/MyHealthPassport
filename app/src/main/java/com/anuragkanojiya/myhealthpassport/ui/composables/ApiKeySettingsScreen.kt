@@ -117,7 +117,27 @@ fun ApiKeySettingsScreen(
                     lineHeight = 22.sp
                 )
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(4.dp))
+
+                TextButton(
+                    onClick = {
+                        val intent = Intent(
+                            Intent.ACTION_VIEW,
+                            "https://aistudio.google.com/app/apikey".toUri()
+                        )
+                        context.startActivity(intent)
+                    },
+                ) {
+                    Text(
+                        "Get a free API key from Google AI Studio",
+                        color = HealthBlue,
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            textDecoration = TextDecoration.Underline
+                        )
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(4.dp))
 
                 OutlinedTextField(
                     value = state.apiKey,
@@ -168,24 +188,6 @@ fun ApiKeySettingsScreen(
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
-
-                TextButton(
-                    onClick = {
-                        val intent = Intent(
-                            Intent.ACTION_VIEW,
-                            "https://aistudio.google.com/app/apikey".toUri()
-                        )
-                        context.startActivity(intent)
-                    }
-                ) {
-                    Text(
-                        "Get a free key from Google AI Studio",
-                        color = HealthBlue,
-                        style = MaterialTheme.typography.bodySmall.copy(
-                            textDecoration = TextDecoration.Underline
-                        )
-                    )
-                }
             }
         }
     }
