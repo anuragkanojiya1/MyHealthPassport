@@ -29,8 +29,8 @@ import com.anuragkanojiya.myhealthpassport.ui.navigation.Screen
 import com.anuragkanojiya.myhealthpassport.ui.theme.HealthBlue
 import com.anuragkanojiya.myhealthpassport.ui.theme.HealthBlueDark
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.anuragkanojiya.myhealthpassport.R
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -2,11 +2,10 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.google.firebase.crashlytics)
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    id("com.github.triplet.play") version "3.12.1"
+    alias(libs.plugins.playPublisher)
 }
 
 android {
@@ -62,10 +61,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     buildFeatures {
         compose = true
         buildConfig = true
@@ -92,6 +87,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.crashlytics)
@@ -106,7 +102,7 @@ dependencies {
     testImplementation(libs.truth)
     testImplementation(libs.turbine)
     testImplementation(libs.hilt.android.testing)
-    testImplementation("org.json:json:20240303")
+    testImplementation(libs.json)
     kspTest(libs.hilt.compiler)
 
     androidTestImplementation(libs.androidx.junit)
@@ -133,29 +129,34 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
-    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
-    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
+    implementation(libs.okhttp.logging)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.coil.network.okhttp)
     implementation(libs.androidx.material.icons.extended)
 
-    val room_version = "2.7.0-alpha13"
-    implementation("androidx.room:room-runtime:$room_version")
-    ksp("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
 
-    implementation("androidx.datastore:datastore-preferences:1.2.1")
+    implementation(libs.datastore.preferences)
 
-    implementation("co.yml:ycharts:2.1.0")
-    implementation("androidx.glance:glance:1.2.0-alpha01")
-    implementation("androidx.glance:glance-appwidget:1.2.0-alpha01")
-    implementation("androidx.work:work-runtime-ktx:2.10.3")
-    implementation("androidx.hilt:hilt-work:1.2.0")
-    ksp("androidx.hilt:hilt-compiler:1.2.0")
+    implementation(libs.ycharts)
+    implementation(libs.glance)
+    implementation(libs.glance.appwidget)
+    implementation(libs.work.runtime.ktx)
+    implementation(libs.hilt.work)
+    ksp(libs.androidx.hilt.compiler)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.biometric)
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    }
 }

@@ -34,7 +34,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import coil.compose.rememberAsyncImagePainter
+import coil3.compose.rememberAsyncImagePainter
 import com.anuragkanojiya.myhealthpassport.ui.navigation.Screen
 import com.anuragkanojiya.myhealthpassport.ui.theme.HealthBlue
 import com.anuragkanojiya.myhealthpassport.ui.theme.HealthBlueDark
