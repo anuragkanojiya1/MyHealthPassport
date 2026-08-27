@@ -79,6 +79,7 @@ fun ChartScreen(navController: NavController) {
 
     LaunchedEffect(Unit) {
         healthViewModel.fetchAllHealthData(context) { dataList ->
+            Log.d("ChartScreen", "Fetched ${dataList.size} records from repository")
             bloodPressureList.clear()
             bloodSugarLevelList.clear()
             medications.clear()
@@ -87,16 +88,17 @@ fun ChartScreen(navController: NavController) {
                  isInitialLoading = false
             } else {
                 dataList.forEach { data ->
+                    Log.d("ChartScreen", "Processing record: ${data.medicalID}, Time: ${data.timestamp.toDate()}")
                     bloodPressureList.add(Triple(data.timestamp, data.systolicBP, data.diastolicBP))
                     bloodSugarLevelList.add(Pair(data.timestamp, data.bloodSugarLevel))
-                    
+
                     data.medications?.split(",")?.forEach { med ->
                         val trimmedMed = med.trim()
                         val lowerMed = trimmedMed.lowercase()
-                        if (trimmedMed.isNotEmpty() && 
-                            lowerMed != "null" && 
-                            lowerMed != "n.a." && 
-                            lowerMed != "na" && 
+                        if (trimmedMed.isNotEmpty() &&
+                            lowerMed != "null" &&
+                            lowerMed != "n.a." &&
+                            lowerMed != "na" &&
                             lowerMed != "none" &&
                             lowerMed != "N.A." &&
                             lowerMed != "N/A"
@@ -105,8 +107,8 @@ fun ChartScreen(navController: NavController) {
                         }
                     }
                 }
-                bloodPressureList.sortBy { it.first.seconds }
-                bloodSugarLevelList.sortBy { it.first.seconds }
+                bloodPressureList.sortBy { it.first?.seconds ?: 0L }
+                bloodSugarLevelList.sortBy { it.first?.seconds ?: 0L }
                 isInitialLoading = false
             }
         }
