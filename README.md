@@ -16,7 +16,7 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
 ## 🚀 Key Features
 
 ### 🤖 Intelligent AI Assistants
-*   **Medical Report Analyzer:** Parses medical documents (Images) using **Gemini AI** to extract vital health metrics and automatically update your digital Medical ID.
+*   **Medical Report Analyzer:** Parses medical documents (Images) using **Gemini AI** to analyse or extract vital health metrics and automatically update your digital Medical ID.
 *   **Personalized Health Coach:** A dedicated AI agent that provides custom diet and exercise recommendations based on your unique medical profile.
 *   **Health Insights:** Real-time analysis of blood pressure and glucose trends with AI-generated recommendations.
 
