@@ -1,7 +1,6 @@
 package com.anuragkanojiya.myhealthpassport.domain.usecase
 
 import android.graphics.Bitmap
-import com.anuragkanojiya.myhealthpassport.data.datastore.GetApiKeyUseCase
 import com.anuragkanojiya.myhealthpassport.domain.model.UserHealthData
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content

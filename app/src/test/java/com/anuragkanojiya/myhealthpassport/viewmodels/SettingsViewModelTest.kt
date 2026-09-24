@@ -1,8 +1,9 @@
 package com.anuragkanojiya.myhealthpassport.viewmodels
 
 import app.cash.turbine.test
-import com.anuragkanojiya.myhealthpassport.data.datastore.UserPreferencesRepository
+import com.anuragkanojiya.myhealthpassport.data.local.datastore.UserPreferencesRepository
 import com.anuragkanojiya.myhealthpassport.domain.model.SettingsEvent
+import com.anuragkanojiya.myhealthpassport.feature.settings.SettingsViewModel
 import com.google.common.truth.Truth.assertThat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

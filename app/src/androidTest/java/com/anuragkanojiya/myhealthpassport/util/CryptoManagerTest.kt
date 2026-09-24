@@ -1,6 +1,7 @@
 package com.anuragkanojiya.myhealthpassport.util
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.anuragkanojiya.myhealthpassport.core.security.CryptoManager
 import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test

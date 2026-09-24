@@ -1,14 +1,10 @@
 package com.anuragkanojiya.myhealthpassport
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.speech.RecognizerIntent
-import android.speech.SpeechRecognizer
-import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -19,17 +15,19 @@ import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.compose.rememberNavController
-import com.anuragkanojiya.myhealthpassport.ui.navigation.NavGraph
-import com.anuragkanojiya.myhealthpassport.ui.theme.MyHealthPassportTheme
-import com.anuragkanojiya.myhealthpassport.util.BiometricPromptManager
-import com.anuragkanojiya.myhealthpassport.viewmodels.*
+import com.anuragkanojiya.myhealthpassport.navigation.NavGraph
+import com.anuragkanojiya.myhealthpassport.core.designsystem.theme.MyHealthPassportTheme
+import com.anuragkanojiya.myhealthpassport.core.security.BiometricPromptManager
+import com.anuragkanojiya.myhealthpassport.feature.ai.AgentViewModel
+import com.anuragkanojiya.myhealthpassport.feature.ai.AiViewModel
+import com.anuragkanojiya.myhealthpassport.feature.health.HealthViewModel
+import com.anuragkanojiya.myhealthpassport.feature.settings.ApiKeyViewModel
+import com.anuragkanojiya.myhealthpassport.feature.settings.SettingsViewModel
 import com.anuragkanojiya.myhealthpassport.widget.HealthDataWorker
 import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : FragmentActivity() {

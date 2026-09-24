@@ -5,7 +5,8 @@ import androidx.work.WorkManager
 import com.anuragkanojiya.myhealthpassport.domain.model.UserHealthData
 import com.anuragkanojiya.myhealthpassport.domain.repository.HealthRepository
 import com.anuragkanojiya.myhealthpassport.domain.usecase.GeminiAnalysisUseCase
-import com.anuragkanojiya.myhealthpassport.ui.composables.UiState
+import com.anuragkanojiya.myhealthpassport.feature.ai.AiViewModel
+import com.anuragkanojiya.myhealthpassport.feature.health.UiState
 import com.google.common.truth.Truth.assertThat
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -31,7 +32,8 @@ class AiViewModelTest {
     fun setup() {
         Dispatchers.setMain(testDispatcher)
         coEvery { healthRepository.fetchMedicalIDs() } returns Result.success(listOf("ID1", "ID2"))
-        viewModel = AiViewModel(geminiAnalysisUseCase, healthRepository, workManager, testDispatcher)
+        viewModel =
+            AiViewModel(geminiAnalysisUseCase, healthRepository, workManager, testDispatcher)
     }
 
     @After

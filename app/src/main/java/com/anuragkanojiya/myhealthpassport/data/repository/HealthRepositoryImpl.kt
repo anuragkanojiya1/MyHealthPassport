@@ -3,7 +3,7 @@ package com.anuragkanojiya.myhealthpassport.data.repository
 import android.util.Base64
 import com.anuragkanojiya.myhealthpassport.domain.model.UserHealthData
 import com.anuragkanojiya.myhealthpassport.domain.repository.HealthRepository
-import com.anuragkanojiya.myhealthpassport.util.CryptoManager
+import com.anuragkanojiya.myhealthpassport.core.security.CryptoManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query

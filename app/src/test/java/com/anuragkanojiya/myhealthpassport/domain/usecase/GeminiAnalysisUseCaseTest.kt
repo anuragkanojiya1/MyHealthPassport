@@ -1,6 +1,5 @@
 package com.anuragkanojiya.myhealthpassport.domain.usecase
 
-import com.anuragkanojiya.myhealthpassport.data.datastore.GetApiKeyUseCase
 import com.google.common.truth.Truth.assertThat
 import io.mockk.mockk
 import org.junit.Before

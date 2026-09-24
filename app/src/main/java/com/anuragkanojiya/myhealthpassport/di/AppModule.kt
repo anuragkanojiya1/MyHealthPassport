@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.work.WorkManager
 import com.anuragkanojiya.myhealthpassport.data.repository.HealthRepositoryImpl
 import com.anuragkanojiya.myhealthpassport.domain.repository.HealthRepository
-import com.anuragkanojiya.myhealthpassport.util.CryptoManager
+import com.anuragkanojiya.myhealthpassport.core.security.CryptoManager
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

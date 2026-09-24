@@ -36,7 +36,6 @@ android {
     }
 
     play {
-
         serviceAccountCredentials.set(
             file("play-account.json")
         )
