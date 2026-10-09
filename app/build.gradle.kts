@@ -1,4 +1,4 @@
-plugins {
+﻿plugins {
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.google.firebase.crashlytics)
     alias(libs.plugins.android.application)
@@ -17,7 +17,7 @@ android {
         minSdk = 26
         targetSdk = 36
 
-        versionCode = 19
+        versionCode = 20
         versionName = "1.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

@@ -91,7 +91,7 @@ fun ApiKeySettingsScreen(
                     color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.medicalcheck),
+                        painter = painterResource(id = R.drawable.logo_transparent),
                         contentDescription = null,
                         modifier = Modifier.padding(24.dp),
                         contentScale = ContentScale.Fit

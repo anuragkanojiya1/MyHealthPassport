@@ -15,7 +15,9 @@ import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.anuragkanojiya.myhealthpassport.navigation.NavGraph
 import com.anuragkanojiya.myhealthpassport.core.designsystem.theme.MyHealthPassportTheme
@@ -28,6 +30,8 @@ import com.anuragkanojiya.myhealthpassport.feature.settings.SettingsViewModel
 import com.anuragkanojiya.myhealthpassport.widget.HealthDataWorker
 import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : FragmentActivity() {
@@ -47,7 +51,14 @@ class MainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        installSplashScreen()
+
         FirebaseApp.initializeApp(this)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            scheduleHealthWidgetWorker(applicationContext)
+        }
+
         setContent {
             val settingsState by settingsViewModel.uiState.collectAsState()
             
@@ -76,8 +87,6 @@ class MainActivity : FragmentActivity() {
                         }
                     }
                 }
-
-                scheduleHealthWidgetWorker(this)
 
                 NavGraph(
                     navController = navController,

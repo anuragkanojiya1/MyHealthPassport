@@ -80,7 +80,7 @@ fun SplashScreen(navController: NavController, mainViewModel: MainViewModel = vi
             horizontalArrangement = Arrangement.Center,
         ) {
             Image(
-                painter = painterResource(id = R.drawable.medicalcheck),
+                painter = painterResource(id = R.drawable.logo_transparent),
                 contentDescription = "My Health Passport",
                 modifier = Modifier.size(128.dp).scale(2f,2f)
                     .clip(shape = RoundedCornerShape(45.dp)),

@@ -83,7 +83,7 @@ fun NavigationDrawer(
                     ) {
                         Image(
                             painter = rememberAsyncImagePainter(
-                                  Firebase.auth.currentUser?.photoUrl ?: R.drawable.medicalcheck
+                                  Firebase.auth.currentUser?.photoUrl ?: R.drawable.logo_transparent
                             ),
                             contentDescription = "logo",
                             modifier = Modifier
