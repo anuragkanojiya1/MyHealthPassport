@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MyHealth Passport"
+rootProject.name = "MyHealthPassport"
 include(":app")
  
