@@ -107,7 +107,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload to Google Play Internal Testing
-        run: ./gradlew publishReleaseBundle --stacktrace --info --console=plain
+        run: ./gradlew publishReleaseBundle --stacktrace --console=plain
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
