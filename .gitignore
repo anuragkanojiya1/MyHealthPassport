@@ -77,6 +77,8 @@ out/
 *.jks
 google-services.json
 GoogleService-Info.plist
+play-account.json
+app/play-account.json
 
 # --- Version Control / Temp Files ---
 .svn
