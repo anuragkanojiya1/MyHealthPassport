@@ -2,6 +2,7 @@ package com.anuragkanojiya.myhealthpassport
 
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -47,9 +48,14 @@ class MainActivity : FragmentActivity() {
     private val apiKeyViewModel: ApiKeyViewModel by viewModels()
     private val settingsViewModel: SettingsViewModel by viewModels()
 
+    private val networkReceiver = NetworkReceiver()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        val intentFilter = IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+        registerReceiver(networkReceiver, intentFilter)
 
         installSplashScreen()
 
@@ -106,31 +112,12 @@ class MainActivity : FragmentActivity() {
         // You could handle deep linking here if you want to go to a specific screen
     }
 
-    /*
-    fun askSpeechInput(context: Context) {
-        if (!SpeechRecognizer.isRecognitionAvailable(context)) {
-            Toast.makeText(context, "Speech not Available", Toast.LENGTH_SHORT).show()
-        } else {
-            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-            intent.putExtra(
-                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH
-            )
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Talk")
-            startActivityForResult(intent, 102)
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        try {
+            unregisterReceiver(networkReceiver)
+        } catch (_: Exception) {}
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == 102 && resultCode == Activity.RESULT_OK) {
-            val result = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-            speechInput.value = result?.get(0).toString()
-        }
-    }
-    */
 
     fun scheduleHealthWidgetWorker(context: Context) {
         val request = androidx.work.PeriodicWorkRequestBuilder<HealthDataWorker>(15, java.util.concurrent.TimeUnit.MINUTES)

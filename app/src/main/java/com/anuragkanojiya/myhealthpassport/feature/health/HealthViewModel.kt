@@ -5,6 +5,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import androidx.glance.appwidget.updateAll
+import com.anuragkanojiya.myhealthpassport.widget.HealthChartWidget
 import com.anuragkanojiya.myhealthpassport.domain.model.HealthInfoState
 import com.anuragkanojiya.myhealthpassport.domain.model.UserHealthData
 import com.anuragkanojiya.myhealthpassport.domain.repository.HealthRepository
@@ -82,6 +84,7 @@ class HealthViewModel @Inject constructor(
             val result = repository.deleteHealthData(medicalID)
             result.onSuccess {
                 Toast.makeText(context, "Successfully Deleted Data", Toast.LENGTH_SHORT).show()
+                runCatching { HealthChartWidget.updateAll(context) }
                 navController.popBackStack()
             }.onFailure { e ->
                 Toast.makeText(context, e.message ?: "Error deleting data", Toast.LENGTH_SHORT).show()

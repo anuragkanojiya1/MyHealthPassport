@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -43,9 +44,9 @@ class HealthRepositoryImpl @Inject constructor(
 
     /**
      * Retrieves the user's master key from Firestore.
-     * Always fetches from SERVER to ensure we don't overwrite an existing key due to local cache lag.
+     * Uses local cache first for instant response, falling back to server if unavailable.
      */
-    private suspend fun getMasterKey(): ByteArray = mutex.withLock {
+    private suspend fun getMasterKey(forceServerFetch: Boolean = false): ByteArray = mutex.withLock {
         val currentUid = userId ?: throw IllegalStateException("User must be logged in to access encrypted data")
         
         // 1. Return memory cache if UID matches
@@ -53,7 +54,22 @@ class HealthRepositoryImpl @Inject constructor(
             return cachedKeyEntry!!.second
         }
 
-        // 2. Fetch from Server (Crucial for multi-device sync)
+        // 2. Try CACHE first unless server fetch is explicitly requested
+        if (!forceServerFetch) {
+            try {
+                val doc = getSecretDocument().get(Source.CACHE).await()
+                val keyBase64 = doc.getString("masterKey")
+                if (keyBase64 != null) {
+                    val key = Base64.decode(keyBase64, Base64.NO_WRAP)
+                    cachedKeyEntry = currentUid to key
+                    return key
+                }
+            } catch (_: Exception) {
+                // Fall through to server fetch
+            }
+        }
+
+        // 3. Fetch from Server
         return try {
             val doc = getSecretDocument().get(Source.SERVER).await()
             val keyBase64 = doc.getString("masterKey")
@@ -63,7 +79,7 @@ class HealthRepositoryImpl @Inject constructor(
                 cachedKeyEntry = currentUid to key
                 key
             } else {
-                // 3. Only generate if it truly doesn't exist on server
+                // 4. Only generate if it truly doesn't exist on server
                 val newKey = cryptoManager.generateRandomKey()
                 val newKeyBase64 = Base64.encodeToString(newKey, Base64.NO_WRAP)
                 getSecretDocument().set(mapOf("masterKey" to newKeyBase64)).await()
@@ -131,12 +147,31 @@ class HealthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getLatestHealthData(): UserHealthData? = try {
-        val snapshot = getHealthCollection()
-            .orderBy("timestamp", Query.Direction.DESCENDING)
-            .limit(1)
-            .get().await()
-        snapshot.documents.firstOrNull()?.data?.let { decryptData(it) }
-    } catch (e: Exception) {
+        // 1. Try local cache first for instant responsiveness (<10ms)
+        val cacheSnapshot = try {
+            getHealthCollection()
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .limit(1)
+                .get(Source.CACHE).await()
+        } catch (_: Exception) {
+            null
+        }
+
+        val cachedDoc = cacheSnapshot?.documents?.firstOrNull()
+        if (cachedDoc?.data != null) {
+            val decrypted = decryptData(cachedDoc.data!!)
+            decrypted?.let { return it }
+        }
+
+        // 2. Fallback to default fetch with a strict timeout (e.g. 4s) so widget/UI never hangs
+        withTimeoutOrNull(4000L) {
+            val snapshot = getHealthCollection()
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .limit(1)
+                .get(Source.DEFAULT).await()
+            snapshot.documents.firstOrNull()?.data?.let { decryptData(it) }
+        }
+    } catch (_: Exception) {
         null
     }
 
