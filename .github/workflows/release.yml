@@ -106,7 +106,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload to Google Play Internal Testing
+      - name: Upload to Google Play
         run: ./gradlew publishReleaseBundle --stacktrace --console=plain
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
