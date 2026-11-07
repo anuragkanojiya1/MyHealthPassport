@@ -23,7 +23,7 @@ class UserPreferencesRepository @Inject constructor(
         val GEMINI_API_KEY = stringPreferencesKey("gemini_api_key")
         val DARK_MODE = booleanPreferencesKey("dark_mode")
         val USER_NAME = stringPreferencesKey("user_name")
-
+        val APP_LANGUAGE = stringPreferencesKey("app_language")
     }
 
     val apiKeyFlow: Flow<String?> = context.dataStore.data
@@ -34,6 +34,9 @@ class UserPreferencesRepository @Inject constructor(
 
     val userNameFlow: Flow<String?> = context.dataStore.data
         .map { preferences -> preferences[PreferencesKeys.USER_NAME] }
+
+    val appLanguageFlow: Flow<String> = context.dataStore.data
+        .map { preferences -> preferences[PreferencesKeys.APP_LANGUAGE] ?: "" }
 
     suspend fun saveApiKey(apiKey: String) {
         context.dataStore.edit { preferences ->
@@ -50,6 +53,12 @@ class UserPreferencesRepository @Inject constructor(
     suspend fun saveUserName(userName: String) {
         context.dataStore.edit { preferences ->
             preferences[PreferencesKeys.USER_NAME] = userName
+        }
+    }
+
+    suspend fun saveAppLanguage(languageTag: String) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferencesKeys.APP_LANGUAGE] = languageTag
         }
     }
 

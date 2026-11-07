@@ -10,4 +10,7 @@ sealed class SettingsEvent {
     data class UpdateTempName(val name: String) : SettingsEvent()
     object SaveUserName : SettingsEvent()
     object RequestMedicalIdView : SettingsEvent()
+
+    data class ShowLanguageDialog(val show: Boolean) : SettingsEvent()
+    data class SelectLanguage(val languageTag: String) : SettingsEvent()
 }

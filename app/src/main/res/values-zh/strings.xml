@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyHealthPassport</string>
+    <string name="results_placeholder">（结果将在此处显示）</string>
+    <string name="label_prompt">提示</string>
+    <string name="action_go">开始</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">设置</string>
+    <string name="settings_section_account">账户</string>
+    <string name="settings_profile">个人资料</string>
+    <string name="settings_view_medical_records">查看我的医疗记录</string>
+    <string name="settings_verify_identity_subtitle">验证身份以查看所有记录</string>
+    <string name="settings_sign_out">退出登录</string>
+    <string name="settings_sign_out_subtitle">注销当前会话</string>
+    <string name="settings_section_preferences">偏好设置</string>
+    <string name="settings_dark_mode">深色模式</string>
+    <string name="settings_dark_mode_subtitle">开启应用的深色主题</string>
+    <string name="settings_app_language">应用语言</string>
+    <string name="settings_app_language_subtitle">更改应用的显示语言</string>
+    <string name="settings_language_system_default">系统默认</string>
+    <string name="settings_section_ai">AI 服务</string>
+    <string name="settings_gemini_api_key">Gemini API 密钥</string>
+    <string name="settings_api_configured">已配置 ✓</string>
+    <string name="settings_api_tap_to_configure">点击进行配置</string>
+    <string name="settings_reset_api_key">重置 API 密钥</string>
+    <string name="settings_reset_api_key_subtitle">从本地存储中清除密钥</string>
+    <string name="settings_section_about">关于</string>
+    <string name="settings_version">版本</string>
+    <string name="settings_privacy_policy">隐私政策</string>
+    <string name="settings_privacy_policy_subtitle">阅读我们的数据保护政策</string>
+    <string name="settings_update_name">更新姓名</string>
+    <string name="settings_enter_name">请输入您的姓名</string>
+    <string name="settings_save">保存</string>
+    <string name="settings_cancel">取消</string>
+
+    <!-- Languages -->
+    <string name="lang_english">英语 (English)</string>
+    <string name="lang_spanish">西班牙语 (Español)</string>
+    <string name="lang_hindi">印地语 (हिंदी)</string>
+    <string name="lang_french">法语 (Français)</string>
+    <string name="lang_german">德语 (Deutsch)</string>
+    <string name="lang_japanese">日语 (日本語)</string>
+    <string name="lang_portuguese">葡萄牙语 (Português)</string>
+    <string name="lang_chinese">简体中文</string>
+    <string name="lang_arabic">阿拉伯语 (العربية)</string>
+
+    <!-- Health & Widget -->
+    <string name="widget_title"> 健康统计</string>
+    <string name="widget_bp">🩺 血压: %1$s/%2$s mmHg</string>
+    <string name="widget_sugar">🍬 血糖: %1$s mg/dL</string>
+    <string name="widget_meds">💊 药物: %1$s</string>
+    <string name="widget_no_data">未找到健康数据。</string>
+</resources>

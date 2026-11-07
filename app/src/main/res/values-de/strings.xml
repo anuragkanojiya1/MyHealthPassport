@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyHealthPassport</string>
+    <string name="results_placeholder">(Ergebnisse werden hier angezeigt)</string>
+    <string name="label_prompt">Eingabe</string>
+    <string name="action_go">Los</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_section_account">Konto</string>
+    <string name="settings_profile">Profil</string>
+    <string name="settings_view_medical_records">Meine Krankenakten anzeigen</string>
+    <string name="settings_verify_identity_subtitle">Identität bestätigen, um alle Daten zu sehen</string>
+    <string name="settings_sign_out">Abmelden</string>
+    <string name="settings_sign_out_subtitle">Aus Ihrer Sitzung ausloggen</string>
+    <string name="settings_section_preferences">Einstellungen</string>
+    <string name="settings_dark_mode">Dunkelmodus</string>
+    <string name="settings_dark_mode_subtitle">Dunkles Design für die App aktivieren</string>
+    <string name="settings_app_language">App-Sprache</string>
+    <string name="settings_app_language_subtitle">Sprache der Anwendung ändern</string>
+    <string name="settings_language_system_default">Systemstandard</string>
+    <string name="settings_section_ai">KI-Dienste</string>
+    <string name="settings_gemini_api_key">Gemini API-Schlüssel</string>
+    <string name="settings_api_configured">Konfiguriert ✓</string>
+    <string name="settings_api_tap_to_configure">Zum Konfigurieren tippen</string>
+    <string name="settings_reset_api_key">API-Schlüssel zurücksetzen</string>
+    <string name="settings_reset_api_key_subtitle">Schlüssel aus dem lokalen Speicher entfernen</string>
+    <string name="settings_section_about">Über</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_privacy_policy">Datenschutz-Bestimmungen</string>
+    <string name="settings_privacy_policy_subtitle">Lesen Sie unsere Datenschutzrichtlinien</string>
+    <string name="settings_update_name">Name aktualisieren</string>
+    <string name="settings_enter_name">Geben Sie Ihren Namen ein</string>
+    <string name="settings_save">Speichern</string>
+    <string name="settings_cancel">Abbrechen</string>
+
+    <!-- Languages -->
+    <string name="lang_english">Englisch (English)</string>
+    <string name="lang_spanish">Spanisch (Español)</string>
+    <string name="lang_hindi">Hindi (हिंदी)</string>
+    <string name="lang_french">Französisch (Français)</string>
+    <string name="lang_german">Deutsch</string>
+    <string name="lang_japanese">Japanisch (日本語)</string>
+    <string name="lang_portuguese">Portugiesisch (Português)</string>
+    <string name="lang_chinese">Vereinfachtes Chinesisch (简体中文)</string>
+    <string name="lang_arabic">Arabisch (العربية)</string>
+
+    <!-- Health & Widget -->
+    <string name="widget_title"> Gesundheitswerte</string>
+    <string name="widget_bp">🩺 BD: %1$s/%2$s mmHg</string>
+    <string name="widget_sugar">🍬 Zucker: %1$s mg/dL</string>
+    <string name="widget_meds">💊 Meds: %1$s</string>
+    <string name="widget_no_data">Keine Gesundheitsdaten gefunden.</string>
+</resources>

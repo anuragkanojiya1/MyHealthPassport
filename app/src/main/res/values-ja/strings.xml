@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyHealthPassport</string>
+    <string name="results_placeholder">（結果がここに表示されます）</string>
+    <string name="label_prompt">プロンプト</string>
+    <string name="action_go">実行</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">設定</string>
+    <string name="settings_section_account">アカウント</string>
+    <string name="settings_profile">プロフィール</string>
+    <string name="settings_view_medical_records">医療記録を表示</string>
+    <string name="settings_verify_identity_subtitle">本人確認を行ってすべての記録を表示</string>
+    <string name="settings_sign_out">サインアウト</string>
+    <string name="settings_sign_out_subtitle">セッションからログアウト</string>
+    <string name="settings_section_preferences">環境設定</string>
+    <string name="settings_dark_mode">ダークモード</string>
+    <string name="settings_dark_mode_subtitle">アプリのダークテーマを有効にする</string>
+    <string name="settings_app_language">アプリの言語</string>
+    <string name="settings_app_language_subtitle">アプリの表示言語を変更</string>
+    <string name="settings_language_system_default">システム標準</string>
+    <string name="settings_section_ai">AIサービス</string>
+    <string name="settings_gemini_api_key">Gemini APIキー</string>
+    <string name="settings_api_configured">設定済み ✓</string>
+    <string name="settings_api_tap_to_configure">タップして設定</string>
+    <string name="settings_reset_api_key">APIキーをリセット</string>
+    <string name="settings_reset_api_key_subtitle">ローカルストレージからキーを削除</string>
+    <string name="settings_section_about">アプリについて</string>
+    <string name="settings_version">バージョン</string>
+    <string name="settings_privacy_policy">プライバシーポリシー</string>
+    <string name="settings_privacy_policy_subtitle">データ保護方針を読む</string>
+    <string name="settings_update_name">名前を更新</string>
+    <string name="settings_enter_name">名前を入力してください</string>
+    <string name="settings_save">保存</string>
+    <string name="settings_cancel">キャンセル</string>
+
+    <!-- Languages -->
+    <string name="lang_english">英語 (English)</string>
+    <string name="lang_spanish">スペイン語 (Español)</string>
+    <string name="lang_hindi">ヒンディー語 (हिंदी)</string>
+    <string name="lang_french">フランス語 (Français)</string>
+    <string name="lang_german">ドイツ語 (Deutsch)</string>
+    <string name="lang_japanese">日本語</string>
+    <string name="lang_portuguese">ポルトガル語 (Português)</string>
+    <string name="lang_chinese">簡体字中国語 (简体中文)</string>
+    <string name="lang_arabic">アラビア語 (العربية)</string>
+
+    <!-- Health & Widget -->
+    <string name="widget_title"> 健康統計</string>
+    <string name="widget_bp">🩺 血圧: %1$s/%2$s mmHg</string>
+    <string name="widget_sugar">🍬 血糖値: %1$s mg/dL</string>
+    <string name="widget_meds">💊 処方薬: %1$s</string>
+    <string name="widget_no_data">健康データが見つかりません。</string>
+</resources>

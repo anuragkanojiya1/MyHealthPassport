@@ -4,6 +4,54 @@
     <string name="results_placeholder">(Results will appear here)</string>
     <string name="label_prompt">Prompt</string>
     <string name="action_go">Go</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_section_account">Account</string>
+    <string name="settings_profile">Profile</string>
+    <string name="settings_view_medical_records">View My Medical Records</string>
+    <string name="settings_verify_identity_subtitle">Verify identity to see all IDs</string>
+    <string name="settings_sign_out">Sign Out</string>
+    <string name="settings_sign_out_subtitle">Logout from your session</string>
+    <string name="settings_section_preferences">Preferences</string>
+    <string name="settings_dark_mode">Dark Mode</string>
+    <string name="settings_dark_mode_subtitle">Enable dark theme for the app</string>
+    <string name="settings_app_language">App Language</string>
+    <string name="settings_app_language_subtitle">Change application language</string>
+    <string name="settings_language_system_default">System Default</string>
+    <string name="settings_section_ai">AI Services</string>
+    <string name="settings_gemini_api_key">Gemini API Key</string>
+    <string name="settings_api_configured">Configured ✓</string>
+    <string name="settings_api_tap_to_configure">Tap to configure</string>
+    <string name="settings_reset_api_key">Reset API Key</string>
+    <string name="settings_reset_api_key_subtitle">Remove key from local storage</string>
+    <string name="settings_section_about">About</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_privacy_policy_subtitle">Read our data protection policies</string>
+    <string name="settings_update_name">Update Name</string>
+    <string name="settings_enter_name">Enter your name</string>
+    <string name="settings_save">Save</string>
+    <string name="settings_cancel">Cancel</string>
+
+    <!-- Languages -->
+    <string name="lang_english">English</string>
+    <string name="lang_spanish">Spanish (Español)</string>
+    <string name="lang_hindi">Hindi (हिंदी)</string>
+    <string name="lang_french">French (Français)</string>
+    <string name="lang_german">German (Deutsch)</string>
+    <string name="lang_japanese">Japanese (日本語)</string>
+    <string name="lang_portuguese">Portuguese (Português)</string>
+    <string name="lang_chinese">Chinese Simplified (简体中文)</string>
+    <string name="lang_arabic">Arabic (العربية)</string>
+
+    <!-- Health & Widget -->
+    <string name="widget_title"> MyHealth Stats</string>
+    <string name="widget_bp">🩺 BP: %1$s/%2$s mmHg</string>
+    <string name="widget_sugar">🍬 Sugar: %1$s mg/dL</string>
+    <string name="widget_meds">💊 Meds: %1$s</string>
+    <string name="widget_no_data">No health data found.</string>
+
     <string name="prompt1">Analyze the provided medical certificate and give a detailed breakdown of the following:
 
 1. Disease Information:

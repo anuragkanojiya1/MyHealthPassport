@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyHealthPassport</string>
+    <string name="results_placeholder">(ستظهر النتائج هنا)</string>
+    <string name="label_prompt">المطالبة</string>
+    <string name="action_go">انطلق</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_section_account">الحساب</string>
+    <string name="settings_profile">الملف الشخصي</string>
+    <string name="settings_view_medical_records">عرض السجلات الطبية</string>
+    <string name="settings_verify_identity_subtitle">تأكيد الهوية لعرض السجلات</string>
+    <string name="settings_sign_out">تسجيل الخروج</string>
+    <string name="settings_sign_out_subtitle">تسجيل الخروج من الجلسة</string>
+    <string name="settings_section_preferences">التفضيلات</string>
+    <string name="settings_dark_mode">الوضع الداكن</string>
+    <string name="settings_dark_mode_subtitle">تفعيل المظهر الداكن للتطبيق</string>
+    <string name="settings_app_language">لغة التطبيق</string>
+    <string name="settings_app_language_subtitle">تغيير لغة عرض التطبيق</string>
+    <string name="settings_language_system_default">افتراضي النظام</string>
+    <string name="settings_section_ai">خدمات الذكاء الاصطناعي</string>
+    <string name="settings_gemini_api_key">مفتاح API لـ Gemini</string>
+    <string name="settings_api_configured">تم التهيئة ✓</string>
+    <string name="settings_api_tap_to_configure">انقر للتهيئة</string>
+    <string name="settings_reset_api_key">إعادة ضبط مفتاح API</string>
+    <string name="settings_reset_api_key_subtitle">إزالة المفتاح من التخزين المحلي</string>
+    <string name="settings_section_about">حول التطبيق</string>
+    <string name="settings_version">الإصدار</string>
+    <string name="settings_privacy_policy">سياسة الخصوصية</string>
+    <string name="settings_privacy_policy_subtitle">قراءة سياسات حماية البيانات</string>
+    <string name="settings_update_name">تحديث الاسم</string>
+    <string name="settings_enter_name">أدخل اسمك</string>
+    <string name="settings_save">حفظ</string>
+    <string name="settings_cancel">إلغاء</string>
+
+    <!-- Languages -->
+    <string name="lang_english">الإنجليزية (English)</string>
+    <string name="lang_spanish">الإسبانية (Español)</string>
+    <string name="lang_hindi">الهندية (हिंदी)</string>
+    <string name="lang_french">الفرنسية (Français)</string>
+    <string name="lang_german">الألمانية (Deutsch)</string>
+    <string name="lang_japanese">اليابانية (日本語)</string>
+    <string name="lang_portuguese">البرتغالية (Português)</string>
+    <string name="lang_chinese">الصينية المبسطة (简体中文)</string>
+    <string name="lang_arabic">العربية</string>
+
+    <!-- Health & Widget -->
+    <string name="widget_title"> إحصائيات الصحة</string>
+    <string name="widget_bp">🩺 ضغط الدم: %1$s/%2$s mmHg</string>
+    <string name="widget_sugar">🍬 السكر: %1$s mg/dL</string>
+    <string name="widget_meds">💊 الأدوية: %1$s</string>
+    <string name="widget_no_data">لم يتم العثور على بيانات صحية.</string>
+</resources>

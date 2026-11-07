@@ -1,6 +1,7 @@
 package com.anuragkanojiya.myhealthpassport.feature.settings
 
 import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.res.stringResource
+import com.anuragkanojiya.myhealthpassport.R
 import com.anuragkanojiya.myhealthpassport.core.security.BiometricPromptManager
 import com.anuragkanojiya.myhealthpassport.domain.model.SettingsEvent
 import com.anuragkanojiya.myhealthpassport.navigation.Screen
@@ -58,16 +61,31 @@ fun SettingsScreen(
         }
     }
 
+    val languages = listOf(
+        "" to stringResource(R.string.settings_language_system_default),
+        "en" to stringResource(R.string.lang_english),
+        "es" to stringResource(R.string.lang_spanish),
+        "hi" to stringResource(R.string.lang_hindi),
+        "fr" to stringResource(R.string.lang_french),
+        "de" to stringResource(R.string.lang_german),
+        "ja" to stringResource(R.string.lang_japanese),
+        "pt" to stringResource(R.string.lang_portuguese),
+        "zh" to stringResource(R.string.lang_chinese),
+        "ar" to stringResource(R.string.lang_arabic)
+    )
+    val currentLangName = languages.firstOrNull { it.first == state.selectedLanguageTag }?.second
+        ?: stringResource(R.string.settings_language_system_default)
+
     // Handle Name Edit Dialog
     if (state.isNameDialogOpen) {
         AlertDialog(
             onDismissRequest = { viewModel.onEvent(SettingsEvent.ShowNameDialog(false)) },
-            title = { Text("Update Name", color = HealthBlueDark, fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.settings_update_name), color = HealthBlueDark, fontWeight = FontWeight.Bold) },
             text = {
                 OutlinedTextField(
                     value = state.tempUserName,
                     onValueChange = { viewModel.onEvent(SettingsEvent.UpdateTempName(it)) },
-                    label = { Text("Enter your name") },
+                    label = { Text(stringResource(R.string.settings_enter_name)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
@@ -79,12 +97,47 @@ fun SettingsScreen(
             },
             confirmButton = {
                 TextButton(onClick = { viewModel.onEvent(SettingsEvent.SaveUserName) }) {
-                    Text("Save", color = HealthBlueDark, fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.settings_save), color = HealthBlueDark, fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { viewModel.onEvent(SettingsEvent.ShowNameDialog(false)) }) {
-                    Text("Cancel", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(R.string.settings_cancel), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
+        )
+    }
+
+    // Handle Language Selection Dialog
+    if (state.isLanguageDialogOpen) {
+        AlertDialog(
+            onDismissRequest = { viewModel.onEvent(SettingsEvent.ShowLanguageDialog(false)) },
+            title = { Text(stringResource(R.string.settings_app_language), color = HealthBlueDark, fontWeight = FontWeight.Bold) },
+            text = {
+                LazyColumn(modifier = Modifier.fillMaxWidth().heightIn(max = 320.dp)) {
+                    items(languages.size) { index ->
+                        val (tag, name) = languages[index]
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { viewModel.onEvent(SettingsEvent.SelectLanguage(tag)) }
+                                .padding(vertical = 10.dp, horizontal = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = (tag == state.selectedLanguageTag),
+                                onClick = { viewModel.onEvent(SettingsEvent.SelectLanguage(tag)) }
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(text = name, style = MaterialTheme.typography.bodyLarge)
+                        }
+                    }
+                }
+            },
+            confirmButton = {},
+            dismissButton = {
+                TextButton(onClick = { viewModel.onEvent(SettingsEvent.ShowLanguageDialog(false)) }) {
+                    Text(stringResource(R.string.settings_cancel), color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
         )
@@ -94,7 +147,7 @@ fun SettingsScreen(
         topBar = {
             Column {
                 TopAppBar(
-                    title = { Text("Settings", fontWeight = FontWeight.Bold) },
+                    title = { Text(stringResource(R.string.settings_title), fontWeight = FontWeight.Bold) },
                     navigationIcon = {
                         IconButton(onClick = { navController.popBackStack() }) {
                             Icon(
@@ -110,12 +163,6 @@ fun SettingsScreen(
                     ),
                     modifier = Modifier.shadow(elevation = 2.dp)
                 )
-//                Box(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .height(1.dp)
-//                        .background(Brush.horizontalGradient(listOf(HealthBlue, HealthBlueDark)))
-//                )
                 HorizontalDivider(
                     modifier = Modifier,
                     thickness = 0.25.dp,
@@ -131,10 +178,10 @@ fun SettingsScreen(
             contentPadding = PaddingValues(vertical = 8.dp)
         ) {
             // --- Account Section ---
-            item { SettingsHeader("Account") }
+            item { SettingsHeader(stringResource(R.string.settings_section_account)) }
             item {
                 SettingsItem(
-                    title = "Profile",
+                    title = stringResource(R.string.settings_profile),
                     subtitle = state.userName.ifEmpty { state.userEmail },
                     icon = Icons.Default.Person,
                     onClick = { viewModel.onEvent(SettingsEvent.ShowNameDialog(true)) }
@@ -142,8 +189,8 @@ fun SettingsScreen(
             }
             item {
                 SettingsItem(
-                    title = "View My Medical Records",
-                    subtitle = "Verify identity to see all IDs",
+                    title = stringResource(R.string.settings_view_medical_records),
+                    subtitle = stringResource(R.string.settings_verify_identity_subtitle),
                     icon = Icons.Default.Visibility,
                     onClick = {
                         if (promptManager != null) {
@@ -152,7 +199,6 @@ fun SettingsScreen(
                                 description = "Authenticate to view your medical records"
                             )
                         } else {
-                            // Fallback if promptManager is null (e.g. in preview or if not initialized)
                             Toast.makeText(context, "Biometric authentication not available", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -160,8 +206,8 @@ fun SettingsScreen(
             }
             item {
                 SettingsItem(
-                    title = "Sign Out",
-                    subtitle = "Logout from your session",
+                    title = stringResource(R.string.settings_sign_out),
+                    subtitle = stringResource(R.string.settings_sign_out_subtitle),
                     icon = Icons.Default.Logout,
                     textColor = MaterialTheme.colorScheme.error,
                     onClick = {
@@ -176,25 +222,33 @@ fun SettingsScreen(
             item { HorizontalDivider(Modifier.padding(vertical = 8.dp), color = HealthBlue.copy(alpha = 0.15f)) }
 
             // --- Preferences Section ---
-            item { SettingsHeader("Preferences") }
+            item { SettingsHeader(stringResource(R.string.settings_section_preferences)) }
             item {
                 SettingsToggleItem(
-                    title = "Dark Mode",
-                    subtitle = "Enable dark theme for the app",
+                    title = stringResource(R.string.settings_dark_mode),
+                    subtitle = stringResource(R.string.settings_dark_mode_subtitle),
                     icon = Icons.Default.DarkMode,
                     checked = state.isDarkMode,
                     onCheckedChange = { viewModel.onEvent(SettingsEvent.ToggleDarkMode(it)) }
+                )
+            }
+            item {
+                SettingsItem(
+                    title = stringResource(R.string.settings_app_language),
+                    subtitle = currentLangName,
+                    icon = Icons.Default.Language,
+                    onClick = { viewModel.onEvent(SettingsEvent.ShowLanguageDialog(true)) }
                 )
             }
 
             item { HorizontalDivider(Modifier.padding(vertical = 8.dp), color = HealthBlue.copy(alpha = 0.15f)) }
 
             // --- AI Configuration Section ---
-            item { SettingsHeader("AI Services") }
+            item { SettingsHeader(stringResource(R.string.settings_section_ai)) }
             item {
                 SettingsItem(
-                    title = "Gemini API Key",
-                    subtitle = if (state.hasApiKey) "Configured ✓" else "Tap to configure",
+                    title = stringResource(R.string.settings_gemini_api_key),
+                    subtitle = if (state.hasApiKey) stringResource(R.string.settings_api_configured) else stringResource(R.string.settings_api_tap_to_configure),
                     icon = Icons.Default.VpnKey,
                     onClick = { 
                         navController.navigate(Screen.ApiKeySettings.route) {
@@ -206,8 +260,8 @@ fun SettingsScreen(
             if (state.hasApiKey) {
                 item {
                     SettingsItem(
-                        title = "Reset API Key",
-                        subtitle = "Remove key from local storage",
+                        title = stringResource(R.string.settings_reset_api_key),
+                        subtitle = stringResource(R.string.settings_reset_api_key_subtitle),
                         icon = Icons.Default.Refresh,
                         onClick = { viewModel.onEvent(SettingsEvent.ClearApiKey) }
                     )
@@ -217,18 +271,18 @@ fun SettingsScreen(
             item { HorizontalDivider(Modifier.padding(vertical = 8.dp), color = HealthBlue.copy(alpha = 0.15f)) }
 
             // --- About Section ---
-            item { SettingsHeader("About") }
+            item { SettingsHeader(stringResource(R.string.settings_section_about)) }
             item {
                 SettingsItem(
-                    title = "Version",
+                    title = stringResource(R.string.settings_version),
                     subtitle = state.appVersion,
                     icon = Icons.Default.Info
                 )
             }
             item {
                 SettingsItem(
-                    title = "Privacy Policy",
-                    subtitle = "Read our data protection policies",
+                    title = stringResource(R.string.settings_privacy_policy),
+                    subtitle = stringResource(R.string.settings_privacy_policy_subtitle),
                     icon = Icons.Default.PrivacyTip,
                     onClick = {
                         navController.navigate(Screen.PrivacyPolicy.route) {

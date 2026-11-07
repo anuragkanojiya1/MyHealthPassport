@@ -21,6 +21,8 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.color.ColorProvider
+import androidx.compose.ui.platform.LocalContext
+import com.anuragkanojiya.myhealthpassport.R
 import com.anuragkanojiya.myhealthpassport.domain.model.UserHealthData
 import com.anuragkanojiya.myhealthpassport.domain.repository.HealthRepository
 import dagger.hilt.EntryPoint
@@ -51,6 +53,7 @@ object HealthChartWidget : GlanceAppWidget() {
 
 @Composable
 fun HealthChartContent(data: UserHealthData?) {
+    val context = LocalContext.current
     Column(
         modifier = GlanceModifier
             .fillMaxSize()
@@ -62,7 +65,7 @@ fun HealthChartContent(data: UserHealthData?) {
     ) {
         // Header
         Text(
-            text = "📊 MyHealth Stats",
+            text = "📊 " + context.resources.getString(R.string.widget_title),
             style = TextStyle(
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
@@ -76,7 +79,7 @@ fun HealthChartContent(data: UserHealthData?) {
         data?.let {
             // Blood Pressure
             Text(
-                text = "🩺 BP: ${it.systolicBP}/${it.diastolicBP} mmHg",
+                text = context.resources.getString(R.string.widget_bp, it.systolicBP.toString(), it.diastolicBP.toString()),
                 style = TextStyle(
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
@@ -88,7 +91,7 @@ fun HealthChartContent(data: UserHealthData?) {
 
             // Sugar
             Text(
-                text = "🍬 Sugar: ${it.bloodSugarLevel} mg/dL",
+                text = context.resources.getString(R.string.widget_sugar, it.bloodSugarLevel.toString()),
                 style = TextStyle(
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
@@ -102,7 +105,7 @@ fun HealthChartContent(data: UserHealthData?) {
             val meds = it.medications.split(",").map { m -> m.trim() }.filter { m -> m.isNotEmpty() }.take(2)
             if (meds.isNotEmpty()) {
                 Text(
-                    text = "💊 Meds: ${meds.joinToString()}",
+                    text = context.resources.getString(R.string.widget_meds, meds.joinToString()),
                     style = TextStyle(
                         fontWeight = FontWeight.Medium,
                         fontSize = 14.sp,
@@ -111,7 +114,7 @@ fun HealthChartContent(data: UserHealthData?) {
                 )
             }
         } ?: Text(
-            text = "No health data found.",
+            text = context.resources.getString(R.string.widget_no_data),
             style = TextStyle(
                 fontWeight = FontWeight.Medium,
                 fontSize = 14.sp,

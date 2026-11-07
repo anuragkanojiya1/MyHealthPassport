@@ -1,5 +1,7 @@
 package com.anuragkanojiya.myhealthpassport.feature.settings
 
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.anuragkanojiya.myhealthpassport.BuildConfig
@@ -30,13 +32,15 @@ class SettingsViewModel @Inject constructor(
     val uiState: StateFlow<SettingsUiState> = combine(
         repository.isDarkModeFlow,
         repository.apiKeyFlow,
+        repository.appLanguageFlow,
         _uiState
-    ) { isDarkMode, apiKey, localUi ->
+    ) { isDarkMode, apiKey, appLanguage, localUi ->
         // Merge repository-driven values with UI-only state (dialog, tempName, etc.)
         localUi.copy(
             userEmail = auth.currentUser?.email ?: "No Email",
             isDarkMode = isDarkMode,
             hasApiKey = !apiKey.isNullOrBlank(),
+            selectedLanguageTag = appLanguage,
             appVersion = "${BuildConfig.VERSION_NAME} (${BuildConfig.BUILD_TYPE})"
         )
     }.stateIn(
@@ -76,6 +80,22 @@ class SettingsViewModel @Inject constructor(
                         )
                     }
                 }
+            }
+            is SettingsEvent.ShowLanguageDialog -> {
+                _uiState.update { it.copy(isLanguageDialogOpen = event.show) }
+            }
+            is SettingsEvent.SelectLanguage -> {
+                val tag = event.languageTag
+                viewModelScope.launch(ioDispatcher) {
+                    repository.saveAppLanguage(tag)
+                    _uiState.update { it.copy(selectedLanguageTag = tag, isLanguageDialogOpen = false) }
+                }
+                val localeList = if (tag.isEmpty()) {
+                    LocaleListCompat.getEmptyLocaleList()
+                } else {
+                    LocaleListCompat.forLanguageTags(tag)
+                }
+                AppCompatDelegate.setApplicationLocales(localeList)
             }
 
             else -> {}
