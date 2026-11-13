@@ -2,7 +2,7 @@
 
 MyHealthPassport is a cutting-edge Android application built with Jetpack Compose that securely stores, manages, and analyzes patients' medical data. It integrates AI agents, voice-based interaction, health analytics, and emergency assistance to provide users with a comprehensive digital health assistant.
 
-![app_image](https://github.com/user-attachments/assets/c7ee00ec-14bb-46a8-a71f-ef0a43645704)
+![app_image](https://github.com/user-attachments/assets/9d781833-217e-4492-8fd1-b94b44f91119)
 
 ---
 
