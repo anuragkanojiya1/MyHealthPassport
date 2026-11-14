@@ -12,6 +12,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.compose.runtime.LaunchedEffect
@@ -20,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
+import com.anuragkanojiya.myhealthpassport.data.local.datastore.UserPreferencesRepository
 import com.anuragkanojiya.myhealthpassport.navigation.NavGraph
 import com.anuragkanojiya.myhealthpassport.core.designsystem.theme.MyHealthPassportTheme
 import com.anuragkanojiya.myhealthpassport.core.security.BiometricPromptManager
@@ -31,12 +34,16 @@ import com.anuragkanojiya.myhealthpassport.feature.settings.SettingsViewModel
 import com.anuragkanojiya.myhealthpassport.widget.HealthDataWorker
 import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     // var speechInput = mutableStateOf("")
+
+    @Inject
+    lateinit var preferencesRepository: UserPreferencesRepository
 
     private val promptManager by lazy {
         BiometricPromptManager(this)
@@ -56,6 +63,20 @@ class MainActivity : AppCompatActivity() {
 
         val intentFilter = IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED)
         registerReceiver(networkReceiver, intentFilter)
+
+        lifecycleScope.launch {
+            preferencesRepository.appLanguageFlow.collect { tag ->
+                val currentTag = AppCompatDelegate.getApplicationLocales().toLanguageTags()
+                if (currentTag != tag && !(currentTag.isEmpty() && tag.isEmpty())) {
+                    val localeList = if (tag.isEmpty()) {
+                        LocaleListCompat.getEmptyLocaleList()
+                    } else {
+                        LocaleListCompat.forLanguageTags(tag)
+                    }
+                    AppCompatDelegate.setApplicationLocales(localeList)
+                }
+            }
+        }
 
         installSplashScreen()
 
