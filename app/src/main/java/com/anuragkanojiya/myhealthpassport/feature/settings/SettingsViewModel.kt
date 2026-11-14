@@ -71,14 +71,14 @@ class SettingsViewModel @Inject constructor(
             }
             is SettingsEvent.SaveUserName -> {
                 val newName = _uiState.value.tempUserName
+                _uiState.update {
+                    it.copy(
+                        userName = newName,
+                        isNameDialogOpen = false
+                    )
+                }
                 viewModelScope.launch(ioDispatcher) {
                     repository.saveUserName(newName)
-                    _uiState.update {
-                        it.copy(
-                            userName = newName,
-                            isNameDialogOpen = false
-                        )
-                    }
                 }
             }
             is SettingsEvent.ShowLanguageDialog -> {
@@ -86,9 +86,9 @@ class SettingsViewModel @Inject constructor(
             }
             is SettingsEvent.SelectLanguage -> {
                 val tag = event.languageTag
+                _uiState.update { it.copy(selectedLanguageTag = tag, isLanguageDialogOpen = false) }
                 viewModelScope.launch(ioDispatcher) {
                     repository.saveAppLanguage(tag)
-                    _uiState.update { it.copy(selectedLanguageTag = tag, isLanguageDialogOpen = false) }
                 }
                 val localeList = if (tag.isEmpty()) {
                     LocaleListCompat.getEmptyLocaleList()

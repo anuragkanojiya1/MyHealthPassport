@@ -5,6 +5,97 @@
     <string name="label_prompt">Invite</string>
     <string name="action_go">Go</string>
 
+    <!-- Auth -->
+    <string name="auth_welcome_back">Bon retour</string>
+    <string name="auth_sign_in_subtitle">Accédez à vos dossiers médicaux et à l\'assistance IA</string>
+    <string name="auth_create_account">Créer un compte</string>
+    <string name="auth_create_account_subtitle">Rejoignez MyHealthPassport pour un suivi de santé intelligent</string>
+    <string name="auth_email">E-mail</string>
+    <string name="auth_email_placeholder">exemple@gmail.com</string>
+    <string name="auth_password">Mot de passe</string>
+    <string name="auth_confirm_password">Confirmer le mot de passe</string>
+    <string name="auth_login">Se connecter</string>
+    <string name="auth_sign_up">S\'inscrire</string>
+    <string name="auth_dont_have_account">Vous n\'avez pas de compte ? </string>
+    <string name="auth_already_have_account">Vous avez déjà un compte ? </string>
+    <string name="auth_sign_in_google">Se connecter avec Google</string>
+    <string name="auth_sign_up_google">S\'inscrire avec Google</string>
+    <string name="auth_or">OU</string>
+    <string name="auth_signing_in">Connexion en cours…</string>
+    <string name="auth_creating_account">Création du compte…</string>
+
+    <!-- Drawer Navigation -->
+    <string name="nav_home">Accueil</string>
+    <string name="nav_health_agent">Agent de santé</string>
+    <string name="nav_emergency_contacts">Contacts d\'urgence</string>
+    <string name="nav_health_info">Infos santé</string>
+    <string name="nav_get_health_info">Obtenir des infos santé</string>
+    <string name="nav_medical_report_analyser">Analyseur de rapports médicaux</string>
+    <string name="nav_analytics_graphs">Analyses &amp; Graphiques</string>
+    <string name="nav_settings">Paramètres</string>
+    <string name="nav_sign_out">Déconnexion</string>
+
+    <!-- Home Dashboard -->
+    <string name="home_welcome">Bienvenue</string>
+    <string name="home_quick_actions">Actions rapides</string>
+    <string name="home_save_data">Enregistrer les données</string>
+    <string name="home_save_data_desc">Stocker les dossiers médicaux en toute sécurité</string>
+    <string name="home_get_data">Obtenir les données</string>
+    <string name="home_get_data_desc">Rechercher et afficher les détails de santé</string>
+    <string name="home_ai_assistant">Assistant santé IA</string>
+    <string name="home_ai_assistant_desc">Poser des questions à l\'IA sur les symptômes et médicaments</string>
+    <string name="home_health_analytics">Analyses de santé</string>
+    <string name="home_health_analytics_desc">Visualiser les constantes et tendances de pression artérielle</string>
+
+    <!-- Health Form & Search -->
+    <string name="health_form_title">Ajouter un dossier de santé</string>
+    <string name="health_save_button">ENREGISTRER LES DONNÉES DE SANTÉ</string>
+    <string name="health_name">Nom complet</string>
+    <string name="health_age">Âge</string>
+    <string name="health_gender">Genre</string>
+    <string name="health_blood_group">Groupe sanguin</string>
+    <string name="health_weight">Poids (kg)</string>
+    <string name="health_height">Taille (cm)</string>
+    <string name="health_systolic_bp">PA Systolique (mmHg)</string>
+    <string name="health_diastolic_bp">PA Diastolique (mmHg)</string>
+    <string name="health_blood_sugar">Glycémie (mg/dL)</string>
+    <string name="health_medications">Médicaments</string>
+    <string name="health_allergies">Allergies</string>
+    <string name="health_emergency_phone">Téléphone d\'urgence</string>
+    <string name="health_address">Adresse</string>
+    <string name="health_condition">État de santé</string>
+    <string name="health_search_title">Rechercher des données de santé</string>
+    <string name="health_enter_medical_id">Entrer l\'identifiant médical</string>
+    <string name="health_get_data_button">OBTENIR LES DONNÉES</string>
+    <string name="health_view_summary">VOIR LE RÉSUMÉ DÉTAILLÉ</string>
+    <string name="health_delete_record">SUPPRIMER LE DOSSIER</string>
+
+    <!-- Emergency Contacts -->
+    <string name="emergency_title">Contacts d\'urgence</string>
+    <string name="emergency_add_contact">Ajouter un contact</string>
+    <string name="emergency_contact_name">Nom du contact</string>
+    <string name="emergency_phone_number">Numéro de téléphone</string>
+    <string name="emergency_save_contact">ENREGISTRER LE CONTACT</string>
+    <string name="emergency_call">Appeler</string>
+    <string name="emergency_no_contacts">Aucun contact d\'urgence trouvé.</string>
+
+    <!-- AI Agent & Reports -->
+    <string name="ai_agent_title">Agent de santé IA</string>
+    <string name="ai_additional_info">Informations supplémentaires</string>
+    <string name="ai_send">Envoyer</string>
+    <string name="ai_placeholder">Posez-moi des questions sur votre santé…</string>
+    <string name="report_analyser_title">Analyseur de rapports médicaux</string>
+    <string name="report_upload">Téléverser un rapport médical</string>
+    <string name="report_analyze">Analyser le document</string>
+    <string name="report_confirm_save">CONFIRMER ET ENREGISTRER</string>
+    <string name="report_edit">Modifier</string>
+    <string name="report_update">Mettre à jour</string>
+    <string name="report_cancel">Annuler</string>
+    <string name="report_done">TERMINÉ</string>
+    <string name="report_get_ai_insights">Obtenir des analyses IA 💡</string>
+    <string name="report_listen_analysis">🔊 Écouter l\'analyse</string>
+    <string name="report_no_data">Aucune donnée</string>
+
     <!-- Settings Screen -->
     <string name="settings_title">Paramètres</string>
     <string name="settings_section_account">Compte</string>

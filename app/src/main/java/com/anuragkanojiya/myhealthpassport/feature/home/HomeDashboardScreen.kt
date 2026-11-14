@@ -46,6 +46,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -204,14 +205,14 @@ fun HomeScreen(navController: NavController) {
                 onClick = { navController.navigate(Screen.HealthInfo.route) },
                 border = BorderStroke(1.5.dp, HealthBlueDark)
             ) {
-                Text("Save Data", color = HealthBlue, fontWeight = FontWeight.W700)
+                Text(stringResource(R.string.home_save_data), color = HealthBlue, fontWeight = FontWeight.W700)
             }
         } else {
             OutlinedButton(
                 onClick = { navController.navigate(Screen.GetHealthInfo.route) },
                 border = BorderStroke(1.5.dp, HealthBlueDark)
             ) {
-                Text("Get Data", color = HealthBlue, fontWeight = FontWeight.W700)
+                Text(stringResource(R.string.home_get_data), color = HealthBlue, fontWeight = FontWeight.W700)
             }
         }
 
@@ -221,7 +222,7 @@ fun HomeScreen(navController: NavController) {
 
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(
-                text = "Account Services",
+                text = stringResource(R.string.home_quick_actions),
                 style = MaterialTheme.typography.labelLarge,
                 color = HealthBlueDark,
                 fontWeight = FontWeight.Bold,
@@ -248,12 +249,12 @@ fun HomeScreen(navController: NavController) {
                     Spacer(modifier = Modifier.width(16.dp))
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Emergency Contacts",
+                            text = stringResource(R.string.nav_emergency_contacts),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Quick access to medical help",
+                            text = stringResource(R.string.emergency_title),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

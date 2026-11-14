@@ -5,6 +5,97 @@
     <string name="label_prompt">提示</string>
     <string name="action_go">开始</string>
 
+    <!-- Auth -->
+    <string name="auth_welcome_back">欢迎回来</string>
+    <string name="auth_sign_in_subtitle">访问您的医疗记录和 AI 助手</string>
+    <string name="auth_create_account">创建账户</string>
+    <string name="auth_create_account_subtitle">加入 MyHealthPassport 体验智能健康追踪</string>
+    <string name="auth_email">电子邮箱</string>
+    <string name="auth_email_placeholder">example@gmail.com</string>
+    <string name="auth_password">密码</string>
+    <string name="auth_confirm_password">确认密码</string>
+    <string name="auth_login">登录</string>
+    <string name="auth_sign_up">注册</string>
+    <string name="auth_dont_have_account">还没有账户？ </string>
+    <string name="auth_already_have_account">已有账户？ </string>
+    <string name="auth_sign_in_google">使用 Google 登录</string>
+    <string name="auth_sign_up_google">使用 Google 注册</string>
+    <string name="auth_or">或</string>
+    <string name="auth_signing_in">正在登录…</string>
+    <string name="auth_creating_account">正在创建账户…</string>
+
+    <!-- Drawer Navigation -->
+    <string name="nav_home">首页</string>
+    <string name="nav_health_agent">健康 Agent</string>
+    <string name="nav_emergency_contacts">紧急联系人</string>
+    <string name="nav_health_info">添加健康信息</string>
+    <string name="nav_get_health_info">查询健康信息</string>
+    <string name="nav_medical_report_analyser">医疗报告分析器</string>
+    <string name="nav_analytics_graphs">分析与图表</string>
+    <string name="nav_settings">设置</string>
+    <string name="nav_sign_out">退出登录</string>
+
+    <!-- Home Dashboard -->
+    <string name="home_welcome">欢迎</string>
+    <string name="home_quick_actions">快捷操作</string>
+    <string name="home_save_data">保存数据</string>
+    <string name="home_save_data_desc">安全存储医疗记录</string>
+    <string name="home_get_data">获取数据</string>
+    <string name="home_get_data_desc">查询并查看健康详情</string>
+    <string name="home_ai_assistant">AI 健康助手</string>
+    <string name="home_ai_assistant_desc">咨询 AI 关于症状与药物</string>
+    <string name="home_health_analytics">健康分析</string>
+    <string name="home_health_analytics_desc">可视化生命体征与血压趋势</string>
+
+    <!-- Health Form & Search -->
+    <string name="health_form_title">添加健康记录</string>
+    <string name="health_save_button">保存健康数据</string>
+    <string name="health_name">全名</string>
+    <string name="health_age">年龄</string>
+    <string name="health_gender">性别</string>
+    <string name="health_blood_group">血型</string>
+    <string name="health_weight">体重 (kg)</string>
+    <string name="health_height">身高 (cm)</string>
+    <string name="health_systolic_bp">收缩压 (mmHg)</string>
+    <string name="health_diastolic_bp">舒张压 (mmHg)</string>
+    <string name="health_blood_sugar">血糖 (mg/dL)</string>
+    <string name="health_medications">药物</string>
+    <string name="health_allergies">过敏史</string>
+    <string name="health_emergency_phone">紧急联系电话</string>
+    <string name="health_address">地址</string>
+    <string name="health_condition">健康状况</string>
+    <string name="health_search_title">搜索健康数据</string>
+    <string name="health_enter_medical_id">输入医疗 ID</string>
+    <string name="health_get_data_button">获取数据</string>
+    <string name="health_view_summary">查看详细摘要</string>
+    <string name="health_delete_record">删除记录</string>
+
+    <!-- Emergency Contacts -->
+    <string name="emergency_title">紧急联系人</string>
+    <string name="emergency_add_contact">添加联系人</string>
+    <string name="emergency_contact_name">联系人姓名</string>
+    <string name="emergency_phone_number">电话号码</string>
+    <string name="emergency_save_contact">保存联系人</string>
+    <string name="emergency_call">拨打</string>
+    <string name="emergency_no_contacts">未找到紧急联系人。</string>
+
+    <!-- AI Agent & Reports -->
+    <string name="ai_agent_title">AI 健康 Agent</string>
+    <string name="ai_additional_info">附加信息</string>
+    <string name="ai_send">发送</string>
+    <string name="ai_placeholder">向我询问有关您健康的问题…</string>
+    <string name="report_analyser_title">医疗报告分析器</string>
+    <string name="report_upload">上传医疗报告</string>
+    <string name="report_analyze">分析文档</string>
+    <string name="report_confirm_save">确认并保存</string>
+    <string name="report_edit">编辑</string>
+    <string name="report_update">更新</string>
+    <string name="report_cancel">取消</string>
+    <string name="report_done">完成</string>
+    <string name="report_get_ai_insights">获取 AI 洞察 💡</string>
+    <string name="report_listen_analysis">🔊 聆听分析</string>
+    <string name="report_no_data">无数据</string>
+
     <!-- Settings Screen -->
     <string name="settings_title">设置</string>
     <string name="settings_section_account">账户</string>

@@ -5,6 +5,97 @@
     <string name="label_prompt">Eingabe</string>
     <string name="action_go">Los</string>
 
+    <!-- Auth -->
+    <string name="auth_welcome_back">Willkommen zurück</string>
+    <string name="auth_sign_in_subtitle">Zugriff auf Ihre Krankenakten und KI-Unterstützung</string>
+    <string name="auth_create_account">Konto erstellen</string>
+    <string name="auth_create_account_subtitle">Treten Sie MyHealthPassport für intelligente Gesundheitsüberwachung bei</string>
+    <string name="auth_email">E-Mail</string>
+    <string name="auth_email_placeholder">beispiel@gmail.com</string>
+    <string name="auth_password">Passwort</string>
+    <string name="auth_confirm_password">Passwort bestätigen</string>
+    <string name="auth_login">Anmelden</string>
+    <string name="auth_sign_up">Registrieren</string>
+    <string name="auth_dont_have_account">Noch kein Konto? </string>
+    <string name="auth_already_have_account">Bereits ein Konto vorhanden? </string>
+    <string name="auth_sign_in_google">Mit Google anmelden</string>
+    <string name="auth_sign_up_google">Mit Google registrieren</string>
+    <string name="auth_or">ODER</string>
+    <string name="auth_signing_in">Anmeldung läuft…</string>
+    <string name="auth_creating_account">Konto wird erstellt…</string>
+
+    <!-- Drawer Navigation -->
+    <string name="nav_home">Startseite</string>
+    <string name="nav_health_agent">Gesundheits-Agent</string>
+    <string name="nav_emergency_contacts">Notfallkontakte</string>
+    <string name="nav_health_info">Gesundheitsdaten hinzufügen</string>
+    <string name="nav_get_health_info">Gesundheitsdaten abrufen</string>
+    <string name="nav_medical_report_analyser">Befund-Analysator</string>
+    <string name="nav_analytics_graphs">Analysen &amp; Diagramme</string>
+    <string name="nav_settings">Einstellungen</string>
+    <string name="nav_sign_out">Abmelden</string>
+
+    <!-- Home Dashboard -->
+    <string name="home_welcome">Willkommen</string>
+    <string name="home_quick_actions">Schnellaktionen</string>
+    <string name="home_save_data">Daten speichern</string>
+    <string name="home_save_data_desc">Krankenakten sicher speichern</string>
+    <string name="home_get_data">Daten abrufen</string>
+    <string name="home_get_data_desc">Gesundheitsdaten suchen und anzeigen</string>
+    <string name="home_ai_assistant">KI-Gesundheitsassistent</string>
+    <string name="home_ai_assistant_desc">KI zu Symptomen &amp; Medikamenten befragen</string>
+    <string name="home_health_analytics">Gesundheitsanalysen</string>
+    <string name="home_health_analytics_desc">Vitalwerte &amp; Blutdrucktrends visualisieren</string>
+
+    <!-- Health Form & Search -->
+    <string name="health_form_title">Gesundheitsakte hinzufügen</string>
+    <string name="health_save_button">GESUNDHEITSDATEN SPEICHERN</string>
+    <string name="health_name">Vollständiger Name</string>
+    <string name="health_age">Alter</string>
+    <string name="health_gender">Geschlecht</string>
+    <string name="health_blood_group">Blutgruppe</string>
+    <string name="health_weight">Gewicht (kg)</string>
+    <string name="health_height">Größe (cm)</string>
+    <string name="health_systolic_bp">Systolisch (mmHg)</string>
+    <string name="health_diastolic_bp">Diastolisch (mmHg)</string>
+    <string name="health_blood_sugar">Blutzucker (mg/dL)</string>
+    <string name="health_medications">Medikamente</string>
+    <string name="health_allergies">Allergien</string>
+    <string name="health_emergency_phone">Notfalltelefon</string>
+    <string name="health_address">Adresse</string>
+    <string name="health_condition">Gesundheitszustand</string>
+    <string name="health_search_title">Gesundheitsdaten suchen</string>
+    <string name="health_enter_medical_id">Medizinische ID eingeben</string>
+    <string name="health_get_data_button">DATEN ABRUFEN</string>
+    <string name="health_view_summary">DETAILLIERTE ZUSAMMENFASSUNG ANZEIGEN</string>
+    <string name="health_delete_record">EINTRAG LÖSCHEN</string>
+
+    <!-- Emergency Contacts -->
+    <string name="emergency_title">Notfallkontakte</string>
+    <string name="emergency_add_contact">Kontakt hinzufügen</string>
+    <string name="emergency_contact_name">Kontaktname</string>
+    <string name="emergency_phone_number">Telefonnummer</string>
+    <string name="emergency_save_contact">KONTAKT SPEICHERN</string>
+    <string name="emergency_call">Anrufen</string>
+    <string name="emergency_no_contacts">Keine Notfallkontakte gefunden.</string>
+
+    <!-- AI Agent & Reports -->
+    <string name="ai_agent_title">KI-Gesundheits-Agent</string>
+    <string name="ai_additional_info">Zusätzliche Info</string>
+    <string name="ai_send">Senden</string>
+    <string name="ai_placeholder">Fragen Sie mich alles zu Ihrer Gesundheit…</string>
+    <string name="report_analyser_title">Befund-Analysator</string>
+    <string name="report_upload">Medizinischen Befund hochladen</string>
+    <string name="report_analyze">Dokument analysieren</string>
+    <string name="report_confirm_save">BESTÄTIGEN UND SPEICHERN</string>
+    <string name="report_edit">Bearbeiten</string>
+    <string name="report_update">Aktualisieren</string>
+    <string name="report_cancel">Abbrechen</string>
+    <string name="report_done">FERTIG</string>
+    <string name="report_get_ai_insights">KI-Erkenntnisse abrufen 💡</string>
+    <string name="report_listen_analysis">🔊 Analyse anhören</string>
+    <string name="report_no_data">Keine Daten</string>
+
     <!-- Settings Screen -->
     <string name="settings_title">Einstellungen</string>
     <string name="settings_section_account">Konto</string>

@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -116,7 +117,7 @@ fun EmergencyContactsList(
                     .padding(bottom = 88.dp) // Adjusted for the dynamic Add button
             ) {
                 Text(
-                    text = "Emergency Contacts",
+                    text = stringResource(R.string.emergency_title),
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground,
@@ -308,7 +309,7 @@ fun AddContactSection(
             ) {
                 Column(modifier = Modifier.padding(20.dp)) {
                     Text(
-                        text = "Add New Contact",
+                        text = stringResource(R.string.emergency_add_contact),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.primary
@@ -317,7 +318,7 @@ fun AddContactSection(
                     OutlinedTextField(
                         value = name,
                         onValueChange = onNameChange,
-                        label = { Text("Contact Name") },
+                        label = { Text(stringResource(R.string.emergency_contact_name)) },
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
                         shape = RoundedCornerShape(12.dp),
@@ -332,7 +333,7 @@ fun AddContactSection(
                     OutlinedTextField(
                         value = phone,
                         onValueChange = onPhoneChange,
-                        label = { Text("Phone Number") },
+                        label = { Text(stringResource(R.string.emergency_phone_number)) },
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
                         shape = RoundedCornerShape(12.dp),
@@ -359,7 +360,7 @@ fun AddContactSection(
                         colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text("SAVE CONTACT",
+                        Text(stringResource(R.string.emergency_save_contact),
                             color = Color.White,
                             fontWeight = FontWeight.Bold)
                     }

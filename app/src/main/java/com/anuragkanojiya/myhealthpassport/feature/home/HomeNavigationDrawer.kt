@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -112,13 +113,13 @@ fun NavigationDrawer(
                         .padding(vertical = 12.dp)
                 ) {
                     val items = listOf(
-                        DrawerItem("Home", Icons.Rounded.Home, Screen.FlipAnimation.route),
-                        DrawerItem("Health Agent", Icons.Rounded.AutoAwesome, Screen.AgentScreen.route),
-                        DrawerItem("Emergency Contacts", Icons.Rounded.ContactPhone, Screen.EmergencyContacts.route),
-                        DrawerItem("Health Info", Icons.Rounded.HealthAndSafety, Screen.HealthInfo.route),
-                        DrawerItem("Get Health Info", Icons.Rounded.Search, Screen.GetHealthInfo.route),
-                        DrawerItem("Medical Report Analyser", Icons.Rounded.Analytics, Screen.HealthAiScreen.route),
-                        DrawerItem("Settings", Icons.Rounded.Settings, Screen.SettingsScreen.route)
+                        DrawerItem(stringResource(R.string.nav_home), Icons.Rounded.Home, Screen.FlipAnimation.route),
+                        DrawerItem(stringResource(R.string.nav_health_agent), Icons.Rounded.AutoAwesome, Screen.AgentScreen.route),
+                        DrawerItem(stringResource(R.string.nav_emergency_contacts), Icons.Rounded.ContactPhone, Screen.EmergencyContacts.route),
+                        DrawerItem(stringResource(R.string.nav_health_info), Icons.Rounded.HealthAndSafety, Screen.HealthInfo.route),
+                        DrawerItem(stringResource(R.string.nav_get_health_info), Icons.Rounded.Search, Screen.GetHealthInfo.route),
+                        DrawerItem(stringResource(R.string.nav_medical_report_analyser), Icons.Rounded.Analytics, Screen.HealthAiScreen.route),
+                        DrawerItem(stringResource(R.string.nav_settings), Icons.Rounded.Settings, Screen.SettingsScreen.route)
                     )
 
                     items.forEach { item ->
@@ -194,7 +195,7 @@ fun NavigationDrawer(
                     )
 
                     NavigationDrawerItem(
-                        label = { Text(text = "Exit and Sign Out", fontWeight = FontWeight.Medium) },
+                        label = { Text(text = stringResource(R.string.nav_sign_out), fontWeight = FontWeight.Medium) },
                         selected = false,
                         icon = {
                             Icon(
@@ -268,8 +269,8 @@ private data class DrawerItem(val label: String, val icon: ImageVector, val rout
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
-        BottomNavItem("Home", Icons.Rounded.Home, Screen.FlipAnimation.route),
-        BottomNavItem("Health Charts", Icons.Rounded.Analytics, Screen.ChartScreen.route)
+        BottomNavItem(stringResource(R.string.nav_home), Icons.Rounded.Home, Screen.FlipAnimation.route),
+        BottomNavItem(stringResource(R.string.nav_analytics_graphs), Icons.Rounded.Analytics, Screen.ChartScreen.route)
     )
 
     val navBackStackEntry = navController.currentBackStackEntryAsState()

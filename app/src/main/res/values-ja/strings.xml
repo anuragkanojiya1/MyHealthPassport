@@ -5,6 +5,97 @@
     <string name="label_prompt">プロンプト</string>
     <string name="action_go">実行</string>
 
+    <!-- Auth -->
+    <string name="auth_welcome_back">おかえりなさい</string>
+    <string name="auth_sign_in_subtitle">医療記録とAIアシスタントにアクセス</string>
+    <string name="auth_create_account">アカウントを作成</string>
+    <string name="auth_create_account_subtitle">MyHealthPassportでスマートな健康管理を始めましょう</string>
+    <string name="auth_email">メールアドレス</string>
+    <string name="auth_email_placeholder">example@gmail.com</string>
+    <string name="auth_password">パスワード</string>
+    <string name="auth_confirm_password">パスワードの確認</string>
+    <string name="auth_login">ログイン</string>
+    <string name="auth_sign_up">新規登録</string>
+    <string name="auth_dont_have_account">アカウントをお持ちでないですか？ </string>
+    <string name="auth_already_have_account">すでにアカウントをお持ちですか？ </string>
+    <string name="auth_sign_in_google">Googleでログイン</string>
+    <string name="auth_sign_up_google">Googleで登録</string>
+    <string name="auth_or">または</string>
+    <string name="auth_signing_in">サインイン中…</string>
+    <string name="auth_creating_account">アカウント作成中…</string>
+
+    <!-- Drawer Navigation -->
+    <string name="nav_home">ホーム</string>
+    <string name="nav_health_agent">ヘルスエージェント</string>
+    <string name="nav_emergency_contacts">緊急連絡先</string>
+    <string name="nav_health_info">健康情報を追加</string>
+    <string name="nav_get_health_info">健康情報を検索</string>
+    <string name="nav_medical_report_analyser">医療レポートアナライザー</string>
+    <string name="nav_analytics_graphs">分析とグラフ</string>
+    <string name="nav_settings">設定</string>
+    <string name="nav_sign_out">サインアウト</string>
+
+    <!-- Home Dashboard -->
+    <string name="home_welcome">ようこそ</string>
+    <string name="home_quick_actions">クイックアクション</string>
+    <string name="home_save_data">データを保存</string>
+    <string name="home_save_data_desc">医療記録を安全に保存</string>
+    <string name="home_get_data">データを取得</string>
+    <string name="home_get_data_desc">健康データを検索・表示</string>
+    <string name="home_ai_assistant">AIヘルスアシスタント</string>
+    <string name="home_ai_assistant_desc">症状や薬についてAIに相談</string>
+    <string name="home_health_analytics">健康アナリティクス</string>
+    <string name="home_health_analytics_desc">バイタルと血圧の傾向を可視化</string>
+
+    <!-- Health Form & Search -->
+    <string name="health_form_title">健康記録を追加</string>
+    <string name="health_save_button">健康データを保存</string>
+    <string name="health_name">氏名</string>
+    <string name="health_age">年齢</string>
+    <string name="health_gender">性別</string>
+    <string name="health_blood_group">血液型</string>
+    <string name="health_weight">体重 (kg)</string>
+    <string name="health_height">身長 (cm)</string>
+    <string name="health_systolic_bp">収縮期血圧 (mmHg)</string>
+    <string name="health_diastolic_bp">拡張期血圧 (mmHg)</string>
+    <string name="health_blood_sugar">血糖値 (mg/dL)</string>
+    <string name="health_medications">処方薬</string>
+    <string name="health_allergies">アレルギー</string>
+    <string name="health_emergency_phone">緊急連絡先電話番号</string>
+    <string name="health_address">住所</string>
+    <string name="health_condition">健康状態</string>
+    <string name="health_search_title">健康データを検索</string>
+    <string name="health_enter_medical_id">医療IDを入力</string>
+    <string name="health_get_data_button">データを取得</string>
+    <string name="health_view_summary">詳細サマリーを表示</string>
+    <string name="health_delete_record">記録を削除</string>
+
+    <!-- Emergency Contacts -->
+    <string name="emergency_title">緊急連絡先</string>
+    <string name="emergency_add_contact">連絡先を追加</string>
+    <string name="emergency_contact_name">連絡先名</string>
+    <string name="emergency_phone_number">電話番号</string>
+    <string name="emergency_save_contact">連絡先を保存</string>
+    <string name="emergency_call">発信</string>
+    <string name="emergency_no_contacts">緊急連絡先が見つかりません。</string>
+
+    <!-- AI Agent & Reports -->
+    <string name="ai_agent_title">AIヘルスエージェント</string>
+    <string name="ai_additional_info">追加情報</string>
+    <string name="ai_send">送信</string>
+    <string name="ai_placeholder">健康について何でもお聞きください…</string>
+    <string name="report_analyser_title">医療レポートアナライザー</string>
+    <string name="report_upload">医療レポートをアップロード</string>
+    <string name="report_analyze">ドキュメントを解析</string>
+    <string name="report_confirm_save">確認して保存</string>
+    <string name="report_edit">編集</string>
+    <string name="report_update">更新</string>
+    <string name="report_cancel">キャンセル</string>
+    <string name="report_done">完了</string>
+    <string name="report_get_ai_insights">AIインサイトを取得 💡</string>
+    <string name="report_listen_analysis">🔊 解析結果を聴く</string>
+    <string name="report_no_data">データなし</string>
+
     <!-- Settings Screen -->
     <string name="settings_title">設定</string>
     <string name="settings_section_account">アカウント</string>

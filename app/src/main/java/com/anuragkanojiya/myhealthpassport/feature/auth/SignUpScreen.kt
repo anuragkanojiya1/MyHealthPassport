@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -72,13 +73,13 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Create Account",
+            text = stringResource(R.string.auth_create_account),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground
         )
         Text(
-            text = "Join us to manage your health journey",
+            text = stringResource(R.string.auth_create_account_subtitle),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(bottom = 24.dp)
@@ -89,8 +90,8 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             value = email,
             onValueChange = { email = it },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Email") },
-            placeholder = { Text("example@gmail.com") },
+            label = { Text(stringResource(R.string.auth_email)) },
+            placeholder = { Text(stringResource(R.string.auth_email_placeholder)) },
             singleLine = true,
             leadingIcon = {
                 Icon(Icons.Default.Email, contentDescription = null, tint = HealthBlue)
@@ -107,7 +108,7 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             value = password,
             onValueChange = { password = it },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Password") },
+            label = { Text(stringResource(R.string.auth_password)) },
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             singleLine = true,
             leadingIcon = {
@@ -133,7 +134,7 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Confirm Password") },
+            label = { Text(stringResource(R.string.auth_confirm_password)) },
             visualTransformation = if (confirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             singleLine = true,
             leadingIcon = {
@@ -199,7 +200,7 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
             if (isLoading) {
                 CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
             } else {
-                Text("Sign Up", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.auth_sign_up), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             }
         }
 
@@ -212,7 +213,7 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
         ) {
             HorizontalDivider(modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.outlineVariant)
             Text(
-                text = "Or continue with",
+                text = stringResource(R.string.auth_or),
                 modifier = Modifier.padding(horizontal = 16.dp),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -227,8 +228,8 @@ fun SignUpScreen(navController: NavController, auth: FirebaseAuth) {
 
         TextButton(onClick = { navController.navigate(Screen.Login.route) }) {
             Row {
-                Text("Already have an account? ", color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Text("Log In", color = HealthBlue, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.auth_already_have_account), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(R.string.auth_login), color = HealthBlue, fontWeight = FontWeight.Bold)
             }
         }
     }

@@ -5,6 +5,97 @@
     <string name="label_prompt">المطالبة</string>
     <string name="action_go">انطلق</string>
 
+    <!-- Auth -->
+    <string name="auth_welcome_back">مرحباً بعودتك</string>
+    <string name="auth_sign_in_subtitle">الوصول إلى سجلاتك الطبية والمساعدة الذكية</string>
+    <string name="auth_create_account">إنشاء حساب</string>
+    <string name="auth_create_account_subtitle">انضم إلى MyHealthPassport لتتبع صحي ذكي</string>
+    <string name="auth_email">البريد الإلكتروني</string>
+    <string name="auth_email_placeholder">example@gmail.com</string>
+    <string name="auth_password">كلمة المرور</string>
+    <string name="auth_confirm_password">تأكيد كلمة المرور</string>
+    <string name="auth_login">تسجيل الدخول</string>
+    <string name="auth_sign_up">إنشاء حساب</string>
+    <string name="auth_dont_have_account">ليس لديك حساب؟ </string>
+    <string name="auth_already_have_account">لديك حساب بالفعل؟ </string>
+    <string name="auth_sign_in_google">تسجيل الدخول باستخدام Google</string>
+    <string name="auth_sign_up_google">إنشاء حساب باستخدام Google</string>
+    <string name="auth_or">أو</string>
+    <string name="auth_signing_in">جاري تسجيل الدخول…</string>
+    <string name="auth_creating_account">جاري إنشاء الحساب…</string>
+
+    <!-- Drawer Navigation -->
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_health_agent">وكيل الصحة الذكي</string>
+    <string name="nav_emergency_contacts">جهات اتصال الطوارئ</string>
+    <string name="nav_health_info">إضافة معلومات صحية</string>
+    <string name="nav_get_health_info">الاستعلام عن البيانات الصحية</string>
+    <string name="nav_medical_report_analyser">محلل التقارير الطبية</string>
+    <string name="nav_analytics_graphs">التحليلات والرسوم البيانية</string>
+    <string name="nav_settings">الإعدادات</string>
+    <string name="nav_sign_out">تسجيل الخروج</string>
+
+    <!-- Home Dashboard -->
+    <string name="home_welcome">مرحباً بك</string>
+    <string name="home_quick_actions">إجراءات سريعة</string>
+    <string name="home_save_data">حفظ البيانات</string>
+    <string name="home_save_data_desc">تخزين السجلات الطبية بأمان</string>
+    <string name="home_get_data">جلب البيانات</string>
+    <string name="home_get_data_desc">البحث وعرض التفاصيل الصحية</string>
+    <string name="home_ai_assistant">مساعد الصحة الذكي</string>
+    <string name="home_ai_assistant_desc">اسأل الذكاء الاصطناعي عن الأعراض والأدوية</string>
+    <string name="home_health_analytics">تحليلات الصحة</string>
+    <string name="home_health_analytics_desc">عرض المؤشرات الحيوية واتجاهات ضغط الدم</string>
+
+    <!-- Health Form & Search -->
+    <string name="health_form_title">إضافة سجل صحي</string>
+    <string name="health_save_button">حفظ البيانات الصحية</string>
+    <string name="health_name">الاسم الكامل</string>
+    <string name="health_age">العمر</string>
+    <string name="health_gender">الجنس</string>
+    <string name="health_blood_group">فصيلة الدم</string>
+    <string name="health_weight">الوزن (كجم)</string>
+    <string name="health_height">الطول (سم)</string>
+    <string name="health_systolic_bp">الضغط الانقباضي (mmHg)</string>
+    <string name="health_diastolic_bp">الضغط الانبساطي (mmHg)</string>
+    <string name="health_blood_sugar">سكر الدم (mg/dL)</string>
+    <string name="health_medications">الأدوية</string>
+    <string name="health_allergies">الحساسية</string>
+    <string name="health_emergency_phone">هاتف الطوارئ</string>
+    <string name="health_address">العنوان</string>
+    <string name="health_condition">الحالة الصحية</string>
+    <string name="health_search_title">البحث في البيانات الصحية</string>
+    <string name="health_enter_medical_id">أدخل المعرف الطبي</string>
+    <string name="health_get_data_button">جلب البيانات</string>
+    <string name="health_view_summary">عرض الملخص التفصيلي</string>
+    <string name="health_delete_record">حذف السجل</string>
+
+    <!-- Emergency Contacts -->
+    <string name="emergency_title">جهات اتصال الطوارئ</string>
+    <string name="emergency_add_contact">إضافة جهة اتصال</string>
+    <string name="emergency_contact_name">اسم جهة الاتصال</string>
+    <string name="emergency_phone_number">رقم الهاتف</string>
+    <string name="emergency_save_contact">حفظ جهة الاتصال</string>
+    <string name="emergency_call">اتصال</string>
+    <string name="emergency_no_contacts">لم يتم العثور على جهات اتصال طوارئ.</string>
+
+    <!-- AI Agent & Reports -->
+    <string name="ai_agent_title">وكيل الصحة الذكي</string>
+    <string name="ai_additional_info">معلومات إضافية</string>
+    <string name="ai_send">إرسال</string>
+    <string name="ai_placeholder">اسألني أي شيء عن صحتك…</string>
+    <string name="report_analyser_title">محلل التقارير الطبية</string>
+    <string name="report_upload">تحميل تقرير طبي</string>
+    <string name="report_analyze">تحليل المستند</string>
+    <string name="report_confirm_save">تأكيد وحفظ</string>
+    <string name="report_edit">تعديل</string>
+    <string name="report_update">تحديث</string>
+    <string name="report_cancel">إلغاء</string>
+    <string name="report_done">تم</string>
+    <string name="report_get_ai_insights">الحصول على تحليلات الذكاء الاصطناعي 💡</string>
+    <string name="report_listen_analysis">🔊 الاستماع للتحليل</string>
+    <string name="report_no_data">لا توجد بيانات</string>
+
     <!-- Settings Screen -->
     <string name="settings_title">الإعدادات</string>
     <string name="settings_section_account">الحساب</string>

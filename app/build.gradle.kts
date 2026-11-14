@@ -17,8 +17,8 @@ android {
         minSdk = 26
         targetSdk = 36
 
-        versionCode = 27
-        versionName = "1.2.2"
+        versionCode = 28
+        versionName = "1.2.3"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -76,24 +76,75 @@ android {
 }
 
 dependencies {
+    // AndroidX & Compose
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.runtime.livedata)
+
+    // Compose UI & Material 3
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.storage)
-    implementation(libs.firebase.crashlytics)
-    implementation(libs.androidx.navigation.compose)
-
-    implementation(libs.generativeai)
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.adaptive)
 
+    // Firebase (Managed via BoM)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.crashlytics)
+
+    // Identity & Credentials
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+    implementation(libs.androidx.biometric)
+
+    // Networking, Image Loading & Serialization
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+    implementation(libs.generativeai)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Local Storage & Database
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+    implementation(libs.datastore.preferences)
+
+    // Background Work & Widgets
+    implementation(libs.work.runtime.ktx)
+    implementation(libs.glance)
+    implementation(libs.glance.appwidget)
+
+    // Hilt Dependency Injection
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.work)
+    ksp(libs.androidx.hilt.compiler)
+
+    // Charts & Animations
+    implementation(libs.lottie.compose)
+    implementation(libs.ycharts)
+
+    // Unit Testing
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
@@ -103,6 +154,7 @@ dependencies {
     testImplementation(libs.json)
     kspTest(libs.hilt.compiler)
 
+    // Android Testing
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -112,45 +164,9 @@ dependencies {
     androidTestImplementation(libs.truth)
     kspAndroidTest(libs.hilt.compiler)
 
+    // Debugging
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    implementation(libs.lottie.compose)
-    implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.credentials)
-    implementation(libs.androidx.credentials.play.services.auth)
-    implementation(libs.googleid)
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.firestore)
-    implementation(libs.androidx.runtime.livedata)
-    implementation(libs.coil.compose)
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.coil.network.okhttp)
-    implementation(libs.androidx.material.icons.extended)
-
-    implementation(libs.room.runtime)
-    ksp(libs.room.compiler)
-    implementation(libs.room.ktx)
-
-    implementation(libs.datastore.preferences)
-
-    implementation(libs.ycharts)
-    implementation(libs.glance)
-    implementation(libs.glance.appwidget)
-    implementation(libs.work.runtime.ktx)
-    implementation(libs.hilt.work)
-    ksp(libs.androidx.hilt.compiler)
-
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.androidx.biometric)
 }
 
 kotlin {

@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import com.anuragkanojiya.myhealthpassport.domain.model.UserHealthData
 import com.anuragkanojiya.myhealthpassport.core.designsystem.theme.HealthBlue
 import com.anuragkanojiya.myhealthpassport.core.designsystem.theme.HealthBlueDark
+import androidx.compose.ui.res.stringResource
 import com.google.firebase.Timestamp
 import com.anuragkanojiya.myhealthpassport.R
 
@@ -101,7 +102,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
             Spacer(modifier = Modifier.height(16.dp))
             
             Text(
-                text = "Update Health Profile",
+                text = stringResource(R.string.health_form_title),
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground,
                 fontWeight = FontWeight.Bold,
@@ -109,15 +110,15 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
             )
 
             HealthInputField("Medical ID (Required)", medicalID, { medicalID = it })
-            HealthInputField("Full Name", name, { name = it })
+            HealthInputField(stringResource(R.string.health_name), name, { name = it })
             
             Row(Modifier.fillMaxWidth()) {
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Blood Group", bloodGroup, { bloodGroup = it })
+                    HealthInputField(stringResource(R.string.health_blood_group), bloodGroup, { bloodGroup = it })
                 }
                 Spacer(Modifier.width(12.dp))
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Age", age, { age = it }, keyboardType = KeyboardType.Number)
+                    HealthInputField(stringResource(R.string.health_age), age, { age = it }, keyboardType = KeyboardType.Number)
                 }
             }
 
@@ -136,23 +137,23 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
 
             Row(Modifier.fillMaxWidth()) {
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Systolic BP", systolicBP, { systolicBP = it }, keyboardType = KeyboardType.Number)
+                    HealthInputField(stringResource(R.string.health_systolic_bp), systolicBP, { systolicBP = it }, keyboardType = KeyboardType.Number)
                 }
                 Spacer(Modifier.width(12.dp))
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Diastolic BP", diastolicBP, { diastolicBP = it }, keyboardType = KeyboardType.Number)
+                    HealthInputField(stringResource(R.string.health_diastolic_bp), diastolicBP, { diastolicBP = it }, keyboardType = KeyboardType.Number)
                 }
             }
 
-            HealthInputField("Blood Sugar Level", bloodSugarLevel, { bloodSugarLevel = it }, keyboardType = KeyboardType.Number)
+            HealthInputField(stringResource(R.string.health_blood_sugar), bloodSugarLevel, { bloodSugarLevel = it }, keyboardType = KeyboardType.Number)
 
             Row(Modifier.fillMaxWidth()) {
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Weight (Kg)", weight, { weight = it }, keyboardType = KeyboardType.Number)
+                    HealthInputField(stringResource(R.string.health_weight), weight, { weight = it }, keyboardType = KeyboardType.Number)
                 }
                 Spacer(Modifier.width(12.dp))
                 Box(Modifier.weight(1f)) {
-                    HealthInputField("Height (m)", height, { height = it }, keyboardType = KeyboardType.Number)
+                    HealthInputField(stringResource(R.string.health_height), height, { height = it }, keyboardType = KeyboardType.Number)
                 }
             }
 
@@ -169,12 +170,12 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
                 color = HealthBlueDark
             )
 
-            HealthInputField("Gender", gender, { gender = it })
-            HealthInputField("Medical Conditions", healthCondition, { healthCondition = it })
-            HealthInputField("Emergency Phone", emergencyPhoneNumber, { emergencyPhoneNumber = it }, keyboardType = KeyboardType.Phone)
-            HealthInputField("Address", address, { address = it })
-            HealthInputField("Allergies", allergies, { allergies = it })
-            HealthInputField("Medications", medications, { medications = it })
+            HealthInputField(stringResource(R.string.health_gender), gender, { gender = it })
+            HealthInputField(stringResource(R.string.health_condition), healthCondition, { healthCondition = it })
+            HealthInputField(stringResource(R.string.health_emergency_phone), emergencyPhoneNumber, { emergencyPhoneNumber = it }, keyboardType = KeyboardType.Phone)
+            HealthInputField(stringResource(R.string.health_address), address, { address = it })
+            HealthInputField(stringResource(R.string.health_allergies), allergies, { allergies = it })
+            HealthInputField(stringResource(R.string.health_medications), medications, { medications = it })
 
             if (errorMessage.isNotEmpty()) {
                 Text(
@@ -228,8 +229,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
                 if (isSaving) {
                     CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
                 } else {
-                    Text("SAVE HEALTH DATA", fontSize = 16.sp, fontWeight = FontWeight.Bold,
-                        )
+                    Text(stringResource(R.string.health_save_button), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 }
             }
             

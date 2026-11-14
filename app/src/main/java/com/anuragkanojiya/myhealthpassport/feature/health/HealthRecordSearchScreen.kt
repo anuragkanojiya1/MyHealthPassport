@@ -19,6 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -135,7 +136,7 @@ fun GetHealthInfo(navController: NavController, healthViewModel: HealthViewModel
                     contentColor = Color.White,
                     elevation = FloatingActionButtonDefaults.elevation(0.dp)
                 ) {
-                    Text("GET DATA", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.health_get_data_button), fontWeight = FontWeight.Bold)
                 }
             }
 
@@ -230,7 +231,7 @@ fun GetHealthInfo(navController: NavController, healthViewModel: HealthViewModel
                     contentColor = Color.White,
                     elevation = FloatingActionButtonDefaults.elevation(0.dp)
                 ) {
-                    Text("VIEW DETAILED SUMMARY", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.health_view_summary), fontWeight = FontWeight.Bold)
                 }
 
                 ExtendedFloatingActionButton(
@@ -250,7 +251,7 @@ fun GetHealthInfo(navController: NavController, healthViewModel: HealthViewModel
                     contentColor = Color.White,
                     elevation = FloatingActionButtonDefaults.elevation(0.dp)
                 ) {
-                    Text("DELETE RECORD", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.health_delete_record), fontWeight = FontWeight.Bold)
                 }
             }
         }
