@@ -39,7 +39,7 @@ android {
             file("play-account.json")
         )
 
-        track.set("production")
+        track.set("internal")
     }
 
     buildTypes {
