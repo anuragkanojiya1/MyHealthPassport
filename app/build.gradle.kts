@@ -17,8 +17,8 @@ android {
         minSdk = 26
         targetSdk = 36
 
-        versionCode = 31
-        versionName = "1.2.6"
+        versionCode = 32
+        versionName = "1.2.7"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -56,6 +56,7 @@ android {
 
     androidResources {
         localeFilters += listOf("en", "es", "hi", "fr", "de", "ja", "pt", "zh", "ar")
+        generateLocaleConfig = true
     }
 
     bundle {
