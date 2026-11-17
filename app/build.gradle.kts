@@ -17,8 +17,8 @@ android {
         minSdk = 26
         targetSdk = 36
 
-        versionCode = 30
-        versionName = "1.2.5"
+        versionCode = 31
+        versionName = "1.2.6"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -51,6 +51,16 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+    }
+
+    androidResources {
+        localeFilters += listOf("en", "es", "hi", "fr", "de", "ja", "pt", "zh", "ar")
+    }
+
+    bundle {
+        language {
+            enableSplit = false
         }
     }
 
