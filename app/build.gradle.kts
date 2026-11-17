@@ -64,11 +64,11 @@ android {
         buildConfig = true
     }
 
-    bundle {
-        language {
-            enableSplit = false
-        }
-    }
+//    bundle {
+//        language {
+//            enableSplit = false
+//        }
+//    }
 
     packaging {
         resources {
