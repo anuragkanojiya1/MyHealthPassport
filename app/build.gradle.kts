@@ -17,8 +17,8 @@ android {
         minSdk = 26
         targetSdk = 36
 
-        versionCode = 28
-        versionName = "1.2.3"
+        versionCode = 29
+        versionName = "1.2.4"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -62,6 +62,12 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+
+    bundle {
+        language {
+            enableSplit = false
+        }
     }
 
     packaging {
