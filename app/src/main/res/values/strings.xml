@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MyHealthPassport</string>
-    <string name="web_client_id">231155947287-ssleon1584dujboj2vji9lugu566hkii.apps.googleusercontent.com</string>
+    <string name="web_client_id" translatable="false">231155947287-ssleon1584dujboj2vji9lugu566hkii.apps.googleusercontent.com</string>
     <string name="results_placeholder">(Results will appear here)</string>
     <string name="label_prompt">Prompt</string>
     <string name="action_go">Go</string>
@@ -143,7 +143,7 @@
     <string name="widget_meds">💊 Meds: %1$s</string>
     <string name="widget_no_data">No health data found.</string>
 
-    <string name="prompt1">Analyze the provided medical certificate and give a detailed breakdown of the following:
+    <string name="prompt1" translatable="false">Analyze the provided medical certificate and give a detailed breakdown of the following:
 
 1. Disease Information:
  - Identify the disease or condition mentioned in the certificate.
@@ -154,7 +154,7 @@
  - Provide detailed explanations for each medication, including its purpose, dosage, possible side effects, and how it helps treat the disease or condition.
 
 Ensure accuracy and clarity in the descriptions, using the latest medical guidelines.</string>
-<string name="prompt2">Generate a medical report in the following structured sample JSON format:
+<string name="prompt2" translatable="false">Generate a medical report in the following structured sample JSON format:
 
 {
   "name": "John Doe",
