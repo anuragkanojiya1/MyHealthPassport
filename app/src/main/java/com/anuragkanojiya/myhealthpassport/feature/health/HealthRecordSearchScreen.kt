@@ -164,7 +164,7 @@ fun GetHealthInfo(navController: NavController, healthViewModel: HealthViewModel
                 color = MaterialTheme.colorScheme.outlineVariant
             )
             Text(
-                text = "Vitals", 
+                text = stringResource(R.string.health_vitals_header),
                 style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold, 
                 modifier = Modifier.align(Alignment.Start).padding(vertical = 8.dp), 

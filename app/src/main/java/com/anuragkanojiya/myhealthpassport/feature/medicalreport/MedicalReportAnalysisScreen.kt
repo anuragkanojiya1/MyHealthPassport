@@ -139,7 +139,7 @@ fun HealthAiScreen(
                 val inputStream: InputStream? = context.contentResolver.openInputStream(uri)
                 bitmap = BitmapFactory.decodeStream(inputStream)
             } catch (e: Exception) {
-                Toast.makeText(context, "Failed to load image", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.report_load_image_failed), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -152,7 +152,7 @@ fun HealthAiScreen(
         openGallery(getImageLauncher)
 
         if (!notificationGranted) {
-            Toast.makeText(context, "Notifications disabled. You won't receive background updates.", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context.getString(R.string.report_notifications_disabled), Toast.LENGTH_LONG).show()
         }
     }
 
@@ -186,13 +186,13 @@ fun HealthAiScreen(
                     .verticalScroll(rememberScrollState()),
             ) {
                 Text(
-                    text = "Medical Report Analysis",
+                    text = stringResource(R.string.report_analysis_title),
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
-                    text = "Choose your analysis option",
+                    text = stringResource(R.string.report_choose_option),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -238,12 +238,12 @@ fun HealthAiScreen(
                             )
                             Spacer(Modifier.height(12.dp))
                             Text(
-                                text = if (bitmap != null) "Report Selected" else "Tap to upload medical report",
+                                text = if (bitmap != null) stringResource(R.string.report_selected) else stringResource(R.string.report_tap_to_upload),
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "Supports JPG, PNG",
+                                text = stringResource(R.string.report_supports_formats),
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -258,8 +258,8 @@ fun HealthAiScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     FeatureCard(
-                        title = "Quick Save",
-                        description = "AI extracts and saves data automatically",
+                        title = stringResource(R.string.report_quick_save),
+                        description = stringResource(R.string.report_quick_save_desc),
                         icon = Icons.Default.Save,
                         gradient = brandGradient,
                         enabled = bitmap != null,
@@ -268,8 +268,8 @@ fun HealthAiScreen(
                     )
 
                     FeatureCard(
-                        title = "Detailed Analysis",
-                        description = "Comprehensive AI analysis of your report",
+                        title = stringResource(R.string.report_detailed_analysis),
+                        description = stringResource(R.string.report_detailed_analysis_desc),
                         icon = Icons.Default.Analytics,
                         gradient = brandGradient,
                         enabled = bitmap != null,
@@ -281,17 +281,17 @@ fun HealthAiScreen(
                 Spacer(Modifier.height(32.dp))
 
                 Text(
-                    text = "Analysis benefits",
+                    text = stringResource(R.string.report_analysis_benefits),
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Bold,
                     color = HealthBlueDark,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
                 Spacer(Modifier.height(16.dp))
-                InfoItem("Detailed insights from your reports")
-                InfoItem("Personalized recommendations")
-                InfoItem("Trend tracking over time")
-                InfoItem("Secure clinical data extraction")
+                InfoItem(stringResource(R.string.report_benefit_1))
+                InfoItem(stringResource(R.string.report_benefit_2))
+                InfoItem(stringResource(R.string.report_benefit_3))
+                InfoItem(stringResource(R.string.report_benefit_4))
 
                 Spacer(Modifier.height(24.dp))
 
@@ -301,7 +301,7 @@ fun HealthAiScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = "🔒 Your data is processed securely",
+                        text = stringResource(R.string.report_security_notice),
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(12.dp),
@@ -361,7 +361,7 @@ fun ReviewAndSaveBottomSheet(
     if (showEditDialog != null) {
         AlertDialog(
             onDismissRequest = { showEditDialog = null },
-            title = { Text("Edit ${showEditDialog!!.first}") },
+            title = { Text(stringResource(R.string.report_edit_field, showEditDialog!!.first)) },
             text = {
                 OutlinedTextField(
                     value = tempValue,
@@ -376,12 +376,12 @@ fun ReviewAndSaveBottomSheet(
                     showEditDialog!!.second(tempValue)
                     showEditDialog = null
                 }) {
-                    Text("Update")
+                    Text(stringResource(R.string.update))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showEditDialog = null }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -402,14 +402,14 @@ fun ReviewAndSaveBottomSheet(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "Review & Edit Data",
+                text = stringResource(R.string.report_review_edit),
                 style = MaterialTheme.typography.headlineSmall,
                 color = HealthBlueDark,
                 fontWeight = FontWeight.Bold
             )
 
             Text(
-                text = "Tap on any field to edit its value. Choose an existing Medical ID or enter a new one.",
+                text = stringResource(R.string.report_review_subtitle),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -419,7 +419,7 @@ fun ReviewAndSaveBottomSheet(
                 OutlinedTextField(
                     value = editedData.medicalID,
                     onValueChange = { editedData = editedData.copy(medicalID = it) },
-                    label = { Text("Medical ID (Required)") },
+                    label = { Text(stringResource(R.string.health_medical_id_required)) },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     trailingIcon = {
@@ -453,74 +453,89 @@ fun ReviewAndSaveBottomSheet(
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
             ) {
                 Column {
-                    EditableDetailRow("Patient Name", editedData.name) {
+                    val labelName = stringResource(R.string.health_patient_name)
+                    val labelAge = stringResource(R.string.health_age)
+                    val labelBloodGroup = stringResource(R.string.health_blood_group)
+                    val labelSystolic = stringResource(R.string.health_systolic_bp)
+                    val labelDiastolic = stringResource(R.string.health_diastolic_bp)
+                    val labelSugar = stringResource(R.string.health_blood_sugar)
+                    val labelWeight = stringResource(R.string.health_weight)
+                    val labelHeight = stringResource(R.string.health_height)
+                    val labelGender = stringResource(R.string.health_gender)
+                    val labelCondition = stringResource(R.string.health_condition)
+                    val labelPhone = stringResource(R.string.health_emergency_phone)
+                    val labelAddress = stringResource(R.string.health_address)
+                    val labelAllergies = stringResource(R.string.health_allergies)
+                    val labelMeds = stringResource(R.string.health_medications)
+
+                    EditableDetailRow(labelName, editedData.name) {
                         tempValue = editedData.name
-                        showEditDialog = "Patient Name" to { editedData = editedData.copy(name = it) }
+                        showEditDialog = labelName to { editedData = editedData.copy(name = it) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Age", editedData.age.toString()) {
+                    EditableDetailRow(labelAge, editedData.age.toString()) {
                         tempValue = editedData.age.toString()
-                        showEditDialog = "Age" to { editedData = editedData.copy(age = it.toIntOrNull() ?: 0) }
+                        showEditDialog = labelAge to { editedData = editedData.copy(age = it.toIntOrNull() ?: 0) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Blood Group", editedData.bloodGroup) {
+                    EditableDetailRow(labelBloodGroup, editedData.bloodGroup) {
                         tempValue = editedData.bloodGroup
-                        showEditDialog = "Blood Group" to { editedData = editedData.copy(bloodGroup = it) }
+                        showEditDialog = labelBloodGroup to { editedData = editedData.copy(bloodGroup = it) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("BP (Systolic)", editedData.systolicBP.toString()) {
+                    EditableDetailRow(labelSystolic, editedData.systolicBP.toString()) {
                         tempValue = editedData.systolicBP.toString()
-                        showEditDialog = "BP (Systolic)" to { editedData = editedData.copy(systolicBP = it.toIntOrNull() ?: 0) }
+                        showEditDialog = labelSystolic to { editedData = editedData.copy(systolicBP = it.toIntOrNull() ?: 0) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("BP (Diastolic)", editedData.diastolicBP.toString()) {
+                    EditableDetailRow(labelDiastolic, editedData.diastolicBP.toString()) {
                         tempValue = editedData.diastolicBP.toString()
-                        showEditDialog = "BP (Diastolic)" to { editedData = editedData.copy(diastolicBP = it.toIntOrNull() ?: 0) }
+                        showEditDialog = labelDiastolic to { editedData = editedData.copy(diastolicBP = it.toIntOrNull() ?: 0) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Blood Sugar", editedData.bloodSugarLevel.toString()) {
+                    EditableDetailRow(labelSugar, editedData.bloodSugarLevel.toString()) {
                         tempValue = editedData.bloodSugarLevel.toString()
-                        showEditDialog = "Blood Sugar" to { editedData = editedData.copy(bloodSugarLevel = it.toIntOrNull() ?: 0) }
+                        showEditDialog = labelSugar to { editedData = editedData.copy(bloodSugarLevel = it.toIntOrNull() ?: 0) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Weight (kg)", editedData.weight.toString()) {
+                    EditableDetailRow(labelWeight, editedData.weight.toString()) {
                         tempValue = editedData.weight.toString()
-                        showEditDialog = "Weight" to { editedData = editedData.copy(weight = it.toFloatOrNull() ?: 0.0f) }
+                        showEditDialog = labelWeight to { editedData = editedData.copy(weight = it.toFloatOrNull() ?: 0.0f) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Height (cm)", editedData.height.toString()) {
+                    EditableDetailRow(labelHeight, editedData.height.toString()) {
                         tempValue = editedData.height.toString()
-                        showEditDialog = "Height" to { editedData = editedData.copy(height = it.toFloatOrNull() ?: 0.0f) }
+                        showEditDialog = labelHeight to { editedData = editedData.copy(height = it.toFloatOrNull() ?: 0.0f) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Gender", editedData.gender) {
+                    EditableDetailRow(labelGender, editedData.gender) {
                         tempValue = editedData.gender
-                        showEditDialog = "Gender" to { editedData = editedData.copy(gender = it) }
+                        showEditDialog = labelGender to { editedData = editedData.copy(gender = it) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Health Condition", editedData.healthCondition) {
+                    EditableDetailRow(labelCondition, editedData.healthCondition) {
                         tempValue = editedData.healthCondition
-                        showEditDialog = "Health Condition" to { editedData = editedData.copy(healthCondition = it) }
+                        showEditDialog = labelCondition to { editedData = editedData.copy(healthCondition = it) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Emergency Phone", editedData.emergencyPhoneNumber) {
+                    EditableDetailRow(labelPhone, editedData.emergencyPhoneNumber) {
                         tempValue = editedData.emergencyPhoneNumber
-                        showEditDialog = "Emergency Phone" to { editedData = editedData.copy(emergencyPhoneNumber = it) }
+                        showEditDialog = labelPhone to { editedData = editedData.copy(emergencyPhoneNumber = it) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Address", editedData.address) {
+                    EditableDetailRow(labelAddress, editedData.address) {
                         tempValue = editedData.address
-                        showEditDialog = "Address" to { editedData = editedData.copy(address = it) }
+                        showEditDialog = labelAddress to { editedData = editedData.copy(address = it) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Allergies", editedData.allergies) {
+                    EditableDetailRow(labelAllergies, editedData.allergies) {
                         tempValue = editedData.allergies
-                        showEditDialog = "Allergies" to { editedData = editedData.copy(allergies = it) }
+                        showEditDialog = labelAllergies to { editedData = editedData.copy(allergies = it) }
                     }
                     HorizontalDivider()
-                    EditableDetailRow("Medications", editedData.medications) {
+                    EditableDetailRow(labelMeds, editedData.medications) {
                         tempValue = editedData.medications
-                        showEditDialog = "Medications" to { editedData = editedData.copy(medications = it) }
+                        showEditDialog = labelMeds to { editedData = editedData.copy(medications = it) }
                     }
                 }
             }
@@ -540,14 +555,14 @@ fun ReviewAndSaveBottomSheet(
                 colors = ButtonDefaults.buttonColors(containerColor = HealthBlue),
                 enabled = editedData.medicalID.isNotBlank()
             ) {
-                Text("CONFIRM AND SAVE", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.report_confirm_save), fontWeight = FontWeight.Bold)
             }
 
             TextButton(
                 onClick = onDismiss,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Cancel", color = MaterialTheme.colorScheme.error)
+                Text(stringResource(R.string.report_cancel), color = MaterialTheme.colorScheme.error)
             }
         }
     }
@@ -565,7 +580,7 @@ fun EditableDetailRow(label: String, value: String, onClick: () -> Unit) {
     ) {
         Column(modifier = Modifier.weight(1f)) {
             Text(text = label, style = MaterialTheme.typography.labelMedium, color = HealthBlue)
-            Text(text = value.ifBlank { "Not specified" }, style = MaterialTheme.typography.bodyLarge)
+            Text(text = value.ifBlank { stringResource(R.string.report_not_specified) }, style = MaterialTheme.typography.bodyLarge)
         }
         Icon(
             imageVector = Icons.Default.Edit,
@@ -595,7 +610,7 @@ fun ResultBottomSheet(result: String, onDismiss: () -> Unit) {
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
-                text = "Result",
+                text = stringResource(R.string.report_result_title),
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold,
@@ -615,7 +630,7 @@ fun ResultBottomSheet(result: String, onDismiss: () -> Unit) {
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp)
             ) {
-                Text("DONE")
+                Text(stringResource(R.string.report_done))
             }
         }
     }

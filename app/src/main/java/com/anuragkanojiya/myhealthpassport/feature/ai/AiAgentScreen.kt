@@ -47,6 +47,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -148,7 +149,7 @@ fun AgentScreen(
                 verticalArrangement = Arrangement.Top,
             ) {
                 Text(
-                    text = "Get your Personalized Diet with Exercise Recommendation Plan by our Agent...",
+                    text = stringResource(R.string.agent_subtitle),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 4.dp, bottom = 24.dp),
@@ -170,7 +171,7 @@ fun AgentScreen(
                         onValueChange = { medicalID = it },
                         shape = RoundedCornerShape(12.dp),
                         label = {
-                            Text(text = "MedicalID")
+                            Text(text = stringResource(R.string.agent_medical_id))
                         },
                         colors = textFieldColors(),
                         singleLine = true
@@ -215,7 +216,7 @@ fun AgentScreen(
                         contentColor = Color.White,
                         elevation = FloatingActionButtonDefaults.elevation(0.dp, 0.dp)
                     ) {
-                        Text(text = "Get Plan")
+                        Text(text = stringResource(R.string.agent_get_plan))
                     }
                 }
 
@@ -247,7 +248,7 @@ fun AgentScreen(
 
                             result.isFailure -> {
                                 Text(
-                                    text = "Error: ${result.exceptionOrNull()?.message}",
+                                    text = "${stringResource(R.string.error)}: ${result.exceptionOrNull()?.message}",
                                     modifier = Modifier.padding(vertical = 16.dp),
                                     color = MaterialTheme.colorScheme.error
                                 )
@@ -290,7 +291,7 @@ fun AgentScreen(
                             OutlinedTextField(
                                 value = query,
                                 onValueChange = { query = it },
-                                label = { Text("Additional info") },
+                                label = { Text(stringResource(R.string.ai_additional_info)) },
                                 modifier = Modifier.weight(1f),
                                 shape = RoundedCornerShape(12.dp),
                                 colors = textFieldColors(),
@@ -312,7 +313,7 @@ fun AgentScreen(
                                 ),
                                 elevation = FloatingActionButtonDefaults.elevation(0.dp, 0.dp)
                             ) {
-                                Text("Send")
+                                Text(stringResource(R.string.ai_send))
                             }
                         }
                     }

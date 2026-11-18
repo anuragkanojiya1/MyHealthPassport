@@ -128,7 +128,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
             )
             
             Text(
-                text = "Vitals", 
+                text = stringResource(R.string.health_vitals_header),
                 style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold, 
                 modifier = Modifier.align(Alignment.Start).padding(vertical = 8.dp), 
@@ -163,7 +163,7 @@ fun HealthInfo(navController: NavController, healthViewModel: HealthViewModel) {
             )
             
             Text(
-                text = "Additional Information", 
+                text = stringResource(R.string.health_additional_info_header),
                 style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold, 
                 modifier = Modifier.align(Alignment.Start).padding(vertical = 8.dp), 

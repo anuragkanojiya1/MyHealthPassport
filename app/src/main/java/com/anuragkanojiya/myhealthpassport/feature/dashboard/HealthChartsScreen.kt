@@ -19,6 +19,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
+import com.anuragkanojiya.myhealthpassport.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -195,14 +197,14 @@ fun ChartContent(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "No health data found",
+                    text = stringResource(R.string.charts_no_data),
                     style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
                     color = MaterialTheme.colorScheme.onBackground,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Add your medical records to see your progress charts and health insights.",
+                    text = stringResource(R.string.charts_no_data_desc),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center
@@ -219,7 +221,7 @@ fun ChartContent(
             ) {
                 item {
                     Text(
-                        text = "📊 Health Analytics",
+                        text = stringResource(R.string.charts_title),
                         style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
                         color = MaterialTheme.colorScheme.primary
                     )
@@ -228,7 +230,7 @@ fun ChartContent(
                 if (bloodPressureList.isNotEmpty()) {
                     item {
                         ChartCard(
-                            title = "Blood Pressure Trends",
+                            title = stringResource(R.string.charts_bp_title),
                             content = { BloodPressureChart(bloodPressureList) },
                             analyzeData = onAnalyzeBloodPressure,
                             aiResponse = bloodPressureAnalysis,
@@ -240,7 +242,7 @@ fun ChartContent(
                 if (bloodSugarLevelList.isNotEmpty()) {
                     item {
                         ChartCard(
-                            title = "Blood Sugar Levels",
+                            title = stringResource(R.string.charts_sugar_title),
                             content = { BloodSugarChart(bloodSugarLevelList) },
                             analyzeData = onAnalyzeBloodSugar,
                             aiResponse = bloodSugarAnalysis,
@@ -252,7 +254,7 @@ fun ChartContent(
                 if (medications.isNotEmpty()) {
                     item {
                         ChartCard(
-                            title = "Medication Distribution",
+                            title = stringResource(R.string.charts_meds_title),
                             content = { MedicationPieChart(medications) },
                             analyzeData = onAnalyzeMedications,
                             aiResponse = medicationAnalysis,
@@ -332,7 +334,7 @@ fun ChartCard(
                     if (isLoading) {
                         CircularProgressIndicator(modifier = Modifier.size(24.dp), color = Color.White)
                     } else {
-                        Text("Get AI Insights \uD83D\uDCA1", color = Color.White, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.report_get_ai_insights), color = Color.White, fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -352,7 +354,7 @@ fun ChartCard(
                         .fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp)
                 ) {
-                    Text("🔊 Listen to Analysis")
+                    Text(stringResource(R.string.report_listen_analysis))
                 }
             }
         }
@@ -445,7 +447,7 @@ fun BloodPressureChart(bloodPressureList: List<Triple<Timestamp, Int, Int>>) {
 fun BloodSugarChart(bloodSugarLevelList: List<Pair<Timestamp, Int>>) {
     if (bloodSugarLevelList.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("No data", style = MaterialTheme.typography.bodySmall)
+            Text(stringResource(R.string.report_no_data), style = MaterialTheme.typography.bodySmall)
         }
         return
     }

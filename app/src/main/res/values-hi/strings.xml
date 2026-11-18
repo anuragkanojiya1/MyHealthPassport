@@ -4,6 +4,14 @@
     <string name="results_placeholder">(परिणाम यहां दिखाई देंगे)</string>
     <string name="label_prompt">प्रॉम्प्ट</string>
     <string name="action_go">आगे बढ़ें</string>
+    <string name="back">वापस</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="save">सहेजें</string>
+    <string name="done">हो गया</string>
+    <string name="update">अपडेट करें</string>
+    <string name="edit">संपादित करें</string>
+    <string name="delete">हटाएं</string>
+    <string name="error">त्रुटि</string>
 
     <!-- Auth -->
     <string name="auth_welcome_back">वापसी पर स्वागत है</string>
@@ -34,6 +42,7 @@
     <string name="nav_analytics_graphs">विश्लेषण और ग्राफ</string>
     <string name="nav_settings">सेटिंग्स</string>
     <string name="nav_sign_out">साइन आउट करें</string>
+    <string name="nav_community_support">समुदाय और सहायता</string>
 
     <!-- Home Dashboard -->
     <string name="home_welcome">स्वागत है</string>
@@ -46,11 +55,13 @@
     <string name="home_ai_assistant_desc">लक्षणों और दवाओं के बारे में एआई से पूछें</string>
     <string name="home_health_analytics">स्वास्थ्य विश्लेषण</string>
     <string name="home_health_analytics_desc">वाइटल्स और बीपी रुझानों की कल्पना करें</string>
+    <string name="home_ai_insights">एआई स्वास्थ्य अंतर्दृष्टि</string>
 
-    <!-- Health Form & Search -->
+    <!-- Health Form & Search & Details -->
     <string name="health_form_title">स्वास्थ्य रिकॉर्ड जोड़ें</string>
     <string name="health_save_button">स्वास्थ्य डेटा सहेजें</string>
     <string name="health_name">पूरा नाम</string>
+    <string name="health_patient_name">मरीज़ का नाम</string>
     <string name="health_age">उम्र</string>
     <string name="health_gender">लिंग</string>
     <string name="health_blood_group">रक्त समूह</string>
@@ -66,9 +77,19 @@
     <string name="health_condition">स्वास्थ्य स्थिति</string>
     <string name="health_search_title">स्वास्थ्य डेटा खोजें</string>
     <string name="health_enter_medical_id">मेडिकल आईडी दर्ज करें</string>
+    <string name="health_medical_id_required">मेडिकल आईडी (आवश्यक)</string>
+    <string name="health_medical_id_search">खोजने के लिए मेडिकल आईडी</string>
     <string name="health_get_data_button">डेटा प्राप्त करें</string>
     <string name="health_view_summary">विस्तृत सारांश देखें</string>
     <string name="health_delete_record">रिकॉर्ड हटाएं</string>
+    <string name="health_find_record">स्वास्थ्य रिकॉर्ड खोजें</string>
+    <string name="health_vitals_header">वाइटल्स</string>
+    <string name="health_additional_info_header">अतिरिक्त जानकारी</string>
+    <string name="patient_record_details">रिकॉर्ड विवरण</string>
+    <string name="patient_medical_history">मेडिकल इतिहास</string>
+    <string name="patient_no_records">कोई रिकॉर्ड नहीं मिला</string>
+    <string name="patient_id_label">आईडी: %1$s</string>
+    <string name="patient_ai_insight">एआई स्वास्थ्य विश्लेषण</string>
 
     <!-- Emergency Contacts -->
     <string name="emergency_title">आपातकालीन संपर्क</string>
@@ -78,13 +99,41 @@
     <string name="emergency_save_contact">संपर्क सहेजें</string>
     <string name="emergency_call">कॉल करें</string>
     <string name="emergency_no_contacts">कोई आपातकालीन संपर्क नहीं मिला।</string>
+    <string name="emergency_standard_services">मानक सेवाएं</string>
+    <string name="emergency_saved_contacts">सहेजे गए संपर्क</string>
+    <string name="emergency_police">पुलिस</string>
+    <string name="emergency_ambulance">एम्बुलेंस</string>
 
-    <!-- AI Agent & Reports -->
+    <!-- AI Agent -->
     <string name="ai_agent_title">एआई स्वास्थ्य एजेंट</string>
     <string name="ai_additional_info">अतिरिक्त जानकारी</string>
     <string name="ai_send">भेजें</string>
     <string name="ai_placeholder">अपने स्वास्थ्य के बारे में कुछ भी पूछें…</string>
+    <string name="agent_subtitle">हमारे एजेंट द्वारा व्यक्तिगत आहार और व्यायाम योजना प्राप्त करें…</string>
+    <string name="agent_medical_id">मेडिकल आईडी</string>
+    <string name="agent_get_plan">योजना प्राप्त करें</string>
+
+    <!-- AI Reports & Analyser -->
     <string name="report_analyser_title">मेडिकल रिपोर्ट विश्लेषक</string>
+    <string name="report_analysis_title">मेडिकल रिपोर्ट विश्लेषण</string>
+    <string name="report_choose_option">अपना विश्लेषण विकल्प चुनें</string>
+    <string name="report_selected">रिपोर्ट चुनी गई</string>
+    <string name="report_tap_to_upload">मेडिकल रिपोर्ट अपलोड करने के लिए टैप करें</string>
+    <string name="report_supports_formats">JPG, PNG समर्थित हैं</string>
+    <string name="report_quick_save">त्वरित सहेजें</string>
+    <string name="report_quick_save_desc">एआई स्वचालित रूप से डेटा निकालता और सहेजता है</string>
+    <string name="report_detailed_analysis">विस्तृत विश्लेषण</string>
+    <string name="report_detailed_analysis_desc">आपकी रिपोर्ट का व्यापक एआई विश्लेषण</string>
+    <string name="report_analysis_benefits">विश्लेषण के लाभ</string>
+    <string name="report_benefit_1">आपकी रिपोर्ट से विस्तृत अंतर्दृष्टि</string>
+    <string name="report_benefit_2">व्यक्तिगत सिफारिशें</string>
+    <string name="report_benefit_3">समय के साथ रुझानों की ट्रैकिंग</string>
+    <string name="report_benefit_4">सुरक्षित नैदानिक डेटा निष्कर्षण</string>
+    <string name="report_security_notice">🔒 आपका डेटा सुरक्षित रूप से संसाधित किया जाता है</string>
+    <string name="report_review_edit">डेटा की समीक्षा करें और संपादित करें</string>
+    <string name="report_review_subtitle">मान संपादित करने के लिए किसी भी फ़ील्ड पर टैप करें। कोई मौजूदा आईडी चुनें या नई आईडी दर्ज करें।</string>
+    <string name="report_result_title">परिणाम</string>
+    <string name="report_edit_field">%1$s संपादित करें</string>
     <string name="report_upload">मेडिकल रिपोर्ट अपलोड करें</string>
     <string name="report_analyze">दस्तावेज़ का विश्लेषण करें</string>
     <string name="report_confirm_save">पुष्टि करें और सहेजें</string>
@@ -95,6 +144,14 @@
     <string name="report_get_ai_insights">एआई अंतर्दृष्टि प्राप्त करें 💡</string>
     <string name="report_listen_analysis">🔊 विश्लेषण सुनें</string>
     <string name="report_no_data">कोई डेटा नहीं</string>
+
+    <!-- Charts & Analytics -->
+    <string name="charts_title">📊 स्वास्थ्य विश्लेषण</string>
+    <string name="charts_no_data">कोई स्वास्थ्य डेटा नहीं मिला</string>
+    <string name="charts_no_data_desc">प्रगति चार्ट और स्वास्थ्य अंतर्दृष्टि देखने के लिए अपने मेडिकल रिकॉर्ड जोड़ें।</string>
+    <string name="charts_bp_title">ब्लड प्रेशर रुझान</string>
+    <string name="charts_sugar_title">ब्लड शुगर स्तर</string>
+    <string name="charts_meds_title">दवाओं का वितरण</string>
 
     <!-- Settings Screen -->
     <string name="settings_title">सेटिंग्स</string>
@@ -125,6 +182,39 @@
     <string name="settings_save">सहेजें</string>
     <string name="settings_cancel">रद्द करें</string>
 
+    <!-- API Key Settings -->
+    <string name="api_key_title">एआई कॉन्फ़िगरेशन</string>
+    <string name="api_key_header">जेमिनी एपीआई सेटअप</string>
+    <string name="api_key_subtitle">अपने व्यक्तिगत स्वास्थ्य एजेंट को सक्षम करने के लिए, कृपया नीचे अपनी जेमिनी एपीआई कुंजी दर्ज करें।</string>
+    <string name="api_key_get_free">गूगल एआई स्टूडियो से मुफ़्त एपीआई कुंजी प्राप्त करें</string>
+    <string name="api_key_placeholder">जेमिनी एपीआई कुंजी दर्ज करें</string>
+    <string name="api_key_save_continue">सहेजें और जारी रखें</string>
+
+    <!-- Privacy Policy Screen -->
+    <string name="privacy_title">माय हेल्थ पासपोर्ट गोपनीयता नीति</string>
+    <string name="privacy_effective_date">प्रभावी तिथि: 30 जुलाई 2026</string>
+    <string name="privacy_intro">माय हेल्थ पासपोर्ट आपकी गोपनीयता की रक्षा के लिए प्रतिबद्ध है। यह गोपनीयता नीति बताती है कि हम कौन सी जानकारी एकत्र करते हैं और उसका उपयोग कैसे करते हैं।</string>
+    <string name="privacy_sec1_title">1. हम जो जानकारी एकत्र करते हैं</string>
+    <string name="privacy_sec1_body">माय हेल्थ पासपोर्ट एक सुरक्षित डिजिटल स्वास्थ्य अनुभव प्रदान करने के लिए आवश्यक जानकारी एकत्र करता है, जिसमें खाता विवरण, मेडिकल प्रोफ़ाइल और अपलोड की गई रिपोर्ट शामिल हैं।</string>
+    <string name="privacy_sec2_title">2. हम आपकी जानकारी का उपयोग कैसे करते हैं</string>
+    <string name="privacy_sec2_body">हम आपकी जानकारी का उपयोग ऐप की मुख्य सुविधाएं प्रदान करने के लिए करते हैं, जैसे एआई विश्लेषण, रुझान रिपोर्ट और प्रोफ़ाइल प्रबंधन।</string>
+    <string name="privacy_sec3_title">3. एआई प्रसंस्करण और स्वास्थ्य डेटा</string>
+    <string name="privacy_sec3_body">कुछ सुविधाएं मेडिकल दस्तावेजों का विश्लेषण करने के लिए गूगल जेमिनी एआई का उपयोग करती हैं। डेटा का उपयोग केवल अनुरोधित विश्लेषण उत्पन्न करने के लिए किया जाता है।</string>
+    <string name="privacy_sec4_title">4. सुरक्षा और डेटा सुरक्षा</string>
+    <string name="privacy_sec4_body">हम बायोमेट्रिक प्रमाणीकरण और एंड्रॉइड कीस्टोर के माध्यम से AES-256 एन्क्रिप्शन का उपयोग करके आपके स्वास्थ्य डेटा को सुरक्षित रखते हैं।</string>
+    <string name="privacy_sec5_title">5. हम आपकी जानकारी कैसे साझा करते हैं</string>
+    <string name="privacy_sec5_body">हम व्यक्तिगत डेटा नहीं बेचते हैं। हम केवल ऐप संचालन या कानूनी आवश्यकताओं के लिए आवश्यक होने पर ही जानकारी साझा करते हैं।</string>
+    <string name="privacy_sec6_title">6. डिवाइस और एक्सेसिबिलिटी डेटा</string>
+    <string name="privacy_sec6_body">विजेट या वॉयस सुविधाओं का उपयोग करते समय, हम स्वास्थ्य सारांश प्रदर्शित करने के लिए सीमित डेटा संसाधित करते हैं।</string>
+    <string name="privacy_sec7_title">7. आपकी पसंद और अधिकार</string>
+    <string name="privacy_sec7_body">आपको अपने व्यक्तिगत डेटा तक पहुंचने, सुधारने या हटाने का अधिकार है। सहायता के लिए हमसे संपर्क करें।</string>
+    <string name="privacy_sec8_title">8. बच्चों की गोपनीयता</string>
+    <string name="privacy_sec8_body">माय हेल्थ पासपोर्ट 13 वर्ष से कम उम्र के बच्चों के लिए नहीं है और हम जानबूझकर 13 वर्ष से कम उम्र के बच्चों का डेटा एकत्र नहीं करते हैं।</string>
+    <string name="privacy_sec9_title">9. इस नीति में परिवर्तन</string>
+    <string name="privacy_sec9_body">हम समय-समय पर इस गोपनीयता नीति को अपडेट कर सकते हैं। परिवर्तन इस पृष्ठ पर पोस्ट किए जाएंगे।</string>
+    <string name="privacy_sec10_title">10. हमसे संपर्क करें</string>
+    <string name="privacy_sec10_body">यदि आपके कोई प्रश्न हैं, तो कृपया myhealthpassport.support@gmail.com पर हमसे संपर्क करें।</string>
+
     <!-- Languages -->
     <string name="lang_english">अंग्रेज़ी (English)</string>
     <string name="lang_spanish">स्पैनिश (Español)</string>
@@ -142,4 +232,39 @@
     <string name="widget_sugar">🍬 शुगर: %1$s mg/dL</string>
     <string name="widget_meds">💊 दवाएं: %1$s</string>
     <string name="widget_no_data">कोई स्वास्थ्य डेटा नहीं मिला।</string>
+    <string name="network_airplane_mode">एयरप्लेन मोड चालू है!</string>
+    <string name="auth_login_successful">लॉगिन सफल रहा</string>
+    <string name="auth_google_sign_in_failed">Google साइन-इन विफल: %1$s</string>
+    <string name="auth_social_login">सोशल लॉगिन</string>
+    <string name="auth_google_logo">Google लोगो</string>
+    <string name="settings_auth_error">प्रमाणीकरण त्रुटि: %1$s</string>
+    <string name="settings_authentication_failed">प्रमाणीकरण विफल रहा</string>
+    <string name="settings_verify_identity">पहचान सत्यापित करें</string>
+    <string name="settings_biometric_description">अपने मेडिकल रिकॉर्ड देखने के लिए प्रमाणीकरण करें</string>
+    <string name="settings_biometric_unavailable">बायोमेट्रिक प्रमाणीकरण उपलब्ध नहीं है</string>
+    <string name="report_load_image_failed">चित्र लोड नहीं हो सका</string>
+    <string name="report_notifications_disabled">सूचनाएं बंद हैं। आपको बैकग्राउंड अपडेट नहीं मिलेंगे।</string>
+    <string name="report_not_specified">निर्दिष्ट नहीं</string>
+    <string name="emergency_toggle_add">संपर्क जोड़ना बदलें</string>
+    <string name="emergency_call_button">कॉल करें</string>
+    <string name="emergency_delete">हटाएं</string>
+    <string name="health_saved_successfully">आपका डेटा सफलतापूर्वक सहेजा गया</string>
+    <string name="health_save_error">डेटा सहेजने में त्रुटि</string>
+    <string name="health_fetch_ids_error">मेडिकल आईडी प्राप्त करने में त्रुटि: %1$s</string>
+    <string name="health_retrieval_error">डेटा प्राप्त करने में त्रुटि</string>
+    <string name="health_deleted_successfully">डेटा सफलतापूर्वक हटाया गया</string>
+    <string name="health_delete_error">डेटा हटाने में त्रुटि</string>
+    <string name="health_fetch_records_error">सभी रिकॉर्ड प्राप्त करने में त्रुटि: %1$s</string>
+    <string name="worker_processing">AI आपके अनुरोध को प्रोसेस कर रहा है…</string>
+    <string name="worker_complete">विश्लेषण पूर्ण हुआ</string>
+    <string name="worker_failed">विश्लेषण विफल रहा</string>
+    <string name="worker_failed_detail">प्रोसेसिंग के दौरान कुछ गलत हुआ।</string>
+    <string name="worker_notification_title">Health AI प्रोसेसिंग</string>
+    <string name="worker_channel_name">Health AI कार्य</string>
+    <string name="worker_channel_description">AI स्वास्थ्य डेटा प्रोसेसिंग की सूचनाएं</string>
+    <string name="a11y_back">वापस</string>
+    <string name="a11y_menu">मेन्यू</string>
+    <string name="a11y_logo">My Health Passport</string>
+    <string name="a11y_saved">सहेजा गया</string>
+    <string name="a11y_edit">संपादित करें</string>
 </resources>

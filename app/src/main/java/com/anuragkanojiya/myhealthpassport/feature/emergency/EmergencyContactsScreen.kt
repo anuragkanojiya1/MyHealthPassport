@@ -132,7 +132,7 @@ fun EmergencyContactsList(
                 ) {
                     item {
                         Text(
-                            text = "Standard Services",
+                            text = stringResource(R.string.emergency_standard_services),
                             style = MaterialTheme.typography.labelLarge,
                             color = HealthBlueDark,
                             fontWeight = FontWeight.Bold,
@@ -147,7 +147,7 @@ fun EmergencyContactsList(
                     if (savedContacts.isNotEmpty()) {
                         item {
                             Text(
-                                text = "My Saved Contacts",
+                                text = stringResource(R.string.emergency_saved_contacts),
                                 style = MaterialTheme.typography.labelLarge,
                                 color = HealthBlueDark,
                                 fontWeight = FontWeight.Bold,
@@ -250,7 +250,7 @@ fun EmergencyContactRow(
                     IconButton(onClick = onDelete) {
                         Icon(
                             imageVector = Icons.Default.Delete,
-                            contentDescription = "Delete",
+                            contentDescription = stringResource(R.string.emergency_delete),
                             tint = MaterialTheme.colorScheme.error.copy(alpha = 0.7f)
                         )
                     }
@@ -269,7 +269,7 @@ fun EmergencyContactRow(
                     modifier = Modifier.height(36.dp)
                 ) {
                     Text(
-                        text = "CALL",
+                        text = stringResource(R.string.emergency_call_button),
                         fontSize = 12.sp,
                         color = Color.White,
                         fontWeight = FontWeight.Bold

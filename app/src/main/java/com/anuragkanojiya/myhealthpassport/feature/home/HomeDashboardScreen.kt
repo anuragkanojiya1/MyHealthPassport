@@ -274,7 +274,7 @@ fun HomeScreen(navController: NavController) {
 
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(
-                text = "AI Health Insights",
+                text = stringResource(R.string.home_ai_insights),
                 style = MaterialTheme.typography.labelLarge,
                 color = HealthBlueDark,
                 fontWeight = FontWeight.Bold,
@@ -308,7 +308,7 @@ fun HomeScreen(navController: NavController) {
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Health Agent",
+                        text = stringResource(R.string.nav_health_agent),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface,
@@ -339,7 +339,7 @@ fun HomeScreen(navController: NavController) {
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Report Analyser",
+                        text = stringResource(R.string.nav_medical_report_analyser),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface,

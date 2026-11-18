@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -111,7 +112,7 @@ fun PatientDetails(
             } else if (records.isEmpty()) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
-                        text = "No records found",
+                        text = stringResource(R.string.patient_no_records),
                         style = MaterialTheme.typography.bodyLarge,
                         color = HealthBlueDark
                     )
@@ -172,7 +173,7 @@ fun MedicalRecordCard(data: UserHealthData) {
                         color = HealthBlueDark
                     )
                     Text(
-                        text = "ID: ${data.medicalID}",
+                        text = stringResource(R.string.patient_id_label, data.medicalID),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.secondary
                     )

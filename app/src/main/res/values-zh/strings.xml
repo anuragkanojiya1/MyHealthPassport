@@ -4,6 +4,14 @@
     <string name="results_placeholder">（结果将在此处显示）</string>
     <string name="label_prompt">提示</string>
     <string name="action_go">开始</string>
+    <string name="back">返回</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="done">完成</string>
+    <string name="update">更新</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="error">错误</string>
 
     <!-- Auth -->
     <string name="auth_welcome_back">欢迎回来</string>
@@ -34,6 +42,7 @@
     <string name="nav_analytics_graphs">分析与图表</string>
     <string name="nav_settings">设置</string>
     <string name="nav_sign_out">退出登录</string>
+    <string name="nav_community_support">社区与支持</string>
 
     <!-- Home Dashboard -->
     <string name="home_welcome">欢迎</string>
@@ -46,11 +55,13 @@
     <string name="home_ai_assistant_desc">咨询 AI 关于症状与药物</string>
     <string name="home_health_analytics">健康分析</string>
     <string name="home_health_analytics_desc">可视化生命体征与血压趋势</string>
+    <string name="home_ai_insights">AI 健康洞察</string>
 
-    <!-- Health Form & Search -->
+    <!-- Health Form & Search & Details -->
     <string name="health_form_title">添加健康记录</string>
     <string name="health_save_button">保存健康数据</string>
     <string name="health_name">全名</string>
+    <string name="health_patient_name">患者姓名</string>
     <string name="health_age">年龄</string>
     <string name="health_gender">性别</string>
     <string name="health_blood_group">血型</string>
@@ -66,9 +77,19 @@
     <string name="health_condition">健康状况</string>
     <string name="health_search_title">搜索健康数据</string>
     <string name="health_enter_medical_id">输入医疗 ID</string>
+    <string name="health_medical_id_required">医疗 ID (必填)</string>
+    <string name="health_medical_id_search">要搜索的医疗 ID</string>
     <string name="health_get_data_button">获取数据</string>
     <string name="health_view_summary">查看详细摘要</string>
     <string name="health_delete_record">删除记录</string>
+    <string name="health_find_record">查找健康记录</string>
+    <string name="health_vitals_header">生命体征</string>
+    <string name="health_additional_info_header">附加信息</string>
+    <string name="patient_record_details">记录详情</string>
+    <string name="patient_medical_history">病史</string>
+    <string name="patient_no_records">未找到记录</string>
+    <string name="patient_id_label">ID: %1$s</string>
+    <string name="patient_ai_insight">AI 健康分析</string>
 
     <!-- Emergency Contacts -->
     <string name="emergency_title">紧急联系人</string>
@@ -78,13 +99,41 @@
     <string name="emergency_save_contact">保存联系人</string>
     <string name="emergency_call">拨打</string>
     <string name="emergency_no_contacts">未找到紧急联系人。</string>
+    <string name="emergency_standard_services">标准服务</string>
+    <string name="emergency_saved_contacts">保存的联系人</string>
+    <string name="emergency_police">报警电话 (110)</string>
+    <string name="emergency_ambulance">急救电话 (120)</string>
 
-    <!-- AI Agent & Reports -->
+    <!-- AI Agent -->
     <string name="ai_agent_title">AI 健康 Agent</string>
     <string name="ai_additional_info">附加信息</string>
     <string name="ai_send">发送</string>
     <string name="ai_placeholder">向我询问有关您健康的问题…</string>
+    <string name="agent_subtitle">由我们的智能 Agent 为您量身定制饮食与运动建议方案…</string>
+    <string name="agent_medical_id">医疗 ID</string>
+    <string name="agent_get_plan">获取方案</string>
+
+    <!-- AI Reports & Analyser -->
     <string name="report_analyser_title">医疗报告分析器</string>
+    <string name="report_analysis_title">医疗报告分析</string>
+    <string name="report_choose_option">选择您的分析选项</string>
+    <string name="report_selected">已选择报告</string>
+    <string name="report_tap_to_upload">点击上传医疗报告</string>
+    <string name="report_supports_formats">支持 JPG, PNG 格式</string>
+    <string name="report_quick_save">快速保存</string>
+    <string name="report_quick_save_desc">AI 自动提取并保存数据</string>
+    <string name="report_detailed_analysis">详细分析</string>
+    <string name="report_detailed_analysis_desc">全面 AI 智能分析您的报告</string>
+    <string name="report_analysis_benefits">分析优势</string>
+    <string name="report_benefit_1">报告的深入洞察</string>
+    <string name="report_benefit_2">个性化建议</string>
+    <string name="report_benefit_3">长期趋势追踪</string>
+    <string name="report_benefit_4">安全提取临床数据</string>
+    <string name="report_security_notice">🔒 您的数据受安全保护</string>
+    <string name="report_review_edit">核对与编辑数据</string>
+    <string name="report_review_subtitle">点击任意字段编辑其数值。选择现有医疗 ID 或输入新 ID。</string>
+    <string name="report_result_title">分析结果</string>
+    <string name="report_edit_field">编辑 %1$s</string>
     <string name="report_upload">上传医疗报告</string>
     <string name="report_analyze">分析文档</string>
     <string name="report_confirm_save">确认并保存</string>
@@ -95,6 +144,14 @@
     <string name="report_get_ai_insights">获取 AI 洞察 💡</string>
     <string name="report_listen_analysis">🔊 聆听分析</string>
     <string name="report_no_data">无数据</string>
+
+    <!-- Charts & Analytics -->
+    <string name="charts_title">📊 健康分析</string>
+    <string name="charts_no_data">未找到健康数据</string>
+    <string name="charts_no_data_desc">添加您的医疗记录以查看趋势图表和健康洞察。</string>
+    <string name="charts_bp_title">血压趋势</string>
+    <string name="charts_sugar_title">血糖水平</string>
+    <string name="charts_meds_title">药物分布</string>
 
     <!-- Settings Screen -->
     <string name="settings_title">设置</string>
@@ -119,11 +176,44 @@
     <string name="settings_section_about">关于</string>
     <string name="settings_version">版本</string>
     <string name="settings_privacy_policy">隐私政策</string>
-    <string name="settings_privacy_policy_subtitle">阅读我们的数据保护政策</string>
+    <string name="settings_privacy_policy_subtitle">阅读 our 数据保护政策</string>
     <string name="settings_update_name">更新姓名</string>
     <string name="settings_enter_name">请输入您的姓名</string>
     <string name="settings_save">保存</string>
     <string name="settings_cancel">取消</string>
+
+    <!-- API Key Settings -->
+    <string name="api_key_title">AI 配置</string>
+    <string name="api_key_header">Gemini API 设置</string>
+    <string name="api_key_subtitle">要启用您的个人健康 Agent 和报告分析功能，请在下方输入您的 Gemini API 密钥。</string>
+    <string name="api_key_get_free">从 Google AI Studio 获取免费 API 密钥</string>
+    <string name="api_key_placeholder">输入 Gemini API 密钥</string>
+    <string name="api_key_save_continue">保存并继续</string>
+
+    <!-- Privacy Policy Screen -->
+    <string name="privacy_title">MyHealthPassport 隐私政策</string>
+    <string name="privacy_effective_date">生效日期：2026 年 7 月 30 日</string>
+    <string name="privacy_intro">MyHealthPassport（以下简称“我们”或“本应用”）致力于保护您的隐私。本隐私政策说明了我们收集哪些信息以及如何使用这些信息。</string>
+    <string name="privacy_sec1_title">1. 我们收集的信息</string>
+    <string name="privacy_sec1_body">MyHealthPassport 收集提供安全、个性化数字健康体验所需的信息，包括账户信息、医疗档案和上传的报告。</string>
+    <string name="privacy_sec2_title">2. 我们如何使用您的信息</string>
+    <string name="privacy_sec2_body">我们使用您的信息来提供本应用的核心功能，例如 AI 分析、趋势报告和健康档案管理。</string>
+    <string name="privacy_sec3_title">3. AI 处理与健康数据</string>
+    <string name="privacy_sec3_body">某些功能使用 Google Gemini AI 等 AI 服务来解析医疗文档和图像，仅用于生成分析。</string>
+    <string name="privacy_sec4_title">4. 安全与数据保护</string>
+    <string name="privacy_sec4_body">我们通过生物识别身份验证和基于 Android Keystore 的 AES-256 加密来保护您的健康数据。</string>
+    <string name="privacy_sec5_title">5. 我们如何共享您的信息</string>
+    <string name="privacy_sec5_body">我们绝不出售个人数据。我们仅在提供应用服务或遵守法律义务所需时共享信息。</string>
+    <string name="privacy_sec6_title">6. 设备与小组件数据</string>
+    <string name="privacy_sec6_body">当使用主屏幕小组件或语音功能时，我们仅处理显示健康摘要所需的有限数据。</string>
+    <string name="privacy_sec7_title">7. 您的权利与选择</string>
+    <string name="privacy_sec7_body">您有权访问、更正或删除您的个人数据。如需帮助，请随时联系我们。</string>
+    <string name="privacy_sec8_title">8. 未成年人隐私</string>
+    <string name="privacy_sec8_body">MyHealthPassport 不面向 13 岁以下儿童，我们不会故意收集 13 岁以下儿童的个人信息。</string>
+    <string name="privacy_sec9_title">9. 隐私政策的变更</string>
+    <string name="privacy_sec9_body">我们可能会不时更新本隐私政策。任何更新都将在此页面上发布。</string>
+    <string name="privacy_sec10_title">10. 联系我们</string>
+    <string name="privacy_sec10_body">如果您对本隐私政策有任何疑问，请通过 myhealthpassport.support@gmail.com 联系我们。</string>
 
     <!-- Languages -->
     <string name="lang_english">英语 (English)</string>
@@ -142,4 +232,39 @@
     <string name="widget_sugar">🍬 血糖: %1$s mg/dL</string>
     <string name="widget_meds">💊 药物: %1$s</string>
     <string name="widget_no_data">未找到健康数据。</string>
+    <string name="network_airplane_mode">飞行模式已开启！</string>
+    <string name="auth_login_successful">登录成功</string>
+    <string name="auth_google_sign_in_failed">Google 登录失败：%1$s</string>
+    <string name="auth_social_login">社交登录</string>
+    <string name="auth_google_logo">Google 标志</string>
+    <string name="settings_auth_error">认证错误：%1$s</string>
+    <string name="settings_authentication_failed">身份验证失败</string>
+    <string name="settings_verify_identity">验证身份</string>
+    <string name="settings_biometric_description">验证身份后查看您的医疗记录</string>
+    <string name="settings_biometric_unavailable">无法使用生物识别验证</string>
+    <string name="report_load_image_failed">图片加载失败</string>
+    <string name="report_notifications_disabled">通知已关闭。您将无法收到后台更新。</string>
+    <string name="report_not_specified">未指定</string>
+    <string name="emergency_toggle_add">切换添加联系人</string>
+    <string name="emergency_call_button">拨打电话</string>
+    <string name="emergency_delete">删除</string>
+    <string name="health_saved_successfully">数据保存成功</string>
+    <string name="health_save_error">保存数据时出错</string>
+    <string name="health_fetch_ids_error">获取医疗 ID 时出错：%1$s</string>
+    <string name="health_retrieval_error">获取数据时出错</string>
+    <string name="health_deleted_successfully">数据删除成功</string>
+    <string name="health_delete_error">删除数据时出错</string>
+    <string name="health_fetch_records_error">获取所有记录时出错：%1$s</string>
+    <string name="worker_processing">AI 正在处理您的请求…</string>
+    <string name="worker_complete">分析完成</string>
+    <string name="worker_failed">分析失败</string>
+    <string name="worker_failed_detail">处理过程中出现问题。</string>
+    <string name="worker_notification_title">健康 AI 处理</string>
+    <string name="worker_channel_name">健康 AI 任务</string>
+    <string name="worker_channel_description">AI 健康数据处理通知</string>
+    <string name="a11y_back">返回</string>
+    <string name="a11y_menu">菜单</string>
+    <string name="a11y_logo">My Health Passport</string>
+    <string name="a11y_saved">已保存</string>
+    <string name="a11y_edit">编辑</string>
 </resources>

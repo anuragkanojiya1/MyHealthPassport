@@ -32,6 +32,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -90,12 +91,12 @@ fun GoogleSignInButton(
                     isGoogleLoading = false
 
                     result.onSuccess {
-                        Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.auth_login_successful), Toast.LENGTH_SHORT).show()
                         navController.navigate(Screen.FlipAnimation.route) {
                             popUpTo(Screen.Login.route) { inclusive = true }
                         }
                     }.onFailure { e ->
-                        Toast.makeText(context, "Google Sign-In failed: ${e.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, context.getString(R.string.auth_google_sign_in_failed, e.message ?: ""), Toast.LENGTH_LONG).show()
                     }
                 }
             },
@@ -132,7 +133,7 @@ fun GoogleSignInButton(
                     Spacer(modifier = Modifier.width(8.dp))
 
                     Text(
-                        text = "Sign in with Google",
+                        text = stringResource(R.string.auth_sign_in_google),
                         color = MaterialTheme.colorScheme.onBackground,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium

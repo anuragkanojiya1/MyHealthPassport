@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import com.anuragkanojiya.myhealthpassport.R
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,9 +40,9 @@ class HealthViewModel @Inject constructor(
             _uiState.update { it.copy(isLoading = false) }
 
             result.onSuccess {
-                Toast.makeText(context, "Successfully Saved your Data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.health_saved_successfully), Toast.LENGTH_SHORT).show()
             }.onFailure { e ->
-                Toast.makeText(context, e.message ?: "Error saving data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, e.message ?: context.getString(R.string.health_save_error), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -55,7 +56,7 @@ class HealthViewModel @Inject constructor(
             result.onSuccess { ids ->
                 onResult(ids)
             }.onFailure { e ->
-                Toast.makeText(context, "Error fetching medical IDs: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.health_fetch_ids_error, e.message ?: ""), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -70,7 +71,7 @@ class HealthViewModel @Inject constructor(
             result.onSuccess { data ->
                 onData(data)
             }.onFailure { e ->
-                Toast.makeText(context, e.message ?: "Error retrieving data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, e.message ?: context.getString(R.string.health_retrieval_error), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -83,11 +84,11 @@ class HealthViewModel @Inject constructor(
         viewModelScope.launch {
             val result = repository.deleteHealthData(medicalID)
             result.onSuccess {
-                Toast.makeText(context, "Successfully Deleted Data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.health_deleted_successfully), Toast.LENGTH_SHORT).show()
                 runCatching { HealthChartWidget.updateAll(context) }
                 navController.popBackStack()
             }.onFailure { e ->
-                Toast.makeText(context, e.message ?: "Error deleting data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, e.message ?: context.getString(R.string.health_delete_error), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -105,7 +106,7 @@ class HealthViewModel @Inject constructor(
             result.onSuccess { data ->
                 onResult(data)
             }.onFailure { e ->
-                Toast.makeText(context, "Error fetching all records: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.health_fetch_records_error, e.message ?: ""), Toast.LENGTH_SHORT).show()
                 onResult(emptyList()) // Signal end of loading even on failure
             }
         }

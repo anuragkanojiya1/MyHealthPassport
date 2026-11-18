@@ -40,7 +40,7 @@ class GeminiWorker @AssistedInject constructor(
         val imagePath = inputData.getString("imagePath")
 
         // 1. Show "Processing" notification
-        setForeground(createForegroundInfo("AI is processing your request..."))
+        setForeground(createForegroundInfo(applicationContext.getString(R.string.worker_processing)))
 
         val analysisResult = if (imagePath != null) {
             val bitmap = BitmapFactory.decodeFile(imagePath)
@@ -64,12 +64,12 @@ class GeminiWorker @AssistedInject constructor(
                 }
 
                 // 3. Update notification with results
-                showCompletionNotification("Analysis Complete", result)
+                showCompletionNotification(applicationContext.getString(R.string.worker_complete), result)
 
                 Result.success()
             },
             onFailure = {
-                showCompletionNotification("Analysis Failed", "Something went wrong while processing.")
+                showCompletionNotification(applicationContext.getString(R.string.worker_failed), applicationContext.getString(R.string.worker_failed_detail))
                 if (runAttemptCount < 3) Result.retry() else Result.failure()
             }
         )
@@ -79,8 +79,8 @@ class GeminiWorker @AssistedInject constructor(
         createNotificationChannel()
 
         val notification = NotificationCompat.Builder(appContext, CHANNEL_ID)
-            .setContentTitle("Health AI Processing")
-            .setTicker("Health AI Processing")
+            .setContentTitle(applicationContext.getString(R.string.worker_notification_title))
+            .setTicker(applicationContext.getString(R.string.worker_notification_title))
             .setContentText(message)
             .setSmallIcon(R.drawable.healthcare)
             .setOngoing(true)
@@ -130,10 +130,10 @@ class GeminiWorker @AssistedInject constructor(
             if (notificationManager.getNotificationChannel(CHANNEL_ID) == null) {
                 val channel = NotificationChannel(
                     CHANNEL_ID,
-                    "Health AI Tasks",
+                    applicationContext.getString(R.string.worker_channel_name),
                     NotificationManager.IMPORTANCE_HIGH
                 ).apply {
-                    description = "Notifications for AI health data processing"
+                    description = applicationContext.getString(R.string.worker_channel_description)
                     enableLights(true)
                     enableVibration(true)
                 }

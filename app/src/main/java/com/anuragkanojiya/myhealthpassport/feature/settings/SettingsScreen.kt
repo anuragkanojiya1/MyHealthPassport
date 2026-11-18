@@ -43,6 +43,8 @@ fun SettingsScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
+    val verifyIdentityTitle = stringResource(R.string.settings_verify_identity)
+    val verifyIdentityDescription = stringResource(R.string.settings_biometric_description)
 
     LaunchedEffect(promptManager) {
         promptManager?.promptResults?.collect { result ->
@@ -51,10 +53,10 @@ fun SettingsScreen(
                     navController.navigate("patient_details/all_records")
                 }
                 is BiometricPromptManager.BiometricResult.AuthenticationError -> {
-                    Toast.makeText(context, "Auth Error: ${result.error}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.settings_auth_error, result.error), Toast.LENGTH_SHORT).show()
                 }
                 is BiometricPromptManager.BiometricResult.AuthenticationFailed -> {
-                    Toast.makeText(context, "Authentication Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.settings_authentication_failed), Toast.LENGTH_SHORT).show()
                 }
                 else -> {}
             }
@@ -195,11 +197,11 @@ fun SettingsScreen(
                     onClick = {
                         if (promptManager != null) {
                             promptManager.showBiometricPrompt(
-                                title = "Verify Identity",
-                                description = "Authenticate to view your medical records"
+                                title = verifyIdentityTitle,
+                                description = verifyIdentityDescription
                             )
                         } else {
-                            Toast.makeText(context, "Biometric authentication not available", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.settings_biometric_unavailable), Toast.LENGTH_SHORT).show()
                         }
                     }
                 )

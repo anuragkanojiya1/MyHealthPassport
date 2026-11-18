@@ -170,7 +170,7 @@ fun NavigationDrawer(
                     )
 
                     NavigationDrawerItem(
-                        label = { Text(text = "Community and Support", fontWeight = FontWeight.Medium) },
+                        label = { Text(text = stringResource(R.string.nav_community_support), fontWeight = FontWeight.Medium) },
                         selected = false,
                         icon = {
                             Icon(

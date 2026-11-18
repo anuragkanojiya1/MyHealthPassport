@@ -7,6 +7,7 @@ import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.biometric.BiometricPrompt.PromptInfo
 import androidx.fragment.app.FragmentActivity
+import com.anuragkanojiya.myhealthpassport.R
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
@@ -31,7 +32,7 @@ class BiometricPromptManager(
             .setAllowedAuthenticators(authenticators)
 
         if (Build.VERSION.SDK_INT < 30) {
-            promptInfo.setNegativeButtonText("Cancel")
+            promptInfo.setNegativeButtonText(activity.getString(R.string.cancel))
         }
 
         when (manager.canAuthenticate(authenticators)) {

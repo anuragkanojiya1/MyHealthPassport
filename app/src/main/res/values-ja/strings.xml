@@ -4,6 +4,14 @@
     <string name="results_placeholder">（結果がここに表示されます）</string>
     <string name="label_prompt">プロンプト</string>
     <string name="action_go">実行</string>
+    <string name="back">戻る</string>
+    <string name="cancel">キャンセル</string>
+    <string name="save">保存</string>
+    <string name="done">完了</string>
+    <string name="update">更新</string>
+    <string name="edit">編集</string>
+    <string name="delete">削除</string>
+    <string name="error">エラー</string>
 
     <!-- Auth -->
     <string name="auth_welcome_back">おかえりなさい</string>
@@ -34,6 +42,7 @@
     <string name="nav_analytics_graphs">分析とグラフ</string>
     <string name="nav_settings">設定</string>
     <string name="nav_sign_out">サインアウト</string>
+    <string name="nav_community_support">コミュニティとサポート</string>
 
     <!-- Home Dashboard -->
     <string name="home_welcome">ようこそ</string>
@@ -46,11 +55,13 @@
     <string name="home_ai_assistant_desc">症状や薬についてAIに相談</string>
     <string name="home_health_analytics">健康アナリティクス</string>
     <string name="home_health_analytics_desc">バイタルと血圧の傾向を可視化</string>
+    <string name="home_ai_insights">AI健康インサイト</string>
 
-    <!-- Health Form & Search -->
+    <!-- Health Form & Search & Details -->
     <string name="health_form_title">健康記録を追加</string>
     <string name="health_save_button">健康データを保存</string>
     <string name="health_name">氏名</string>
+    <string name="health_patient_name">患者名</string>
     <string name="health_age">年齢</string>
     <string name="health_gender">性別</string>
     <string name="health_blood_group">血液型</string>
@@ -66,9 +77,19 @@
     <string name="health_condition">健康状態</string>
     <string name="health_search_title">健康データを検索</string>
     <string name="health_enter_medical_id">医療IDを入力</string>
+    <string name="health_medical_id_required">医療ID（必須）</string>
+    <string name="health_medical_id_search">検索する医療ID</string>
     <string name="health_get_data_button">データを取得</string>
     <string name="health_view_summary">詳細サマリーを表示</string>
     <string name="health_delete_record">記録を削除</string>
+    <string name="health_find_record">健康記録を検索</string>
+    <string name="health_vitals_header">バイタルサイン</string>
+    <string name="health_additional_info_header">追加情報</string>
+    <string name="patient_record_details">記録の詳細</string>
+    <string name="patient_medical_history">病歴</string>
+    <string name="patient_no_records">記録が見つかりません</string>
+    <string name="patient_id_label">ID: %1$s</string>
+    <string name="patient_ai_insight">AI健康分析</string>
 
     <!-- Emergency Contacts -->
     <string name="emergency_title">緊急連絡先</string>
@@ -78,13 +99,41 @@
     <string name="emergency_save_contact">連絡先を保存</string>
     <string name="emergency_call">発信</string>
     <string name="emergency_no_contacts">緊急連絡先が見つかりません。</string>
+    <string name="emergency_standard_services">標準サービス</string>
+    <string name="emergency_saved_contacts">保存された連絡先</string>
+    <string name="emergency_police">警察</string>
+    <string name="emergency_ambulance">救急車</string>
 
-    <!-- AI Agent & Reports -->
+    <!-- AI Agent -->
     <string name="ai_agent_title">AIヘルスエージェント</string>
     <string name="ai_additional_info">追加情報</string>
     <string name="ai_send">送信</string>
     <string name="ai_placeholder">健康について何でもお聞きください…</string>
+    <string name="agent_subtitle">AIエージェントによるパーソナライズされた食事と運動の推奨プランを取得…</string>
+    <string name="agent_medical_id">医療ID</string>
+    <string name="agent_get_plan">プランを取得</string>
+
+    <!-- AI Reports & Analyser -->
     <string name="report_analyser_title">医療レポートアナライザー</string>
+    <string name="report_analysis_title">医療レポート解析</string>
+    <string name="report_choose_option">解析オプションを選択</string>
+    <string name="report_selected">選択されたレポート</string>
+    <string name="report_tap_to_upload">タップして医療レポートをアップロード</string>
+    <string name="report_supports_formats">JPG、PNG対応</string>
+    <string name="report_quick_save">クイック保存</string>
+    <string name="report_quick_save_desc">AIがデータを自動抽出し保存します</string>
+    <string name="report_detailed_analysis">詳細解析</string>
+    <string name="report_detailed_analysis_desc">AIによる包括的な医療レポート解析</string>
+    <string name="report_analysis_benefits">解析のメリット</string>
+    <string name="report_benefit_1">レポートからの詳細な洞察</string>
+    <string name="report_benefit_2">パーソナライズされた推奨事項</string>
+    <string name="report_benefit_3">経時的な傾向トラッキング</string>
+    <string name="report_benefit_4">安全な臨床データ抽出</string>
+    <string name="report_security_notice">🔒 データは安全に処理されます</string>
+    <string name="report_review_edit">データの確認と編集</string>
+    <string name="report_review_subtitle">項目をタップして値を編集します。既存のIDを選択するか、新しいIDを入力してください。</string>
+    <string name="report_result_title">解析結果</string>
+    <string name="report_edit_field">%1$s を編集</string>
     <string name="report_upload">医療レポートをアップロード</string>
     <string name="report_analyze">ドキュメントを解析</string>
     <string name="report_confirm_save">確認して保存</string>
@@ -95,6 +144,14 @@
     <string name="report_get_ai_insights">AIインサイトを取得 💡</string>
     <string name="report_listen_analysis">🔊 解析結果を聴く</string>
     <string name="report_no_data">データなし</string>
+
+    <!-- Charts & Analytics -->
+    <string name="charts_title">📊 健康アナリティクス</string>
+    <string name="charts_no_data">健康データが見つかりません</string>
+    <string name="charts_no_data_desc">医療記録を追加して、推移グラフや健康インサイトを確認しましょう。</string>
+    <string name="charts_bp_title">血圧の傾向</string>
+    <string name="charts_sugar_title">血糖値レベル</string>
+    <string name="charts_meds_title">処方薬の割合</string>
 
     <!-- Settings Screen -->
     <string name="settings_title">設定</string>
@@ -125,6 +182,39 @@
     <string name="settings_save">保存</string>
     <string name="settings_cancel">キャンセル</string>
 
+    <!-- API Key Settings -->
+    <string name="api_key_title">AI設定</string>
+    <string name="api_key_header">Gemini APIのセットアップ</string>
+    <string name="api_key_subtitle">パーソナルヘルスエージェントとレポート解析を有効にするには、以下にGemini APIキーを入力してください。</string>
+    <string name="api_key_get_free">Google AI Studioから無料のAPIキーを取得</string>
+    <string name="api_key_placeholder">Gemini APIキーを入力</string>
+    <string name="api_key_save_continue">保存して続行</string>
+
+    <!-- Privacy Policy Screen -->
+    <string name="privacy_title">MyHealthPassport プライバシーポリシー</string>
+    <string name="privacy_effective_date">発効日：2026年7月30日</string>
+    <string name="privacy_intro">MyHealthPassport（以下「当アプリ」）は、お客様のプライバシー保護に取り組んでいます。本ポリシーは、収集する情報とその使用目的について説明します。</string>
+    <string name="privacy_sec1_title">1. 収集する情報</string>
+    <string name="privacy_sec1_body">安全でパーソナライズされたデジタル健康体験を提供するために必要な情報（アカウント情報、健康プロファイル、アップロードされたレポートなど）を収集します。</string>
+    <string name="privacy_sec2_title">2. 情報の利用目的</string>
+    <string name="privacy_sec2_body">AIによるレポート解析、健康トレンドの可視化、パーソナライズされた推奨事項の提供など、当アプリのコア機能を提供するために情報を使用します。</string>
+    <string name="privacy_sec3_title">3. AI処理と健康データ</string>
+    <string name="privacy_sec3_body">一部の機能では、Google Gemini AIなどのAIサービスを使用して医療ドキュメントや画像を解析します。データは依頼された解析のみに使用されます。</string>
+    <string name="privacy_sec4_title">4. セキュリティとデータ保護</string>
+    <string name="privacy_sec4_body">生体認証やAndroid KeystoreによるAES-256暗号化など、多層的なセキュリティを用いてお客様のデータを保護しています。</string>
+    <string name="privacy_sec5_title">5. 情報の共有</string>
+    <string name="privacy_sec5_body">個人データを販売することはありません。アプリの運営または法令遵守に必要な場合にのみ情報を共有します。</string>
+    <string name="privacy_sec6_title">6. デバイスおよびアクセシビリティデータ</string>
+    <string name="privacy_sec6_body">ウィジェットや音声機能をご利用の際、概要表示に必要な最小限のデータを処理します。</string>
+    <string name="privacy_sec7_title">7. お客様の権利</string>
+    <string name="privacy_sec7_body">お客様には、ご自身の個人データへのアクセス、訂正、削除を請求する権利があります。必要に応じてお問い合わせください。</string>
+    <string name="privacy_sec8_title">8. お子様のプライバシー</string>
+    <string name="privacy_sec8_body">当アプリは13歳未満のお子様を対象としておらず、13歳未満のお子様から意図的に個人情報を収集することはありません。</string>
+    <string name="privacy_sec9_title">9. プライバシーポリシーの変更</string>
+    <string name="privacy_sec9_body">本ポリシーは随時更新されることがあります。変更は本ページにて公表されます。</string>
+    <string name="privacy_sec10_title">10. お問い合わせ</string>
+    <string name="privacy_sec10_body">ご質問がある場合は、myhealthpassport.support@gmail.com までご連絡ください。</string>
+
     <!-- Languages -->
     <string name="lang_english">英語 (English)</string>
     <string name="lang_spanish">スペイン語 (Español)</string>
@@ -142,4 +232,39 @@
     <string name="widget_sugar">🍬 血糖値: %1$s mg/dL</string>
     <string name="widget_meds">💊 処方薬: %1$s</string>
     <string name="widget_no_data">健康データが見つかりません。</string>
+    <string name="network_airplane_mode">機内モードがオンになっています！</string>
+    <string name="auth_login_successful">ログインしました</string>
+    <string name="auth_google_sign_in_failed">Google ログインに失敗しました: %1$s</string>
+    <string name="auth_social_login">ソーシャルログイン</string>
+    <string name="auth_google_logo">Google ロゴ</string>
+    <string name="settings_auth_error">認証エラー: %1$s</string>
+    <string name="settings_authentication_failed">認証に失敗しました</string>
+    <string name="settings_verify_identity">本人確認</string>
+    <string name="settings_biometric_description">医療記録を表示するために認証してください</string>
+    <string name="settings_biometric_unavailable">生体認証は利用できません</string>
+    <string name="report_load_image_failed">画像を読み込めませんでした</string>
+    <string name="report_notifications_disabled">通知が無効です。バックグラウンド更新を受け取れません。</string>
+    <string name="report_not_specified">未指定</string>
+    <string name="emergency_toggle_add">連絡先追加を切り替え</string>
+    <string name="emergency_call_button">通話</string>
+    <string name="emergency_delete">削除</string>
+    <string name="health_saved_successfully">データを保存しました</string>
+    <string name="health_save_error">データの保存中にエラーが発生しました</string>
+    <string name="health_fetch_ids_error">医療IDの取得中にエラーが発生しました: %1$s</string>
+    <string name="health_retrieval_error">データの取得中にエラーが発生しました</string>
+    <string name="health_deleted_successfully">データを削除しました</string>
+    <string name="health_delete_error">データの削除中にエラーが発生しました</string>
+    <string name="health_fetch_records_error">すべての記録の取得中にエラーが発生しました: %1$s</string>
+    <string name="worker_processing">AI がリクエストを処理しています…</string>
+    <string name="worker_complete">分析完了</string>
+    <string name="worker_failed">分析に失敗しました</string>
+    <string name="worker_failed_detail">処理中に問題が発生しました。</string>
+    <string name="worker_notification_title">ヘルスAI処理</string>
+    <string name="worker_channel_name">ヘルスAIタスク</string>
+    <string name="worker_channel_description">AIヘルスデータ処理の通知</string>
+    <string name="a11y_back">戻る</string>
+    <string name="a11y_menu">メニュー</string>
+    <string name="a11y_logo">My Health Passport</string>
+    <string name="a11y_saved">保存済み</string>
+    <string name="a11y_edit">編集</string>
 </resources>

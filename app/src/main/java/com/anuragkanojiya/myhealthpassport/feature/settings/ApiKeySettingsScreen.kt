@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -57,7 +58,7 @@ fun ApiKeySettingsScreen(
         topBar = {
             Column {
                 TopAppBar(
-                    title = { Text("AI Configuration", fontWeight = FontWeight.SemiBold) },
+                    title = { Text(stringResource(R.string.api_key_title), fontWeight = FontWeight.SemiBold) },
                     navigationIcon = {
                         IconButton(onClick = { navController.popBackStack() }) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -101,14 +102,14 @@ fun ApiKeySettingsScreen(
                 Spacer(modifier = Modifier.height(32.dp))
 
                 Text(
-                    text = "Gemini API Setup",
+                    text = stringResource(R.string.api_key_header),
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground
                 )
 
                 Text(
-                    text = "To enable your Personal Health Agent and Report Analysis, please enter your Gemini API key below.",
+                    text = stringResource(R.string.api_key_subtitle),
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(vertical = 16.dp),
@@ -128,7 +129,7 @@ fun ApiKeySettingsScreen(
                     },
                 ) {
                     Text(
-                        "Get a free API key from Google AI Studio",
+                        stringResource(R.string.api_key_get_free),
                         color = HealthBlue,
                         style = MaterialTheme.typography.bodySmall.copy(
                             textDecoration = TextDecoration.Underline
@@ -141,7 +142,7 @@ fun ApiKeySettingsScreen(
                 OutlinedTextField(
                     value = state.apiKey,
                     onValueChange = { viewModel.onEvent(ApiKeyUiEvent.ApiKeyChanged(it)) },
-                    label = { Text("Enter Gemini API Key") },
+                    label = { Text(stringResource(R.string.api_key_placeholder)) },
                     modifier = Modifier.fillMaxWidth(),
                     visualTransformation = PasswordVisualTransformation(),
                     shape = RoundedCornerShape(12.dp),
@@ -181,7 +182,7 @@ fun ApiKeySettingsScreen(
                     if (state.isLoading) {
                         CircularProgressIndicator(modifier = Modifier.size(24.dp), color = Color.White)
                     } else {
-                        Text("SAVE & CONTINUE", fontSize = 16.sp, fontWeight = FontWeight.Bold,
+                        Text(stringResource(R.string.api_key_save_continue), fontSize = 16.sp, fontWeight = FontWeight.Bold,
                             color = Color.White)
                     }
                 }

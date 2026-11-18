@@ -13,6 +13,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.compose.ui.res.stringResource
+import com.anuragkanojiya.myhealthpassport.R
 import com.anuragkanojiya.myhealthpassport.core.designsystem.theme.HealthBlueDark
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -21,12 +23,12 @@ fun PrivacyPolicyScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Privacy Policy", fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.settings_privacy_policy), fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.back),
                             tint = HealthBlueDark
                         )
                     }
@@ -47,20 +49,20 @@ fun PrivacyPolicyScreen(navController: NavController) {
                 .padding(16.dp)
         ) {
             Text(
-                text = "MyHealthPassport Privacy Policy",
+                text = stringResource(R.string.privacy_title),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 color = HealthBlueDark
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Effective date: July 30, 2026",
+                text = stringResource(R.string.privacy_effective_date),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "MyHealthPassport (“we,” “our,” or “the App”) is committed to protecting your privacy. This Privacy Policy explains what information we collect, how we use it, when we share it, and the choices you have regarding your data.",
+                text = stringResource(R.string.privacy_intro),
                 style = MaterialTheme.typography.bodyMedium,
                 lineHeight = 20.sp,
                 color = MaterialTheme.colorScheme.onSurface
@@ -69,73 +71,53 @@ fun PrivacyPolicyScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(24.dp))
             
             PrivacySection(
-                title = "1. Information We Collect",
-                content = "MyHealthPassport collects information needed to provide a secure, personalized digital health experience. This may include:\n" +
-                        "• Account and authentication information, including email, sign-in details, and secure login state.\n" +
-                        "• Medical profile information such as your digital medical ID, vitals, medication history, emergency contact details, and uploaded health reports.\n" +
-                        "• Images, documents, and health data submitted for AI analysis, such as medical reports or scanned records.\n" +
-                        "• Voice input, chat interactions, prompts, and AI-generated recommendations used to support health coaching and analysis.\n" +
-                        "• Device, app usage, diagnostics, and performance information needed to improve reliability and security."
+                title = stringResource(R.string.privacy_sec1_title),
+                content = stringResource(R.string.privacy_sec1_body)
             )
             
             PrivacySection(
-                title = "2. How We Use Your Information",
-                content = "We use your information to deliver the core features of MyHealthPassport, including:\n" +
-                        "• Creating and maintaining your personal health profile and medical ID.\n" +
-                        "• Analyzing medical images and documents with AI to extract health metrics and update your records.\n" +
-                        "• Providing personalized health coaching, diet and exercise recommendations, and health insights.\n" +
-                        "• Tracking blood pressure, glucose, medication patterns, and other longitudinal health trends.\n" +
-                        "• Supporting emergency access, voice interaction, text-to-speech, and other accessibility features.\n" +
-                        "• Improving app reliability, user experience, and security protections."
+                title = stringResource(R.string.privacy_sec2_title),
+                content = stringResource(R.string.privacy_sec2_body)
             )
             
             PrivacySection(
-                title = "3. AI Processing and Health Data",
-                content = "Some features use AI services, including Google Gemini AI, to interpret medical documents, images, and health-related inputs. This may involve transmitting uploaded records, diagnostic information, or user-entered health details to approved AI processing services so the App can generate summaries, recommendations, and insights. We use this information only to provide the requested health analysis and related features described in the App."
+                title = stringResource(R.string.privacy_sec3_title),
+                content = stringResource(R.string.privacy_sec3_body)
             )
             
             PrivacySection(
-                title = "4. Security and Data Protection",
-                content = "We prioritize the protection of sensitive health and personal data. MyHealthPassport uses multiple layers of security, including:\n" +
-                        "• Biometric authentication via Android Biometric API for fingerprint or face-based access to sensitive data.\n" +
-                        "• AES-256 encryption through the Android Keystore and CryptoManager for storing sensitive medical information.\n" +
-                        "• Secure authentication from Firebase Auth and Google Identity Services.\n" +
-                        "• Protected cloud and app storage for medical profiles, reports, and account information.\n\n" +
-                        "While we use commercially reasonable safeguards, no system is completely immune to risk. We continuously work to reduce risks associated with unauthorized access, disclosure, or misuse of health data."
+                title = stringResource(R.string.privacy_sec4_title),
+                content = stringResource(R.string.privacy_sec4_body)
             )
             
             PrivacySection(
-                title = "5. How We Share Your Information",
-                content = "We do not sell personal data. We may share information only when needed to operate the App or comply with legal obligations, including:\n" +
-                        "• With trusted service providers that support authentication, storage, analytics, and AI processing.\n" +
-                        "• With Firebase and related infrastructure providers needed to secure and deliver the App’s services.\n" +
-                        "• When required by law, court order, or legitimate safety or legal process.\n" +
-                        "• To protect the rights, safety, or property of users or the public."
+                title = stringResource(R.string.privacy_sec5_title),
+                content = stringResource(R.string.privacy_sec5_body)
             )
             
             PrivacySection(
-                title = "6. Device, Widget, and Accessibility Data",
-                content = "If you use the App’s home screen widget, voice features, or text-to-speech functionality, we may process limited data necessary to display health summaries and support accessibility needs. This data is used to provide the App’s intended functionality and improve the usability of your health dashboard and notifications."
+                title = stringResource(R.string.privacy_sec6_title),
+                content = stringResource(R.string.privacy_sec6_body)
             )
             
             PrivacySection(
-                title = "7. Your Choices and Rights",
-                content = "Depending on your location, you may have rights to access, correct, delete, or restrict the processing of your personal and health data. You may also be able to manage certain account settings within the App or request assistance by contacting us. If you need to delete your account or remove health data, please reach out using the contact information below so we can help."
+                title = stringResource(R.string.privacy_sec7_title),
+                content = stringResource(R.string.privacy_sec7_body)
             )
             
             PrivacySection(
-                title = "8. Children’s Privacy",
-                content = "MyHealthPassport is not intended for children under the age of 13, and we do not knowingly collect personal information from children under 13 without appropriate parental consent. If you believe a child has provided us with personal information, please contact us and we will take steps to remove it promptly."
+                title = stringResource(R.string.privacy_sec8_title),
+                content = stringResource(R.string.privacy_sec8_body)
             )
             
             PrivacySection(
-                title = "9. Changes to This Policy",
-                content = "We may update this Privacy Policy from time to time to reflect changes in the App, regulatory requirements, or our security practices. Any updates will be posted on this page with a revised effective date."
+                title = stringResource(R.string.privacy_sec9_title),
+                content = stringResource(R.string.privacy_sec9_body)
             )
             
             PrivacySection(
-                title = "10. Contact Us",
-                content = "If you have questions about this Privacy Policy, your personal data, or the App’s security practices, please contact us at myhealthpassport.support@gmail.com."
+                title = stringResource(R.string.privacy_sec10_title),
+                content = stringResource(R.string.privacy_sec10_body)
             )
             
             Spacer(modifier = Modifier.height(32.dp))

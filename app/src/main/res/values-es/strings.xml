@@ -4,6 +4,14 @@
     <string name="results_placeholder">(Los resultados aparecerán aquí)</string>
     <string name="label_prompt">Indicación</string>
     <string name="action_go">Ir</string>
+    <string name="back">Atrás</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="done">Hecho</string>
+    <string name="update">Actualizar</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="error">Error</string>
 
     <!-- Auth -->
     <string name="auth_welcome_back">Bienvenido de nuevo</string>
@@ -34,6 +42,7 @@
     <string name="nav_analytics_graphs">Análisis y Gráficos</string>
     <string name="nav_settings">Ajustes</string>
     <string name="nav_sign_out">Cerrar Sesión</string>
+    <string name="nav_community_support">Comunidad y Soporte</string>
 
     <!-- Home Dashboard -->
     <string name="home_welcome">Bienvenido</string>
@@ -46,11 +55,13 @@
     <string name="home_ai_assistant_desc">Consulte a la IA sobre síntomas y medicinas</string>
     <string name="home_health_analytics">Análisis de Salud</string>
     <string name="home_health_analytics_desc">Visualizar tendencias de signos vitales y PA</string>
+    <string name="home_ai_insights">Análisis de Salud con IA</string>
 
-    <!-- Health Form & Search -->
+    <!-- Health Form & Search & Details -->
     <string name="health_form_title">Añadir Registro de Salud</string>
     <string name="health_save_button">GUARDAR DATOS DE SALUD</string>
     <string name="health_name">Nombre Completo</string>
+    <string name="health_patient_name">Nombre del Paciente</string>
     <string name="health_age">Edad</string>
     <string name="health_gender">Género</string>
     <string name="health_blood_group">Grupo Sanguíneo</string>
@@ -66,9 +77,19 @@
     <string name="health_condition">Estado de Salud</string>
     <string name="health_search_title">Buscar Datos de Salud</string>
     <string name="health_enter_medical_id">Ingrese el ID Médico</string>
-    <string name="health_get_data_button">OBTENER DATOS</string>
+    <string name="health_medical_id_required">ID Médico (Requerido)</string>
+    <string name="health_medical_id_search">ID Médico a buscar</string>
+    <string name="health_get_data_button">OBTENIR DATOS</string>
     <string name="health_view_summary">VER RESUMEN DETALLADO</string>
     <string name="health_delete_record">ELIMINAR REGISTRO</string>
+    <string name="health_find_record">Buscar Registro de Salud</string>
+    <string name="health_vitals_header">Signos Vitales</string>
+    <string name="health_additional_info_header">Información Adicional</string>
+    <string name="patient_record_details">Detalles del Registro</string>
+    <string name="patient_medical_history">Historial Médico</string>
+    <string name="patient_no_records">No se encontraron registros</string>
+    <string name="patient_id_label">ID: %1$s</string>
+    <string name="patient_ai_insight">Análisis de Salud con IA</string>
 
     <!-- Emergency Contacts -->
     <string name="emergency_title">Contactos de Emergencia</string>
@@ -78,13 +99,41 @@
     <string name="emergency_save_contact">GUARDAR CONTACTO</string>
     <string name="emergency_call">Llamar</string>
     <string name="emergency_no_contacts">No se encontraron contactos de emergencia.</string>
+    <string name="emergency_standard_services">Servicios Estándar</string>
+    <string name="emergency_saved_contacts">Mis Contactos Guardados</string>
+    <string name="emergency_police">Policía</string>
+    <string name="emergency_ambulance">Ambulancia</string>
 
-    <!-- AI Agent & Reports -->
+    <!-- AI Agent -->
     <string name="ai_agent_title">Agente de Salud IA</string>
     <string name="ai_additional_info">Información adicional</string>
     <string name="ai_send">Enviar</string>
     <string name="ai_placeholder">Pregúntame lo que quieras sobre tu salud…</string>
+    <string name="agent_subtitle">Obtén tu plan personalizado de dieta y ejercicios mediante nuestro agente inteligente…</string>
+    <string name="agent_medical_id">ID Médico</string>
+    <string name="agent_get_plan">Obtener Plan</string>
+
+    <!-- AI Reports & Analyser -->
     <string name="report_analyser_title">Analizador de Informes Médicos</string>
+    <string name="report_analysis_title">Análisis de Informe Médico</string>
+    <string name="report_choose_option">Elige tu opción de análisis</string>
+    <string name="report_selected">Informe Seleccionado</string>
+    <string name="report_tap_to_upload">Toca para cargar el informe médico</string>
+    <string name="report_supports_formats">Admite JPG, PNG</string>
+    <string name="report_quick_save">Guardado Rápido</string>
+    <string name="report_quick_save_desc">La IA extrae y guarda los datos automáticamente</string>
+    <string name="report_detailed_analysis">Análisis Detallado</string>
+    <string name="report_detailed_analysis_desc">Análisis exhaustivo de tu informe con IA</string>
+    <string name="report_analysis_benefits">Beneficios del análisis</string>
+    <string name="report_benefit_1">Información detallada de tus informes</string>
+    <string name="report_benefit_2">Recomendaciones personalizadas</string>
+    <string name="report_benefit_3">Seguimiento de tendencias en el tiempo</string>
+    <string name="report_benefit_4">Extracción segura de datos clínicos</string>
+    <string name="report_security_notice">🔒 Sus datos se procesan de forma segura</string>
+    <string name="report_review_edit">Revisar y Editar Datos</string>
+    <string name="report_review_subtitle">Toca cualquier campo para editar su valor. Selecciona un ID existente o ingresa uno nuevo.</string>
+    <string name="report_result_title">Resultado</string>
+    <string name="report_edit_field">Editar %1$s</string>
     <string name="report_upload">Cargar Informe Médico</string>
     <string name="report_analyze">Analizar Documento</string>
     <string name="report_confirm_save">CONFIRMAR Y GUARDAR</string>
@@ -95,6 +144,14 @@
     <string name="report_get_ai_insights">Obtener Análisis IA 💡</string>
     <string name="report_listen_analysis">🔊 Escuchar Análisis</string>
     <string name="report_no_data">Sin datos</string>
+
+    <!-- Charts & Analytics -->
+    <string name="charts_title">📊 Análisis de Salud</string>
+    <string name="charts_no_data">No se encontraron datos de salud</string>
+    <string name="charts_no_data_desc">Añade tus registros médicos para ver tus gráficos de progreso e información de salud.</string>
+    <string name="charts_bp_title">Tendencias de Presión Arterial</string>
+    <string name="charts_sugar_title">Niveles de Glucosa</string>
+    <string name="charts_meds_title">Distribución de Medicamentos</string>
 
     <!-- Settings Screen -->
     <string name="settings_title">Ajustes</string>
@@ -125,6 +182,39 @@
     <string name="settings_save">Guardar</string>
     <string name="settings_cancel">Cancelar</string>
 
+    <!-- API Key Settings -->
+    <string name="api_key_title">Configuración de IA</string>
+    <string name="api_key_header">Configuración de API de Gemini</string>
+    <string name="api_key_subtitle">Para habilitar su Agente de Salud y el Análisis de Informes, ingrese su clave API de Gemini a continuación.</string>
+    <string name="api_key_get_free">Obtenga una clave API gratuita en Google AI Studio</string>
+    <string name="api_key_placeholder">Ingrese la clave API de Gemini</string>
+    <string name="api_key_save_continue">GUARDAR Y CONTINUAR</string>
+
+    <!-- Privacy Policy Screen -->
+    <string name="privacy_title">Política de Privacidad de MyHealthPassport</string>
+    <string name="privacy_effective_date">Fecha de vigencia: 30 de julio de 2026</string>
+    <string name="privacy_intro">MyHealthPassport ("nosotros" o "la Aplicación") se compromete a proteger su privacidad. Esta Política de Privacidad explica qué información recopilamos, cómo la usamos y las opciones que tiene con respecto a sus datos.</string>
+    <string name="privacy_sec1_title">1. Información que recopilamos</string>
+    <string name="privacy_sec1_body">MyHealthPassport recopila la información necesaria para brindar una experiencia de salud digital segura y personalizada, incluyendo datos de cuenta, perfil médico y documentos cargados.</string>
+    <string name="privacy_sec2_title">2. Cómo usamos su información</string>
+    <string name="privacy_sec2_body">Usamos su información para ofrecer las funciones principales de la Aplicación, tales como análisis de IA, informes de tendencias y gestión de perfiles de salud.</string>
+    <string name="privacy_sec3_title">3. Procesamiento de IA y datos de salud</string>
+    <string name="privacy_sec3_body">Algunas funciones usan servicios de IA como Google Gemini AI para interpretar documentos e imágenes médicas exclusivamente para generar análisis.</string>
+    <string name="privacy_sec4_title">4. Seguridad y protección de datos</string>
+    <string name="privacy_sec4_body">Protegemos sus datos de salud mediante autenticación biométrica y encriptación AES-256 utilizando Android Keystore.</string>
+    <string name="privacy_sec5_title">5. Cómo compartimos su información</string>
+    <string name="privacy_sec5_body">No vendemos datos personales. Solo compartimos datos cuando es necesario para operar la aplicación o cumplir con la ley.</string>
+    <string name="privacy_sec6_title">6. Datos de dispositivos y accesibilidad</string>
+    <string name="privacy_sec6_body">Al usar el widget o funciones de voz, procesamos datos limitados para mostrar los resúmenes adecuadamente.</string>
+    <string name="privacy_sec7_title">7. Sus derechos y opciones</string>
+    <string name="privacy_sec7_body">Tiene derecho a acceder, corregir o eliminar sus datos personales. Puede comunicarse con nosotros si necesita ayuda.</string>
+    <string name="privacy_sec8_title">8. Privacidad de los niños</string>
+    <string name="privacy_sec8_body">MyHealthPassport no está dirigido a niños menores de 13 años y no recopilamos información de niños deliberadamente.</string>
+    <string name="privacy_sec9_title">9. Cambios a esta política</string>
+    <string name="privacy_sec9_body">Podemos actualizar esta Política de Privacidad periódicamente. Los cambios se publicarán en esta página.</string>
+    <string name="privacy_sec10_title">10. Contáctenos</string>
+    <string name="privacy_sec10_body">Si tiene preguntas sobre esta Política de Privacidad, escríbanos a myhealthpassport.support@gmail.com.</string>
+
     <!-- Languages -->
     <string name="lang_english">Inglés (English)</string>
     <string name="lang_spanish">Español</string>
@@ -142,4 +232,39 @@
     <string name="widget_sugar">🍬 Azúcar: %1$s mg/dL</string>
     <string name="widget_meds">💊 Meds: %1$s</string>
     <string name="widget_no_data">No se encontraron datos de salud.</string>
+    <string name="network_airplane_mode">¡El modo avión está activado!</string>
+    <string name="auth_login_successful">Inicio de sesión correcto</string>
+    <string name="auth_google_sign_in_failed">Error al iniciar sesión con Google: %1$s</string>
+    <string name="auth_social_login">Inicio de sesión social</string>
+    <string name="auth_google_logo">Logotipo de Google</string>
+    <string name="settings_auth_error">Error de autenticación: %1$s</string>
+    <string name="settings_authentication_failed">Autenticación fallida</string>
+    <string name="settings_verify_identity">Verificar identidad</string>
+    <string name="settings_biometric_description">Autentíquese para ver sus registros médicos</string>
+    <string name="settings_biometric_unavailable">La autenticación biométrica no está disponible</string>
+    <string name="report_load_image_failed">No se pudo cargar la imagen</string>
+    <string name="report_notifications_disabled">Notificaciones desactivadas. No recibirás actualizaciones en segundo plano.</string>
+    <string name="report_not_specified">No especificado</string>
+    <string name="emergency_toggle_add">Alternar añadir contacto</string>
+    <string name="emergency_call_button">LLAMAR</string>
+    <string name="emergency_delete">Eliminar</string>
+    <string name="health_saved_successfully">Tus datos se han guardado correctamente</string>
+    <string name="health_save_error">Error al guardar los datos</string>
+    <string name="health_fetch_ids_error">Error al obtener los ID médicos: %1$s</string>
+    <string name="health_retrieval_error">Error al recuperar los datos</string>
+    <string name="health_deleted_successfully">Los datos se han eliminado correctamente</string>
+    <string name="health_delete_error">Error al eliminar los datos</string>
+    <string name="health_fetch_records_error">Error al obtener todos los registros: %1$s</string>
+    <string name="worker_processing">La IA está procesando tu solicitud…</string>
+    <string name="worker_complete">Análisis completado</string>
+    <string name="worker_failed">Error en el análisis</string>
+    <string name="worker_failed_detail">Algo salió mal durante el procesamiento.</string>
+    <string name="worker_notification_title">Procesamiento de salud con IA</string>
+    <string name="worker_channel_name">Tareas de salud con IA</string>
+    <string name="worker_channel_description">Notificaciones del procesamiento de datos de salud con IA</string>
+    <string name="a11y_back">Atrás</string>
+    <string name="a11y_menu">Menú</string>
+    <string name="a11y_logo">My Health Passport</string>
+    <string name="a11y_saved">Guardado</string>
+    <string name="a11y_edit">Editar</string>
 </resources>

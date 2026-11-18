@@ -4,6 +4,14 @@
     <string name="results_placeholder">(ستظهر النتائج هنا)</string>
     <string name="label_prompt">المطالبة</string>
     <string name="action_go">انطلق</string>
+    <string name="back">رجوع</string>
+    <string name="cancel">إلغاء</string>
+    <string name="save">حفظ</string>
+    <string name="done">تم</string>
+    <string name="update">تحديث</string>
+    <string name="edit">تعديل</string>
+    <string name="delete">حذف</string>
+    <string name="error">خطأ</string>
 
     <!-- Auth -->
     <string name="auth_welcome_back">مرحباً بعودتك</string>
@@ -34,6 +42,7 @@
     <string name="nav_analytics_graphs">التحليلات والرسوم البيانية</string>
     <string name="nav_settings">الإعدادات</string>
     <string name="nav_sign_out">تسجيل الخروج</string>
+    <string name="nav_community_support">المجتمع والدعم</string>
 
     <!-- Home Dashboard -->
     <string name="home_welcome">مرحباً بك</string>
@@ -46,11 +55,13 @@
     <string name="home_ai_assistant_desc">اسأل الذكاء الاصطناعي عن الأعراض والأدوية</string>
     <string name="home_health_analytics">تحليلات الصحة</string>
     <string name="home_health_analytics_desc">عرض المؤشرات الحيوية واتجاهات ضغط الدم</string>
+    <string name="home_ai_insights">رؤى الصحة الذكية</string>
 
-    <!-- Health Form & Search -->
+    <!-- Health Form & Search & Details -->
     <string name="health_form_title">إضافة سجل صحي</string>
     <string name="health_save_button">حفظ البيانات الصحية</string>
     <string name="health_name">الاسم الكامل</string>
+    <string name="health_patient_name">اسم المريض</string>
     <string name="health_age">العمر</string>
     <string name="health_gender">الجنس</string>
     <string name="health_blood_group">فصيلة الدم</string>
@@ -66,9 +77,19 @@
     <string name="health_condition">الحالة الصحية</string>
     <string name="health_search_title">البحث في البيانات الصحية</string>
     <string name="health_enter_medical_id">أدخل المعرف الطبي</string>
+    <string name="health_medical_id_required">المعرف الطبي (مطلوب)</string>
+    <string name="health_medical_id_search">المعرف الطبي للبحث</string>
     <string name="health_get_data_button">جلب البيانات</string>
     <string name="health_view_summary">عرض الملخص التفصيلي</string>
     <string name="health_delete_record">حذف السجل</string>
+    <string name="health_find_record">البحث عن سجل صحي</string>
+    <string name="health_vitals_header">المؤشرات الحيوية</string>
+    <string name="health_additional_info_header">معلومات إضافية</string>
+    <string name="patient_record_details">تفاصيل السجل</string>
+    <string name="patient_medical_history">التاريخ الطبي</string>
+    <string name="patient_no_records">لم يتم العثور على سجلات</string>
+    <string name="patient_id_label">المعرف: %1$s</string>
+    <string name="patient_ai_insight">تحليل الصحة الذكي</string>
 
     <!-- Emergency Contacts -->
     <string name="emergency_title">جهات اتصال الطوارئ</string>
@@ -78,13 +99,41 @@
     <string name="emergency_save_contact">حفظ جهة الاتصال</string>
     <string name="emergency_call">اتصال</string>
     <string name="emergency_no_contacts">لم يتم العثور على جهات اتصال طوارئ.</string>
+    <string name="emergency_standard_services">الخدمات الأساسية</string>
+    <string name="emergency_saved_contacts">جهات الاتصال المحفوظة</string>
+    <string name="emergency_police">الشرطة</string>
+    <string name="emergency_ambulance">الإسعاف</string>
 
-    <!-- AI Agent & Reports -->
+    <!-- AI Agent -->
     <string name="ai_agent_title">وكيل الصحة الذكي</string>
     <string name="ai_additional_info">معلومات إضافية</string>
     <string name="ai_send">إرسال</string>
     <string name="ai_placeholder">اسألني أي شيء عن صحتك…</string>
+    <string name="agent_subtitle">احصل على نظام غذائي وخطة تمارين مخصصة من وكيلنا الذكي...</string>
+    <string name="agent_medical_id">المعرف الطبي</string>
+    <string name="agent_get_plan">الحصول على الخطة</string>
+
+    <!-- AI Reports & Analyser -->
     <string name="report_analyser_title">محلل التقارير الطبية</string>
+    <string name="report_analysis_title">تحليل التقرير الطبي</string>
+    <string name="report_choose_option">اختر خيار التحليل الخاص بك</string>
+    <string name="report_selected">تم تحديد التقرير</string>
+    <string name="report_tap_to_upload">انقر لتحميل التقرير الطبي</string>
+    <string name="report_supports_formats">يدعم JPG و PNG</string>
+    <string name="report_quick_save">حفظ سريع</string>
+    <string name="report_quick_save_desc">استخراج البيانات وحفظها تلقائياً بالذكاء الاصطناعي</string>
+    <string name="report_detailed_analysis">تحليل تفصيلي</string>
+    <string name="report_detailed_analysis_desc">تحليل شامل لتقريرك الطبي بواسطة الذكاء الاصطناعي</string>
+    <string name="report_analysis_benefits">مزايـا التحليل</string>
+    <string name="report_benefit_1">تحليلات تفصيلية من تقاريرك</string>
+    <string name="report_benefit_2">توصيات مخصصة</string>
+    <string name="report_benefit_3">متابعة الاتجاهات عبر الوقت</string>
+    <string name="report_benefit_4">استخراج آمن للبيانات السريرية</string>
+    <string name="report_security_notice">🔒 تتم معالجة بياناتك بأمان</string>
+    <string name="report_review_edit">مراجعة وتعديل البيانات</string>
+    <string name="report_review_subtitle">انقر على أي حقل لتعديل قيمته. اختر معرفاً طبيًا حالياً أو أدخل معرفاً جديداً.</string>
+    <string name="report_result_title">النتيجة</string>
+    <string name="report_edit_field">تعديل %1$s</string>
     <string name="report_upload">تحميل تقرير طبي</string>
     <string name="report_analyze">تحليل المستند</string>
     <string name="report_confirm_save">تأكيد وحفظ</string>
@@ -95,6 +144,14 @@
     <string name="report_get_ai_insights">الحصول على تحليلات الذكاء الاصطناعي 💡</string>
     <string name="report_listen_analysis">🔊 الاستماع للتحليل</string>
     <string name="report_no_data">لا توجد بيانات</string>
+
+    <!-- Charts & Analytics -->
+    <string name="charts_title">📊 تحليلات الصحة</string>
+    <string name="charts_no_data">لم يتم العثور على بيانات صحية</string>
+    <string name="charts_no_data_desc">أضف سجلاتك الطبية لعرض رسومك البيانية وتحليلاتك الصحية.</string>
+    <string name="charts_bp_title">اتجاهات ضغط الدم</string>
+    <string name="charts_sugar_title">مستويات سكر الدم</string>
+    <string name="charts_meds_title">توزيع الأدوية</string>
 
     <!-- Settings Screen -->
     <string name="settings_title">الإعدادات</string>
@@ -125,6 +182,39 @@
     <string name="settings_save">حفظ</string>
     <string name="settings_cancel">إلغاء</string>
 
+    <!-- API Key Settings -->
+    <string name="api_key_title">تهيئة الذكاء الاصطناعي</string>
+    <string name="api_key_header">إعداد مفتاح Gemini API</string>
+    <string name="api_key_subtitle">لتفعيل وكيل الصحة الشخصي ومحلل التقارير، يرجى إدخال مفتاح Gemini API أدناه.</string>
+    <string name="api_key_get_free">احصل على مفتاح API مجاني من Google AI Studio</string>
+    <string name="api_key_placeholder">أدخل مفتاح Gemini API</string>
+    <string name="api_key_save_continue">حفظ ومتابعة</string>
+
+    <!-- Privacy Policy Screen -->
+    <string name="privacy_title">سياسة الخصوصية لـ MyHealthPassport</string>
+    <string name="privacy_effective_date">تاريخ النفاذ: 30 يوليو 2026</string>
+    <string name="privacy_intro">تلتزم MyHealthPassport ("نحن" أو "التطبيق") بحماية خصوصيتك. توضح سياسة الخصوصية هذه المعلومات التي نجمعها، وكيفية استخدامها، ومتى نشاركها، والخيارات المتاحة لك بشأن بياناتك.</string>
+    <string name="privacy_sec1_title">1. المعلومات التي نجمعها</string>
+    <string name="privacy_sec1_body">يجمع MyHealthPassport المعلومات اللازمة لتقديم تجربة صحية رقمية آمنة ومخصصة. قد يشمل ذلك:\n• معلومات الحساب والمصادقة، بما في ذلك البريد الإلكتروني وتفاصيل تسجيل الدخول.\n• معلومات الملف الطبي مثل معرفك الطبي الرقمي، المؤشرات الحيوية، سجل الأدوية، جهات اتصال الطوارئ، والتقارير الطبية المحملة.\n• الصور والمستندات والبيانات الصحية المقدمة للتحليل الذكي.\n• الإدخال الصوتي، وتفاعلات المحادثة، والتوصيات المولدة بالذكاء الاصطناعي.\n• معلومات الجهاز، واستخدام التطبيق، والتشخيص، وأداء النظام.</string>
+    <string name="privacy_sec2_title">2. كيفية استخدام معلوماتك</string>
+    <string name="privacy_sec2_body">نستخدم معلوماتك لتقديم الميزات الأساسية لـ MyHealthPassport، بما في ذلك:\n• إنشاء وصيانة ملفك الصحي الشخصي ومعرفك الطبي.\n• تحليل الصور والمستندات الطبية بواسطة الذكاء الاصطناعي واستخراج المؤشرات الصحية.\n• تقديم التوجيه الصحي المخصص وتوصيات النظام الغذائي والتمارين الرياضية.\n• تتبع ضغط الدم والجلوكوز وأنماط الأدوية والاتجاهات الصحية طويلة المدى.\n• دعم الوصول في حالات الطوارئ والتفاعل الصوتي والتكبير وإمكانيات الوصول.\n• تحسين موثوقية التطبيق وتجربة المستخدم والحماية الأمنية.</string>
+    <string name="privacy_sec3_title">3. معالجة الذكاء الاصطناعي والبيانات الصحية</string>
+    <string name="privacy_sec3_body">تستخدم بعض الميزات خدمات الذكاء الاصطناعي، بما في ذلك Google Gemini AI، لتفسير المستندات الطبية والصور والإدخالات الصحية. قد يتضمن ذلك نقل السجلات المحملة أو المعلومات التشخيصية إلى خدمات معالجة الذكاء الاصطناعي المعتمدة لإنشاء الملخصات والتوصيات والرؤى.</string>
+    <string name="privacy_sec4_title">4. الأمان وحماية البيانات</string>
+    <string name="privacy_sec4_body">نحن نولي الأولوية لحماية البيانات الصحية والشخصية الحساسة. يستخدم MyHealthPassport طبقات متعددة من الأمان، بما في ذلك:\n• المصادقة البيومترية عبر Android Biometric API للوصول بالبصمة أو الوجه.\n• التشفير AES-256 من خلال Android Keystore وCryptoManager لتخزين المعلومات الطبية الحساسة.\n• المصادقة الآمنة من Firebase Auth وGoogle Identity Services.\n• التخزين السحابي والمحلي المحمي للملفات الطبية والتقارير والحسابات.</string>
+    <string name="privacy_sec5_title">5. مشاركة معلوماتك</string>
+    <string name="privacy_sec5_body">نحن لا نبيع البيانات الشخصية. قد نشارك المعلومات فقط عند الحاجة لتشغيل التطبيق أو الامتثال للالتزامات القانونية، بما في ذلك مزودي الخدمات الموثوقين وبنية Firebase التحتية وعندما يقتضي القانون ذلك.</string>
+    <string name="privacy_sec6_title">6. بيانات الجهاز والأدوات وميزات الوصول</string>
+    <string name="privacy_sec6_body">إذا كنت تستخدم أداة الشاشة الرئيسية أو الميزات الصوتية أو تحويل النص إلى كلام، فقد نعالج بيانات محدودة ضرورية لعرض الملخصات الصحية ودعم احتياجات الوصول.</string>
+    <string name="privacy_sec7_title">7. خياراتك وحقوقك</string>
+    <string name="privacy_sec7_body">وفقاً لموقعك، قد تكون لديك حقوق الوصول إلى بياناتك الشخصية والصحية أو تصحيحها أو حذفها أو تقييد معالجتها. يمكنك أيضاً إدارة إعدادات الحساب أو التواصل معنا للحصول على المساعدة.</string>
+    <string name="privacy_sec8_title">8. خصوصية الأطفال</string>
+    <string name="privacy_sec8_body">MyHealthPassport غير موجه للأطفال دون سن 13 عاماً، ولا نجمع معلومات شخصية من الأطفال دون 13 عاماً بمعرفتنا دون موافقة الوالدين المناسبة.</string>
+    <string name="privacy_sec9_title">9. التغييرات على هذه السياسة</string>
+    <string name="privacy_sec9_body">قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر لتعكس التغييرات في التطبيق أو المتطلبات التنظيمية أو ممارسات الأمان لدينا.</string>
+    <string name="privacy_sec10_title">10. اتصل بنا</string>
+    <string name="privacy_sec10_body">إذا كانت لديك أسئلة حول سياسة الخصوصية هذه أو بياناتك الشخصية، يرجى الاتصال بنا على myhealthpassport.support@gmail.com.</string>
+
     <!-- Languages -->
     <string name="lang_english">الإنجليزية (English)</string>
     <string name="lang_spanish">الإسبانية (Español)</string>
@@ -142,4 +232,39 @@
     <string name="widget_sugar">🍬 السكر: %1$s mg/dL</string>
     <string name="widget_meds">💊 الأدوية: %1$s</string>
     <string name="widget_no_data">لم يتم العثور على بيانات صحية.</string>
+    <string name="network_airplane_mode">وضع الطائرة قيد التشغيل!</string>
+    <string name="auth_login_successful">تم تسجيل الدخول بنجاح</string>
+    <string name="auth_google_sign_in_failed">فشل تسجيل الدخول عبر Google: %1$s</string>
+    <string name="auth_social_login">تسجيل دخول اجتماعي</string>
+    <string name="auth_google_logo">شعار Google</string>
+    <string name="settings_auth_error">خطأ في المصادقة: %1$s</string>
+    <string name="settings_authentication_failed">فشلت المصادقة</string>
+    <string name="settings_verify_identity">التحقق من الهوية</string>
+    <string name="settings_biometric_description">المصادقة لعرض سجلاتك الطبية</string>
+    <string name="settings_biometric_unavailable">المصادقة الحيوية غير متاحة</string>
+    <string name="report_load_image_failed">تعذر تحميل الصورة</string>
+    <string name="report_notifications_disabled">الإشعارات معطلة. لن تتلقى تحديثات في الخلفية.</string>
+    <string name="report_not_specified">غير محدد</string>
+    <string name="emergency_toggle_add">تبديل إضافة جهة اتصال</string>
+    <string name="emergency_call_button">اتصال</string>
+    <string name="emergency_delete">حذف</string>
+    <string name="health_saved_successfully">تم حفظ بياناتك بنجاح</string>
+    <string name="health_save_error">خطأ في حفظ البيانات</string>
+    <string name="health_fetch_ids_error">خطأ في جلب المعرّفات الطبية: %1$s</string>
+    <string name="health_retrieval_error">خطأ في استرجاع البيانات</string>
+    <string name="health_deleted_successfully">تم حذف البيانات بنجاح</string>
+    <string name="health_delete_error">خطأ في حذف البيانات</string>
+    <string name="health_fetch_records_error">خطأ في جلب جميع السجلات: %1$s</string>
+    <string name="worker_processing">الذكاء الاصطناعي يعالج طلبك…</string>
+    <string name="worker_complete">اكتمل التحليل</string>
+    <string name="worker_failed">فشل التحليل</string>
+    <string name="worker_failed_detail">حدث خطأ أثناء المعالجة.</string>
+    <string name="worker_notification_title">معالجة الذكاء الاصطناعي للصحة</string>
+    <string name="worker_channel_name">مهام الذكاء الاصطناعي للصحة</string>
+    <string name="worker_channel_description">إشعارات معالجة بيانات الصحة بالذكاء الاصطناعي</string>
+    <string name="a11y_back">رجوع</string>
+    <string name="a11y_menu">القائمة</string>
+    <string name="a11y_logo">My Health Passport</string>
+    <string name="a11y_saved">تم الحفظ</string>
+    <string name="a11y_edit">تعديل</string>
 </resources>
