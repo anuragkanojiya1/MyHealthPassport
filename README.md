@@ -9,7 +9,7 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
     <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70"/>
   </a>
   <a href="https://github.com/anuragkanojiya1/MyHealthPassport/releases">
-    <img alt="Get it on GitHub" src="https://img.shields.io/badge/Get_it_on-GitHub_Releases-181717?style=for-the-badge&logo=github&logoColor=white" height="48"/>
+    <img src="https://github.com/vishal2376/snaptick/assets/38159691/f502e2ec-dbf4-4ed6-b23f-a47b74080fea" height="80">](https://github.com/anuragkanojiya1/MyHealthPassport/releases)
   </a>
 </p>
 
