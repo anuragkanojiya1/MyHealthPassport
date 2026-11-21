@@ -45,8 +45,8 @@ Download **MyHealthPassport** on your Android device directly from the Google Pl
   </a>
 </p>
 
-* 🛒 **Google Play Store Link:** [https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport](https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport)
-* 📦 **GitHub Releases (APK):** [https://github.com/anuragkanojiya1/MyHealthPassport/releases](https://github.com/anuragkanojiya1/MyHealthPassport/releases)
+* 🛒 **Google Play Store Link:** [MyHealthPassport on Google Play](https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport)
+* 📦 **GitHub Releases (APK):** [MyHealthPassport Releases](https://github.com/anuragkanojiya1/MyHealthPassport/releases)
 
 ---
 
