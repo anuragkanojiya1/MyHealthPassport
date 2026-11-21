@@ -6,10 +6,10 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
 
 <p align="left">
   <a href="https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport">
-    <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70"/>
+    <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="80"/>
   </a>
   <a href="https://github.com/anuragkanojiya1/MyHealthPassport/releases">
-    <img src="https://github.com/vishal2376/snaptick/assets/38159691/f502e2ec-dbf4-4ed6-b23f-a47b74080fea" height="70">
+    <img src="https://github.com/vishal2376/snaptick/assets/38159691/f502e2ec-dbf4-4ed6-b23f-a47b74080fea" height="80">
   </a>
 </p>
 
@@ -41,7 +41,7 @@ Download **MyHealthPassport** on your Android device directly from the Google Pl
     <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="80"/>
   </a>
   <a href="https://github.com/anuragkanojiya1/MyHealthPassport/releases">
-    <img alt="Get it on GitHub" src="https://img.shields.io/badge/Get_it_on-GitHub_Releases-181717?style=for-the-badge&logo=github&logoColor=white" height="52"/>
+    <img src="https://github.com/vishal2376/snaptick/assets/38159691/f502e2ec-dbf4-4ed6-b23f-a47b74080fea" height="80">
   </a>
 </p>
 
