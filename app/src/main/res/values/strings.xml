@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MyHealthPassport</string>
-    <string name="web_client_id" translatable="false">231155947287-ssleon1584dujboj2vji9lugu566hkii.apps.googleusercontent.com</string>
     <string name="results_placeholder">(Results will appear here)</string>
     <string name="label_prompt">Prompt</string>
     <string name="action_go">Go</string>

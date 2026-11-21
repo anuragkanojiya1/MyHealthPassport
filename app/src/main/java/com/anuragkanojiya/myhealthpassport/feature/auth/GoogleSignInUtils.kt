@@ -11,6 +11,7 @@ import androidx.credentials.GetPasswordOption
 import androidx.credentials.PasswordCredential
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.credentials.exceptions.NoCredentialException
+import com.anuragkanojiya.myhealthpassport.BuildConfig
 import com.anuragkanojiya.myhealthpassport.R
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
@@ -44,7 +45,7 @@ class GoogleSignInUtils {
 
             return try {
                 val credentialManager = CredentialManager.create(context)
-                val clientId = context.getString(R.string.web_client_id)
+                val clientId = BuildConfig.WEB_CLIENT_ID
                 
                 Log.d(TAG, "Attempting sign-in with Client ID: $clientId")
 
@@ -87,7 +88,7 @@ class GoogleSignInUtils {
 
             } catch (e: NoCredentialException) {
                 Log.e(TAG, "No credentials found. Error 10 [28444] usually means the SHA-1 isn't linked to the Web Client ID in the Google Cloud Console.")
-                Log.w(TAG, "Web Client ID: ${context.getString(R.string.web_client_id)}")
+                Log.w(TAG, "Web Client ID: ${BuildConfig.WEB_CLIENT_ID}")
                 Result.failure(Exception("No accounts found. This usually means the SHA-1 fingerprint of this app isn't registered in your Firebase Console or the Web Client ID is incorrect. Check Logcat for details."))
             } catch (e: GetCredentialException) {
                 Log.e(TAG, "Credential error: ${e.type} - ${e.message}", e)

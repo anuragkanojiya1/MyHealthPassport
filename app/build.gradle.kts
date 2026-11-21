@@ -1,4 +1,6 @@
-﻿plugins {
+﻿import java.util.Properties
+
+plugins {
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.google.firebase.crashlytics)
     alias(libs.plugins.android.application)
@@ -6,6 +8,12 @@
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.playPublisher)
+}
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use { localProperties.load(it) }
 }
 
 android {
@@ -23,6 +31,13 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val webClientId = System.getenv("WEB_CLIENT_ID")
+            ?: localProperties.getProperty("WEB_CLIENT_ID")
+            ?: ""
+
+        buildConfigField("String", "WEB_CLIENT_ID", "\"$webClientId\"")
+
     }
 
     signingConfigs {

@@ -44,7 +44,7 @@
 
         <receiver
             android:name=".NetworkReceiver"
-            android:exported="true">
+            android:exported="false">
         <intent-filter>
             <action android:name="android.intent.action.AIRPLANE_MODE" />
         </intent-filter>
