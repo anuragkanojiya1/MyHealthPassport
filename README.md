@@ -1,4 +1,4 @@
-# MyHealthPassport 
+# MyHealthPassport
 
 MyHealthPassport is a cutting-edge Android application built with Jetpack Compose that securely stores, manages, and analyzes patients' medical data. It integrates AI agents, voice-based interaction, health analytics, and emergency assistance to provide users with a comprehensive digital health assistant.
 
@@ -6,15 +6,15 @@ MyHealthPassport is a cutting-edge Android application built with Jetpack Compos
 
 <p align="left">
   <a href="https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport">
-    <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70"/>
+    <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="80"/>
   </a>
   <a href="https://github.com/anuragkanojiya1/MyHealthPassport/releases">
-    <img alt="Get it on GitHub" src="https://img.shields.io/badge/GET_IT_ON-GitHub_Releases-101010?style=for-the-badge&logo=github&logoColor=white&labelColor=101010" height="70"/>
+    <img src="https://github.com/vishal2376/snaptick/assets/38159691/f502e2ec-dbf4-4ed6-b23f-a47b74080fea" height="80">
   </a>
 </p>
 
 [![Google Play](https://img.shields.io/badge/Google_Play-Download-3DDC84?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport)
-[![GitHub Releases](https://img.shields.io/badge/GitHub-Download_APK-101010?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/anuragkanojiya1/MyHealthPassport/releases)
+[![GitHub Releases](https://img.shields.io/badge/GitHub-Download_APK-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/anuragkanojiya1/MyHealthPassport/releases)
 [![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/)
 [![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
 [![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-Material_3-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
@@ -38,15 +38,15 @@ Download **MyHealthPassport** on your Android device directly from the Google Pl
 
 <p align="left">
   <a href="https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport">
-    <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70"/>
+    <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="80"/>
   </a>
   <a href="https://github.com/anuragkanojiya1/MyHealthPassport/releases">
-    <img alt="Get it on GitHub" src="https://img.shields.io/badge/GET_IT_ON-GitHub_Releases-101010?style=for-the-badge&logo=github&logoColor=white&labelColor=101010" height="70"/>
+    <img src="https://github.com/vishal2376/snaptick/assets/38159691/f502e2ec-dbf4-4ed6-b23f-a47b74080fea" height="80">
   </a>
 </p>
 
-* 🛒 **Google Play Store Link:** [https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport](https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport)
-* 📦 **GitHub Releases (APK):** [https://github.com/anuragkanojiya1/MyHealthPassport/releases](https://github.com/anuragkanojiya1/MyHealthPassport/releases)
+* 🛒 **Google Play Store Link:** [MyHealthPassport on Google Play](https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport)
+* 📦 **GitHub Releases (APK):** [MyHealthPassport Releases](https://github.com/anuragkanojiya1/MyHealthPassport/releases)
 
 ---
 
