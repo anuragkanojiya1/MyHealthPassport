@@ -102,16 +102,14 @@ Download **MyHealthPassport** on your Android device directly from the Google Pl
 - 🛒 **Download from Google Play Store:** [MyHealthPassport on Google Play](https://play.google.com/store/apps/details?id=com.anuragkanojiya.myhealthpassport)
 - 📦 **Download APK from GitHub Releases:** [MyHealthPassport Releases](https://github.com/anuragkanojiya1/MyHealthPassport/releases)
 
-### 🛠️ Building From Source
+### 🛠️ Building From Android Studio
 
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/anuragkanojiya1/MyHealthPassport.git
    ```
 2. **Open the project in Android Studio.**
-3. **Configure Firebase:** Add your `google-services.json` to the `app/` folder.
-4. **API Keys:** Securely add your Gemini API key in the app settings or via `local.properties`.
-5. **Build and Run.**
+3. **Build and Run.**
 
 ---
 
