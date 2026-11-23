@@ -15,7 +15,7 @@ class GeminiAnalysisUseCase @Inject constructor(
     private suspend fun getGenerativeModel(): GenerativeModel {
         val apiKey = getApiKeyUseCase().first() ?: ""
         return GenerativeModel(
-            modelName = "gemini-2.5-flash",
+            modelName = "gemini-flash-latest",
             apiKey = apiKey
         )
     }

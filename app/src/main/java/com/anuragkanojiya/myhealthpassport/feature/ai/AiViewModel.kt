@@ -1,6 +1,8 @@
 package com.anuragkanojiya.myhealthpassport.feature.ai
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -41,6 +43,12 @@ class AiViewModel @Inject constructor(
     private val _medicalIds = MutableStateFlow<List<String>>(emptyList())
     val medicalIds: StateFlow<List<String>> = _medicalIds.asStateFlow()
 
+    private val _sharedBitmap = MutableStateFlow<Bitmap?>(null)
+    val sharedBitmap: StateFlow<Bitmap?> = _sharedBitmap.asStateFlow()
+
+    private val _navigateToHealthAi = MutableStateFlow(false)
+    val navigateToHealthAi: StateFlow<Boolean> = _navigateToHealthAi.asStateFlow()
+
     // State for background handoff
     private var currentBitmap: Bitmap? = null
     private var currentPrompt: String? = null
@@ -49,6 +57,26 @@ class AiViewModel @Inject constructor(
 
     init {
         fetchMedicalIds()
+    }
+
+    fun loadSharedImage(uri: Uri, contentResolver: android.content.ContentResolver) {
+        viewModelScope.launch(ioDispatcher) {
+            try {
+                val inputStream = contentResolver.openInputStream(uri)
+                val bmp = BitmapFactory.decodeStream(inputStream)
+                if (bmp != null) {
+                    _sharedBitmap.value = bmp
+                    currentBitmap = bmp
+                    _navigateToHealthAi.value = true
+                }
+            } catch (e: Exception) {
+                Log.e(tag, "Failed to load shared image", e)
+            }
+        }
+    }
+
+    fun onNavigatedToHealthAi() {
+        _navigateToHealthAi.value = false
     }
 
     private fun fetchMedicalIds() {

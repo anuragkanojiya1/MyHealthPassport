@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -38,6 +39,8 @@ import com.anuragkanojiya.myhealthpassport.feature.settings.ApiKeyViewModel
 import com.anuragkanojiya.myhealthpassport.feature.settings.SettingsViewModel
 import com.anuragkanojiya.myhealthpassport.widget.HealthDataWorker
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.anuragkanojiya.myhealthpassport.navigation.Screen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import java.util.Locale
@@ -66,6 +69,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        handleIntent(intent)
 
         val intentFilter = IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED)
         registerReceiver(networkReceiver, intentFilter)
@@ -138,6 +143,20 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 
+                    val navigateToHealthAi by aiViewModel.navigateToHealthAi.collectAsState()
+                    LaunchedEffect(navigateToHealthAi) {
+                        if (navigateToHealthAi) {
+                            val currentUser = FirebaseAuth.getInstance().currentUser
+                            if (currentUser != null) {
+                                navController.navigate(Screen.HealthAiScreen.route) {
+                                    popUpTo(Screen.FlipAnimation.route) { inclusive = false }
+                                    launchSingleTop = true
+                                }
+                            }
+                            aiViewModel.onNavigatedToHealthAi()
+                        }
+                    }
+
                     NavGraph(
                         navController = navController,
                         healthViewModel = healthViewModel,
@@ -154,7 +173,21 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
-        // You could handle deep linking here if you want to go to a specific screen
+        handleIntent(intent)
+    }
+
+    private fun handleIntent(intent: Intent?) {
+        if (intent?.action == Intent.ACTION_SEND && intent.type?.startsWith("image/") == true) {
+            val imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+            }
+            imageUri?.let { uri ->
+                aiViewModel.loadSharedImage(uri, contentResolver)
+            }
+        }
     }
 
     override fun onDestroy() {

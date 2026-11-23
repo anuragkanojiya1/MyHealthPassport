@@ -127,7 +127,7 @@ fun NavGraph(
             NavigationDrawer(navController = navController) {
                 HealthAiScreen(
                     navController = navController,
-                    aiViewModel = hiltViewModel(),
+                    aiViewModel = aiViewModel,
                     apiKeyViewModel = hiltViewModel()
                 )
             }

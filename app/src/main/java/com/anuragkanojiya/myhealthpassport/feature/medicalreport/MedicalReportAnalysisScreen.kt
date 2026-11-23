@@ -76,12 +76,19 @@ fun HealthAiScreen(
     val isApiKeyMissing by apiKeyViewModel.isApiKeyMissing.collectAsState()
     val uiState by aiViewModel.uiState.collectAsState()
     val medicalIds by aiViewModel.medicalIds.collectAsState()
+    val sharedBitmap by aiViewModel.sharedBitmap.collectAsState()
 
     val prompt2 = stringResource(R.string.prompt2)
     val prompt1 = stringResource(R.string.prompt1)
 
     var selectedImageUri by rememberSaveable { mutableStateOf<Uri?>(null) }
     var bitmap by remember { mutableStateOf<Bitmap?>(null) }
+
+    LaunchedEffect(sharedBitmap) {
+        sharedBitmap?.let { bmp ->
+            bitmap = bmp
+        }
+    }
 
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
