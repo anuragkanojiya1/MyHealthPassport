@@ -1,6 +1,7 @@
 package com.anuragkanojiya.myhealthpassport.domain.usecase
 
 import android.graphics.Bitmap
+import com.anuragkanojiya.myhealthpassport.BuildConfig
 import com.anuragkanojiya.myhealthpassport.domain.model.UserHealthData
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
@@ -15,7 +16,7 @@ class GeminiAnalysisUseCase @Inject constructor(
     private suspend fun getGenerativeModel(): GenerativeModel {
         val apiKey = getApiKeyUseCase().first() ?: ""
         return GenerativeModel(
-            modelName = "gemini-flash-lite-latest",
+            modelName = BuildConfig.MODEL_NAME,
             apiKey = apiKey
         )
     }

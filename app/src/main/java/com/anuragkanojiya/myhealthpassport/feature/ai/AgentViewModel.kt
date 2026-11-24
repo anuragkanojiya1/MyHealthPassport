@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.anuragkanojiya.myhealthpassport.BuildConfig
 import com.anuragkanojiya.myhealthpassport.domain.usecase.GetApiKeyUseCase
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
@@ -25,7 +26,7 @@ class AgentViewModel @Inject constructor(
         // Retrieve the Gemini API key stored in the app's DataStore
         val apiKey = getApiKeyUseCase().first() ?: ""
         return GenerativeModel(
-            modelName = "gemini-flash-lite-latest",
+            modelName = BuildConfig.MODEL_NAME,
             apiKey = apiKey,
             systemInstruction = content {
                 text(
