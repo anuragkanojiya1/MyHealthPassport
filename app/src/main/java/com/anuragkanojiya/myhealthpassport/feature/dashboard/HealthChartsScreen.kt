@@ -105,7 +105,10 @@ fun ChartScreen(navController: NavController) {
                             lowerMed != "na" &&
                             lowerMed != "none" &&
                             lowerMed != "N.A." &&
-                            lowerMed != "N/A"
+                            lowerMed != "N/A" &&
+                            lowerMed != "Unknown" &&
+                            lowerMed != "UNKNOWN" &&
+                            lowerMed != "unknown"
                             ) {
                             medications[trimmedMed] = medications.getOrDefault(trimmedMed, 0) + 1
                         }
