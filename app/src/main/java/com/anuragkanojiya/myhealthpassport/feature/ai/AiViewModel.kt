@@ -113,7 +113,7 @@ class AiViewModel @Inject constructor(
                             _uiState.value = UiState.ExtractedData(userHealthData)
                         } catch (e: Exception) {
                             Log.d("$tag Error: ", e.localizedMessage ?: "Parsing error")
-                            _uiState.value = UiState.Error("AI response was not in a valid format to save.")
+                            _uiState.value = UiState.Error("AI response was not in a valid format to save. Try again!")
                         }
                     } else {
                         _uiState.value = UiState.Success(outputText)

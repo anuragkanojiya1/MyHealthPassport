@@ -25,7 +25,7 @@ class AgentViewModel @Inject constructor(
         // Retrieve the Gemini API key stored in the app's DataStore
         val apiKey = getApiKeyUseCase().first() ?: ""
         return GenerativeModel(
-            modelName = "gemini-flash-latest",
+            modelName = "gemini-flash-lite-latest",
             apiKey = apiKey,
             systemInstruction = content {
                 text(
