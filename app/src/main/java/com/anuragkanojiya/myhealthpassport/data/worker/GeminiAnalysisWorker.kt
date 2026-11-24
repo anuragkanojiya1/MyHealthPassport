@@ -70,7 +70,7 @@ class GeminiWorker @AssistedInject constructor(
             },
             onFailure = {
                 showCompletionNotification(applicationContext.getString(R.string.worker_failed), applicationContext.getString(R.string.worker_failed_detail))
-                if (runAttemptCount < 3) Result.retry() else Result.failure()
+                Result.failure()
             }
         )
     }
